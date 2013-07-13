@@ -1,0 +1,27 @@
+﻿@model Presentation.Models.Fornecedor.FornecedorModel
+
+@{
+    Layout = "/Views/Layout/Esqueleto.cshtml";
+}
+
+<div id="janela-principal">
+
+    <h3>Cadastro de Fornecedor</h3>
+
+    @using (Html.BeginForm("CadastrarFornecedor", "Fornecedor", FormMethod.Post))
+    {
+        <div class="ui-state-error">
+            @Html.ValidationSummary()
+        </div>
+        @Html.LabelFor(f => f.Nome) 
+        @Html.TextBoxFor(f => f.Nome, new { @class = "text ui-widget-content ui-corner-all" })
+        <br /><br />
+    
+        <button>Cadastrar Fornecedor</button>    
+        @ViewData["Mensagem"]
+
+    }
+     <hr />
+</div>
+
+

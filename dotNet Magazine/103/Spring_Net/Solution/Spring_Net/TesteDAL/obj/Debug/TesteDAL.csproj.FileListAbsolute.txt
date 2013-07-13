@@ -1,0 +1,24 @@
+E:\Documentos\Empresa\Artigos\Revista DevMedia\dotNet Magazine\Spring_Net\Solution\Spring_Net\TesteDAL\bin\Debug\TesteDAL.dll.config
+E:\Documentos\Empresa\Artigos\Revista DevMedia\dotNet Magazine\Spring_Net\Solution\Spring_Net\TesteDAL\bin\Debug\TesteDAL.dll
+E:\Documentos\Empresa\Artigos\Revista DevMedia\dotNet Magazine\Spring_Net\Solution\Spring_Net\TesteDAL\bin\Debug\TesteDAL.pdb
+E:\Documentos\Empresa\Artigos\Revista DevMedia\dotNet Magazine\Spring_Net\Solution\Spring_Net\TesteDAL\bin\Debug\DAL.dll
+E:\Documentos\Empresa\Artigos\Revista DevMedia\dotNet Magazine\Spring_Net\Solution\Spring_Net\TesteDAL\bin\Debug\Spring.Core.dll
+E:\Documentos\Empresa\Artigos\Revista DevMedia\dotNet Magazine\Spring_Net\Solution\Spring_Net\TesteDAL\bin\Debug\Common.Logging.dll
+E:\Documentos\Empresa\Artigos\Revista DevMedia\dotNet Magazine\Spring_Net\Solution\Spring_Net\TesteDAL\bin\Debug\DAL.pdb
+E:\Documentos\Empresa\Artigos\Revista DevMedia\dotNet Magazine\Spring_Net\Solution\Spring_Net\TesteDAL\bin\Debug\Spring.Core.pdb
+E:\Documentos\Empresa\Artigos\Revista DevMedia\dotNet Magazine\Spring_Net\Solution\Spring_Net\TesteDAL\bin\Debug\Spring.Core.xml
+E:\Documentos\Empresa\Artigos\Revista DevMedia\dotNet Magazine\Spring_Net\Solution\Spring_Net\TesteDAL\obj\Debug\ResolveAssemblyReference.cache
+E:\Documentos\Empresa\Artigos\Revista DevMedia\dotNet Magazine\Spring_Net\Solution\Spring_Net\TesteDAL\obj\Debug\TesteDAL.dll
+E:\Documentos\Empresa\Artigos\Revista DevMedia\dotNet Magazine\Spring_Net\Solution\Spring_Net\TesteDAL\obj\Debug\TesteDAL.pdb
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TesteDAL\bin\Debug\TesteDAL.dll.config
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TesteDAL\bin\Debug\TesteDAL.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TesteDAL\bin\Debug\TesteDAL.pdb
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TesteDAL\bin\Debug\DAL.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TesteDAL\bin\Debug\Spring.Core.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TesteDAL\bin\Debug\Common.Logging.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TesteDAL\bin\Debug\DAL.pdb
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TesteDAL\bin\Debug\Spring.Core.pdb
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TesteDAL\bin\Debug\Spring.Core.xml
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TesteDAL\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TesteDAL\obj\Debug\TesteDAL.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TesteDAL\obj\Debug\TesteDAL.pdb

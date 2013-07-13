@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="3dbf678b-b135-4ad8-9b93-9c1d0dd61539" name="Arquiteto@ALLSPARK 2013-01-23 20:48:10" runUser="ALLSPARK\Arquiteto" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="48cf9c2f-742f-4c58-a0bc-2a49189e81c2">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Arquiteto_ALLSPARK 2013-01-23 20_48_10">
+      <DeploymentItem filename="C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\DAL\bin\Debug\DAL.dll" />
+      <DeploymentItem filename="C:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Core.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-01-23T20:48:10.9958368-02:00" queuing="2013-01-23T20:48:11.0559232-02:00" start="2013-01-23T20:48:11.0659376-02:00" finish="2013-01-23T20:48:13.6496528-02:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="SalvarTest" storage="c:\documents and settings\arquiteto\meus documentos\visual studio 2010\projects\spring_net\testdalpratico\bin\debug\testdalpratico.dll" id="3d4c4e0f-42a0-9415-a63b-2be74f4fcee2">
+      <Execution id="5edad3ea-9c94-4b1d-ac34-e7fa966211e1" />
+      <TestMethod codeBase="C:/Documents and Settings/Arquiteto/Meus documentos/Visual Studio 2010/Projects/Spring_Net/TestDALPratico/bin/Debug/TestDALPratico.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestDALPratico.ContatoDALTest, TestDALPratico, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SalvarTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="3d4c4e0f-42a0-9415-a63b-2be74f4fcee2" executionId="5edad3ea-9c94-4b1d-ac34-e7fa966211e1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="5edad3ea-9c94-4b1d-ac34-e7fa966211e1" testId="3d4c4e0f-42a0-9415-a63b-2be74f4fcee2" testName="SalvarTest" computerName="ALLSPARK" duration="00:00:01.8584361" startTime="2013-01-23T20:48:11.0759520-02:00" endTime="2013-01-23T20:48:13.3692496-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5edad3ea-9c94-4b1d-ac34-e7fa966211e1">
+      <Output>
+        <DebugTrace>Unable to read configuration section common/logging.  Using no-op implemenation.
+</DebugTrace>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

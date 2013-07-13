@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="DAL"
+                   namespace="DAL.Entidade">
+  <class name="Fornecedor" table="Fornecedor">
+    <id name="Id" column="id">
+      <generator class="identity"/>
+    </id>
+
+    <property name="Nome" column="nome" />
+    
+    <!-- Relacionamentos-->
+    <!-- Um Fornecedor contém 1 Nota Fiscal -->
+    
+    <!--
+    <bag name="NotasFiscais" inverse="true" lazy="false">
+      <key column="idFornecedor" />
+      <one-to-many class="DAL.Entidade.NotaFiscal, DAL"/>
+    </bag>
+    -->
+  </class>
+  
+</hibernate-mapping>

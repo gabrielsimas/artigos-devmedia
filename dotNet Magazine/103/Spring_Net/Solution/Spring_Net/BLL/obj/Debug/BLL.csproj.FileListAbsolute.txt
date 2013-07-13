@@ -1,0 +1,11 @@
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\BLL\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\BLL\bin\Debug\BLL.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\BLL\bin\Debug\BLL.pdb
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\BLL\bin\Debug\DAL.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\BLL\bin\Debug\Spring.Core.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\BLL\bin\Debug\Common.Logging.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\BLL\bin\Debug\DAL.pdb
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\BLL\bin\Debug\Spring.Core.pdb
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\BLL\bin\Debug\Spring.Core.xml
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\BLL\obj\Debug\BLL.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\BLL\obj\Debug\BLL.pdb

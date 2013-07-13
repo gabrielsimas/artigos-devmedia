@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="63afd974-cb58-4c80-acc6-4977e75f06a0" name="Arquiteto@ALLSPARK 2013-03-17 03:00:56" runUser="ALLSPARK\Arquiteto" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="d4f7ce9b-908c-4374-9461-2f0230bff472">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Arquiteto_ALLSPARK 2013-03-17 03_00_56">
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Data.NHibernate31.dll" />
+      <DeploymentItem filename="c:\documents and settings\arquiteto\meus documentos\visual studio 2010\Projects\NHibernate_Spring_NET\DAL\bin\Debug\DAL.dll" />
+      <DeploymentItem filename="c:\documents and settings\arquiteto\meus documentos\Downloads\NHibernate-3.2.0.GA-bin\Required_Bins\NHibernate.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Messaging.Ems.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Data.NHibernate20.dll" />
+      <DeploymentItem filename="c:\documents and settings\arquiteto\meus documentos\Downloads\NHibernate-3.2.0.GA-bin\Required_Bins\Iesi.Collections.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Data.NHibernate21.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Scheduling.Quartz.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Web.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Messaging.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Aop.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Data.NHibernate32.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Testing.Microsoft.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Data.NHibernate30.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Web.Mvc.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Services.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Messaging.Nms.dll" />
+      <DeploymentItem filename="c:\documents and settings\arquiteto\meus documentos\visual studio 2010\Projects\NHibernate_Spring_NET\BusinessLayer\bin\Debug\BusinessLayer.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Common.Logging.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Core.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Template.Velocity.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Web.Mvc3.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Testing.NUnit.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Data.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Web.Extensions.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-03-17T03:00:56.9021672-03:00" queuing="2013-03-17T03:00:57.0042769-03:00" start="2013-03-17T03:00:57.1620828-03:00" finish="2013-03-17T03:01:11.7550208-03:00" />
+  <ResultSummary outcome="Inconclusive">
+    <Counters total="1" executed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="1" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="SalvarProdutoTest" storage="c:\documents and settings\arquiteto\meus documentos\visual studio 2010\projects\nhibernate_spring_net\testespringnet\bin\debug\testespringnet.dll" id="25b37dfb-a303-ccf0-1b89-b9a3e13be4ea">
+      <Execution id="6e19a88e-a440-4955-9220-de2ee1327c94" />
+      <TestMethod codeBase="c:/documents and settings/arquiteto/meus documentos/visual studio 2010/Projects/NHibernate_Spring_NET/TesteSpringNet/bin/Debug/TesteSpringNet.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TesteSpringNet.ManterProdutoTest, TesteSpringNet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SalvarProdutoTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Testes de Regra de Negócio" id="c44a6dfb-94cf-4128-9ac1-d987c425f2fe" parentListId="8c43106b-9dc1-4907-a29f-aa66a61bf5b6">
+      <TestLinks>
+        <TestLink id="25b37dfb-a303-ccf0-1b89-b9a3e13be4ea" name="SalvarProdutoTest" storage="c:\documents and settings\arquiteto\meus documentos\visual studio 2010\projects\nhibernate_spring_net\testespringnet\bin\debug\testespringnet.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      </TestLinks>
+    </TestList>
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+    <TestList name="Lists of Results" id="8c43106b-9dc1-4907-a29f-aa66a61bf5b6" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="25b37dfb-a303-ccf0-1b89-b9a3e13be4ea" executionId="6e19a88e-a440-4955-9220-de2ee1327c94" testListId="c44a6dfb-94cf-4128-9ac1-d987c425f2fe" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="6e19a88e-a440-4955-9220-de2ee1327c94" testId="25b37dfb-a303-ccf0-1b89-b9a3e13be4ea" testName="SalvarProdutoTest" computerName="ALLSPARK" duration="00:00:10.7002859" startTime="2013-03-17T03:00:57.5333908-03:00" endTime="2013-03-17T03:01:10.7778455-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Inconclusive" testListId="c44a6dfb-94cf-4128-9ac1-d987c425f2fe" relativeResultsDirectory="6e19a88e-a440-4955-9220-de2ee1327c94">
+      <Output>
+        <StdOut>NHibernate: SELECT fornecedor0_.id as id2_0_, fornecedor0_.nome as nome2_0_ FROM Fornecedor fornecedor0_ WHERE fornecedor0_.id=@p0;@p0 = 1 [Type: Int32 (0)]
+NHibernate: SELECT produto0_.id as id3_0_, produto0_.nome as nome3_0_, produto0_.preco as preco3_0_, produto0_.pctLucro as pctLucro3_0_ FROM Produto produto0_ WHERE produto0_.id=@p0;@p0 = 5 [Type: Int32 (0)]
+NHibernate: SELECT produto0_.id as id3_0_, produto0_.nome as nome3_0_, produto0_.preco as preco3_0_, produto0_.pctLucro as pctLucro3_0_ FROM Produto produto0_ WHERE produto0_.id=@p0;@p0 = 6 [Type: Int32 (0)]
+NHibernate: SELECT produto0_.id as id13_0_, produto0_.nome as nome13_0_, produto0_.preco as preco13_0_, produto0_.pctLucro as pctLucro13_0_ FROM Produto produto0_ WHERE produto0_.id=@p0;@p0 = 5 [Type: Int32 (0)]
+NHibernate: SELECT produto0_.id as id13_0_, produto0_.nome as nome13_0_, produto0_.preco as preco13_0_, produto0_.pctLucro as pctLucro13_0_ FROM Produto produto0_ WHERE produto0_.id=@p0;@p0 = 6 [Type: Int32 (0)]
+NHibernate: INSERT INTO NotaFiscal (tipo, dtEntrega, dtNota, total, idFornecedor) VALUES (@p0, @p1, @p2, @p3, @p4); select SCOPE_IDENTITY();@p0 = 'ENTRADA' [Type: String (4000)], @p1 = 17/3/2013 03:01:09 [Type: DateTime (0)], @p2 = 1/3/2013 00:00:00 [Type: DateTime (0)], @p3 = 0 [Type: Double (0)], @p4 = 1 [Type: Int32 (0)]</StdOut>
+        <DebugTrace>Unable to read configuration section common/logging.  Using no-op implemenation.
+</DebugTrace>
+        <ErrorInfo>
+          <Message>Assert.Inconclusive failed. NHibernate.PropertyValueException: not-null property references a null or transient value DAL.Entidade.ItemNota.NotaFiscal
+   em NHibernate.Engine.Nullability.CheckNullability(Object[] values, IEntityPersister persister, Boolean isUpdate) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\Nullability.cs:linha 59
+   em NHibernate.Event.Default.AbstractSaveEventListener.PerformSaveOrReplicate(Object entity, EntityKey key, IEntityPersister persister, Boolean useIdentityColumn, Object anything, IEventSource source, Boolean requiresImmediateIdAccess) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Event\Default\AbstractSaveEventListener.cs:linha 251
+   em NHibernate.Event.Default.AbstractSaveEventListener.PerformSave(Object entity, Object id, IEntityPersister persister, Boolean useIdentityColumn, Object anything, IEventSource source, Boolean requiresImmediateIdAccess) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Event\Default\AbstractSaveEventListener.cs:linha 187
+   em NHibernate.Event.Default.AbstractSaveEventListener.SaveWithGeneratedId(Object entity, String entityName, Object anything, IEventSource source, Boolean requiresImmediateIdAccess) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Event\Default\AbstractSaveEventListener.cs:linha 119
+   em NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.SaveWithGeneratedOrRequestedId(SaveOrUpdateEvent event) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Event\Default\DefaultSaveOrUpdateEventListener.cs:linha 162
+   em NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.EntityIsTransient(SaveOrUpdateEvent event) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Event\Default\DefaultSaveOrUpdateEventListener.cs:linha 148
+   em NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.PerformSaveOrUpdate(SaveOrUpdateEvent event) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Event\Default\DefaultSaveOrUpdateEventListener.cs:linha 76
+   em NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.OnSaveOrUpdate(SaveOrUpdateEvent event) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Event\Default\DefaultSaveOrUpdateEventListener.cs:linha 53
+   em NHibernate.Impl.SessionImpl.FireSaveOrUpdate(SaveOrUpdateEvent event) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\SessionImpl.cs:linha 2662
+   em NHibernate.Impl.SessionImpl.SaveOrUpdate(String entityName, Object obj) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\SessionImpl.cs:linha 549
+   em NHibernate.Engine.CascadingAction.SaveUpdateCascadingAction.Cascade(IEventSource session, Object child, String entityName, Object anything, Boolean isCascadeDeleteEnabled) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\CascadingAction.cs:linha 249
+   em NHibernate.Engine.Cascade.CascadeToOne(Object parent, Object child, IType type, CascadeStyle style, Object anything, Boolean isCascadeDeleteEnabled) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\Cascade.cs:linha 216
+   em NHibernate.Engine.Cascade.CascadeAssociation(Object parent, Object child, IType type, CascadeStyle style, Object anything, Boolean isCascadeDeleteEnabled) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\Cascade.cs:linha 181
+   em NHibernate.Engine.Cascade.CascadeProperty(Object parent, Object child, IType type, CascadeStyle style, Object anything, Boolean isCascadeDeleteEnabled) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\Cascade.cs:linha 148
+   em NHibernate.Engine.Cascade.CascadeCollectionElements(Object parent, Object child, CollectionType collectionType, CascadeStyle style, IType elemType, Object anything, Boolean isCascadeDeleteEnabled) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\Cascade.cs:linha 240
+   em NHibernate.Engine.Cascade.CascadeCollection(Object parent, Object child, CascadeStyle style, Object anything, CollectionType type) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\Cascade.cs:linha 201
+   em NHibernate.Engine.Cascade.CascadeAssociation(Object parent, Object child, IType type, CascadeStyle style, Object anything, Boolean isCascadeDeleteEnabled) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\Cascade.cs:linha 185
+   em NHibernate.Engine.Cascade.CascadeProperty(Object parent, Object child, IType type, CascadeStyle style, Object anything, Boolean isCascadeDeleteEnabled) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\Cascade.cs:linha 148
+   em NHibernate.Engine.Cascade.CascadeOn(IEntityPersister persister, Object parent, Object anything) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Engine\Cascade.cs:linha 126
+   em NHibernate.Event.Default.AbstractSaveEventListener.CascadeAfterSave(IEventSource source, IEntityPersister persister, Object entity, Object anything) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Event\Default\AbstractSaveEventListener.cs:linha 379
+   em NHibernate.Event.Default.AbstractSaveEventListener.PerformSaveOrReplicate(Object entity, EntityKey key, IEntityPersister persister, Boolean useIdentityColumn, Object anything, IEventSource source, Boolean requiresImmediateIdAccess) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Event\Default\AbstractSaveEventListener.cs:linha 293
+   em NHibernate.Event.Default.AbstractSaveEventListener.PerformSave(Object entity, Object id, IEntityPersister persister, Boolean useIdentityColumn, Object anything, IEventSource source, Boolean requiresImmediateIdAccess) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Event\Default\AbstractSaveEventListener.cs:linha 187
+   em NHibernate.Event.Default.AbstractSaveEventListener.SaveWithGeneratedId(Object entity, String entityName, Object anything, IEventSource source, Boolean requiresImmediateIdAccess) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Event\Default\AbstractSaveEventListener.cs:linha 119
+   em NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.SaveWithGeneratedOrRequestedId(SaveOrUpdateEvent event) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Event\Default\DefaultSaveOrUpdateEventListener.cs:linha 162
+   em NHibernate.Event.Default.DefaultSaveEventListener.SaveWithGeneratedOrRequestedId(SaveOrUpdateEvent event) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Event\Default\DefaultSaveEventListener.cs:linha 27
+   em NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.EntityIsTransient(SaveOrUpdateEvent event) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Event\Default\DefaultSaveOrUpdateEventListener.cs:linha 148
+   em NHibernate.Event.Default.DefaultSaveEventListener.PerformSaveOrUpdate(SaveOrUpdateEvent event) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Event\Default\DefaultSaveEventListener.cs:linha 21
+   em NHibernate.Event.Default.DefaultSaveOrUpdateEventListener.OnSaveOrUpdate(SaveOrUpdateEvent event) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Event\Default\DefaultSaveOrUpdateEventListener.cs:linha 53
+   em NHibernate.Impl.SessionImpl.FireSave(SaveOrUpdateEvent event) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\SessionImpl.cs:linha 2648
+   em NHibernate.Impl.SessionImpl.Save(Object obj) na d:\CSharp\NH\NH\nhibernate\src\NHibernate\Impl\SessionImpl.cs:linha 475
+   em DAL.Reuso.Spring.SpringGenericDAO`1.Salvar(E entidade) na c:\documents and settings\arquiteto\meus documentos\visual studio 2010\Projects\NHibernate_Spring_NET\DAL\Reuso\Spring\SpringGenericDAO.cs:linha 47
+   em _dynamic_DAL.Reuso.Spring.SpringGenericDAO`1[[DAL.Entidade.NotaFiscal, DAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]].Salvar(Object , Object[] )
+   em Spring.Reflection.Dynamic.SafeMethod.Invoke(Object target, Object[] arguments) na c:\_prj\spring-net\trunk\src\Spring\Spring.Core\Reflection\Dynamic\DynamicMethod.cs:linha 156
+   em Spring.Aop.Framework.DynamicMethodInvocation.InvokeJoinpoint() na c:\_prj\spring-net\trunk\src\Spring\Spring.Aop\Aop\Framework\DynamicMethodInvocation.cs:linha 100
+   em Spring.Aop.Framework.AbstractMethodInvocation.Proceed() na c:\_prj\spring-net\trunk\src\Spring\Spring.Aop\Aop\Framework\AbstractMethodInvocation.cs:linha 259
+   em Spring.Dao.Support.PersistenceExceptionTranslationInterceptor.Invoke(IMethodInvocation invocation) na c:\_prj\spring-net\trunk\src\Spring\Spring.Data\Dao\Support\PersistenceExceptionTranslationInterceptor.cs:linha 181</Message>
+          <StackTrace>   em TesteSpringNet.ManterProdutoTest.SalvarProdutoTest() na c:\documents and settings\arquiteto\meus documentos\visual studio 2010\Projects\NHibernate_Spring_NET\TesteSpringNet\ManterProdutoTest.cs:linha 164
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

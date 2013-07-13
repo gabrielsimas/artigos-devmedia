@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+  
+  <!-- Objetos da Camada DAO -->
+  <object id="EstoqueDAO" type="DAL.Persistencia.Spring.SpringEstoqueDAO, DAL">
+    <property name="FabricaDeSessao" ref="NHibernateSessionFactory" />
+  </object>
+
+  <object id="FornecedorDAO" type="DAL.Persistencia.Spring.SpringFornecedorDAO, DAL">
+    <property name="FabricaDeSessao" ref="NHibernateSessionFactory" />
+  </object>
+
+  <object id ="ItemNotaDAO" type="DAL.Persistencia.Spring.SpringItemNotaDAO, DAL">
+    <property name="FabricaDeSessao" ref="NHibernateSessionFactory" />
+  </object>
+
+  <object id="NotaFiscalDAO" type="DAL.Persistencia.Spring.SpringNotaFiscalDAO, DAL">
+    <property name="FabricaDeSessao" ref="NHibernateSessionFactory" />
+  </object>
+
+  <object id="ProdutoDAO"  type="DAL.Persistencia.Spring.SpringProdutoDAO, DAL">
+    <property name="FabricaDeSessao" ref="NHibernateSessionFactory" />
+  </object>
+
+</objects>

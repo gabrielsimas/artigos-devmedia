@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+  <!-- Objetos de Camada de Negócios -->
+
+  <!--
+  <object id="ManterEstoque" type="BusinessLayer.CasoDeUso.ManterEstoque, BusinessLayer">
+    <property name="DAO" ref="EstoqueDAO" />
+    <property name="Estoque" ref="Estoque" />
+  </object>
+  -->
+
+  <object id="ManterFornecedor" type="BusinessLayer.CasoDeUso.ManterFornecedor, BusinessLayer">
+    <property name="DAO" ref="FornecedorDAO" />
+    <!-- <property name="Fornecedor" ref="Fornecedor" /> -->
+  </object>
+
+  <!--   
+  <object id="ManterItemNota" type="BusinessLayer.CasoDeUso.ManterItemNota, BusinessLayer">
+    <property name="DAO" ref="ItemNotaDAO" />
+    <property name="ItemNota" ref="ItemNota" />
+  </object>
+  
+  <object id="ManterNotaFiscal" type="BusinessLayer.CasoDeUso.ManterNotaFiscal, BusinessLayer">
+    <property name="DAO" ref="NotaFiscalDAO" />
+    <property name="NotaFiscal" ref="NotaFiscal" />
+  </object>
+  -->
+
+  <object id="ManterProduto" type="BusinessLayer.CasoDeUso.ManterProduto, BusinessLayer">
+    <property name="DAO" ref="ProdutoDAO"/>
+    <!-- <property name="Produto" ref="Produto"/> -->
+  </object>
+</objects>

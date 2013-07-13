@@ -1,0 +1,12 @@
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TestDALPratico\bin\Debug\TestDALPratico.dll.config
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TestDALPratico\bin\Debug\TestDALPratico.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TestDALPratico\bin\Debug\TestDALPratico.pdb
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TestDALPratico\bin\Debug\DAL.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TestDALPratico\bin\Debug\Spring.Core.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TestDALPratico\bin\Debug\Common.Logging.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TestDALPratico\bin\Debug\DAL.pdb
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TestDALPratico\bin\Debug\Spring.Core.pdb
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TestDALPratico\bin\Debug\Spring.Core.xml
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TestDALPratico\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TestDALPratico\obj\Debug\TestDALPratico.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TestDALPratico\obj\Debug\TestDALPratico.pdb

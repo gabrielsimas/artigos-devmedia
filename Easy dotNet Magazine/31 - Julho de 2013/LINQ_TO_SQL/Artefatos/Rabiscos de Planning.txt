@@ -1,0 +1,386 @@
+*- O que é o LINQ to SQL?
+LINQ to SQL provides a runtime infrastructure for managing relational data as objects without losing the ability to query. Your application is free to manipulate the objects while LINQ to SQL stays in the background tracking your changes automatically.
+By using LINQ to SQL, you can use the LINQ technology to access SQL databases just as you would access an in-memory collection.
+
+*- Mapeando utilizando Attributes, ou anotações, com o LINQ to SQL.
+http://msdn.microsoft.com/en-us/library/bb386971.aspx
+LINQ to SQL maps a SQL Server database to a LINQ to SQL object model by either applying attributes or by using an external mapping file. This topic outlines the attribute-based approach.
+In its most elementary form, LINQ to SQL maps a database to a DataContext, a table to a class, and columns and relationships to properties on those classes. You can also use attributes to map an inheritance hierarchy in your object model.
+
+Developers using Visual Studio typically perform attribute-based mapping by using the Object Relational Designer. Object Relational Designer (O/R Designer)
+Object Relational Designer (O/R Designer) You can also use the SQLMetal command-line tool, or you can hand-code the attributes yourself.
+
+
+
+*- Relacionamentos
+Relationships in relational databases are typically modeled as foreign key values referring to primary keys in other tables. To navigate between them, you must explicitly bring the two tables together using a relational join operation. Objects, on the other hand, refer to each other using property references or collections of references navigated using "dot" notation. Obviously, dotting is simpler than joining, since you need not recall the explicit join condition each time you navigate.
+For data relationships such as these that will always be the same, it becomes quite convenient to encode them as property references in your entity class. LINQ to SQL defines an Association attribute you can apply to a member used to represent a relationship. An association relationship is one like a foreign-key to primary-key relationship that is made by matching column values between tables.
+
+[Mostrar uma Classe Pai já mapeada corretamente]
+
+Relationships in relational databases are typically modeled as foreign key values referring to primary keys in other tables. To navigate between them, you must explicitly bring the two tables together using a relational join operation. Objects, on the other hand, refer to each other using property references or collections of references navigated using "dot" notation. Obviously, dotting is simpler than joining, since you need not recall the explicit join condition each time you navigate.
+For data relationships such as these that will always be the same, it becomes quite convenient to encode them as property references in your entity class. LINQ to SQL defines an Association attribute you can apply to a member used to represent a relationship. An association relationship is one like a foreign-key to primary-key relationship that is made by matching column values between tables.
+
+The Customer (Classe Pai) class now has a property that declares the relationship between customers and their orders. The Orders property is of type EntitySet because the relationship is one-to-many. We use the OtherKey property in the Association attribute to describe how this association is done. It specifies the names of the properties in the related class to be compared with this one. There was also a ThisKey property we did not specify. Normally, we would use it to list the members on this side of the relationship. However, by omitting it we allow LINQ to SQL to infer them from the members that make up the primary key.
+Notice how this is reversed in the definition for the Order (Classe filha) class.
+
+[Mostrar a Classe Filha apontando para a Classe Pai já mapeada corretamente]
+
+http://www.codeproject.com/Articles/37784/One-Many-and-One-One-relationship-using-LINQ-to-SQ - 1 para muitos e 1 para 1
+
+Com LINQ to SQL, seus relacionamentos ficaram muito mais fáceis de serem executados, seguindo a ordem de outros frameworks de ORM do mercado, porém, de uma forma diferente do Entity Framework por exemplo, já que ambos são sempre comparados na maioria dos Projetos.
+
+[Mostrar uma implementação demonstrando como o relacionamento funciona corretamente]
+
+*- Relacionamento 1 para 1
+
+*- Relacionamento 1 para vários
+
+*- Relacionamento Vários para Vários
+
+----------
+O DataContext
+The DataContext
+The DataContext is the main conduit by which you retrieve objects from the database and resubmit changes. You use it in the same way that you would use an ADO.NET Connection. In fact, the DataContext is initialized with a connection or connection string you supply. The purpose of the DataContext is to translate your requests for objects into SQL queries made against the database and then assemble objects out of the results. The DataContext enables language-integrated query by implementing the same operator pattern as the standard query operators such as Where and Select.
+For example, you can use the DataContext to retrieve customer objects whose city is London as follows:
+
+[CODE]
+// DataContext takes a connection string 
+DataContext db = new   DataContext("c:\\northwind\\northwnd.mdf");
+// Get a typed table to run queries
+Table<Customer> Customers = db.GetTable<Customer>();
+// Query for customers from London
+var q =
+   from c in Customers
+   where c.City == "London"
+   select c;
+foreach (var cust in q)
+   Console.WriteLine("id = {0}, City = {1}", cust.CustomerID, cust.City);
+[/CODE]
+
+Each database table is represented as a Table collection, accessible via the GetTable() method using its entity class to identify it. It is recommended that you declare a strongly typed DataContext instead of relying on the basic DataContext class and the GetTable() method. A strongly typed DataContext declares all Table collections as members of the context.
+
+[CODE]
+public partial class Northwind : DataContext
+{
+   public Table<Customer> Customers;
+   public Table<Order> Orders;
+   public Northwind(string connection): base(connection) {}
+}
+[/CODE]
+
+The query for customers from London can then be expressed more simply as:
+
+[CODE]
+Northwind db = new Northwind("c:\\northwind\\northwnd.mdf");
+var q =
+   from c in db.Customers
+   where c.City == "London"
+   select c;
+foreach (var cust in q)
+   Console.WriteLine("id = {0}, City = {1}",cust.CustomerID, cust.City);
+[/CODE]
+
+We will continue to use the strongly typed Northwind class for the remainder of the overview document.
+----------
+*- Ciclo de Vida de uma Entidade dentro do LINQ TO SQL
+The Entity Lifecycle
+LINQ to SQL is more than just an implementation of the standard query operators for relational databases. In addition to translating queries, it is a service that manages your objects throughout their lifetime, aiding you in maintaining the integrity of your data and automating the process of translating your modifications back into the store.
+In a typical scenario, objects are retrieved through one or more queries and then manipulated in some way or another until the application is ready to send the changes back to the server. This process may repeat a number of times until the application no longer has use for this information. At that point, the objects are reclaimed by the runtime just like normal objects. The data, however, remains in the database. Even after being erased from their run-time existence, objects representing the same data can still be retrieved. In this sense, the object's true lifetime exists beyond any single run-time manifestation.
+The focus of this chapter is the entity lifecycle where a cycle refers to the time span of a single manifestation of an entity object within a particular run-time context. The cycle starts when the DataContext becomes aware of a new instance and ends when the object or DataContext is no longer needed.
+Tracking Changes
+After entities are retrieved from the database, you are free to manipulate them as you like. They are your objects; use them as you will. As you do this, LINQ to SQL tracks changes so that it can persist them into the database when SubmitChanges() is called.
+LINQ to SQL starts tracking your entities the moment they are retrieved from the database, before you ever lay your hands on them. Indeed, the identity management service discussed earlier has already kicked in as well. Change tracking costs very little in additional overhead until you actually start making changes.
+[CODE]
+Customer cust = db.Customers.Single(c => c.CustomerID == "ALFKI");
+cust.CompanyName = "Dr. Frogg's Croakers";
+[/CODE]
+
+As soon as the CompanyName is assigned in the example above, LINQ to SQL becomes aware of the change and is able to record it. The original values of all data members are retained by the change tracking service.
+The change tracking service also records all manipulations of relationship properties. You use relationship properties to establish the links between your entities, even though they may be linked by key values in the database. There is no need to directly modify the members associated with the key columns. LINQ to SQL automatically synchronizes them for you before the changes are submitted.
+
+[CODE]
+Customer cust1 = db.Customers.Single(c => c.CustomerID == custId1);
+foreach (Order o in db.Orders.Where(o => o.CustomerID == custId2)) {
+   o.Customer = cust1;
+}
+[/CODE]
+
+You can move orders from one customer to another by simply making an assignment to their Customer property. Since the relationship exists between the customer and the order, you can change the relationship by modifying either side. You could have just as easily removed them from the Orders collection of cust2 and added them to the orders collection of cust1, as shown below.
+
+[CODE]
+Customer cust1 = db.Customers.Single(c => c.CustomerID == custId1);
+Customer cust2 = db.Customers.Single(c => c.CustomerID == custId2); 
+// Pick some order
+Order o = cust2.Orders[0]; 
+// Remove from one, add to the other
+cust2.Orders.Remove(o);
+cust1.Orders.Add(o);
+// Displays 'true'
+Console.WriteLine(o.Customer == cust1);
+[/CODE]
+
+Of course, if you assign a relationship the value of null, you are in fact getting rid of the relationship completely. Assigning a Customer property of an order to null actually removes the order from the customer's list.
+[CODE]
+Customer cust = db.Customers.Single(c => c.CustomerID == custId1); 
+// Pick some order
+Order o = cust.Orders[0];
+// Assign null value
+o.Customer = null;
+// Displays 'false'
+Console.WriteLine(cust.Orders.Contains(o));
+[/CODE]
+
+Automatic updating of both sides of a relationship is essential for maintaining consistency of your object graph. Unlike normal objects, relationships between data are often bidirectional. LINQ to SQL allows you to use properties to represent relationships. However, it does not offer a service to automatically keep these bidirectional properties in sync. This is a level of service that must be baked directly into your class definitions. Entity classes generated using the code generation tool have this capability. In the next chapter, we will show you how to do this to your own handwritten classes.
+It is important to note, however, that removing a relationship does not imply that an object has been deleted from the database. Remember, the lifetime of the underlying data persists in the database until the row has been deleted from the table. The only way to actually delete an object is to remove it from its Table collection.
+
+[CODE]
+Customer cust = db.Customers.Single(c => c.CustomerID == custId1); 
+// Pick some order
+Order o = cust.Orders[0];
+// Remove it directly from the table (I want it gone!)
+db.Orders.Remove(o);
+// Displays 'false'.. gone from customer's Orders
+Console.WriteLine(cust.Orders.Contains(o));
+// Displays 'true'.. order is detached from its customer
+Console.WriteLine(o.Customer == null);
+[/CODE]
+
+Like with all other changes, the order has not actually been deleted. It just looks that way to us since it has been removed and detached from the rest of our objects. When the order object was removed from the Orders table, it was marked for deletion by the change tracking service. The actually deletion from the database will occur when the changes are submitted on a call to SubmitChanges(). Note that the object itself is never deleted. The runtime manages the lifetime of object instances, so it sticks around as long as you are still holding a reference to it. However, after an object has been removed from its Table and changes submitted it is no longer tracked by the change tracking service.
+The only other time an entity is left untracked is when it exists before the DataContext is aware of it. This happens whenever you create new objects in your code. You are free to use instances of entity classes in your application without ever retrieving them from a database. Change tacking and identity management only apply to those objects that the DataContext is aware of. Therefore neither service is enabled for newly created instances until you add them to the DataContext.
+This can occur in one of two ways. You can call the Add() method on the related Table collection manually.
+
+[CODE]
+Customer cust =
+   new Customer {
+      CustomerID = "ABCDE",
+      ContactName = "Frond Smooty",
+      CompanyTitle = "Eggbert's Eduware",
+      Phone = "888-925-6000"
+   };
+// Add new customer to Customers table
+db.Customers.Add(cust);
+[/CODE]
+
+Alternatively, you can attach a new instance to an object that the DataContext is already aware of.
+
+[CODE]
+// Add an order to a customer's Orders
+cust.Orders.Add(
+   new Order { OrderDate = DateTime.Now }
+); 
+[/CODE]
+
+The DataContext will discover your new object instances even if they are attached to other new instances.
+[CODE]
+// Add an order and details to a customer's Orders
+Cust.Orders.Add(
+   new Order {
+      OrderDate = DateTime.Now,
+      OrderDetails = {
+         new OrderDetail {
+            Quantity = 1,
+            UnitPrice = 1.25M,
+            Product = someProduct
+         }
+      }
+   }
+); 
+[/CODE]
+
+Basically, the DataContext will recognize any entity in your object graph that is not currently tracked as a new instance, whether or not you called the Add() method.
+
+Using a read-only DataContext
+
+Many scenarios don't necessitate updating the entities retrieved from the database. Showing a table of Customers on a Web page is one obvious example. In all such cases, it is possible to improve performance by instructing the DataContext not to track the changes to the entities. This is achieved by specifying the ObjectTracking property on the DataContext to be false as in the following code:
+[CODE]
+      db.ObjectTracking = false;
+      
+      var q = db.Customers.Where( c => c.City = "London");
+      foreach(Customer c in q)
+         Display(c);
+[/CODE]
+
+Submitting Changes
+
+Regardless of how many changes you make to your objects, those changes were only made to in-memory replicas. Nothing has yet happened to the actual data in the database. Transmission of this information to the server will not happen until you explicitly request it by calling SubmitChanges() on the DataContext.
+
+[CODE]
+Northwind db = new Northwind("c:\\northwind\\northwnd.mdf");
+// make changes here
+db.SubmitChanges();
+[/CODE]
+
+When you do call SubmitChanges(), the DataContext will attempt to translate all your changes into equivalent SQL commands, inserting, updating, or deleting rows in corresponding tables. These actions can be overridden by your own custom logic if you desire, however the order of submission is orchestrated by a service of the DataContext known as the change processor.
+The first thing that happens when you call SubmitChanges() is that the set of known objects are examined to determine if new instances have been attached to them. These new instances are added to the set of tracked objects. Next, all objects with pending changes are ordered into a sequence of objects based on dependencies between them. Those objects whose changes depend on other objects are sequenced after their dependencies. Foreign key constraints and uniqueness constraints in the database play a big part in determining the correct ordering of changes. Then, just before any actual changes are transmitted, a transaction is started to encapsulate the series of individual commands unless one is already in scope. Finally, one by one the changes to the objects are translated into SQL commands and sent to the server.
+At this point, any errors detected by the database will cause the submission process to abort and an exception will be raised. All changes to the database will be rolled back as if none of the submissions ever took place. The DataContext will still have a full recording of all changes so it is possible to attempt to rectify the problem and resubmit them by calling SubmitChanges() again.
+
+[CODE]
+Northwind db = new Northwind("c:\\northwind\\northwnd.mdf");
+// make changes here 
+try {
+   db.SubmitChanges();
+}
+catch (Exception e) {
+   // make some adjustments
+   ...
+   // try again
+   db.SubmitChanges();
+}
+[/CODE]
+
+When the transaction around the submission completes successfully, the DataContext will accept the changes to the objects by simply forgetting the change tracking information.
+Simultaneous Changes
+There are a variety of reasons why a call to SubmitChanges() may fail. You may have created an object with an invalid primary key; one that's already in use, or with a value that violates some check constraint of the database. These kinds of checks are difficult to bake into business logic since they often require absolute knowledge of the entire database state. However, the most likely reason for failure is simply that someone else made changes to the objects before you.
+Certainly, this would be impossible if you were locking each object in the database and using a fully serialized transaction. However, this style of programming (pessimistic concurrency) is rarely used since it is expensive and true clashes seldom occur. The most popular form of managing simultaneous changes is to employ a form of optimistic concurrency. In this model, no locks against the database rows are taken at all. That means any number of changes to the database could have occurred between the time you first retrieved your objects and the time you submitted your changes.
+Therefore, unless you want to go with a policy that the last update wins, wiping over whatever else occurred before you, you probably want to be alerted to the fact that the underlying data was changed by someone else.
+The DataContext has built-in support for optimistic concurrency by automatically detecting change conflicts. Individual updates only succeed if the database's current state matches the state you understood the data to be in when you first retrieved your objects. This happens on a per object basis, only alerting you to violations if they happen to objects you have made changes to.
+You can control the degree to which the DataContext detects change conflicts when you define your entity classes. Each Column attribute has a property called UpdateCheck that can be assigned one of three values: Always, Never, and WhenChanged. If not set the default for a Column attribute is Always, meaning the data values represented by that member are always checked for conflicts, that is, unless there is an obvious tie-breaker like a version stamp. A Column attribute has an IsVersion property that allows you to specify whether the data value constitutes a version stamp maintained by the database. If a version exists, then the version is used alone to determine if a conflict has occurred.
+When a change conflict does occur, an exception will be thrown just as if it were any other error. The transaction surrounding the submission will abort, yet the DataContext will remain the same, allowing you the opportunity to rectify the problem and try again.
+
+[CODE]
+while (retries < maxRetries) {
+   Northwind db = new Northwind("c:\\northwind\\northwnd.mdf");
+
+   // fetch objects and make changes here
+
+   try {
+      db.SubmitChanges();
+      break;
+   }
+   catch (ChangeConflictException e) {
+      retries++;
+   }
+}
+[/CODE]
+
+If you are making changes on a middle-tier or server, the easiest thing you can do to rectify a change conflict is to simply start over and try again, recreating the context and reapplying the changes. Additional options are described in the following section.
+
+Transactions
+
+A transaction is a service provided by databases or any other resource manager that can be used to guarantee that a series of individual actions occur automatically; meaning either they all succeed or they all don't. If they don't, then they are also all automatically undone before anything else is allowed to happen. If no transaction is already in scope, the DataContext will automatically start a database transaction to guard updates when you call SubmitChanges().
+You may choose to control the type of transaction used, its isolation level or what it actually encompasses by initiating it yourself. The transaction isolation that the DataContext will use is known as ReadCommitted.
+
+[CODE]
+Product prod = db.Products.Single(p => p.ProductID == 15);
+
+if (prod.UnitsInStock > 0)
+   prod.UnitsInStock--;
+
+using(TransactionScope ts = new TransactionScope()) {
+   db.SubmitChanges();
+   ts.Complete();
+}
+[/CODE]
+
+The example above initiates a fully serialized transaction by creating a new transaction scope object. All database commands executed within the scope of the transaction will be guarded by the transaction.
+
+[CODE]
+Product prod = db.Products.Single(p => p.ProductId == 15);
+
+if (prod.UnitsInStock > 0)
+   prod.UnitsInStock--;
+
+using(TransactionScope ts = new TransactionScope()) {
+   db.ExecuteCommand("exec sp_BeforeSubmit");
+   db.SubmitChanges();
+   ts.Complete();
+}
+[/CODE]
+
+This modified version of the same example uses the ExecuteCommand() method on the DataContext to execute a stored procedure in the database right before the changes are submitted. Regardless of what the stored procedure does to the database, we can be certain its actions are part of the same transaction.
+If the transaction completes successfully, the DataContext throws out all the accumulated tracking information and treats the new states of the entities as unchanged. It does not, however, rollback the changes to your objects if the transaction fails. This allows you the maximum flexibility in dealing with problems during change submission.
+It is also possible to use a local SQL transaction instead of the new TransactionScope. LINQ to SQL offers this capability to help you integrate LINQ to SQL features into pre-existing ADO.NET applications. However, if you go this route you will need to be responsible for much more.
+
+[CODE]
+Product prod = q.Single(p => p.ProductId == 15);
+
+if (prod.UnitsInStock > 0)
+   prod.UnitsInStock--;
+
+db.Transaction = db.Connection.BeginTransaction();
+try {
+   db.SubmitChanges();
+   db.Transaction.Commit();
+}
+catch {
+   db.Transaction.Rollback();
+   throw;
+}
+finally {
+   db.Transaction = null;
+}
+[/CODE]
+
+As you can see, using a manually controlled database transaction is a bit more involved. Not only do you have to start it yourself, you have to tell the DataContext explicitly to use it by assigning it to the Transaction property. Then you must use a try-catch block to encase your submit logic, remembering to explicitly tell the transaction to commit and to explicitly tell the DataContext to accept changes, or to abort the transactions if there is failure at any point. Also, don't forget to set the Transaction property back to null when you are done.
+
+Stored Procedures
+
+When SubmitChanges() is called, LINQ to SQL generates and executes SQL commands to insert, update, and delete rows in the database. These actions can be overridden by application developers and in their place custom code can be used to perform the desired actions. In this way, alternative facilities like database-stored procedures can be invoked automatically by the change processor.
+Consider a stored procedure for updating the units in stock for the Products table in the Northwind sample database. The SQL declaration of the procedure is as follows.
+[CODE]
+create proc UpdateProductStock
+   @id               int,
+   @originalUnits    int,
+   @decrement         int
+as
+[/CODE]
+
+You can use the stored procedure instead of the normal auto-generated update command by defining a method on your strongly typed DataContext. Even if the DataContext class is being auto-generated by the LINQ to SQL code generation tool, you can still specify these methods in a partial class of your own.
+
+[CODE]
+public partial class Northwind : DataContext
+{
+   ...
+
+   public void UpdateProduct(Product original, Product current) {
+      // Execute the stored procedure for UnitsInStock update
+      if (original.UnitsInStock != current.UnitsInStock) {
+         int rowCount = this.ExecuteCommand(
+            "exec UpdateProductStock " +
+            "@id={0}, @originalUnits={1}, @decrement={2}",
+            original.ProductID,
+            original.UnitsInStock,
+            (original.UnitsInStock - current.UnitsInStock)
+         );
+         if (rowCount < 1)
+            throw new Exception("Error updating");
+      }
+      ...
+   }
+}
+[/CODE]
+
+The signature of the method and the generic parameter tells the DataContext to uses this method in place of a generated update statement. The original and current parameters are used by LINQ to SQL for passing in the original and current copies of the object of the specified type. The two parameters are available for optimistic concurrency conflict detection.
+Note   If you override the default update logic, conflict detection is your responsibility.
+The stored procedure UpdateProductStock is invoked using the ExecuteCommand() method of the DataContext. It returns the number of rows affected and has the following signature:
+
+[CODE]
+public int ExecuteCommand(string command, params object[] parameters);
+[/CODE]
+
+The object array is used for passing parameters required for executing the command.
+Similar to the update method, insert and delete methods may be specified. Insert and delete methods take only one parameter of the entity type to be updated. For example, methods to insert and delete a Product instance can be specified as follows:
+
+[CODE]
+public void InsertProduct(Product prod) { ... }
+public void DeleteProudct(Product prod) { ... }
+[/CODE]
+
+*- A eterna disputa entre o Linq To SQL e o Entity Framework. Quem é o melhor?
+
+LINQ to SQL and the Entity Framework have a lot in common, but each have features targeting different scenarios.
+
+LINQ to SQL has features targeting "Rapid Development" against a Microsoft SQL Server database. Think of LINQ to SQL as allowing you to have a strongly-typed view of your existing database schema. LINQ to SQL supports a direct, 1:1 mapping of your existing database schema to classes; a single table can be mapped to a single inheritance hierarchy (i.e., a table can contain persons, customers, and employees) and foreign keys can be exposed as strongly-typed relationships.  You can build LINQ queries over tables/views/table valued functions and return results as strongly typed objects, and call stored procedures that return strongly typed results through strongly typed methods.  A key design principle of LINQ to SQL is that it "just work" for the common cases; so, for example, if you access a collection of orders through the Orders property of a customer, and that customer's orders have not previously been retrieved, LINQ to SQL will automatically get them for you.  LINQ to SQL relies on convention, for example default insert, update, and delete logic through generated DML can be overwritten by exposing appropriately named methods (for example, "InsertCustomer", "UpdateCustomer", "DeleteCustomer").  These methods may invoke stored procedures or perform other logic in order to process changes.
+
+The Entity Framework has features targeting "Enterprise Scenarios".  In an enterprise, the database is typically controlled by a DBA, the schema is generally optimized for storage considerations (performance, consistency, partitioning) rather than exposing a good application model, and may change over time as usage data and usage patterns evolve.  With this in mind, the Entity Framework is designed around exposing an application-oriented data model that is loosely coupled, and may differ significantly, from your existing database schema.  For example, you can map a single class (or "entity") to multiple tables/views, or map multiple classes to the same table/view. You can map an inheritance hierarchy to a single table/view (as in LINQ to SQL) or to multiple tables/views (for example, persons, customers, and employees could each be separate tables, where customers and employees contain only the additional columns not present in persons, or repeat the columns from the persons table).  You can group properties into complex (or “composite”) types (for example, a Customer type may have an “Address” property that is an Address type with Street, City, Region, Country and Postal code properties). The Entity Framework lets you optionally represent many:many relationships directly, without representing the join table as an entity in your data model, and has a new feature called "Defining Query" that lets you expose any native query against the store as a "table" that can be mapped just as any other table (except that updates must be performed through stored procedures).  This flexible mapping, including the option to use stored procedures to process changes, is specified declaratively in order to account for the schema of the database evolving over time without having to recompile the application.
+
+The Entity Framework includes LINQ to Entities which exposes many of the same features as LINQ to SQL over your conceptual application data model; you can build queries in LINQ (or in “Entity SQL”, a canonical version of SQL extended to support concepts like strong typing, polymorphism, relationship navigation and complex types), return results as strongly typed CLR objects, execute stored procedures or table valued functions through strongly-typed methods, and process changes by calling a single save method.
+
+However, the Entity Framework is more than LINQ to Entities; it includes a "storage layer" that lets you use the same conceptual application model through low-level ADO.NET Data Provider interfaces using Entity SQL, and efficiently stream results as possibly hierarchical/polymorphic DataReaders, saving the overhead of materializing objects for read-only scenarios where there is no additional business logic. 
+
+The Entity Framework works with Microsoft SQL Server and 3rd party databases through extended ADO.NET Data Providers, providing a common query language against different relational databases through either LINQ to Entities or Entity SQL.
+
+So while there is a lot of overlap, LINQ to SQL is targeted more toward rapidly developing applications against your existing Microsoft SQL Server schema, while the Entity Framework provides object- and storage-layer access to Microsoft SQL Server and 3rd party databases through a loosely coupled, flexible mapping to existing relational schema.
+
+I know this is a confusing area, and we’re trying to figure out how best to describe these differences to help customers make the appropriate choices.  Please let me know if this helps, or if there are still areas of confusion…

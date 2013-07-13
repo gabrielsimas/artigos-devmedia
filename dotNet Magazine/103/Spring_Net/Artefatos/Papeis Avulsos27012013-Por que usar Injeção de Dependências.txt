@@ -1,0 +1,47 @@
+Injeção de Dependência é uma técnica poderosa que pode ser aplicada em várias situações através de todas as camadas da aplicação. Mas, isso não signifique que Injeção da Dependência será usada todas as vezes em que uma classe dependa de outra classe.
+
+Dependency injection is a powerful technique that can be applied in many situations across all layers of an application. But this does not mean that dependency injection should be used every time a class depends on another class.
+
+Resumindo; Injeção de Dependências é muito satisfatória em construir componentes fracamente acoplados, e em configurar estes componentes. Especialmente se a associação entre estes componentes sobreviva por todo o tempo em seu ciclo de vida.
+In short dependency injection is very effective at assembling loosely coupled components, and at configuring these components. Especially if the association between the components lasts throughout the lifetime of the components.
+
+Sendo mais específico, Injeção de Dependências é satisfatória nestas situações:
+More specifically, dependency injection is effective in these situations:
+
+Você precisa injetar dados de configuração dentro de um ou mais componentes.
+Você precisa injetar a mesma dependência em muitos componentes.
+
+
+You need to inject configuration data into one or more components.
+You need to inject the same dependency into multiple components.
+You need to inject different implementations of the same dependency.
+You need to inject the same implementation in different configurations.
+You need some of the services provided by the container.
+These situations have one thing in common. They often signal that the components wired together represent different or independent concepts or responsibilities, or belong to different abstraction layers in the system. For instance, database configuration (driver, url, user, password) and a DataSource implementation are different concepts. Similarly a DataSource and a DAO class represent different concepts and belong to different abstraction layers.
+
+--WikiPedia
+
+Dependency injection is a software design pattern that allows removing hard-coded dependencies and making it possible to change them, whether at run-time or compile-time
+
+The primary purpose of the dependency injection pattern is to allow selection among multiple implementations of a given dependency interface at runtime, or via configuration files, instead of at compile time. The pattern is particularly useful for providing stub test implementations of complex components when testing, but is often used for locating plugin components, or locating and initializing software services.
+Unit testing of components in large software systems is difficult, because components under test often require the presence of a substantial amount of infrastructure and set up in order to operate at all. Dependency injection simplifies the process of bringing up a working instance of an isolated component for testing. Because components declare their dependencies, a test can automatically bring up only those dependencies required to perform testing.
+More importantly, injectors can be configured to swap in simplified stub implementations of sub-components when testing, the idea being that the component under test can be tested in isolation as long as the substituted sub-components implement the contract of the dependent interface sufficiently to perform the unit test in question.
+As an example, consider an automatic stock trading program that communicates with a live online trading service and stores historical analytic data in a distributed database. To test the component which recommends trades, one would ordinarily need to have a connection to the online service and an actual distributed database suitably populated with test data. Using dependency injection, the components that provide access to the online service and back-end databases could be replaced altogether with a test implementation of the dependency interface contracts that provide just enough behavior to perform tests on the component under test.
+
+Basics
+
+Without dependency injection, a consumer component that needs a particular service in order to accomplish a task must create an instance of a class that concretely implements the dependency interface.
+When using dependency injection, a consumer component specifies the service contract by interface, and the injector component selects an implementation on behalf of the dependent component.
+In its simplest implementation, code that creates a dependent object supplies dependencies to that object via constructor arguments or by setting properties on the object.
+More complicated implementations, such as Spring, Google Guice, and Microsoft Managed Extensibility Framework (MEF), automate this procedure. These frameworks identify constructor arguments or properties on the objects being created as requests for dependent objects, and automatically inject constructor arguments or set properties with pre-constructed instances of dependencies as part of the process of creating the dependent object. The client makes a request to the dependency injection system for an implementation of a particular interface; the dependency injection system creates the object, automatically filling in dependencies as required.
+
+--Macoratti
+Adotar boas práticas no processo de desenvolvimento de software deixou de ser um diferencial para ser uma questão de sobrevivência.
+
+O cenário atual aponta para uma grande demanda por software de qualidade com prazo e custos cada vez mais reduzidos. Não há mais lugar para desculpas como falta de recursos ou de tempo. Ou você oferece o que o mercado deseja ou esta fora.
+
+Usar padrões é uma das atitudes que beneficia o projeto pois facilita o reuso, os testes e permite uma melhor manutenabilidade do produto.
+
+Este artigo apresenta o padrão inversão de controle (IoC) também conhecido como injeção de dependência (há uma certa polêmica quanto essa correspondência...)
+
+Se você nunca ouviu falar em inversão de controle (IoC) saiba que este padrão é muito usado em projetos orientados a objeto e utiliza conceitos como interface, herança e polimorfismo, e, tem como objetivo reduzir o acoplamento , facilitar o reuso e os testes no projeto de software.

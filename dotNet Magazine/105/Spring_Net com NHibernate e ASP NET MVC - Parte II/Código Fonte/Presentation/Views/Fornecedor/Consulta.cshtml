@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Presentation.Models.Fornecedor.FornecedorModel>
+
+@{
+    ViewBag.Title = "Consulta";
+    Layout = "~/Views/Layout/Esqueleto.cshtml";
+}
+
+<div id="janela-principal">
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Raz&atilde;o Social</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model){
+                <tr>
+                    <td>@item.Nome</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Quantidade de Fornecedores: @Model.Count()</td>
+            </tr>
+        </tfoot>
+    </table>
+
+</div>

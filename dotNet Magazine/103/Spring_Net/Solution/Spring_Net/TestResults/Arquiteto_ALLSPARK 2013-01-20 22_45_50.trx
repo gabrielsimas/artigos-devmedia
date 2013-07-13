@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="41969c76-14d7-4c91-b588-d733524bd4ac" name="Arquiteto@ALLSPARK 2013-01-20 22:45:50" runUser="ALLSPARK\Arquiteto" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="48cf9c2f-742f-4c58-a0bc-2a49189e81c2">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Arquiteto_ALLSPARK 2013-01-20 22_45_50">
+      <DeploymentItem filename="C:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Core.dll" />
+      <DeploymentItem filename="C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\DAL\bin\Debug\DAL.dll" />
+      <DeploymentItem filename="C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\BLL\bin\Debug\BLL.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-01-20T22:45:50.8530433-02:00" queuing="2013-01-20T22:45:50.8730721-02:00" start="2013-01-20T22:45:51.0132737-02:00" finish="2013-01-20T22:45:54.9889905-02:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="2" executed="2" passed="1" error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="SalvarTest" storage="c:\documents and settings\arquiteto\meus documentos\visual studio 2010\projects\spring_net\testedal\bin\debug\testedal.dll" id="f3453cf2-8978-0b99-b5ee-500b3a00fc71">
+      <Execution id="c6fe62cb-1f11-420b-8a8c-a19157518a83" />
+      <TestMethod codeBase="C:/Documents and Settings/Arquiteto/Meus documentos/Visual Studio 2010/Projects/Spring_Net/TesteDAL/bin/Debug/TesteDAL.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TesteDAL.ContatoDALTest, TesteDAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SalvarTest" />
+    </UnitTest>
+    <UnitTest name="InserirContatoTest" storage="c:\documents and settings\arquiteto\meus documentos\visual studio 2010\projects\spring_net\testbll\bin\debug\testbll.dll" id="50c46573-6054-59fd-9d3a-a0cdc47a0462">
+      <Execution id="ee909c21-05b2-4d39-a6d1-35f1d89aca26" />
+      <TestMethod codeBase="C:/Documents and Settings/Arquiteto/Meus documentos/Visual Studio 2010/Projects/Spring_Net/TestBLL/bin/Debug/TestBLL.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TestBLL.ManterContatoTest, TestBLL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="InserirContatoTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="50c46573-6054-59fd-9d3a-a0cdc47a0462" executionId="ee909c21-05b2-4d39-a6d1-35f1d89aca26" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f3453cf2-8978-0b99-b5ee-500b3a00fc71" executionId="c6fe62cb-1f11-420b-8a8c-a19157518a83" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="ee909c21-05b2-4d39-a6d1-35f1d89aca26" testId="50c46573-6054-59fd-9d3a-a0cdc47a0462" testName="InserirContatoTest" computerName="ALLSPARK" duration="00:00:00.5152981" startTime="2013-01-20T22:45:51.5941089-02:00" endTime="2013-01-20T22:45:52.5855345-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ee909c21-05b2-4d39-a6d1-35f1d89aca26">
+      <Output>
+        <DebugTrace>Unable to read configuration section common/logging.  Using no-op implemenation.
+</DebugTrace>
+        <ErrorInfo>
+          <Message>Assert.Fail failed. Não é possível converter um objeto do tipo 'DAL.Persistencia.ContatoDAL' no tipo 'BLL.Negocio.ManterContato'.</Message>
+          <StackTrace>   em TestBLL.ManterContatoTest.InserirContatoTest() na C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\TestBLL\ManterContatoTest.cs:linha 95
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="c6fe62cb-1f11-420b-8a8c-a19157518a83" testId="f3453cf2-8978-0b99-b5ee-500b3a00fc71" testName="SalvarTest" computerName="ALLSPARK" duration="00:00:00.3407818" startTime="2013-01-20T22:45:52.5955489-02:00" endTime="2013-01-20T22:45:53.2765281-02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c6fe62cb-1f11-420b-8a8c-a19157518a83">
+      <Output>
+        <DebugTrace>Unable to read configuration section common/logging.  Using no-op implemenation.
+</DebugTrace>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

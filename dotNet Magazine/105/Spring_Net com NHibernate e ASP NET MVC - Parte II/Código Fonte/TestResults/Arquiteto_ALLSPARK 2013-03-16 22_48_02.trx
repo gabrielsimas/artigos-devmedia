@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="a192d904-038e-4bb4-aa22-272a4e07af37" name="Arquiteto@ALLSPARK 2013-03-16 22:48:02" runUser="ALLSPARK\Arquiteto" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="d4f7ce9b-908c-4374-9461-2f0230bff472">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Arquiteto_ALLSPARK 2013-03-16 22_48_02">
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Data.NHibernate31.dll" />
+      <DeploymentItem filename="c:\documents and settings\arquiteto\meus documentos\visual studio 2010\Projects\NHibernate_Spring_NET\DAL\bin\Debug\DAL.dll" />
+      <DeploymentItem filename="c:\documents and settings\arquiteto\meus documentos\Downloads\NHibernate-3.2.0.GA-bin\Required_Bins\NHibernate.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Messaging.Ems.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Data.NHibernate20.dll" />
+      <DeploymentItem filename="c:\documents and settings\arquiteto\meus documentos\Downloads\NHibernate-3.2.0.GA-bin\Required_Bins\Iesi.Collections.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Data.NHibernate21.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Scheduling.Quartz.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Web.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Messaging.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Aop.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Data.NHibernate32.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Testing.Microsoft.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Data.NHibernate30.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Web.Mvc.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Services.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Messaging.Nms.dll" />
+      <DeploymentItem filename="c:\documents and settings\arquiteto\meus documentos\visual studio 2010\Projects\NHibernate_Spring_NET\BusinessLayer\bin\Debug\BusinessLayer.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Common.Logging.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Core.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Template.Velocity.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Web.Mvc3.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Testing.NUnit.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Data.dll" />
+      <DeploymentItem filename="c:\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Web.Extensions.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-03-16T22:48:02.9933214-03:00" queuing="2013-03-16T22:48:13.4183118-03:00" start="2013-03-16T22:48:16.0020270-03:00" finish="2013-03-16T22:51:53.7839814-03:00" />
+  <ResultSummary outcome="Error">
+    <Counters total="1" executed="1" error="0" failed="0" timeout="0" aborted="1" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="ALLSPARK" outcome="Error" timestamp="2013-03-16T22:51:53.7539382-03:00">
+        <Text>Test host process exited unexpectedly.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="SalvarProdutoTest" storage="c:\documents and settings\arquiteto\meus documentos\visual studio 2010\projects\nhibernate_spring_net\testespringnet\bin\debug\testespringnet.dll" id="25b37dfb-a303-ccf0-1b89-b9a3e13be4ea">
+      <Execution id="b721c399-0a0a-4929-b94d-56ff0a0bc58e" />
+      <TestMethod codeBase="c:/documents and settings/arquiteto/meus documentos/visual studio 2010/Projects/NHibernate_Spring_NET/TesteSpringNet/bin/Debug/TesteSpringNet.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="TesteSpringNet.ManterProdutoTest, TesteSpringNet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SalvarProdutoTest" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Testes de Regra de Negócio" id="c44a6dfb-94cf-4128-9ac1-d987c425f2fe" parentListId="8c43106b-9dc1-4907-a29f-aa66a61bf5b6">
+      <TestLinks>
+        <TestLink id="25b37dfb-a303-ccf0-1b89-b9a3e13be4ea" name="SalvarProdutoTest" storage="c:\documents and settings\arquiteto\meus documentos\visual studio 2010\projects\nhibernate_spring_net\testespringnet\bin\debug\testespringnet.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      </TestLinks>
+    </TestList>
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+    <TestList name="Lists of Results" id="8c43106b-9dc1-4907-a29f-aa66a61bf5b6" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="25b37dfb-a303-ccf0-1b89-b9a3e13be4ea" executionId="b721c399-0a0a-4929-b94d-56ff0a0bc58e" testListId="c44a6dfb-94cf-4128-9ac1-d987c425f2fe" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="b721c399-0a0a-4929-b94d-56ff0a0bc58e" testId="25b37dfb-a303-ccf0-1b89-b9a3e13be4ea" testName="SalvarProdutoTest" computerName="ALLSPARK" duration="00:03:35.6689160" startTime="2013-03-16T22:48:18.1150654-03:00" endTime="2013-03-16T22:51:53.7839814-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Aborted" testListId="c44a6dfb-94cf-4128-9ac1-d987c425f2fe" relativeResultsDirectory="b721c399-0a0a-4929-b94d-56ff0a0bc58e">
+    </UnitTestResult>
+  </Results>
+</TestRun>

@@ -1,0 +1,20 @@
+E:\Documentos\Empresa\Artigos\Revista DevMedia\dotNet Magazine\Spring_Net\Solution\Spring_Net\DAL\obj\Debug\ResolveAssemblyReference.cache
+E:\Documentos\Empresa\Artigos\Revista DevMedia\dotNet Magazine\Spring_Net\Solution\Spring_Net\DAL\bin\Debug\DAL.dll.config
+E:\Documentos\Empresa\Artigos\Revista DevMedia\dotNet Magazine\Spring_Net\Solution\Spring_Net\DAL\bin\Debug\DAL.dll
+E:\Documentos\Empresa\Artigos\Revista DevMedia\dotNet Magazine\Spring_Net\Solution\Spring_Net\DAL\bin\Debug\DAL.pdb
+E:\Documentos\Empresa\Artigos\Revista DevMedia\dotNet Magazine\Spring_Net\Solution\Spring_Net\DAL\obj\Debug\DAL.dll
+E:\Documentos\Empresa\Artigos\Revista DevMedia\dotNet Magazine\Spring_Net\Solution\Spring_Net\DAL\obj\Debug\DAL.pdb
+E:\Documentos\Empresa\Artigos\Revista DevMedia\dotNet Magazine\Spring_Net\Solution\Spring_Net\DAL\bin\Debug\Spring.Core.dll
+E:\Documentos\Empresa\Artigos\Revista DevMedia\dotNet Magazine\Spring_Net\Solution\Spring_Net\DAL\bin\Debug\Common.Logging.dll
+E:\Documentos\Empresa\Artigos\Revista DevMedia\dotNet Magazine\Spring_Net\Solution\Spring_Net\DAL\bin\Debug\Spring.Core.pdb
+E:\Documentos\Empresa\Artigos\Revista DevMedia\dotNet Magazine\Spring_Net\Solution\Spring_Net\DAL\bin\Debug\Spring.Core.xml
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\DAL\bin\Debug\DAL.dll.config
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\DAL\bin\Debug\DAL.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\DAL\bin\Debug\DAL.pdb
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\DAL\bin\Debug\Spring.Core.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\DAL\bin\Debug\Common.Logging.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\DAL\bin\Debug\Spring.Core.pdb
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\DAL\bin\Debug\Spring.Core.xml
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\DAL\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\DAL\obj\Debug\DAL.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\Spring_Net\DAL\obj\Debug\DAL.pdb

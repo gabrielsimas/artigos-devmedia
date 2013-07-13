@@ -1,0 +1,8 @@
+*- Arquitetura do Exemplo
+Cliente = {CodigoCliente, Nome, e-mail, idPais}
+País = {idPais, nomePais}
+Pedido = {CodigoPedido, CodigoCliente, TotalPedido}
+
+Cliente -> País = 1 para 1
+Cliente -> Pedido = 1 para vários
+

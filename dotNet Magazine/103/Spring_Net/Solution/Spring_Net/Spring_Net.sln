@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{B34478C2-7E7D-48FE-BC78-F9F69DF5EDDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteDAL", "TesteDAL\TesteDAL.csproj", "{B6F8CD21-5A15-4FA5-8C41-BADA4852A4DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C8553D8B-BC8E-41BB-8554-281EF91812C3}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		Spring_Net.vsmdi = Spring_Net.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{336A85F4-E5CC-4CF9-AEC9-C3CE9794317B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBLL", "TestBLL\TestBLL.csproj", "{9D595549-39C2-4F64-87BF-0D4E31DE7140}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{433C6AED-8CAF-4E71-A1F0-4E608CC5E309}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDALPratico", "TestDALPratico\TestDALPratico.csproj", "{CBB51EEC-5BF8-4852-80C9-78BC135310AB}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Spring_Net.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B34478C2-7E7D-48FE-BC78-F9F69DF5EDDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B34478C2-7E7D-48FE-BC78-F9F69DF5EDDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B34478C2-7E7D-48FE-BC78-F9F69DF5EDDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B34478C2-7E7D-48FE-BC78-F9F69DF5EDDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6F8CD21-5A15-4FA5-8C41-BADA4852A4DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6F8CD21-5A15-4FA5-8C41-BADA4852A4DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6F8CD21-5A15-4FA5-8C41-BADA4852A4DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6F8CD21-5A15-4FA5-8C41-BADA4852A4DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{336A85F4-E5CC-4CF9-AEC9-C3CE9794317B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{336A85F4-E5CC-4CF9-AEC9-C3CE9794317B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{336A85F4-E5CC-4CF9-AEC9-C3CE9794317B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{336A85F4-E5CC-4CF9-AEC9-C3CE9794317B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D595549-39C2-4F64-87BF-0D4E31DE7140}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D595549-39C2-4F64-87BF-0D4E31DE7140}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D595549-39C2-4F64-87BF-0D4E31DE7140}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D595549-39C2-4F64-87BF-0D4E31DE7140}.Release|Any CPU.Build.0 = Release|Any CPU
+		{433C6AED-8CAF-4E71-A1F0-4E608CC5E309}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{433C6AED-8CAF-4E71-A1F0-4E608CC5E309}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{433C6AED-8CAF-4E71-A1F0-4E608CC5E309}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{433C6AED-8CAF-4E71-A1F0-4E608CC5E309}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBB51EEC-5BF8-4852-80C9-78BC135310AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBB51EEC-5BF8-4852-80C9-78BC135310AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBB51EEC-5BF8-4852-80C9-78BC135310AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBB51EEC-5BF8-4852-80C9-78BC135310AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

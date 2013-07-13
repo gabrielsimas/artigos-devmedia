@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="DAL"
+                   namespace="DAL.Entidade">
+  <class name="NotaFiscal" table="NotaFiscal">
+    <id name="Id" column="id">
+      <generator class="identity" />
+    </id>
+
+    <property name="Tipo" column="tipo"/>
+    <property name="DtEntrega" column="dtEntrega" />
+    <property name="DtNota" column="dtNota"/>
+    <property name="Total" column="total" />
+    
+    <!-- Relacionamentos -->
+    <!-- Um Fornecedor para uma Nota Fiscal -->
+    <!-- <one-to-one name="Fornecedor" class="Fornecedor" cascade="all" /> -->
+    <!--Relacionamento deve ser BiDirecional -->
+    <many-to-one name="Fornecedor" column="idFornecedor"/>
+   
+    <!-- Uma Nota Fiscal para Vários Itens -->
+    <!--  <bag name="ItemsNota" inverse="true" lazy="false" fetch="join" cascade="all" > -->
+      <bag name="ItemsNota" inverse="true" lazy="false" fetch="join" cascade="all">
+      <key column="idNota"/>
+      <one-to-many class="DAL.Entidade.ItemNota, DAL"/>
+    </bag>
+  </class>  
+</hibernate-mapping>

@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{47858DEE-E51D-4089-87A9-8F75372946FE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DAL</RootNamespace>
+    <AssemblyName>DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging, Version=1.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e">
+      <HintPath>..\..\..\..\..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Downloads\NHibernate-3.2.0.GA-bin\Required_Bins\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=3.2.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Downloads\NHibernate-3.2.0.GA-bin\Required_Bins\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Aop">
+      <HintPath>..\..\..\..\..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Aop.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>..\..\..\..\..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data">
+      <HintPath>..\..\..\..\..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data.NHibernate32">
+      <HintPath>..\..\..\..\..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Data.NHibernate32.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging">
+      <HintPath>..\..\..\..\..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Messaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging.Ems">
+      <HintPath>..\..\..\..\..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Messaging.Ems.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging.Nms">
+      <HintPath>..\..\..\..\..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Messaging.Nms.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Scheduling.Quartz">
+      <HintPath>..\..\..\..\..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Scheduling.Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Services">
+      <HintPath>..\..\..\..\..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Template.Velocity">
+      <HintPath>..\..\..\..\..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Template.Velocity.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Testing.Microsoft">
+      <HintPath>..\..\..\..\..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Testing.Microsoft.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Testing.NUnit">
+      <HintPath>..\..\..\..\..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Testing.NUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Web">
+      <HintPath>..\..\..\..\..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Web.Extensions">
+      <HintPath>..\..\..\..\..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Web.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Web.Mvc">
+      <HintPath>..\..\..\..\..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Web.Mvc3">
+      <HintPath>..\..\..\..\..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Web.Mvc3.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entidade\Estoque.cs" />
+    <Compile Include="Entidade\Fornecedor.cs" />
+    <Compile Include="Entidade\ItemNota.cs" />
+    <Compile Include="Entidade\NotaFiscal.cs" />
+    <Compile Include="Entidade\Produto.cs" />
+    <Compile Include="Persistencia\EstoqueDAO.cs" />
+    <Compile Include="Persistencia\FornecedorDAO.cs" />
+    <Compile Include="Persistencia\ItemNotaDAO.cs" />
+    <Compile Include="Persistencia\NotaFiscalDAO.cs" />
+    <Compile Include="Persistencia\ProdutoDAO.cs" />
+    <Compile Include="Persistencia\Spring\SpringEstoqueDAO.cs" />
+    <Compile Include="Persistencia\Spring\SpringFornecedorDAO.cs" />
+    <Compile Include="Persistencia\Spring\SpringItemNotaDAO.cs" />
+    <Compile Include="Persistencia\Spring\SpringNotaFiscalDAO.cs" />
+    <Compile Include="Persistencia\Spring\SpringProdutoDAO.cs" />
+    <Compile Include="Reuso\Spring\FabricaDeObjeto.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reuso\GenericDAO.cs" />
+    <Compile Include="Reuso\HibernateUtil.cs" />
+    <Compile Include="Reuso\IGenericDAO.cs" />
+    <Compile Include="Reuso\Spring\SpringGenericDAO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeamento\NotaFiscal.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="hibernate.cfg.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapeamento\Fornecedor.hbm.xml" />
+    <EmbeddedResource Include="Mapeamento\Produto.hbm.xml" />
+    <EmbeddedResource Include="Mapeamento\Estoque.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeamento\ItemNota.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

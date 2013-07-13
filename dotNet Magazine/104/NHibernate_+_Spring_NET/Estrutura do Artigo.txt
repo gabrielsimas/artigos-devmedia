@@ -1,0 +1,25 @@
+- NHIBERNATE + Spring.NET
+Persistência de Dados em alta produtividade
+
+- LEAD
+
+- NHibernate
+
+- Spring.NET
+
+- Vantagens de Uso do NHibernate
+
+- Desvantagens no Uso do NHibernate
+
+- Arquitetura propícia para Persistência de Dados
+
+- Camadas de Serviço
+- Façades
+- DTOs
+
+- Vantagens de Uso do NHibernate junto com o Spring.NET
+
+<TUTORIAL>
+
+- Arquitetura a ser usada no Projeto
+
