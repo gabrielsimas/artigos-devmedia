@@ -1,0 +1,5 @@
+C:\Artigos DevMedia\Site DevMedia\3 - Façade\Código Fonte\Artigo03Facade\Servico\bin\Debug\Servico.dll
+C:\Artigos DevMedia\Site DevMedia\3 - Façade\Código Fonte\Artigo03Facade\Servico\bin\Debug\Servico.pdb
+C:\Artigos DevMedia\Site DevMedia\3 - Façade\Código Fonte\Artigo03Facade\Servico\obj\Debug\ResolveAssemblyReference.cache
+C:\Artigos DevMedia\Site DevMedia\3 - Façade\Código Fonte\Artigo03Facade\Servico\obj\Debug\Servico.dll
+C:\Artigos DevMedia\Site DevMedia\3 - Façade\Código Fonte\Artigo03Facade\Servico\obj\Debug\Servico.pdb

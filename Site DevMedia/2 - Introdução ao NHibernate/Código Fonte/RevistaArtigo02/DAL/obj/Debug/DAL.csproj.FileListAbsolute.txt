@@ -1,0 +1,13 @@
+C:\Artigos DevMedia\Site DevMedia\2 - Introdução ao NHibernate\Código Fonte\RevistaArtigo02\DAL\obj\Debug\ResolveAssemblyReference.cache
+C:\Artigos DevMedia\Site DevMedia\2 - Introdução ao NHibernate\Código Fonte\RevistaArtigo02\DAL\bin\Debug\hibernate.cfg.xml
+C:\Artigos DevMedia\Site DevMedia\2 - Introdução ao NHibernate\Código Fonte\RevistaArtigo02\DAL\bin\Debug\DAL.dll
+C:\Artigos DevMedia\Site DevMedia\2 - Introdução ao NHibernate\Código Fonte\RevistaArtigo02\DAL\bin\Debug\DAL.pdb
+C:\Artigos DevMedia\Site DevMedia\2 - Introdução ao NHibernate\Código Fonte\RevistaArtigo02\DAL\bin\Debug\Iesi.Collections.dll
+C:\Artigos DevMedia\Site DevMedia\2 - Introdução ao NHibernate\Código Fonte\RevistaArtigo02\DAL\bin\Debug\NHibernate.dll
+C:\Artigos DevMedia\Site DevMedia\2 - Introdução ao NHibernate\Código Fonte\RevistaArtigo02\DAL\bin\Debug\Iesi.Collections.pdb
+C:\Artigos DevMedia\Site DevMedia\2 - Introdução ao NHibernate\Código Fonte\RevistaArtigo02\DAL\bin\Debug\Iesi.Collections.xml
+C:\Artigos DevMedia\Site DevMedia\2 - Introdução ao NHibernate\Código Fonte\RevistaArtigo02\DAL\bin\Debug\NHibernate.pdb
+C:\Artigos DevMedia\Site DevMedia\2 - Introdução ao NHibernate\Código Fonte\RevistaArtigo02\DAL\bin\Debug\NHibernate.xml
+C:\Artigos DevMedia\Site DevMedia\2 - Introdução ao NHibernate\Código Fonte\RevistaArtigo02\DAL\obj\Debug\DAL.dll
+C:\Artigos DevMedia\Site DevMedia\2 - Introdução ao NHibernate\Código Fonte\RevistaArtigo02\DAL\obj\Debug\DAL.pdb
+C:\Artigos DevMedia\Site DevMedia\2 - Introdução ao NHibernate\Código Fonte\RevistaArtigo02\DAL\bin\Debug\NHibernate.Mapping.Attributes.dll

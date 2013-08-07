@@ -1,0 +1,17 @@
+C:\Artigos DevMedia\Site DevMedia\3 - Façade\Código Fonte\Artigo03Facade\Negocio\bin\Debug\Negocio.dll
+C:\Artigos DevMedia\Site DevMedia\3 - Façade\Código Fonte\Artigo03Facade\Negocio\bin\Debug\Negocio.pdb
+C:\Artigos DevMedia\Site DevMedia\3 - Façade\Código Fonte\Artigo03Facade\Negocio\obj\Debug\ResolveAssemblyReference.cache
+C:\Artigos DevMedia\Site DevMedia\3 - Façade\Código Fonte\Artigo03Facade\Negocio\obj\Debug\Negocio.dll
+C:\Artigos DevMedia\Site DevMedia\3 - Façade\Código Fonte\Artigo03Facade\Negocio\obj\Debug\Negocio.pdb
+C:\Artigos DevMedia\Site DevMedia\3 - Façade\Código Fonte\Artigo03Facade\Negocio\bin\Debug\hibernate.cfg.xml
+C:\Artigos DevMedia\Site DevMedia\3 - Façade\Código Fonte\Artigo03Facade\Negocio\bin\Debug\DAL.dll
+C:\Artigos DevMedia\Site DevMedia\3 - Façade\Código Fonte\Artigo03Facade\Negocio\bin\Debug\NHibernate.dll
+C:\Artigos DevMedia\Site DevMedia\3 - Façade\Código Fonte\Artigo03Facade\Negocio\bin\Debug\Iesi.Collections.dll
+C:\Artigos DevMedia\Site DevMedia\3 - Façade\Código Fonte\Artigo03Facade\Negocio\bin\Debug\DAL.pdb
+C:\Artigos DevMedia\Site DevMedia\3 - Façade\Código Fonte\Artigo03Facade\Negocio\bin\Debug\NHibernate.pdb
+C:\Artigos DevMedia\Site DevMedia\3 - Façade\Código Fonte\Artigo03Facade\Negocio\bin\Debug\NHibernate.xml
+C:\Artigos DevMedia\Site DevMedia\3 - Façade\Código Fonte\Artigo03Facade\Negocio\bin\Debug\Iesi.Collections.pdb
+C:\Artigos DevMedia\Site DevMedia\3 - Façade\Código Fonte\Artigo03Facade\Negocio\bin\Debug\Iesi.Collections.xml
+C:\Artigos DevMedia\Site DevMedia\3 - Façade\Código Fonte\Artigo03Facade\Negocio\bin\Debug\Mapeamento\Jogador.hbm.xml
+C:\Artigos DevMedia\Site DevMedia\3 - Façade\Código Fonte\Artigo03Facade\Negocio\bin\Debug\Mapeamento\Posicao.hbm.xml
+C:\Artigos DevMedia\Site DevMedia\3 - Façade\Código Fonte\Artigo03Facade\Negocio\bin\Debug\Mapeamento\Clube.hbm.xml

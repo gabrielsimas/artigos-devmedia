@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="DAL"
+                   namespace="DAL.Entidade">  
+  <class name="Clube" table="Clube" lazy="false">
+    
+    <id name="Id" column="id">
+      <generator class="identity" />
+    </id>
+
+    <property name="NomeCompleto" column="nomecompleto"/>
+    <property name="Apelido" column="apelido" />
+    <property name="DataFundacao" column="datafundacao" />
+    <property name="Distintivo" column="distintivo" />
+
+    <bag name="Elenco" inverse="true" lazy="false" fetch="join" cascade="all">
+      <key column="idClube"/>
+      <one-to-many class="DAL.Entidade.Jogador, DAL"/>
+    </bag>
+  </class>
+
+  <query name="listarPlantel">
+    <![CDATA[
+      from Clube cl 
+      where cl.Id = :codClube
+      ]]>
+  </query>
+</hibernate-mapping>
+    

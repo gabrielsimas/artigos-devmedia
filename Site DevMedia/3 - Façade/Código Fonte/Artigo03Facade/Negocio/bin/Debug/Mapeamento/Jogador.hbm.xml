@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                    assembly="DAL"
+                   namespace="DAL.Entidade">
+
+  <class name="Jogador" table="Jogador" lazy="false">
+
+    <id name="Id" column="id">
+      <generator class="identity"/>
+    </id>
+
+    <property name="NomeCompleto" column="nomecompleto" />
+    <property name="Apelido" column="apelido" />
+    <property name="DataNascimento" column="datanascimento" />
+    <property name="EstadoNatal" column="estadonatal"/>
+    <property name="PaisNatal" column="paisnatal" />
+    <property name="IdConf" column="idConf" />
+
+
+    <many-to-one name="Clube" column="idClube"  lazy="false"/>
+    <many-to-one name="Posicao" column="idPosicao"  lazy="false"/>
+
+    <query name="listarElenco">
+      <![CDATA[
+        from Jogador as j 
+        INNER JOIN j.Clube as c
+        c.id = 1
+      ]]>
+      <query-param name="codClube" type="integer"/>
+    </query>
+    
+
+  </class>
+
+</hibernate-mapping>

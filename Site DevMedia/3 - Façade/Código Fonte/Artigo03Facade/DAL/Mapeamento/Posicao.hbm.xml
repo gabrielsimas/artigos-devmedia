@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="DAL"
+                   namespace="DAL.Entidade">
+
+  <class name="Posicao" table="Posicao" lazy="false">
+
+    <id name="Id" column="id">
+      <generator class="identity"/>
+    </id>
+
+    <property name="Nome" column="nome" />
+
+    <one-to-one name="Jogador" class="Jogador" lazy="false"/>
+    
+    
+  </class>
+  
+</hibernate-mapping>
