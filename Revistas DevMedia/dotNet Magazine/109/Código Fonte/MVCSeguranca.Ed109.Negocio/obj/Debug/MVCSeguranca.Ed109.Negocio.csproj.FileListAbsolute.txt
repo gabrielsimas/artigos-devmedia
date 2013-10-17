@@ -1,0 +1,5 @@
+C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\MVCSeguranca.Ed109.Negocio.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\MVCSeguranca.Ed109.Negocio.pdb
+C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.Negocio\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.Negocio\obj\Debug\MVCSeguranca.Ed109.Negocio.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.Negocio\obj\Debug\MVCSeguranca.Ed109.Negocio.pdb

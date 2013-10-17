@@ -1,0 +1,5 @@
+C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.Dominio\bin\Debug\MVCSeguranca.Ed109.Dominio.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.Dominio\bin\Debug\MVCSeguranca.Ed109.Dominio.pdb
+C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.Dominio\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.Dominio\obj\Debug\MVCSeguranca.Ed109.Dominio.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.Dominio\obj\Debug\MVCSeguranca.Ed109.Dominio.pdb

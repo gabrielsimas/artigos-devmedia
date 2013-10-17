@@ -1,0 +1,7 @@
+C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSegurancaSite\bin\MVCSegurancaSite.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSegurancaSite\bin\MVCSegurancaSite.pdb
+C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSegurancaSite\bin\EntityFramework.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSegurancaSite\bin\EntityFramework.xml
+C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSegurancaSite\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSegurancaSite\obj\Debug\MVCSegurancaSite.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSegurancaSite\obj\Debug\MVCSegurancaSite.pdb
