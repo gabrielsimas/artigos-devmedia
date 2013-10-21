@@ -1,0 +1,5 @@
+c:\documents and settings\arquiteto\meus documentos\visual studio 2010\Projects\ARTIGOLINQTOSQL\PL\bin\PL.dll
+c:\documents and settings\arquiteto\meus documentos\visual studio 2010\Projects\ARTIGOLINQTOSQL\PL\bin\PL.pdb
+c:\documents and settings\arquiteto\meus documentos\visual studio 2010\Projects\ARTIGOLINQTOSQL\PL\obj\Debug\ResolveAssemblyReference.cache
+c:\documents and settings\arquiteto\meus documentos\visual studio 2010\Projects\ARTIGOLINQTOSQL\PL\obj\Debug\PL.dll
+c:\documents and settings\arquiteto\meus documentos\visual studio 2010\Projects\ARTIGOLINQTOSQL\PL\obj\Debug\PL.pdb

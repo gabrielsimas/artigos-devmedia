@@ -1,0 +1,8 @@
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\ARTIGOLINQTOSQL\TestaProjeto\bin\Debug\TestaProjeto.exe.config
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\ARTIGOLINQTOSQL\TestaProjeto\bin\Debug\TestaProjeto.exe
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\ARTIGOLINQTOSQL\TestaProjeto\bin\Debug\TestaProjeto.pdb
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\ARTIGOLINQTOSQL\TestaProjeto\bin\Debug\DAL.dll
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\ARTIGOLINQTOSQL\TestaProjeto\bin\Debug\DAL.pdb
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\ARTIGOLINQTOSQL\TestaProjeto\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\ARTIGOLINQTOSQL\TestaProjeto\obj\x86\Debug\TestaProjeto.exe
+C:\Documents and Settings\Arquiteto\Meus documentos\Visual Studio 2010\Projects\ARTIGOLINQTOSQL\TestaProjeto\obj\x86\Debug\TestaProjeto.pdb

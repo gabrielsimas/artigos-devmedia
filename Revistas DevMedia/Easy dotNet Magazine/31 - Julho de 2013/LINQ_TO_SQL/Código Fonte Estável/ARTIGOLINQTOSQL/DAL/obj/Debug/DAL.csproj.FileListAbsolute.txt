@@ -1,0 +1,5 @@
+c:\documents and settings\arquiteto\meus documentos\visual studio 2010\Projects\ARTIGOLINQTOSQL\DAL\obj\Debug\ResolveAssemblyReference.cache
+c:\documents and settings\arquiteto\meus documentos\visual studio 2010\Projects\ARTIGOLINQTOSQL\DAL\bin\Debug\DAL.dll
+c:\documents and settings\arquiteto\meus documentos\visual studio 2010\Projects\ARTIGOLINQTOSQL\DAL\bin\Debug\DAL.pdb
+c:\documents and settings\arquiteto\meus documentos\visual studio 2010\Projects\ARTIGOLINQTOSQL\DAL\obj\Debug\DAL.dll
+c:\documents and settings\arquiteto\meus documentos\visual studio 2010\Projects\ARTIGOLINQTOSQL\DAL\obj\Debug\DAL.pdb
