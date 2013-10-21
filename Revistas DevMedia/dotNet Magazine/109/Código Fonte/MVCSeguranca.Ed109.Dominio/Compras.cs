@@ -53,6 +53,19 @@ namespace MVCSeguranca.Ed109.Entidade
            }
        }
 
+       public Nullable<long> IdCliente
+       {
+           get
+           {
+               return this.idCliente;
+           }
+
+           set
+           {
+               this.idCliente = value;
+           }
+       }
+
        [Column(Name="Total")]
        public Double Total
        {

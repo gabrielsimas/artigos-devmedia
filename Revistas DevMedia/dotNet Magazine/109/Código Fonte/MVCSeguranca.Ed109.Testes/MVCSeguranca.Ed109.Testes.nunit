@@ -1,0 +1,11 @@
+﻿<NUnitProject>
+  <Settings activeconfig="Debug" />
+  <Config name="Debug" binpathtype="Auto">
+    <assembly path="bin\Debug\MVCSeguranca.Ed109.Testes.dll" />
+    <assembly path="bin\Debug\MVCSeguranca.Ed109.Testes.dll" />
+  </Config>
+  <Config name="Release" binpathtype="Auto">
+    <assembly path="bin\Release\MVCSeguranca.Ed109.Testes.dll" />
+    <assembly path="bin\Release\MVCSeguranca.Ed109.Testes.dll" />
+  </Config>
+</NUnitProject>

@@ -35,6 +35,7 @@
       <HintPath>..\..\..\..\..\..\..\..\..\NUnit\framework\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
@@ -46,9 +47,6 @@
   <ItemGroup>
     <Compile Include="DAL\TesteDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dominio\" />
@@ -78,6 +76,9 @@
       <Project>{5B6EA4BA-FD75-4CF0-BE3D-E3B63297D643}</Project>
       <Name>MVCSeguranca.Ed109.Negocio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

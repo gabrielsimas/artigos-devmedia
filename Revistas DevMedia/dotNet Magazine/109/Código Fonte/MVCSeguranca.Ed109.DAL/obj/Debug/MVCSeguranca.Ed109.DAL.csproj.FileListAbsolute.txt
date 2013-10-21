@@ -7,3 +7,4 @@ C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas De
 C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.DAL\obj\Debug\ResolveAssemblyReference.cache
 C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.DAL\obj\Debug\MVCSeguranca.Ed109.DAL.dll
 C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.DAL\obj\Debug\MVCSeguranca.Ed109.DAL.pdb
+C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.DAL\bin\Debug\MVCSeguranca.Ed109.DAL.dll.config
