@@ -31,9 +31,18 @@ namespace MVCSeguranca.Ed109.Generic.Implementacao
 
         #region Métodos Crud
 
-        public void salvar(E entidade)
+        public Boolean salvar(E entidade)
         {
-            this.dataSource.GetTable<E>().InsertOnSubmit(entidade);
+            try
+            {
+                this.dataSource.GetTable<E>().InsertOnSubmit(entidade);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;                
+            }
+            
         }
 
         public IList<E> listarTudo()
@@ -46,14 +55,32 @@ namespace MVCSeguranca.Ed109.Generic.Implementacao
             return this.dataSource.GetTable<E>().Single(predicado);
         }
 
-        public void Alterar(E entidade)
+        public Boolean Alterar(E entidade)
         {
-            this.dataSource.GetTable<E>().Attach(entidade, true);
+            try
+            {
+                this.dataSource.GetTable<E>().Attach(entidade, true);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            
         }
 
-        public void Excluir(E entidade)
+        public Boolean Excluir(E entidade)
         {
-            this.dataSource.GetTable<E>().DeleteOnSubmit(entidade);
+            try
+            {
+                this.dataSource.GetTable<E>().DeleteOnSubmit(entidade);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            
         }
 
         #endregion
@@ -79,6 +106,5 @@ namespace MVCSeguranca.Ed109.Generic.Implementacao
         }
 
         #endregion
-
     }
 }

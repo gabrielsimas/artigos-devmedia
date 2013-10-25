@@ -30,3 +30,10 @@ Configurando o NUnit para nossos testes.
 O NUnit é bem simples de ser manuseado, inicialmente crie um atalho na sua área de trabalho apontando para o seu executável onde ele foi baixado e extraído, caso tenha sido instalado, ele já estará lá. Vamos criar o nosso Projeto inicial. Temos aqui uma pequena convenção: vamos criar o Projeto do NUnit dentro de nosso Projeto MVCSeguranca.Ed109.Testes
 
 Alguns Attributes do NUnit úteis
+
+Por não ser o intuito deste artigo, passaremos rapidamente por alguns atributos mais utilizados pelo NUnit e que o leitor pode utilizá-lo em seus projetos.
+
+TestFixture: informa que a classe decorada faz parte de uma Unidade de Testes do Nunit
+Test: é para se colocada sobre um método, informa que este método é um Teste Unitário
+SetUp: Serve para carregar alguma ação antes dos testes propriamente ditos, um exemplo disto, é a conexão com o nosso DataContext chamado Conexao, para que possamos executar os testes unitários, nós precisamos,primeiro, da conexão com o banco de dados, então basta criar um método e decorá-lo com o atributo SetUp que este será sempre executado primeiro antes de quaisquer método anotado após TestFixture.
+TearDown: Qualquer método decorado com este atributo, é executado depois de todos os Métodos anotados como Test, ele é o responsável por executar os métodos de finalização dos testes, pode ser uma gravação em algum banco de dados para persistir os resultados de um teste, pode ser para fechar uma conexão, commitar ou efetuar rollback, efetuar um dispose ou mesmo uma mensagem de saída. É uma boa prática sempre se utilizar o TearDown para forçar o fechamento, dispose ou qualquer outra ação a ser executada ao final dos testes unitários.

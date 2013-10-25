@@ -9,10 +9,10 @@ namespace MVCSeguranca.Ed109.Generic.Interface
 {
     public interface IGenericDAO<E> where E: class
     {
-        void salvar(E entidade);
+        Boolean salvar(E entidade);
         IList<E> listarTudo();
         E ListarPorId(Expression<Func<E, bool>> predicado);
-        void Alterar(E entidade);
-        void Excluir(E entidade);
+        Boolean Alterar(E entidade);
+        Boolean Excluir(E entidade);
     }
 }

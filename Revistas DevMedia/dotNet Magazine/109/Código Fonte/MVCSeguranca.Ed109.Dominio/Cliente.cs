@@ -17,7 +17,7 @@ namespace MVCSeguranca.Ed109.Entidade
         private Nullable<long> idCompras;
         private String nome;
         private String email;
-        private EntitySet<Compras> compras;
+        //private EntitySet<Compras> compras;
 
         #endregion
 
@@ -95,6 +95,7 @@ namespace MVCSeguranca.Ed109.Entidade
 
         }
 
+        /*
         [Association(ThisKey="IdCompras",OtherKey="Id")]
         public EntitySet<Compras> Compras
         {
@@ -109,6 +110,7 @@ namespace MVCSeguranca.Ed109.Entidade
             }
             
         }
+         * */
         #endregion
 
         #region Sobrescritas

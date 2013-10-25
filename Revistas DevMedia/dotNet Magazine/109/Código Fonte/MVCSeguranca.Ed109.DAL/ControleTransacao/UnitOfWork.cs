@@ -14,7 +14,7 @@ namespace MVCSeguranca.Ed109.DAL.ControleTransacao
     {
         #region Atributos
 
-        private Conexao conexao = new Conexao();
+        private Conexao conexao;
 
         private UsuarioDAO usuarioDAO;
         private PerfilDAO perfilDAO;
@@ -25,7 +25,27 @@ namespace MVCSeguranca.Ed109.DAL.ControleTransacao
 
         #endregion
 
+        #region Construtores
+        public UnitOfWork()
+        {
+            this.validaConexao();
+        }
+        #endregion
+
         #region Propriedades
+
+        public Conexao Conexao
+        {
+            get
+            {
+                return this.conexao;
+            }
+
+            set
+            {
+                this.conexao = value;
+            }
+        }        
 
         public UsuarioDAO UsuarioDAO
         {
@@ -78,6 +98,13 @@ namespace MVCSeguranca.Ed109.DAL.ControleTransacao
         #endregion
 
         #region Transações
+
+        private void validaConexao()
+        {
+            if(this.conexao == null){
+                this.conexao = new Conexao();
+            }
+        }
 
         public void gravar()
         {
