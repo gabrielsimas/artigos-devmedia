@@ -3,24 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using System.Data.Linq;
-using System.Data.Linq.Mapping;
-using System.Configuration;
-
 namespace MVCSeguranca.Ed109.Entidade
 {
-    [Table(Name="Usuario")]
+    
     public class Usuario
     {
         #region Atributos
 
         private Nullable<long> id;
-        private Nullable<long> idPerfil;
-        private Nullable<long> idCliente;
         private String login;
         private String senha;
-        private EntityRef<Perfil> perfil;
-        private EntityRef<Cliente> cliente;
+        private String senhaMD5;
+        private String senhaPBKDF2;
+        private Perfil perfil;
+        private Cliente cliente;
 
         #endregion
 
@@ -31,11 +27,13 @@ namespace MVCSeguranca.Ed109.Entidade
 
         }
 
-        public Usuario(Nullable<long> id, Nullable<long> idPerfil, Nullable<long> idCliente ,String login, String senha,EntityRef<Perfil> perfil, EntityRef<Cliente> cliente)
+        public Usuario(Nullable<long> id, String login, String senha, String senhaMD5, String senhaPBKDF2, Perfil perfil, Cliente cliente)
         {
             this.id = id;
             this.login = login;
             this.senha = senha;
+            this.senhaMD5 = senhaMD5 ;
+            this.senhaPBKDF2 = senhaPBKDF2;
             this.perfil = perfil;
             this.cliente = cliente;
         }
@@ -44,8 +42,8 @@ namespace MVCSeguranca.Ed109.Entidade
 
         #region Propriedades
 
-        [Column(Name="Id",IsPrimaryKey=true, IsDbGenerated=true)]
-        public Nullable<long> Id
+        
+        public virtual Nullable<long> Id
         {
             get
             {
@@ -57,35 +55,8 @@ namespace MVCSeguranca.Ed109.Entidade
                 this.id = value;
             }
         }
-
-        public Nullable<long> IdCliente
-        {
-            get
-            {
-                return this.idCliente;
-            }
-
-            set
-            {
-                this.idCliente = value;
-            }
-        }
-
-        public Nullable<long> IdPerfil
-        {
-            get
-            {
-                return this.idPerfil;
-            }
-
-            set
-            {
-                this.idPerfil = value;
-            }
-        }
-
-        [Column(Name="Login")]
-        public String Login
+      
+        public virtual String Login
         {
             get
             {
@@ -98,8 +69,8 @@ namespace MVCSeguranca.Ed109.Entidade
             }
         }
 
-        [Column(Name="Senha")]
-        public String Senha
+      
+        public virtual String Senha
         {
             get
             {
@@ -112,31 +83,56 @@ namespace MVCSeguranca.Ed109.Entidade
             }
         }
 
-        [Association(ThisKey="IdPerfil",OtherKey="Id")]
-        public Perfil Perfil
+        public virtual String SenhaMD5
         {
             get
             {
-                return this.perfil.Entity;
+                return this.senhaMD5;
             }
 
             set
             {
-                this.perfil.Entity = value;
+                this.senhaMD5 = value;
             }
         }
 
-        [Association(ThisKey="IdCliente",OtherKey="Id")]
-        public Cliente Cliente
+        public virtual String SenhaPBKDF2
         {
             get
             {
-                return this.cliente.Entity;
+                return this.senhaPBKDF2;
             }
 
             set
             {
-                this.cliente.Entity = value;
+                this.senhaPBKDF2 = value;
+            }
+        }
+
+        public virtual Perfil Perfil
+        {
+            get
+            {
+                return this.perfil;
+            }
+
+            set
+            {
+                this.perfil = value;
+            }
+        }
+
+        
+        public virtual Cliente Cliente
+        {
+            get
+            {
+                return this.cliente;
+            }
+
+            set
+            {
+                this.cliente = value;
             }
         }
 
@@ -162,7 +158,7 @@ namespace MVCSeguranca.Ed109.Entidade
 
         public override string ToString()
         {
-            return this.id + "," + this.login + "," + this.senha;
+            return this.id + "," + this.login + "," + this.senha + "," + this.senhaMD5 + "," + this.senhaPBKDF2;
         }
 
         public override int GetHashCode()

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+
+  <object id ="Cliente" type ="MVCSeguranca.Ed109.Entidade.Cliente, MVCSeguranca.Ed109.Entidade" />
+  <object id ="Compras" type="MVCSeguranca.Ed109.Entidade.Compras, MVCSeguranca.Ed109.Entidade" />
+  <object id="Perfil" type="MVCSeguranca.Ed109.Entidade.Perfil, MVCSeguranca.Ed109.Entidade" />
+  <object id="Usuario" type="MVCSeguranca.Ed109.Entidade.Usuario, MVCSeguranca.Ed109.Entidade" />
+      
+</objects>

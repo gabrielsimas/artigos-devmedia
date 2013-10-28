@@ -3,22 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using System.Data.Linq;
-using System.Data.Linq.Mapping;
-using System.Configuration;
-
 namespace MVCSeguranca.Ed109.Entidade
 {   
-    [Table(Name="Perfil")]
     public class Perfil
     {
 
         #region atributos
 
         private Nullable<long> id;
-        private Nullable<long> idUsuario;
         private String nome;
-        private EntitySet<Usuario> usuarios;
+        private IList<Usuario> usuarios;
 
         #endregion
 
@@ -29,7 +23,7 @@ namespace MVCSeguranca.Ed109.Entidade
 
         }
 
-        public Perfil(Nullable<long> id, String nome, EntitySet<Usuario> usuarios)
+        public Perfil(Nullable<long> id, String nome, IList<Usuario> usuarios)
         {
             this.id = id;
             this.nome = nome;
@@ -40,8 +34,8 @@ namespace MVCSeguranca.Ed109.Entidade
 
         #region Propriedades
 
-        [Column(Name="Id",IsPrimaryKey=true,IsDbGenerated=true)]
-        public Nullable<long> Id
+        
+        public virtual Nullable<long> Id
         {
             get
             {
@@ -54,21 +48,7 @@ namespace MVCSeguranca.Ed109.Entidade
             }
         }
 
-        public Nullable<long> IdUsuario
-        {
-            get
-            {
-                return this.idUsuario;
-            }
-
-            set
-            {
-                this.idUsuario = value;
-            }
-        }
-
-        [Column(Name="Nome")]
-        public String Nome
+        public virtual String Nome
         {
             get
             {
@@ -80,8 +60,7 @@ namespace MVCSeguranca.Ed109.Entidade
             }
         }
 
-        [Association(ThisKey="IdUsuario",OtherKey="Id")]
-        public EntitySet<Usuario> Usuarios
+        public virtual IList<Usuario> Usuarios
         {
             get
             {

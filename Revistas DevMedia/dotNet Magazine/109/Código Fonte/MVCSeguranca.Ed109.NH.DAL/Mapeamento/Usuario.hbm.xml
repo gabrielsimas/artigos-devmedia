@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="MVCSeguranca.Ed109.Entidade"
+                   namespace="MVCSeguranca.Ed109.Entidade">
+
+  <class name="Usuario" table="Usuario">
+
+    <id name="Id" column="id">
+      <generator class ="identity" />
+    </id>
+
+    <property name="Login" column="Login" />
+    <property name="Senha" column="Senha" />
+    <property name="SenhaMD5" column="MD5" />
+    <property name="SenhaPBKDF2" column="PBKDF2" />
+
+    <one-to-one name="Perfil" class="Perfil" lazy="false"/>
+    <one-to-one name="Cliente" class="Cliente" lazy="false"/>
+    
+  </class>
+  
+</hibernate-mapping>

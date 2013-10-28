@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7FDDA3F7-0261-43DE-A8D6-3AE62C7D1943}</ProjectGuid>
+    <ProjectGuid>{34968C5C-28D6-4D10-A0C9-3C7E27C8EA1E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MVCSeguranca.Ed109.Testes</RootNamespace>
-    <AssemblyName>MVCSeguranca.Ed109.Testes</AssemblyName>
+    <RootNamespace>MVCSeguranca.Ed109.DI.Spring</RootNamespace>
+    <AssemblyName>MVCSeguranca.Ed109.DI.Spring</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -34,21 +34,11 @@
     <Reference Include="Common.Logging">
       <HintPath>..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Common.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Iesi.Collections">
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\..\..\Documents and Settings\Arquiteto\Meus documentos\Downloads\NHibernate-3.2.0.GA-bin\Required_Bins\Iesi.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate">
+    <Reference Include="NHibernate, Version=3.2.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\..\..\Documents and Settings\Arquiteto\Meus documentos\Downloads\NHibernate-3.2.0.GA-bin\Required_Bins\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework, Version=2.5.7.10213, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Documents and Settings\Arquiteto\Meus documentos\Downloads\NUnit-2.5.7.10213\NUnit-2.5.7.10213\bin\net-2.0\framework\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.mocks">
-      <HintPath>..\..\..\Documents and Settings\Arquiteto\Meus documentos\Downloads\NUnit-2.5.7.10213\NUnit-2.5.7.10213\bin\net-2.0\framework\nunit.mocks.dll</HintPath>
-    </Reference>
-    <Reference Include="pnunit.framework">
-      <HintPath>..\..\..\Documents and Settings\Arquiteto\Meus documentos\Downloads\NUnit-2.5.7.10213\NUnit-2.5.7.10213\bin\net-2.0\framework\pnunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Spring.Aop">
       <HintPath>..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Aop.dll</HintPath>
@@ -56,7 +46,7 @@
     <Reference Include="Spring.Core">
       <HintPath>..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Spring.Data">
+    <Reference Include="Spring.Data, Version=1.3.2.40943, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
       <HintPath>..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Data.dll</HintPath>
     </Reference>
     <Reference Include="Spring.Data.NHibernate32">
@@ -68,13 +58,17 @@
     <Reference Include="Spring.Testing.NUnit">
       <HintPath>..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Testing.NUnit.dll</HintPath>
     </Reference>
+    <Reference Include="Spring.Web">
+      <HintPath>..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Web.Extensions">
+      <HintPath>..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Web.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="Spring.Web.Mvc3">
       <HintPath>..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\release\Spring.Web.Mvc3.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -82,36 +76,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\TesteClienteDAO.cs" />
-    <Compile Include="DAL\TesteComprasDAO.cs" />
-    <Compile Include="DAL\TesteCriptografia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util\AbstractSpringTeste.cs" />
-    <Compile Include="Util\CriaAmbienteTeste.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Dominio\" />
-    <Folder Include="DTO\" />
-    <Folder Include="Entidade\" />
-    <Folder Include="Generic\" />
-    <Folder Include="Negocio\" />
+    <EmbeddedResource Include="Config\DAL\DAO.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\NHibernate\NHibernate.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\Servico\Servico.xml" />
+    <EmbeddedResource Include="Config\Web\Web.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MVCSeguranca.Ed109.DI.Spring\MVCSeguranca.Ed109.DI.Spring.csproj">
-      <Project>{34968C5C-28D6-4D10-A0C9-3C7E27C8EA1E}</Project>
-      <Name>MVCSeguranca.Ed109.DI.Spring</Name>
-    </ProjectReference>
+    <Folder Include="Config\Entidades\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\MVCSeguranca.Ed109.Dominio\MVCSeguranca.Ed109.Entidade.csproj">
       <Project>{023986C2-DD79-4D07-B193-2FD534F72D72}</Project>
       <Name>MVCSeguranca.Ed109.Entidade</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MVCSeguranca.Ed109.DTO\MVCSeguranca.Ed109.DTO.csproj">
-      <Project>{C6557421-7A81-44FC-A540-59E5CA4D3CFA}</Project>
-      <Name>MVCSeguranca.Ed109.DTO</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MVCSeguranca.Ed109.Generic\MVCSeguranca.Ed109.Generic.csproj">
-      <Project>{59B95990-D508-48D8-93A3-9EDE1486AFB8}</Project>
-      <Name>MVCSeguranca.Ed109.Generic</Name>
     </ProjectReference>
     <ProjectReference Include="..\MVCSeguranca.Ed109.Negocio\MVCSeguranca.Ed109.Negocio.csproj">
       <Project>{5B6EA4BA-FD75-4CF0-BE3D-E3B63297D643}</Project>
@@ -121,10 +104,6 @@
       <Project>{464A2376-A208-41B8-A564-5D9A900D8EDB}</Project>
       <Name>MVCSeguranca.Ed109.NH.DAL</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App.config" />
-    <EmbeddedResource Include="SpringTestes.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -36,6 +36,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Spring.Core">
+      <HintPath>..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\debug\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Web">
+      <HintPath>..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\debug\Spring.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Web.Mvc3">
+      <HintPath>..\..\..\Arquivos de programas\Spring.NET 1.3.2\bin\net\4.0\debug\Spring.Web.Mvc3.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -130,6 +139,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MVCSeguranca.Ed109.DI.Spring\MVCSeguranca.Ed109.DI.Spring.csproj">
+      <Project>{34968C5C-28D6-4D10-A0C9-3C7E27C8EA1E}</Project>
+      <Name>MVCSeguranca.Ed109.DI.Spring</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCSeguranca.Ed109.DTO\MVCSeguranca.Ed109.DTO.csproj">
+      <Project>{C6557421-7A81-44FC-A540-59E5CA4D3CFA}</Project>
+      <Name>MVCSeguranca.Ed109.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCSeguranca.Ed109.Negocio\MVCSeguranca.Ed109.Negocio.csproj">
+      <Project>{5B6EA4BA-FD75-4CF0-BE3D-E3B63297D643}</Project>
+      <Name>MVCSeguranca.Ed109.Negocio</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

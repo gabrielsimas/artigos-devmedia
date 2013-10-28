@@ -3,21 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using System.Data.Linq;
-using System.Data.Linq.Mapping;
-using System.Configuration;
-
 namespace MVCSeguranca.Ed109.Entidade
 {
-    [Table(Name="Cliente")]
+    
     public class Cliente
     {
         #region Atributos
+
         private Nullable<long> id;
-        private Nullable<long> idCompras;
         private String nome;
         private String email;
-        //private EntitySet<Compras> compras;
+        private IList<Compras> compras;
 
         #endregion
 
@@ -28,19 +24,17 @@ namespace MVCSeguranca.Ed109.Entidade
 
         }
 
-        public Cliente(Nullable<long> id, Nullable<long> idCompras,String nome, String email)
+        public Cliente(Nullable<long> id, String nome, String email)
         {
             this.id = id;
             this.nome = nome;
             this.email = email;
-            this.idCompras = idCompras;
         }
         #endregion
 
         #region Propriedades
 
-        [Column(Name="Id",IsPrimaryKey=true,IsDbGenerated=true)]
-        public Nullable<long> Id
+        public virtual Nullable<long> Id
         {
             get
             {
@@ -53,21 +47,7 @@ namespace MVCSeguranca.Ed109.Entidade
             }
         }
 
-        public Nullable<long> IdCompras
-        {
-            get
-            {
-                return this.idCompras;
-            }
-
-            set
-            {
-                this.idCompras = value;
-            }
-        }
-
-        [Column(Name="Nome")]
-        public String Nome
+        public virtual String Nome
         {
             get
             {
@@ -80,8 +60,8 @@ namespace MVCSeguranca.Ed109.Entidade
             }
         }
 
-        [Column(Name="Email")]
-        public String Email
+
+        public virtual String Email
         {
             get
             {
@@ -95,9 +75,7 @@ namespace MVCSeguranca.Ed109.Entidade
 
         }
 
-        /*
-        [Association(ThisKey="IdCompras",OtherKey="Id")]
-        public EntitySet<Compras> Compras
+        public virtual IList<Compras> Compras
         {
             get
             {
@@ -108,9 +86,8 @@ namespace MVCSeguranca.Ed109.Entidade
             {
                 this.compras = value;
             }
-            
         }
-         * */
+
         #endregion
 
         #region Sobrescritas

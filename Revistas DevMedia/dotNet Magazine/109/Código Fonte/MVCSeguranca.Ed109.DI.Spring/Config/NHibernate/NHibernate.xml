@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net"
+           xmlns:db="http://www.springframework.net/database"
+             xmlns:tx="http://www.springframework.net/tx">
+  
+  <description>
+    Definição de Objetos para acesso com o NHibernate junto com o Spring.NET
+  </description>
+
+
+  <object type="Spring.Objects.Factory.Config.PropertyPlaceholderConfigurer, Spring.Core">
+    <property name="ConfigSections" value="databaseSettings"/>
+  </object>
+
+  <db:provider id="DbProvider"
+                   provider="SqlServer-2.0"
+                   connectionString="Data Source=ALLSPARK\SQLEXPRESS;Initial Catalog=MVCSeguranca;Integrated Security=True"/>
+  
+  <object id="NHibernateSessionFactory" type="Spring.Data.NHibernate.LocalSessionFactoryObject, Spring.Data.NHibernate32">
+    <property name="DbProvider" ref="DbProvider"/>
+    
+    <property name="MappingAssemblies">
+      <list>
+        <value>MVCSeguranca.Ed109.NH.DAL</value>
+      </list>
+    </property>
+    
+    <property name="HibernateProperties">
+      <dictionary>
+        <entry key="hibernate.connection.provider" value="NHibernate.Connection.DriverConnectionProvider"/>
+        <entry key="dialect" value="NHibernate.Dialect.MsSql2008Dialect"/>
+        <entry key="connection.driver_class" value="NHibernate.Driver.SqlClientDriver"/>
+        <entry key="use_proxy_validator" value="false" />
+        <entry key="show_sql" value="true" />
+      </dictionary>
+    </property>
+
+    <!-- provides integation with Spring's declarative transaction management features -->
+    <property name="ExposeTransactionAwareSessionFactory" value="true" />
+
+  </object>
+  
+  <!-- Uso do HibernateTemplate - mais próximo do behavior do Java -->
+  <object id="transactionManager"
+        type="Spring.Data.NHibernate.HibernateTransactionManager, Spring.Data.NHibernate32">
+
+    <property name="DbProvider" ref="DbProvider"/>
+    <property name="SessionFactory" ref="NHibernateSessionFactory"/>
+
+  </object>
+
+  <!-- Exception translation object post processor -->
+  <!-- Tradução das exceções do Sistema para serem interceptados pelo Spring.NET-->
+  <!--
+  <object type="Spring.Dao.Attributes.PersistenceExceptionTranslationPostProcessor, Spring.Data"/>
+
+  <tx:attribute-driven />
+  -->
+
+  <object id="autoProxyCreator"
+            type="Spring.Aop.Framework.AutoProxy.DefaultAdvisorAutoProxyCreator, Spring.Aop">
+  </object>
+
+  <object id="transactionAdvisor"
+          type="Spring.Transaction.Interceptor.TransactionAttributeSourceAdvisor, Spring.Data">
+    <property name="TransactionInterceptor" ref="transactionInterceptor"/>
+  </object>
+
+  <!-- Transaction Interceptor -->
+  <object id="transactionInterceptor"
+          type="Spring.Transaction.Interceptor.TransactionInterceptor, Spring.Data">
+    <property name="TransactionManager" ref="transactionManager"/>
+    <property name="TransactionAttributeSource" ref="attributeTransactionAttributeSource"/>
+  </object>
+
+  <object id="attributeTransactionAttributeSource"
+          type="Spring.Transaction.Interceptor.AttributesTransactionAttributeSource, Spring.Data">
+  </object>
+
+</objects>

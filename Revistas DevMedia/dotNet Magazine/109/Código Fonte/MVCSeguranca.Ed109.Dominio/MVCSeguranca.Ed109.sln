@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSegurancaSite1", "..\MVC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSeguranca.Ed109.NH.DAL", "..\MVCSeguranca.Ed109.NH.DAL\MVCSeguranca.Ed109.NH.DAL.csproj", "{464A2376-A208-41B8-A564-5D9A900D8EDB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSeguranca.Ed109.DI.Spring", "..\MVCSeguranca.Ed109.DI.Spring\MVCSeguranca.Ed109.DI.Spring.csproj", "{34968C5C-28D6-4D10-A0C9-3C7E27C8EA1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{464A2376-A208-41B8-A564-5D9A900D8EDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{464A2376-A208-41B8-A564-5D9A900D8EDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{464A2376-A208-41B8-A564-5D9A900D8EDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34968C5C-28D6-4D10-A0C9-3C7E27C8EA1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34968C5C-28D6-4D10-A0C9-3C7E27C8EA1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34968C5C-28D6-4D10-A0C9-3C7E27C8EA1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34968C5C-28D6-4D10-A0C9-3C7E27C8EA1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

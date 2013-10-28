@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.Testes\MVCSeguranca.Ed109.Testes.nunit" total="1" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2013-10-24" time="21:55:42">
-  <environment nunit-version="2.6.2.12296" clr-version="2.0.50727.3053" os-version="Microsoft Windows NT 5.1.2600 Service Pack 3" platform="Win32NT" cwd="C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.Testes" machine-name="ALLSPARK" user="Arquiteto" user-domain="ALLSPARK" />
+<test-results name="C:\109\Código Fonte\MVCSeguranca.Ed109.Testes\MVCSeguranca.Ed109.Testes.nunit" total="1" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2013-10-27" time="23:41:43">
+  <environment nunit-version="2.6.2.12296" clr-version="2.0.50727.3053" os-version="Microsoft Windows NT 5.1.2600 Service Pack 3" platform="Win32NT" cwd="C:\109\Código Fonte\MVCSeguranca.Ed109.Testes" machine-name="ALLSPARK" user="Arquiteto" user-domain="ALLSPARK" />
   <culture-info current-culture="pt-BR" current-uiculture="pt-BR" />
-  <test-suite type="Project" name="C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.Testes\MVCSeguranca.Ed109.Testes.nunit" executed="True" result="Success" success="True" time="153126.416" asserts="0">
+  <test-suite type="Project" name="C:\109\Código Fonte\MVCSeguranca.Ed109.Testes\MVCSeguranca.Ed109.Testes.nunit" executed="True" result="Success" success="True" time="501.608" asserts="0">
     <results>
-      <test-suite type="Assembly" name="C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.Testes\bin\Debug\MVCSeguranca.Ed109.Testes.dll" executed="True" result="Success" success="True" time="153126.376" asserts="0">
+      <test-suite type="Assembly" name="C:\109\Código Fonte\MVCSeguranca.Ed109.Testes\bin\Debug\MVCSeguranca.Ed109.Testes.dll" executed="True" result="Success" success="True" time="501.101" asserts="0">
         <results>
-          <test-suite type="Namespace" name="MVCSeguranca" executed="True" result="Success" success="True" time="153126.366" asserts="0">
+          <test-suite type="Namespace" name="MVCSeguranca" executed="True" result="Success" success="True" time="500.231" asserts="0">
             <results>
-              <test-suite type="Namespace" name="Ed109" executed="True" result="Success" success="True" time="153126.346" asserts="0">
+              <test-suite type="Namespace" name="Ed109" executed="True" result="Success" success="True" time="500.088" asserts="0">
                 <results>
-                  <test-suite type="Namespace" name="Testes" executed="True" result="Success" success="True" time="153126.316" asserts="0">
+                  <test-suite type="Namespace" name="Testes" executed="True" result="Success" success="True" time="499.988" asserts="0">
                     <results>
-                      <test-suite type="Namespace" name="DAL" executed="True" result="Success" success="True" time="153126.286" asserts="0">
+                      <test-suite type="Namespace" name="DAL" executed="True" result="Success" success="True" time="499.691" asserts="0">
                         <results>
-                          <test-suite type="TestFixture" name="TesteClienteDAO" executed="True" result="Success" success="True" time="153126.236" asserts="0">
+                          <test-suite type="TestFixture" name="TesteCriptografia" executed="True" result="Success" success="True" time="499.118" asserts="0">
                             <results>
-                              <test-case name="MVCSeguranca.Ed109.Testes.DAL.TesteClienteDAO.Teste_ClienteDAOInserir" executed="True" result="Success" success="True" time="153126.186" asserts="1" />
+                              <test-case name="MVCSeguranca.Ed109.Testes.DAL.TesteCriptografia.Testa_senha_MD5" description="Testa a saída da Senha gerada para MD5" executed="True" result="Success" success="True" time="497.001" asserts="1" />
                             </results>
                           </test-suite>
                         </results>

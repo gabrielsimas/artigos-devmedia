@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using System.Data.Linq;
-using System.Data.Linq.Mapping;
+
 using System.Configuration;
 
 namespace MVCSeguranca.Ed109.Entidade
 {
-   [Table(Name="Compras")]
    public class Compras
    {
        #region Atributos
+
        private Nullable<long> id;
-       private Nullable<long> idCliente;
        private Double total;
-       private EntityRef<Cliente> cliente;
+       private Cliente cliente;
+
        #endregion
 
        #region Construtores
@@ -26,10 +25,9 @@ namespace MVCSeguranca.Ed109.Entidade
 
        }
 
-       public Compras(Nullable<long> id, Nullable<long> idCliente , Double total, EntityRef<Cliente> cliente)
+       public Compras(Nullable<long> id, Double total, Cliente cliente)
        {
            this.id = id;
-           this.idCliente = idCliente;
            this.total = total;
            this.cliente = cliente;
            
@@ -39,8 +37,7 @@ namespace MVCSeguranca.Ed109.Entidade
 
        #region Propriedades
 
-       [Column(Name="Id",IsPrimaryKey=true, IsDbGenerated=true)]
-       public Nullable<long> Id
+       public virtual Nullable<long> Id
        {
            get
            {
@@ -53,21 +50,7 @@ namespace MVCSeguranca.Ed109.Entidade
            }
        }
 
-       public Nullable<long> IdCliente
-       {
-           get
-           {
-               return this.idCliente;
-           }
-
-           set
-           {
-               this.idCliente = value;
-           }
-       }
-
-       [Column(Name="Total")]
-       public Double Total
+       public virtual Double Total
        {
            get
            {
@@ -80,17 +63,16 @@ namespace MVCSeguranca.Ed109.Entidade
            }
        }
 
-       [Association(ThisKey="IdCliente",OtherKey="Id")]
-       public Cliente Cliente
+       public virtual Cliente Cliente
        {
            get
            {
-               return this.cliente.Entity;
+               return this.cliente;
            }
 
            set
            {
-               this.cliente.Entity  = value;
+               this.cliente = value;
            }
        }
 

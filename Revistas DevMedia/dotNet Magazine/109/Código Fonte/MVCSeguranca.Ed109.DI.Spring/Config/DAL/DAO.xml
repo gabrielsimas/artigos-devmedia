@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+
+  <!-- Objetos da Camada DAO -->
+  
+  <!--
+  <object id="EstoqueDAO" type="DAL.Persistencia.Spring.SpringEstoqueDAO, DAL">
+    <property name="FabricaDeSessao" ref="NHibernateSessionFactory" />
+  </object>
+  -->
+
+  <object id="ClienteDAO" type="MVCSeguranca.Ed109.NH.DAL.Implementacao.ClienteDAO, MVCSeguranca.Ed109.NH.DAL">
+    <property name="CriaFabricaSessao" ref="NHibernateSessionFactory" />
+  </object>
+
+  <object id="ComprasDAO" type="MVCSeguranca.Ed109.NH.DAL.Implementacao.ComprasDAO, MVCSeguranca.Ed109.NH.DAL">
+    <property name="CriaFabricaSessao" ref="NHibernateSessionFactory" />
+  </object>
+
+  <object id="UsuarioDAO" type="MVCSeguranca.Ed109.NH.DAL.Implementacao.UsuarioDAO, MVCSeguranca.Ed109.NH.DAL">
+    <property name="CriaFabricaSessao" ref="NHibernateSessionFactory" />
+  </object>
+
+  <object id="PerfilDAO" type="MVCSeguranca.Ed109.NH.DAL.Implementacao.PerfilDAO, MVCSeguranca.Ed109.NH.DAL">
+    <property name="CriaFabricaSessao" ref="NHibernateSessionFactory" />
+  </object>  
+</objects>

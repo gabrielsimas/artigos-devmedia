@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="MVCSeguranca.Ed109.Entidade"
+                   namespace="MVCSeguranca.Ed109.Entidade">
+
+  <class name="Cliente" table="Cliente">
+
+    <id name="Id" column="Id">
+      <generator class="identity" />
+    </id>
+
+    <property name="Nome" column="Nome" />
+    <property name="Email" column=" Email" />
+    
+    <!-- Relacionamentos -->
+    <bag name="Compras" inverse="false" lazy="false" fetch="join" cascade="all">
+      <key column ="Id" />
+      <one-to-many class="MVCSeguranca.Ed109.Entidade.Compras, MVCSeguranca.Ed109.Entidade"/>
+    </bag>
+    
+  </class>
+  
+</hibernate-mapping>

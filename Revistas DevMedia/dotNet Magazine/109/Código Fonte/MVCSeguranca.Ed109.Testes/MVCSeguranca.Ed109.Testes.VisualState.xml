@@ -1,24 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="true">
-  <TopNode>[0-1000]C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.Testes\MVCSeguranca.Ed109.Testes.nunit</TopNode>
-  <SelectedNode>[0-1000]C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.Testes\MVCSeguranca.Ed109.Testes.nunit</SelectedNode>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1011]MVCSeguranca.Ed109.Testes</TopNode>
+  <SelectedNode>[0-1065]MVCSeguranca.Ed109.Testes.DAL</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1000]C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.Testes\MVCSeguranca.Ed109.Testes.nunit" Expanded="true" />
-    <Node UniqueName="[0-1005]C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.Testes\bin\Debug\MVCSeguranca.Ed109.Testes.dll" Expanded="true" />
-    <Node UniqueName="[0-1006]MVCSeguranca" Expanded="true" />
-    <Node UniqueName="[0-1007]MVCSeguranca.Ed109" Expanded="true" />
-    <Node UniqueName="[0-1008]MVCSeguranca.Ed109.Testes" Expanded="true" />
-    <Node UniqueName="[0-1009]MVCSeguranca.Ed109.Testes.DAL" Expanded="true" />
-    <Node UniqueName="[0-1001]MVCSeguranca.Ed109.Testes.DAL.TesteDAL" Expanded="true" />
-    <Node UniqueName="[0-1014]C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.Testes\bin\Debug\MVCSeguranca.Ed109.Testes.dll" Expanded="true" />
-    <Node UniqueName="[0-1015]MVCSeguranca" Expanded="true" />
-    <Node UniqueName="[0-1016]MVCSeguranca.Ed109" Expanded="true" />
-    <Node UniqueName="[0-1017]MVCSeguranca.Ed109.Testes" Expanded="true" />
-    <Node UniqueName="[0-1018]MVCSeguranca.Ed109.Testes.DAL" Expanded="true" />
-    <Node UniqueName="[0-1010]MVCSeguranca.Ed109.Testes.DAL.TesteDAL" Expanded="true" />
-    <Node UniqueName="[0-1013]MVCSeguranca.Ed109.Testes.DAL.TesteDAL.Testa_ConexaoBanco" Checked="true" />
-    <Node UniqueName="[0-1012]MVCSeguranca.Ed109.Testes.DAL.TesteDAL.Testa_ConnectionStrings" Checked="true" />
-    <Node UniqueName="[0-1011]MVCSeguranca.Ed109.Testes.DAL.TesteDAL.Teste_Integracao" Checked="true" />
+    <Node UniqueName="[0-1000]C:\109\Código Fonte\MVCSeguranca.Ed109.Testes\MVCSeguranca.Ed109.Testes.nunit" Expanded="true" />
+    <Node UniqueName="[0-1008]C:\109\Código Fonte\MVCSeguranca.Ed109.Testes\bin\Debug\MVCSeguranca.Ed109.Testes.dll" Expanded="true" />
+    <Node UniqueName="[0-1009]MVCSeguranca" Expanded="true" />
+    <Node UniqueName="[0-1010]MVCSeguranca.Ed109" Expanded="true" />
+    <Node UniqueName="[0-1011]MVCSeguranca.Ed109.Testes" Expanded="true" />
+    <Node UniqueName="[0-1013]MVCSeguranca.Ed109.Testes.DAL" Expanded="true" />
+    <Node UniqueName="[0-1021]C:\109\Código Fonte\MVCSeguranca.Ed109.Testes\bin\Debug\MVCSeguranca.Ed109.Testes.dll" Expanded="true" />
+    <Node UniqueName="[0-1022]MVCSeguranca" Expanded="true" />
+    <Node UniqueName="[0-1023]MVCSeguranca.Ed109" Expanded="true" />
+    <Node UniqueName="[0-1024]MVCSeguranca.Ed109.Testes" Expanded="true" />
+    <Node UniqueName="[0-1026]MVCSeguranca.Ed109.Testes.DAL" Expanded="true" />
+    <Node UniqueName="[0-1034]C:\109\Código Fonte\MVCSeguranca.Ed109.Testes\bin\Debug\MVCSeguranca.Ed109.Testes.dll" Expanded="true" />
+    <Node UniqueName="[0-1035]MVCSeguranca" Expanded="true" />
+    <Node UniqueName="[0-1036]MVCSeguranca.Ed109" Expanded="true" />
+    <Node UniqueName="[0-1037]MVCSeguranca.Ed109.Testes" Expanded="true" />
+    <Node UniqueName="[0-1039]MVCSeguranca.Ed109.Testes.DAL" Expanded="true" />
+    <Node UniqueName="[0-1047]C:\109\Código Fonte\MVCSeguranca.Ed109.Testes\bin\Debug\MVCSeguranca.Ed109.Testes.dll" Expanded="true" />
+    <Node UniqueName="[0-1048]MVCSeguranca" Expanded="true" />
+    <Node UniqueName="[0-1049]MVCSeguranca.Ed109" Expanded="true" />
+    <Node UniqueName="[0-1050]MVCSeguranca.Ed109.Testes" Expanded="true" />
+    <Node UniqueName="[0-1052]MVCSeguranca.Ed109.Testes.DAL" Expanded="true" />
+    <Node UniqueName="[0-1060]C:\109\Código Fonte\MVCSeguranca.Ed109.Testes\bin\Debug\MVCSeguranca.Ed109.Testes.dll" Expanded="true" />
+    <Node UniqueName="[0-1061]MVCSeguranca" Expanded="true" />
+    <Node UniqueName="[0-1062]MVCSeguranca.Ed109" Expanded="true" />
+    <Node UniqueName="[0-1063]MVCSeguranca.Ed109.Testes" Expanded="true" />
+    <Node UniqueName="[0-1065]MVCSeguranca.Ed109.Testes.DAL" Expanded="true" Checked="true" />
+    <Node UniqueName="[0-1056]MVCSeguranca.Ed109.Testes.DAL.TesteClienteDAO" Expanded="true" Checked="true" />
+    <Node UniqueName="[0-1058]MVCSeguranca.Ed109.Testes.DAL.TesteClienteDAO.testa_Cliente_Edicao" Checked="true" />
+    <Node UniqueName="[0-1057]MVCSeguranca.Ed109.Testes.DAL.TesteClienteDAO.testa_Cliente_Insercao" Checked="true" />
+    <Node UniqueName="[0-1054]MVCSeguranca.Ed109.Testes.DAL.TesteDAL" Checked="true" />
   </Nodes>
 </VisualState>
