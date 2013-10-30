@@ -13,8 +13,8 @@ namespace MVCSeguranca.Ed109.Entidade
         private Nullable<long> id;
         private String login;
         private String senha;
-        private String senhaMD5;
-        private String senhaPBKDF2;
+        private String senhaCrypto;
+        private String algoritmo;
         private Perfil perfil;
         private Cliente cliente;
 
@@ -27,13 +27,13 @@ namespace MVCSeguranca.Ed109.Entidade
 
         }
 
-        public Usuario(Nullable<long> id, String login, String senha, String senhaMD5, String senhaPBKDF2, Perfil perfil, Cliente cliente)
+        public Usuario(Nullable<long> id, String login, String senha, String senhaCrypto, String algoritmo, Perfil perfil, Cliente cliente)
         {
             this.id = id;
             this.login = login;
             this.senha = senha;
-            this.senhaMD5 = senhaMD5 ;
-            this.senhaPBKDF2 = senhaPBKDF2;
+            this.senhaCrypto = senhaCrypto ;
+            this.algoritmo  = algoritmo;
             this.perfil = perfil;
             this.cliente = cliente;
         }
@@ -83,29 +83,29 @@ namespace MVCSeguranca.Ed109.Entidade
             }
         }
 
-        public virtual String SenhaMD5
+        public virtual String SenhaCrypto
         {
             get
             {
-                return this.senhaMD5;
+                return this.senhaCrypto;
             }
 
             set
             {
-                this.senhaMD5 = value;
+                this.senhaCrypto = value;
             }
         }
 
-        public virtual String SenhaPBKDF2
+        public virtual String Algoritmo
         {
             get
             {
-                return this.senhaPBKDF2;
+                return this.algoritmo;
             }
 
             set
             {
-                this.senhaPBKDF2 = value;
+                this.algoritmo = value;
             }
         }
 
@@ -158,7 +158,7 @@ namespace MVCSeguranca.Ed109.Entidade
 
         public override string ToString()
         {
-            return this.id + "," + this.login + "," + this.senha + "," + this.senhaMD5 + "," + this.senhaPBKDF2;
+            return this.id + "," + this.login + "," + this.senha + "," + this.senhaCrypto  + "," + this.algoritmo;
         }
 
         public override int GetHashCode()

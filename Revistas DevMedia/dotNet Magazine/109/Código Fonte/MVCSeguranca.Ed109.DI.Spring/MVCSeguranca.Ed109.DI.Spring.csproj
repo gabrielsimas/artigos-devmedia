@@ -96,6 +96,10 @@
       <Project>{023986C2-DD79-4D07-B193-2FD534F72D72}</Project>
       <Name>MVCSeguranca.Ed109.Entidade</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MVCSeguranca.Ed109.DTO\MVCSeguranca.Ed109.DTO.csproj">
+      <Project>{C6557421-7A81-44FC-A540-59E5CA4D3CFA}</Project>
+      <Name>MVCSeguranca.Ed109.DTO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MVCSeguranca.Ed109.Negocio\MVCSeguranca.Ed109.Negocio.csproj">
       <Project>{5B6EA4BA-FD75-4CF0-BE3D-E3B63297D643}</Project>
       <Name>MVCSeguranca.Ed109.Negocio</Name>
@@ -104,6 +108,12 @@
       <Project>{464A2376-A208-41B8-A564-5D9A900D8EDB}</Project>
       <Name>MVCSeguranca.Ed109.NH.DAL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Config\Negocio\Negocio.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\DTO\DTO.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

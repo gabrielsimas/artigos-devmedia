@@ -125,7 +125,7 @@ namespace MVCSeguranca.Ed109.NH.DAL.Implementacao
         /// o hashing do MD5 será utilizado). Estes valores são case insensitive.
         /// </param>
         /// <param name="saltBytes">
-        /// Bytes para o Salta hash. Este parânetro pode ser nulo, neste caso um salt gerado aleatóriamnte
+        /// Bytes para o Salta hash. Este parâMetro pode ser nulo, neste caso um salt gerado aleatóriamnte
         /// será gerado
         /// </param>
         /// <returns>
@@ -242,25 +242,23 @@ namespace MVCSeguranca.Ed109.NH.DAL.Implementacao
         /// anexado a ele.
         /// </param>
         /// <returns>
-        /// If computed hash mathes the specified hash the function the return
-        /// value is true; otherwise, the function returns false.
         /// Se o hash bater, o hash informado retornará true, caso contrário retornará false
         /// </returns>
         public static bool ValidaSenha(string senha,
                                       string algoritmoHash,
                                       string valorHash)
         {
-            // Convert base64-encoded hash value into a byte array.
+            //Converte o valor de hash de base64 em um array de byte.
             byte[] hashComBytesSalt = Convert.FromBase64String(valorHash);
 
-            // We must know size of hash (without salt).
+            //Precisamos saber o tamanho do hash (sem salt).
             int hashTamanhoEmBits, hashSizeEmBytes;
 
-            // Make sure that hashing algorithm name is specified.
+            //Forçe o nome do algoritmo de hash.
             if (algoritmoHash == null)
                 algoritmoHash = "";
 
-            // Size of hash is based on the specified algorithm.
+            //Tamanho do hash é baseado no algoritmo escolhido.
             switch (algoritmoHash.ToUpper())
             {
                 case "SHA1":
@@ -279,32 +277,33 @@ namespace MVCSeguranca.Ed109.NH.DAL.Implementacao
                     hashTamanhoEmBits = 512;
                     break;
 
-                default: // Must be MD5
+                default: // precisa ser MD5
                     hashTamanhoEmBits = 128;
                     break;
             }
 
-            // Convert size of hash from bits to bytes.
+            //Converte o tamanho do hash de bits para bytes.
             hashSizeEmBytes = hashTamanhoEmBits / 8;
 
-            // Make sure that the specified hash value is long enough.
+            //Force o valor de hash especificado ser longo o suficiente.
             if (hashComBytesSalt.Length < hashSizeEmBytes)
                 return false;
 
             // Allocate array to hold original salt bytes retrieved from hash.
+            //Aloque o array para armazenar os bytes originais do Salt.
             byte[] saltBytes = new byte[hashComBytesSalt.Length -
                                         hashSizeEmBytes];
 
-            // Copy salt from the end of the hash to the new array.
+            //Copie o salt do fim do hash para um novo array.
             for (int i = 0; i < saltBytes.Length; i++)
                 saltBytes[i] = hashComBytesSalt[hashSizeEmBytes + i];
 
-            // Compute a new hash string.
+            //Calcule o novo string de hash.
             string expectedHashString =
                         GeraValorHash(senha, algoritmoHash, saltBytes);
 
-            // If the computed hash matches the specified hash,
-            // the plain text value must be correct.
+            //Se o hash calculado é idêntico ao hash informado,
+            //A senha em texto puro está correta.
             return (valorHash == expectedHashString);
         }
     }

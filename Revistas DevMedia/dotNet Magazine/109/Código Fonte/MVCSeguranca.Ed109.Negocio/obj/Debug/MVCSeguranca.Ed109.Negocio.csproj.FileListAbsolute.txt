@@ -3,3 +3,35 @@ C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas De
 C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.Negocio\obj\Debug\ResolveAssemblyReference.cache
 C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.Negocio\obj\Debug\MVCSeguranca.Ed109.Negocio.dll
 C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.Negocio\obj\Debug\MVCSeguranca.Ed109.Negocio.pdb
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\MVCSeguranca.Ed109.Negocio.dll
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\MVCSeguranca.Ed109.Negocio.pdb
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\obj\Debug\ResolveAssemblyReference.cache
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\obj\Debug\MVCSeguranca.Ed109.Negocio.dll
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\obj\Debug\MVCSeguranca.Ed109.Negocio.pdb
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\MVCSeguranca.Ed109.DTO.dll
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\MVCSeguranca.Ed109.Entidade.dll
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\MVCSeguranca.Ed109.NH.DAL.dll
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\MVCSeguranca.Ed109.Generic.dll
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\NHibernate.dll
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\Spring.Data.NHibernate32.dll
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\Spring.Core.dll
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\Spring.Data.dll
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\Iesi.Collections.dll
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\Spring.Aop.dll
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\Common.Logging.dll
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\MVCSeguranca.Ed109.Entidade.pdb
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\MVCSeguranca.Ed109.DTO.pdb
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\MVCSeguranca.Ed109.NH.DAL.pdb
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\MVCSeguranca.Ed109.Generic.pdb
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\NHibernate.pdb
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\NHibernate.xml
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\Spring.Data.NHibernate32.pdb
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\Spring.Data.NHibernate32.xml
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\Spring.Core.pdb
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\Spring.Core.xml
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\Spring.Data.pdb
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\Spring.Data.xml
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\Iesi.Collections.pdb
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\Iesi.Collections.xml
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\Spring.Aop.pdb
+C:\109\Código Fonte\MVCSeguranca.Ed109.Negocio\bin\Debug\Spring.Aop.xml

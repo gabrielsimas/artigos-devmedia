@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+
+  <object id="ClienteDTO"   type="MVCSeguranca.Ed109.DTO.ClienteDTO, MVCSeguranca.Ed109.DTO" />
+  <object id="ComprasDTO"   type="MVCSeguranca.Ed109.DTO.ComprasDTO, MVCSeguranca.Ed109.DTO" />
+  <object id="PerfilDTO"    type="MVCSeguranca.Ed109.DTO.PerfilDTO, MVCSeguranca.Ed109.DTO" />
+  <object id="UsuarioDTO"   type="MVCSeguranca.Ed109.DTO.UsuarioDTO, MVCSeguranca.Ed109.DTO" />
+
+  <object id="AcessoDTO"    type="MVCSeguranca.Ed109.DTO.Util.AcessoDTO, MVCSeguranca.Ed109.DTO">
+    <property name="clienteDTO" ref="ClienteDTO" />
+    <property name="comprasDTO" ref="ComprasDTO" />
+    <property name="perfilDTO" ref="PerfilDTO" />
+    <property name="usuarioDTO" ref="UsuarioDTO" />
+  </object>
+  
+</objects>

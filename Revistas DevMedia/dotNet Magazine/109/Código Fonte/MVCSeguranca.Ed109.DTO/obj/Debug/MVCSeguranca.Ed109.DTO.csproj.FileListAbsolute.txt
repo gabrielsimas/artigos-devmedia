@@ -3,3 +3,8 @@ C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas De
 C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.DTO\obj\Debug\ResolveAssemblyReference.cache
 C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.DTO\obj\Debug\MVCSeguranca.Ed109.DTO.dll
 C:\Documents and Settings\Arquiteto\Meus documentos\artigos-devmedia\Revistas DevMedia\dotNet Magazine\109\Código Fonte\MVCSeguranca.Ed109.DTO\obj\Debug\MVCSeguranca.Ed109.DTO.pdb
+C:\109\Código Fonte\MVCSeguranca.Ed109.DTO\bin\Debug\MVCSeguranca.Ed109.DTO.dll
+C:\109\Código Fonte\MVCSeguranca.Ed109.DTO\bin\Debug\MVCSeguranca.Ed109.DTO.pdb
+C:\109\Código Fonte\MVCSeguranca.Ed109.DTO\obj\Debug\ResolveAssemblyReference.cache
+C:\109\Código Fonte\MVCSeguranca.Ed109.DTO\obj\Debug\MVCSeguranca.Ed109.DTO.dll
+C:\109\Código Fonte\MVCSeguranca.Ed109.DTO\obj\Debug\MVCSeguranca.Ed109.DTO.pdb

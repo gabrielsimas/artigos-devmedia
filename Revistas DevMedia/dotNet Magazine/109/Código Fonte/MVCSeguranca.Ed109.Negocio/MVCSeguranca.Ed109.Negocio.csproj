@@ -40,7 +40,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cliente\Implementacao\ClienteNegocio.cs" />
+    <Compile Include="Cliente\Interface\IClienteNegocio.cs" />
+    <Compile Include="Compras\Implementacao\ComprasNegocio.cs" />
+    <Compile Include="Compras\Interface\IComprasNegocio.cs" />
+    <Compile Include="Perfil\Implementacao\PerfilNegocio.cs" />
+    <Compile Include="Perfil\Interface\IPerfilNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Usuario\Implementacao\UsuarioNegocio.cs" />
+    <Compile Include="Usuario\Interface\IUsuarioNegocio.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\MVCSeguranca.Ed109.Dominio\MVCSeguranca.Ed109.Entidade.csproj">
+      <Project>{023986C2-DD79-4D07-B193-2FD534F72D72}</Project>
+      <Name>MVCSeguranca.Ed109.Entidade</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCSeguranca.Ed109.DTO\MVCSeguranca.Ed109.DTO.csproj">
+      <Project>{C6557421-7A81-44FC-A540-59E5CA4D3CFA}</Project>
+      <Name>MVCSeguranca.Ed109.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCSeguranca.Ed109.Generic\MVCSeguranca.Ed109.Generic.csproj">
+      <Project>{59B95990-D508-48D8-93A3-9EDE1486AFB8}</Project>
+      <Name>MVCSeguranca.Ed109.Generic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCSeguranca.Ed109.NH.DAL\MVCSeguranca.Ed109.NH.DAL.csproj">
+      <Project>{464A2376-A208-41B8-A564-5D9A900D8EDB}</Project>
+      <Name>MVCSeguranca.Ed109.NH.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

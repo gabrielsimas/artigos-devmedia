@@ -8,4 +8,5 @@ namespace MVCSeguranca.Ed109.NH.DAL.Implementacao
     public class ClienteDAO : AbstractGenericDAO<Cliente>, IClienteDAO 
     {
     }
+
 }

@@ -106,5 +106,26 @@ namespace MVCSeguranca.Ed109.Testes.DAL
             Assert.IsTrue(contador < 5);
         }
 
+        [Test]
+        public void Testa_Senhas_Usuario_Salt_SHA512()
+        {
+            String senha = "J4n3c4554n1";
+            String senhaSaltSHA512 = Criptografia.GeraValorHash(senha,"SHA512",null);
+
+            Boolean valida = Criptografia.ValidaSenha(senha, "SHA512", senhaSaltSHA512);
+
+            Assert.IsTrue(valida);
+        }
+
+        [Test]
+        public void Testa_Senhas_Usuario_Salt_Falhas()
+        {
+            String senha = "J4n3c4554n1";
+            String senhaSaltSHA512 = Criptografia.GeraValorHash(senha, "SHA512", null);
+
+            Boolean valida = Criptografia.ValidaSenha(senha, "SHA384", senhaSaltSHA512);
+
+            Assert.IsFalse(valida);
+        }
     }
 }
