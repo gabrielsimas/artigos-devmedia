@@ -7,13 +7,17 @@ Rabiscos sobre o Artigo sobre segurança no ASP.NET MVC
  - Protegendo suas contas de usuários através de criptografia.
  
  What is password hashing?
+ O que é um hash de senhas?
+ 
+ Observe a Listagem xxx, temos do lado esquerdo os valores que queremos gerar hashes e do lado direito temos a cadeia de caracteres já convertida utilizando um aplicativo qualquer para esta finalidade.
 
-hash("gabriel")      = 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824
-hash("leitor")       = 58756879c05c68dfac9866712fad6a93f8146f337a69afe7dd238f3364946366
-hash("devmedia") 	 = c0e81794384491161f1777c232bc6bd9ec38f616560b120fda8e90f383853542
-hash(".netmagazine") = c0e81794384491161f1777c232bc6bd9ec38f616560b120fda8e90f383853542
+hash("gabriel")      = 2245a0ac326c887f5b22bb3e0455f5a7
+hash("leitor")       = a434a1e0cd97ad094cac7b626c8b173b
+hash("devmedia") 	 = 46ca4a445d9384845212255071248e6a
+hash(".netmagazine") = 4bd6bafbcd6b3efdc28c74629e879084
+Listagem XXX - Tipos de Hash de caracteres que poderiam ser senhas em potencial
 
-Hash algorithms are one way functions. They turn any amount of data into a fixed-length "fingerprint" that cannot be reversed. They also have the property that if the input changes by even a tiny bit, the resulting hash is completely different (see the example above). This is great for protecting passwords, because we want to store passwords in an encrypted form that's impossible to decrypt, but at the same time, we need to be able to verify that a user's password is correct.
+Algoritmos para geração de hash são funções de apenas uma via, ou um caminho, vêm do original "one way" para informar que a cadeia de caracteres é apenas convertida, mas não há como se fazer o caminho de volta, ou seja, de desfazê-la. E então vem a pergunta: e como então que se diz por aí que alguns algoritmos são fáceis de quebrar e outros não? esta resposta veremos mais adianta, mas por enquanto precisamos compreender que de forma teórica, tais algoritmos lidam com qualquer quantidade de dados contendo um tamanho fixo como uma impressão digital, que não pode ser quebrada ou revertida. E também têm a finalidade também que caso se altere qualquer caracter em qualquer posição dentro da cadeia de caracteres inserida, o resultado do hash é completamente diferente (como pudemos ver na Listagem XXX). Esta é a melhor forma de proteger senhas pois precisamos sempre gravá-las com a forma mais segura possível e isso só ocorre  quando utilizamos a criptografia, mas a criptografia só é garantida e confiável quando executada de forma correta, ou seja, onde impossibilite revertê-la, mas ao mesmo tempo, nós também vamos precisar verificar se esta senha - passada em texto puro - é válida "contra" a senha criptografada existente onde está armazenada. Olhar a criptografia neste ponto, pode parecer algo complexo e extremamente voltado para grandes catedráticos, mas, ao longo deste artigo, veremos que podemos utilizar dentro do .NET framework em seu assembly System.Security.Cryptography que existem muitas implementações dos algoritmos tanto para hash quanto para criptografia existentes no mercado e de forma mais simples.
 
 The general workflow for account registration and authentication in a hash-based account system is as follows:
 
