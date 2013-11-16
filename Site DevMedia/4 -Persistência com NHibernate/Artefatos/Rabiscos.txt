@@ -1,0 +1,84 @@
+- Estudo de caso: Persistência para um Sistema de Controle de Artigos.
+
+Sabemos bem que existe uma forma de conseguir uma renda extra e esta forma é fazer artigos para a DevMedia e com isto existe a necessidade de se criar um Sistema, além de controlar os artigos que já forma feitos de uma forma inicial, tambem dá para termos a noção de quanto arrecadamos com a devMedia nesta belíssima troca profissional.
+ Nossas necessidades são expressas nas estórias de usuários abaixo:
+ - Como Autor, eu preciso cadastrar todos os meus artigos;
+ - Como Autor, eu preciso ter um controle dos meus artigos quanto ao tema;
+ - Como Autor, eu preciso controlar os cronograma do artigo com datas de inicío,fim e publicação no site da devmedia; 
+ - Como Autor, eu preciso controlar as tecnologias presentes em cada artigo. Exemplo: se são .NET, Java e etc.
+ - Como Autor, eu preciso manter um cadastro de Temas
+ 
+ Com isso, o Item Artigo se tornou um Épico com as estórias de usuario descritas anteriormente.
+ Já temos então a solicitação do que precisamos, agora, o nosso Project Owner, separou o épico em Backlog de Produto e o mesmo ficou como vemos na tabela 1.
+ 
+  
+ 
+ Diante disso, temos a Figura 1 que ilustra mais ou menos a nossa necessidade
+
+- Modelo de dados
+
+- Descrição da Estrutura da Solução
+
+- Domínio
+
+- Mapeamento com NHibernate
+
+- Mapeamento 1-N
+
+- Mapeamento 1-1
+
+- Mapeamento reverso: uma polêmica.
+
+- Antes de criar a Persistência
+
+- TDD com NUnit: encontrando erros inesperados antes de implementar o seu Sistema
+
+- Testando o nosso Modelo: Teste de Integração
+
+- Criando o componente para reuso eterno: Genericos com o NHibernate
+
+- Ordem correta de criação e desenvolvimento
+
+- Interfaces
+
+- Classe Genérica
+
+- Um aparte: Conexão do NHibernate com o Mundo Exterior: SessionFactory
+
+- Implementação no Componente de DAL
+
+- Segundo Caso de Testes: Teste de Regressão
+
+- Componente de Negócios: usando o DTO
+
+- Criando uma classe de cópia entre a DAL e o DTO: Encapsulamento no Buraco Negro
+
+- Utilizando fachadas para a Regra de Negócios: Uma proteção.
+
+- Após o desenvolvimento: a GAC
+
+- Para a GAC, vamos assinar o nosso Componente?
+
+- Conclusão
+
+Autor 
+Id, Nome Completo, E-mail, Conta DevMedia
+
+Artigo
+Id, Titulo, Breve Descrição, IdTecnologia, Valor, Data Início, Data Fim, Data Publicação, IdAutor
+
+Tecnologia
+Id, Nome da Tecnologia
+
+Autor 1-N Artigo
+
+Artigo 1-1 Tecnologia
+Tecnologia 1 - N Artigos
+
+DevMedia.artigo04.Entidade - Aqui ficam as nossas Classes que representam o nosso Modelo de Domínio
+DevMedia.artigo04.Dal - Aqui ficam os Mapeamentos do NHibernate bem como as Interfaces e Implementações da Persistência. As interfaces respeitam o padrão S.O.L.I.D. da ISP, princípio da Segregação das Interfaces
+DevMedia.artigo04.Reuso - Aqui ficam as Interfaces e Classes Abstratas, para ambas utilizaremos os tipos genéricos para que o leitor possa utilizar tais classes em seus Projetos para seu CRUD básico e estas podem ser extendidas sempre que possível, tal assembly foi criado com o intuito de prover o que o OCP - Princípio do Aberto e Fechado dispõe que é aberto para extensão e fechado para alteração, OCP é um padrão S.O.L.I.D. muito utilizado neste sentido.
+Test.Devmedia.artigo04 - Aqui fica o assembly responsável pelos nossos testes unitários, tais testes são muito importantes. Usaremos o TDD como forma de executar as funções do nosso artigo, esta também é uma forma de emergir o leitor no mundo dos Testes de Software sendo que vamos apenas referenciar os testes necessários ao nosso uso, posto que falar diretamente sobre testes está totalmente fora do escopo deste artigo. Neste pacote de teste, utilizaremos os seguintes tipos de teste:
+
+- Teste de integração: Veremos se o NHibernate está funcionando corretamente com a nossa aplicação e fazemos um teste inicial para ver se não O Nhibernate retorna os erros de compilação ou seja, se os arquivos estão corretos ou se falta algo.
+
