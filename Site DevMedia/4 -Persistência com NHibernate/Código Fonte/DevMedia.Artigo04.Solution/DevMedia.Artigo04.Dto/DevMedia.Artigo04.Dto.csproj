@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{400DF7A8-5556-45BA-969C-C909A5444CE1}</ProjectGuid>
+    <ProjectGuid>{2BC296C4-510D-4365-B1E7-4411B3F3AC58}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DevMedia.Artigo04.Negocio</RootNamespace>
-    <AssemblyName>DevMedia.Artigo04.Negocio</AssemblyName>
+    <RootNamespace>DevMedia.Artigo04.Dto</RootNamespace>
+    <AssemblyName>DevMedia.Artigo04.Dto</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -21,7 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,6 +29,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -41,38 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArtigoDto.cs" />
+    <Compile Include="AutorDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegraDeNegocio\Implementacao\ManterArtigo.cs" />
-    <Compile Include="RegraDeNegocio\Implementacao\ManterAutor.cs" />
-    <Compile Include="RegraDeNegocio\Implementacao\ManterTecnologia.cs" />
-    <Compile Include="RegraDeNegocio\Implementacao\NegocioAbstratoGenerico.cs" />
-    <Compile Include="RegraDeNegocio\Interface\IManterArtigo.cs" />
-    <Compile Include="RegraDeNegocio\Interface\IManterAutor.cs" />
-    <Compile Include="RegraDeNegocio\Interface\IManterTecnologia.cs" />
-    <Compile Include="RegraDeNegocio\Interface\INegocioGenerico.cs" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\DevMedia.Artig04.Entidade\DevMedia.Artigo04.Entidade.csproj">
-      <Project>{437FA7DB-0C97-4DDB-89BD-AD9835EA74DD}</Project>
-      <Name>DevMedia.Artigo04.Entidade</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DevMedia.Artigo04.DAL\DevMedia.Artigo04.Dal.csproj">
-      <Project>{881B71F7-4424-47B4-A1E0-B02CDDD8A9A1}</Project>
-      <Name>DevMedia.Artigo04.Dal</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DevMedia.Artigo04.Dto\DevMedia.Artigo04.Dto.csproj">
-      <Project>{2BC296C4-510D-4365-B1E7-4411B3F3AC58}</Project>
-      <Name>DevMedia.Artigo04.Dto</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DevMedia.Artigo04.NHibernate.Generico\DevMedia.Artigo04.NHibernate.Generico.csproj">
-      <Project>{D768D965-C144-4DD3-8550-26963B348267}</Project>
-      <Name>DevMedia.Artigo04.NHibernate.Generico</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DevMedia.Artigo04.Utilitarios\DevMedia.Artigo04.Utilitarios.csproj">
-      <Project>{7BBC36FC-9C07-4D26-8E8F-4EB955F7FEAA}</Project>
-      <Name>DevMedia.Artigo04.Utilitarios</Name>
-    </ProjectReference>
+    <Compile Include="TecnologiaDto.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
