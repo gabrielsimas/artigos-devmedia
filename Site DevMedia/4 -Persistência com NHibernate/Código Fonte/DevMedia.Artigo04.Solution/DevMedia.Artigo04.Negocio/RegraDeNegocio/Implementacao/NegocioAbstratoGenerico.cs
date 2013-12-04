@@ -62,11 +62,15 @@ namespace DevMedia.Artigo04.Negocio.RegraDeNegocio.Implementacao
         {
             try
             {
+                
+                //produz o Processo de gravação
+                this.entidade = new D();
+
                 //Converte o DTO em Dominio
                 Utils.Copia(typeof(E), entidadeDTO, typeof(D), Entidade);
 
-                //produz o Processo de gravação
                 ObjetoDao = new DAO();
+
                 ObjetoDao.salvar(Entidade);
 
                 return true;
@@ -84,7 +88,7 @@ namespace DevMedia.Artigo04.Negocio.RegraDeNegocio.Implementacao
             {
                 //Inicia o processo de busca
                 ObjetoDao  = new DAO();
-                Entidade = new D();
+                this.entidade = new D();
                 Entidade = objetoDao.listarPorId(id);
                 E dto = new E();
 
@@ -136,11 +140,12 @@ namespace DevMedia.Artigo04.Negocio.RegraDeNegocio.Implementacao
         {
             try
             {
+                this.entidade = new D();
                 //Converte o DTO em Dominio
                 Utils.Copia(typeof(E), entidadeDTO, typeof(D), Entidade);
-
                 //produz o Processo de gravação
                 ObjetoDao = new DAO();
+
                 ObjetoDao.atualizar(Entidade);
 
                 return true;
@@ -156,10 +161,13 @@ namespace DevMedia.Artigo04.Negocio.RegraDeNegocio.Implementacao
         {
             try
             {
+                
+                //produz o Processo de gravação
+                this.entidade = new D();
+
                 //Converte o DTO em Dominio
                 Utils.Copia(typeof(E), entidadeDTO, typeof(D), Entidade);
 
-                //produz o Processo de gravação
                 ObjetoDao = new DAO();
                 ObjetoDao.excluir(Entidade);
 

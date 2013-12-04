@@ -65,12 +65,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Negocio\TestaManterTecnologia.cs" />
     <Compile Include="NHibernate\TestaNHibernate.cs" />
     <Compile Include="NHibernate\TesteArtigoDao.cs" />
     <Compile Include="NHibernate\TesteTecnologiaDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DevMedia.Artigo04.Dto\DevMedia.Artigo04.Dto.csproj">
+      <Project>{2BC296C4-510D-4365-B1E7-4411B3F3AC58}</Project>
+      <Name>DevMedia.Artigo04.Dto</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>del /q "$(OutDir)*.*"
