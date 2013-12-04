@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                    assembly="DevMedia.Artigo04.Entidade"
+                   namespace="DevMedia.Artigo04.Entidade">
+  <class name="Artigo" table="Artigo" lazy="true">
+    <id name="Id" column="id">
+      <generator class="identity" />
+    </id>
+
+    <property name="Titulo" column="titulo" />
+    <property name="Descricao" column="descricao" />
+    <property name="Valor" column="valor" />
+    <property name="DataInicio" column="DataInicio" />
+    <property name="DataFim" column="Datafim" />
+    <property name="DataPublicacao" column="DataPublicacao" />
+
+    <many-to-one name="Autor" column="idAutor" lazy="false" />
+    <many-to-one name="Tecnologia" column="idTecnologia" />
+    
+  </class>
+</hibernate-mapping>

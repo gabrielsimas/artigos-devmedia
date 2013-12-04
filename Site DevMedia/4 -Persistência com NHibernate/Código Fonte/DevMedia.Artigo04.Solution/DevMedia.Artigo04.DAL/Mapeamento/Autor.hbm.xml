@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                    assembly="DevMedia.Artigo04.Entidade"
+                   namespace="DevMedia.Artigo04.Entidade">
+
+
+  <class name="Autor" table="Autor" lazy="true" >
+
+    <id name="Id" column="id">
+      <generator class="identity" />
+    </id>
+
+    <property name="NomeCompleto" column="nomeCompleto" />
+    <property name="Email" column="email" />
+    <property name="ContaDevmedia" column="contadevmedia" />
+    <one-to-one name="Artigo" class="Artigo" />
+    
+  </class>
+</hibernate-mapping>
