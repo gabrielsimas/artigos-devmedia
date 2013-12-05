@@ -15,7 +15,9 @@
     <property name="DataPublicacao" column="DataPublicacao" />
 
     <many-to-one name="Autor" column="idAutor" lazy="false" />
-    <many-to-one name="Tecnologia" column="idTecnologia" />
+    
+     <many-to-one name="Tecnologia" column="idTecnologia" /> 
+    
     
   </class>
 </hibernate-mapping>

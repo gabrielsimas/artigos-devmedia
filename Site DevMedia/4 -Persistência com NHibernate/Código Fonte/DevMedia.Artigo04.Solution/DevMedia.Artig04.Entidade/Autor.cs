@@ -14,7 +14,7 @@ namespace DevMedia.Artigo04.Entidade
         private String email;
         private String contaDevmedia;
 
-        private Artigo artigo;
+        private IList<Artigo> artigos;
         #endregion
 
         #region Construtores
@@ -23,13 +23,13 @@ namespace DevMedia.Artigo04.Entidade
 
         }
 
-        public Autor(int id, String nomeCompleto, String email, String contaDevmedia, Artigo artigo)
+        public Autor(int id, String nomeCompleto, String email, String contaDevmedia, IList<Artigo> artigos)
         {
             this.id = id;
             this.nomeCompleto = nomeCompleto;
             this.email = email;
             this.contaDevmedia = contaDevmedia;
-            this.artigo = artigo;
+            this.artigos = artigos;
         }
         #endregion
 
@@ -86,16 +86,16 @@ namespace DevMedia.Artigo04.Entidade
             }
         }
 
-        public virtual Artigo Artigo
+        public virtual IList<Artigo> Artigos
         {
             get
             {
-                return this.artigo;
+                return this.artigos;
             }
 
             set
             {
-                this.artigo = value;
+                this.artigos = value;
             }
         }
         #endregion

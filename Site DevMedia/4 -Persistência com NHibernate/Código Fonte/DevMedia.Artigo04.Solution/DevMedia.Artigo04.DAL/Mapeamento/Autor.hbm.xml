@@ -13,7 +13,11 @@
     <property name="NomeCompleto" column="nomeCompleto" />
     <property name="Email" column="email" />
     <property name="ContaDevmedia" column="contadevmedia" />
-    <one-to-one name="Artigo" class="Artigo" />
+
+    <bag name="Artigos" inverse="true" lazy="false" fetch="join" cascade="all">
+      <key column="idAutor" />
+      <one-to-many class="DevMedia.Artigo04.Entidade.Artigo, DevMedia.Artigo04.Entidade" />
+    </bag>
     
   </class>
 </hibernate-mapping>

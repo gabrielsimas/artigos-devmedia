@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1000]C:\Artigo Persistência com NHibernate\Código Fonte\DevMedia.Artigo04.Solution\Teste.DevMedia.Artigo04\Teste.DevMedia.Artigo04.nunit</TopNode>
+  <SelectedNode>[0-1010]Teste.DevMedia.Artigo04.NHibernate</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1000]C:\Artigo Persistência com NHibernate\Código Fonte\DevMedia.Artigo04.Solution\Teste.DevMedia.Artigo04\Teste.DevMedia.Artigo04.nunit" Expanded="true" />
+    <Node UniqueName="[0-1006]C:\Artigo Persistência com NHibernate\Código Fonte\DevMedia.Artigo04.Solution\Teste.DevMedia.Artigo04\bin\Debug\Teste.DevMedia.Artigo04.dll" Expanded="true" />
+    <Node UniqueName="[0-1007]Teste" Expanded="true" />
+    <Node UniqueName="[0-1008]Teste.DevMedia" Expanded="true" />
+    <Node UniqueName="[0-1009]Teste.DevMedia.Artigo04" Expanded="true" />
+    <Node UniqueName="[0-1010]Teste.DevMedia.Artigo04.NHibernate" Expanded="true" />
+    <Node UniqueName="[0-1001]Teste.DevMedia.Artigo04.NHibernate.TestaNHibernate" Expanded="true" />
+    <Node UniqueName="[0-1004]Teste.DevMedia.Artigo04.NHibernate.TesteTecnologiaDao" Expanded="true" />
+  </Nodes>
+</VisualState>
