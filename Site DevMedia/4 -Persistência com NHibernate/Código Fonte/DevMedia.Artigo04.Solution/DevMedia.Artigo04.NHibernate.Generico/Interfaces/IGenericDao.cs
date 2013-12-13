@@ -12,6 +12,5 @@ namespace DevMedia.Artigo04.NHibernate.Generico.Interfaces
         void salvar(E entidade);
         void atualizar(E entidade);
         void excluir(E entidade);
-
     }
 }

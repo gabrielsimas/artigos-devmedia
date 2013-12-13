@@ -13,17 +13,17 @@ using NUnit.Framework;
 
 namespace Teste.DevMedia.Artigo04.NHibernate
 {
-    [TestFixture]
+    //[TestFixture]
     public class TesteTecnologiaDao
     {
 
-        [SetUp]
+       // [SetUp]
         public void setUp()
         {
 
         }
 
-        [Test]
+        //[Test]
         public void inserir()
         {
 

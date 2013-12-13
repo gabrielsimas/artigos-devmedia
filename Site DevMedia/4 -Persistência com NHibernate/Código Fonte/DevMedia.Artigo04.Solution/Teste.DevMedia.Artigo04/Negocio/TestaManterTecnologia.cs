@@ -9,10 +9,10 @@ using NUnit.Framework;
 
 namespace Teste.DevMedia.Artigo04.Negocio
 {
-    [TestFixture]
+    //[TestFixture]
     public class TestaManterTecnologia
     {
-        [Test]
+        //[Test]
         public void ListarTodos(){
 
             IList<TecnologiaDto> dtos = new List<TecnologiaDto>();
@@ -23,7 +23,7 @@ namespace Teste.DevMedia.Artigo04.Negocio
 
         }
 
-        [Test]
+        //[Test]
         public void Cadastrar()
         {
             TecnologiaDto dto = new TecnologiaDto();
