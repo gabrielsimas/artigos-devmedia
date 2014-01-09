@@ -7,5 +7,6 @@ namespace DevMedia.Artigo04.Negocio.RegraDeNegocio.Interface
 {
     interface IManterTecnologia
     {
+        void metodoQualquer();
     }
 }

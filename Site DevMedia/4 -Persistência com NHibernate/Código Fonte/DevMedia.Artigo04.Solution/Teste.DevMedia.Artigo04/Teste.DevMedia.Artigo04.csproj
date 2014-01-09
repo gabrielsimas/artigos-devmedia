@@ -67,7 +67,6 @@
   <ItemGroup>
     <Compile Include="Negocio\TestaManterTecnologia.cs" />
     <Compile Include="NHibernate\TestaNHibernate.cs" />
-    <Compile Include="NHibernate\TesteArtigoDao.cs" />
     <Compile Include="NHibernate\TesteTecnologiaDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

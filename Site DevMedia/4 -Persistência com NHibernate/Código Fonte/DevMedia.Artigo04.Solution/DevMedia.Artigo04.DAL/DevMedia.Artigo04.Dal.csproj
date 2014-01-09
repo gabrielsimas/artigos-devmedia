@@ -66,7 +66,9 @@
     <EmbeddedResource Include="Mapeamento\Artigo.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mapeamento\Tecnologia.hbm.xml" />
+    <EmbeddedResource Include="Mapeamento\Tecnologia.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

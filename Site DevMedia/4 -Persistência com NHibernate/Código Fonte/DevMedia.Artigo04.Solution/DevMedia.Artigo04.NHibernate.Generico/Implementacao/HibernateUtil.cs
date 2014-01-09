@@ -15,7 +15,7 @@ namespace DevMedia.Artigo04.NHibernate.Generico
         private static Boolean isJaAberta;
         private static ISessionFactory fabricaDeSessao;
         private static ISession sessao;
-        private const String ASSEMBLYMAPEAMENTOS = "DevMedia.Artigo04.Da";
+        private const String ASSEMBLYMAPEAMENTOS = "DevMedia.Artigo04.Dal";
         private const String STRINGCONEXAO = @"Data Source=ALLSPARK\SQLEXPRESS;Initial Catalog=Artigo04;Integrated Security=True";
 
         #endregion

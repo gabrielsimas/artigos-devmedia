@@ -1,29 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using DevMedia.Artigo04.NHibernate.Generico;
-using DevMedia.Artigo04.NHibernate.Generico.Implementacao;
-using DevMedia.Artigo04.NHibernate.Generico.Interfaces;
-using DevMedia.Artigo04.Dal.Interfaces;
+﻿using DevMedia.Artigo04.Dal.Interfaces;
 using DevMedia.Artigo04.Dal.Implementacao;
 using DevMedia.Artigo04.Entidade;
 using NUnit.Framework;
 
 namespace Teste.DevMedia.Artigo04.NHibernate
 {
-    //[TestFixture]
+    [TestFixture]
     public class TesteTecnologiaDao
     {
 
-       // [SetUp]
-        public void setUp()
-        {
-
-        }
-
-        //[Test]
+        [Test]
         public void inserir()
         {
 
@@ -31,7 +17,7 @@ namespace Teste.DevMedia.Artigo04.NHibernate
             Tecnologia objeto = new Tecnologia();
             objeto.Nome = ".NET";
             dao.salvar(objeto);
-            Assert.IsTrue(dao != null);
+            Assert.IsTrue(objeto.Id.HasValue);
         }
     }
 }

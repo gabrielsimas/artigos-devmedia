@@ -7,5 +7,8 @@ namespace DevMedia.Artigo04.Negocio.RegraDeNegocio.Interface
 {
     interface IManterAutor
     {
+
+        void metodoQualquer();
+
     }
 }

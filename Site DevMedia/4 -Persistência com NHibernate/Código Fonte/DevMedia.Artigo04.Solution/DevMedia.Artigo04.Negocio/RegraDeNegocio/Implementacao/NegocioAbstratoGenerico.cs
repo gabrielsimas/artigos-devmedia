@@ -181,4 +181,7 @@ namespace DevMedia.Artigo04.Negocio.RegraDeNegocio.Implementacao
         }
         #endregion
     }
+    
 }
+
+
