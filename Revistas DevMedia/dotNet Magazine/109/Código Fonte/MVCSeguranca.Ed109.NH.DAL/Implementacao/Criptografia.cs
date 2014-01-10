@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using MVCSeguranca.Ed109.NH.DAL.Interface;
 using System.Security.Cryptography;
+using SHA3;
 
 namespace MVCSeguranca.Ed109.NH.DAL.Implementacao
 {
@@ -198,6 +199,10 @@ namespace MVCSeguranca.Ed109.NH.DAL.Implementacao
                     hash = new SHA512Managed();
                     break;
 
+                case "SHA3":
+                    hash = new SHA3Managed(TAMANHO_BYTE_HASH);
+                    break;
+
                 default:
                     hash = new MD5CryptoServiceProvider();
                     break;
@@ -275,6 +280,10 @@ namespace MVCSeguranca.Ed109.NH.DAL.Implementacao
 
                 case "SHA512":
                     hashTamanhoEmBits = 512;
+                    break;
+
+                case "SHA3":
+                    hashTamanhoEmBits = TAMANHO_BYTE_HASH;
                     break;
 
                 default: // precisa ser MD5
