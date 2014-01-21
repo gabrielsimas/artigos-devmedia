@@ -1,15 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevMedia.Ed112.MVCSeguranca.Entidade", "..\DevMedia.Ed112.MVCSeguranca.Entidade\DevMedia.Ed112.MVCSeguranca.Entidade.csproj", "{AF26AAE5-DC9A-4B9A-9893-C63EB9103AAF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevMedia.Ed112.MVCSeguranca.Dal", "DevMedia.Ed112.MVCSeguranca.Dal\DevMedia.Ed112.MVCSeguranca.Dal.csproj", "{D4C562D0-C63B-4B0D-84E8-6CF7A6B12191}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevMedia.Ed112.MVCSeguranca.Dal", "..\DevMedia.Ed112.MVCSeguranca.Dal\DevMedia.Ed112.MVCSeguranca.Dal.csproj", "{D4C562D0-C63B-4B0D-84E8-6CF7A6B12191}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevMedia.Ed112.MVCSeguranca.Entidade", "DevMedia.Ed112.MVCSeguranca.Entidade\DevMedia.Ed112.MVCSeguranca.Entidade.csproj", "{AF26AAE5-DC9A-4B9A-9893-C63EB9103AAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevMedia.Ed112.MVCSeguranca.Negocio", "..\DevMedia.Ed112.MVCSeguranca.Negocio\DevMedia.Ed112.MVCSeguranca.Negocio.csproj", "{04A69419-0C7B-41B2-AF8E-A6BBD42FAF5B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevMedia.Ed112.MVCSeguranca.Negocio", "DevMedia.Ed112.MVCSeguranca.Negocio\DevMedia.Ed112.MVCSeguranca.Negocio.csproj", "{04A69419-0C7B-41B2-AF8E-A6BBD42FAF5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevMedia.Ed112.MVCSeguranca.Seguranca", "..\DevMedia.Ed112.MVCSeguranca.Seguranca\DevMedia.Ed112.MVCSeguranca.Seguranca.csproj", "{F141E2FF-C557-4901-8AB9-96F7F2732E7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevMedia.Ed112.MVCSeguranca.Seguranca", "DevMedia.Ed112.MVCSeguranca.Seguranca\DevMedia.Ed112.MVCSeguranca.Seguranca.csproj", "{F141E2FF-C557-4901-8AB9-96F7F2732E7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevMedia.Ed112.MVCSeguranca.Web", "..\DevMedia.Ed112.MVCSeguranca.Web\DevMedia.Ed112.MVCSeguranca.Web.csproj", "{EABCD7F8-AD70-48F3-BD58-CBEB61643A91}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevMedia.Ed112.MVCSeguranca.Web", "DevMedia.Ed112.MVCSeguranca.Web\DevMedia.Ed112.MVCSeguranca.Web.csproj", "{EABCD7F8-AD70-48F3-BD58-CBEB61643A91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevMedia.Ed112.MVCSeguranca.Spring", "DevMedia.Ed112.MVCSeguranca.Spring\DevMedia.Ed112.MVCSeguranca.Spring.csproj", "{4DC23B41-F9F6-45D3-A94A-1DB1F87D21C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevMedia.Ed112.MVCSeguranca.NHibernate", "DevMedia.Ed112.MVCSeguranca.NHibernate\DevMedia.Ed112.MVCSeguranca.NHibernate.csproj", "{C7DF2E30-6A4F-487B-ACBB-BD41AC2315D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,14 +21,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AF26AAE5-DC9A-4B9A-9893-C63EB9103AAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF26AAE5-DC9A-4B9A-9893-C63EB9103AAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF26AAE5-DC9A-4B9A-9893-C63EB9103AAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF26AAE5-DC9A-4B9A-9893-C63EB9103AAF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D4C562D0-C63B-4B0D-84E8-6CF7A6B12191}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D4C562D0-C63B-4B0D-84E8-6CF7A6B12191}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4C562D0-C63B-4B0D-84E8-6CF7A6B12191}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4C562D0-C63B-4B0D-84E8-6CF7A6B12191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF26AAE5-DC9A-4B9A-9893-C63EB9103AAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF26AAE5-DC9A-4B9A-9893-C63EB9103AAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF26AAE5-DC9A-4B9A-9893-C63EB9103AAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF26AAE5-DC9A-4B9A-9893-C63EB9103AAF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{04A69419-0C7B-41B2-AF8E-A6BBD42FAF5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{04A69419-0C7B-41B2-AF8E-A6BBD42FAF5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04A69419-0C7B-41B2-AF8E-A6BBD42FAF5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,6 +41,14 @@ Global
 		{EABCD7F8-AD70-48F3-BD58-CBEB61643A91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EABCD7F8-AD70-48F3-BD58-CBEB61643A91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EABCD7F8-AD70-48F3-BD58-CBEB61643A91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DC23B41-F9F6-45D3-A94A-1DB1F87D21C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DC23B41-F9F6-45D3-A94A-1DB1F87D21C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DC23B41-F9F6-45D3-A94A-1DB1F87D21C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DC23B41-F9F6-45D3-A94A-1DB1F87D21C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7DF2E30-6A4F-487B-ACBB-BD41AC2315D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7DF2E30-6A4F-487B-ACBB-BD41AC2315D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7DF2E30-6A4F-487B-ACBB-BD41AC2315D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7DF2E30-6A4F-487B-ACBB-BD41AC2315D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

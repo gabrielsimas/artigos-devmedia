@@ -11,6 +11,7 @@ namespace DevMedia.Ed112.MVCSeguranca.Entidade
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.Reflection;
 
     /// <summary>
     /// Entidade representando o Contato no modelo de dados.
@@ -18,7 +19,7 @@ namespace DevMedia.Ed112.MVCSeguranca.Entidade
     public class Contato
     {
         #region Atributos
-        private int id;
+        private Nullable<long> id;
         private String nomeCompleto;
         private String apelido;
         #endregion
@@ -35,7 +36,7 @@ namespace DevMedia.Ed112.MVCSeguranca.Entidade
 
         }
 
-        public Contato(int id, String nome, String apelido,IList<RedeSocial> redesSociais, IList<Telefone> telefones, IList<Email> emails)
+        public Contato(Nullable<long> id, String nome, String apelido, IList<RedeSocial> redesSociais, IList<Telefone> telefones, IList<Email> emails)
         {
             this.id = id;
             this.nomeCompleto = nome;
@@ -48,7 +49,7 @@ namespace DevMedia.Ed112.MVCSeguranca.Entidade
 
         #region Propriedades
 
-        public int Id
+        public Nullable<long> Id
         {
             get
             {
@@ -130,7 +131,14 @@ namespace DevMedia.Ed112.MVCSeguranca.Entidade
         #region Complemento Classe Rica
         public override string ToString()
         {
-            return this.id + "," + this.nomeCompleto + "," + this.apelido;
+            FieldInfo[] atributos;
+            atributos = GetType().GetFields(BindingFlags.NonPublic);
+            return atributos.ToString();
+        }
+
+        public override int GetHashCode()
+        {
+            return this.id.HasValue ? this.id.GetHashCode() : 0;
         }
         #endregion
     }

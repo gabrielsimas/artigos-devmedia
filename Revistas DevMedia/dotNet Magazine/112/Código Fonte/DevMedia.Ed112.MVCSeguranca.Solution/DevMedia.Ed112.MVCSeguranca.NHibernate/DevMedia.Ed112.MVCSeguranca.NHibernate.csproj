@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D4C562D0-C63B-4B0D-84E8-6CF7A6B12191}</ProjectGuid>
+    <ProjectGuid>{C7DF2E30-6A4F-487B-ACBB-BD41AC2315D1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DevMedia.Ed112.MVCSeguranca.Dal</RootNamespace>
-    <AssemblyName>DevMedia.Ed112.MVCSeguranca.Dal</AssemblyName>
+    <RootNamespace>DevMedia.Ed112.MVCSeguranca.NHibernate</RootNamespace>
+    <AssemblyName>DevMedia.Ed112.MVCSeguranca.NHibernate</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,11 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Implementacao\" />
-    <Folder Include="Interface\" />
-    <Folder Include="Mapeamento\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
