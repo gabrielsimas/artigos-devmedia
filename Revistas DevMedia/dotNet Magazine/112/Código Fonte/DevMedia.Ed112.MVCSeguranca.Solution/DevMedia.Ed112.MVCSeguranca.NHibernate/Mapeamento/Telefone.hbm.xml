@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="DevMedia.Ed112.MVCSeguranca.Entidade"
+                   namespace="DevMedia.Ed112.MVCSeguranca.Entidade">
+  <!-- Chave Primária-->
+  <class name="Telefone" table="Telefone">
+    <id name="Id" column="id">
+      <generator class="identity" />
+    </id>
+
+    <!-- Propriedades e Campos da Tabela-->
+    <property name="DDD" column="ddd" />
+    <property name="DDI" column="ddi" />
+    <property name="Numero" column="numero" />
+    <property name="TipoTelefone" column="tipoTelefone" />
+
+    <!-- Relacionamentos -->
+    <many-to-one name="Contato" column="idContato" />
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="DevMedia.Ed112.MVCSeguranca.Entidade"
+                   namespace="DevMedia.Ed112.MVCSeguranca.Entidade">
+
+  <!-- Chave Primária-->
+  <class name="Email" table="Email">
+    <id name="Id" column="id">
+      <generator class="identity" />
+    </id>
+
+    <!-- Propriedades e Campos da Tabela-->
+    <property name="Endereco" column="endereco" />
+
+    <!-- Relacionamentos -->
+    <many-to-one name="Contato" column="idContato" />
+  </class>
+  
+</hibernate-mapping>

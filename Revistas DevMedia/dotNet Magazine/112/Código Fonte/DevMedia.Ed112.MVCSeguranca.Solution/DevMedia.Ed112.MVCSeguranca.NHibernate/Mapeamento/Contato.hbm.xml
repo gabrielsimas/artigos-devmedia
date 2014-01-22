@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="DevMedia.Ed112.MVCSeguranca.Entidade"
+                   namespace="DevMedia.Ed112.MVCSeguranca.Entidade">
+
+  <!-- Chave Primária-->
+  <class name="Contato" table="Contato">
+    <id name="Id" column="id">
+      <generator class="identity" />
+    </id>
+
+    <!-- Propriedades e Campos da Tabela-->
+    <property name="NomeCompleto" column="nomeCompleto" />
+    <property name="Apelido" column="apelido" />
+
+    <!-- Relacionamentos -->
+    
+    <!-- 1 Contato para N Redes Sociais -->
+    <bag name="RedesSociais" inverse="true" lazy="false" fetch="join" cascade="all">
+      <key column="idContato"/>
+      <one-to-many class="DevMedia.Ed112.MVCSeguranca.Entidade.RedeSocial, DevMedia.Ed112.MVCSeguranca.Entidade"/>
+    </bag>
+  
+    <!-- 1 Contato para N Telefones-->
+    <bag name="Telefones" inverse="true" lazy="false" fetch="join" cascade="all">
+      <key column="idContato"/>
+      <one-to-many class="DevMedia.Ed112.MVCSeguranca.Entidade.Telefone, DevMedia.Ed112.MVCSeguranca.Entidade"/>
+    </bag>
+    
+    <!-- 1 Contato para N E-mails -->
+    <bag name="Emails" inverse="true" lazy="false" fetch="join" cascade="all">
+      <key column="idContato"/>
+      <one-to-many class="DevMedia.Ed112.MVCSeguranca.Entidade.Email, DevMedia.Ed112.MVCSeguranca.Entidade"/>
+    </bag>
+  </class>
+  </hibernate-mapping>

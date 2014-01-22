@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{AF26AAE5-DC9A-4B9A-9893-C63EB9103AAF}</ProjectGuid>
+    <ProjectGuid>{31F63282-4794-49F5-AB30-EF63E251A8DE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DevMedia.Ed112.MVCSeguranca.Entidade</RootNamespace>
-    <AssemblyName>DevMedia.Ed112.MVCSeguranca.Entidade</AssemblyName>
+    <RootNamespace>Teste.DevMedia.Ed112.MVCSeguranca.Spring</RootNamespace>
+    <AssemblyName>Teste.DevMedia.Ed112.MVCSeguranca.Spring</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\Repositorio\Ferramentas\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\Repositorio\Ferramentas\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>..\Repositorio\Ferramentas\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data">
+      <HintPath>..\Repositorio\Ferramentas\Spring.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data.NHibernate32">
+      <HintPath>..\Repositorio\Ferramentas\Spring.Data.NHibernate32.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Testing.NUnit">
+      <HintPath>..\Repositorio\Ferramentas\Spring.Testing.NUnit.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,13 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contato.cs" />
-    <Compile Include="Email.cs" />
-    <Compile Include="Papel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RedeSocial.cs" />
-    <Compile Include="Telefone.cs" />
-    <Compile Include="Usuario.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

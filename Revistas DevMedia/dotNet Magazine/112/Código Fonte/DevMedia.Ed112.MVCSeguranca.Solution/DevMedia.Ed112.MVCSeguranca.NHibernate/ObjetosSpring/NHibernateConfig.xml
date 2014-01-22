@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net"
+           xmlns:db="http://www.springframework.net/database"
+             xmlns:tx="http://www.springframework.net/tx">
+
+  <description>
+    Definição de Objetos para acesso com o NHibernate junto com o Spring.NET
+  </description>
+
+  <object type="Spring.Objects.Factory.Config.PropertyPlaceholderConfigurer, Spring.Core">
+    <property name="ConfigSections" value="databaseSettings"/>
+  </object>
+
+  <!-- Configuração de Bancos de Dados -->
+  <db:provider id="DbProvider"
+                   provider="SqlServer-2.0"
+                   connectionString="Data Source=ALLSPARK\SQLEXPRESS;Initial Catalog=MVCSeguranca112;Integrated Security=True"/>
+
+  <object id="NHibernateSessionFactory" type="Spring.Data.NHibernate.LocalSessionFactoryObject, Spring.Data.NHibernate32">
+    <property name="DbProvider" ref="DbProvider"/>
+    
+    <!-- Mapeia o Assembly que contém os arquivos -->
+    <property name="MappingAssemblies">
+      <list>
+        <value>DevMedia.Ed112.MVCSeguranca.Entidade</value>
+      </list>
+    </property>
+    <property name="HibernateProperties">
+      <dictionary>
+        <entry key="hibernate.connection.provider" value="NHibernate.Connection.DriverConnectionProvider"/>
+        <entry key="dialect" value="NHibernate.Dialect.MsSql2008Dialect"/>
+        <entry key="connection.driver_class" value="NHibernate.Driver.SqlClientDriver"/>
+        <entry key="use_proxy_validator" value="false" />
+        <entry key="show_sql" value="true" />
+      </dictionary>
+    </property>
+
+    <!-- provides integation with Spring's declarative transaction management features -->
+    <property name="ExposeTransactionAwareSessionFactory" value="true" />
+  </object>
+
+  <!-- Transaction Management Strategy - local database transactions -->
+  <!-- Padrão de Projeto Strategy para Transaction Management-->
+  <object id="transactionManager"
+        type="Spring.Data.NHibernate.HibernateTransactionManager, Spring.Data.NHibernate32">
+
+    <property name="DbProvider" ref="DbProvider"/>
+    <property name="SessionFactory" ref="NHibernateSessionFactory"/>
+  </object>
+
+  <!-- Exception translation object post processor -->
+  <!-- Tradução das exceções do Sistema para serem interceptados pelo Spring.NET-->
+  <object type="Spring.Dao.Attributes.PersistenceExceptionTranslationPostProcessor, Spring.Data"/>
+  <tx:attribute-driven />
+</objects>
