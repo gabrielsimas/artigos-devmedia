@@ -1,0 +1,8 @@
+﻿<NUnitProject>
+  <Settings activeconfig="Debug" processModel="Default" domainUsage="Default" appbase="C:\112\Código Fonte\DevMedia.Ed112.MVCSeguranca.Solution\Teste.DevMedia.Ed112.MVCSeguranca.Spring" />
+  <Config name="Debug" binpathtype="Auto" runtimeFramework="v4.0.21006">
+  </Config>
+  <Config name="Release" binpathtype="Auto">
+    <assembly path="bin\Release\Teste.DevMedia.Ed112.MVCSeguranca.SpringNet.dll" />
+  </Config>
+</NUnitProject>

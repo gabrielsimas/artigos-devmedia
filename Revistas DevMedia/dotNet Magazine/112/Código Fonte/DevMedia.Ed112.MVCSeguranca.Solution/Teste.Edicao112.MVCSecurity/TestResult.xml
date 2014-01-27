@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\112\Código Fonte\DevMedia.Ed112.MVCSeguranca.Solution\Teste.Edicao112.MVCSecurity\Teste.Edicao112.MVCSecurity.nunit" total="1" errors="1" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-01-26" time="18:47:00">
+  <environment nunit-version="2.6.2.12296" clr-version="2.0.50727.3053" os-version="Microsoft Windows NT 5.1.2600 Service Pack 3" platform="Win32NT" cwd="C:\112\Código Fonte\DevMedia.Ed112.MVCSeguranca.Solution\Teste.Edicao112.MVCSecurity" machine-name="ALLSPARK" user="Arquiteto" user-domain="ALLSPARK" />
+  <culture-info current-culture="pt-BR" current-uiculture="pt-BR" />
+  <test-suite type="Project" name="C:\112\Código Fonte\DevMedia.Ed112.MVCSeguranca.Solution\Teste.Edicao112.MVCSecurity\Teste.Edicao112.MVCSecurity.nunit" executed="True" result="Failure" success="False" time="17.396" asserts="0">
+    <results>
+      <test-suite type="Assembly" name="C:\112\Código Fonte\DevMedia.Ed112.MVCSeguranca.Solution\Teste.Edicao112.MVCSecurity\bin\Debug\Teste.Edicao112.MVCSecurity.dll" executed="True" result="Failure" success="False" time="17.375" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="Teste" executed="True" result="Failure" success="False" time="17.375" asserts="0">
+            <results>
+              <test-suite type="Namespace" name="Edicao112" executed="True" result="Failure" success="False" time="17.375" asserts="0">
+                <results>
+                  <test-suite type="Namespace" name="MVCSecurity" executed="True" result="Failure" success="False" time="17.375" asserts="0">
+                    <results>
+                      <test-suite type="Namespace" name="Dao" executed="True" result="Failure" success="False" time="17.365" asserts="0">
+                        <results>
+                          <test-suite type="TestFixture" name="ContatoDAOTeste" executed="True" result="Failure" success="False" time="17.247" asserts="0">
+                            <results>
+                              <test-case name="Teste.Edicao112.MVCSecurity.Dao.ContatoDAOTeste.Inserir" executed="True" result="Error" success="False" time="15.724" asserts="0">
+                                <failure>
+                                  <message><![CDATA[System.NullReferenceException : Referência de objeto não definida para uma instância de um objeto.]]></message>
+                                  <stack-trace><![CDATA[em Teste.Edicao112.MVCSecurity.Dao.ContatoDAOTeste.get_ContatoDAO() na C:\112\Código Fonte\DevMedia.Ed112.MVCSeguranca.Solution\Teste.Edicao112.MVCSecurity\Dao\ContatoDAOTeste.cs:linha 51
+em Teste.Edicao112.MVCSecurity.Dao.ContatoDAOTeste.Inserir() na C:\112\Código Fonte\DevMedia.Ed112.MVCSeguranca.Solution\Teste.Edicao112.MVCSecurity\Dao\ContatoDAOTeste.cs:linha 78
+]]></stack-trace>
+                                </failure>
+                              </test-case>
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

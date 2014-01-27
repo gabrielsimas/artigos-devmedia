@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1000]C:\NUnit\NUnitTests.nunit</TopNode>
+  <SelectedNode>[0-1000]C:\NUnit\NUnitTests.nunit</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1000]C:\NUnit\NUnitTests.nunit" Expanded="true" />
+    <Node UniqueName="[0-2909]C:\NUnit\tests/nunit.framework.tests.dll" Expanded="true" />
+    <Node UniqueName="[0-2910]NUnit" Expanded="true" />
+    <Node UniqueName="[0-2911]NUnit.Framework" Expanded="true" />
+    <Node UniqueName="[0-2912]NUnit.Framework.Constraints" Expanded="true" />
+    <Node UniqueName="[0-2913]NUnit.Framework.Syntax" Expanded="true" />
+    <Node UniqueName="[0-2914]NUnit.Framework.Tests" Expanded="true" />
+    <Node UniqueName="[0-4228]C:\NUnit\tests/nunit.core.tests.dll" Expanded="true" />
+    <Node UniqueName="[0-4229]NUnit" Expanded="true" />
+    <Node UniqueName="[0-4230]NUnit.Core" Expanded="true" />
+    <Node UniqueName="[0-4231]NUnit.Core.Tests" Expanded="true" />
+    <Node UniqueName="[0-4232]NUnit.Core.Tests.Generic" Expanded="true" />
+    <Node UniqueName="[0-2915]NUnit.Core.Tests.Generic.DeduceTypeArgsFromArgs&lt;T1,T2&gt;" Expanded="true" />
+    <Node UniqueName="[0-2922]NUnit.Core.Tests.Generic.SimpleGenericFixture&lt;TList&gt;" Expanded="true" />
+    <Node UniqueName="[0-2943]NUnit.Core.Tests.Generic.TypeParameterUsedWithTestMethod&lt;T&gt;" Expanded="true" />
+    <Node UniqueName="[0-3287]NUnit.Core.Tests.ParameterizedTestFixture" Expanded="true" />
+    <Node UniqueName="[0-3304]NUnit.Core.Tests.ParameterizedTestFixtureWithDataSources" Expanded="true" />
+    <Node UniqueName="[0-3297]NUnit.Core.Tests.ParameterizedTestFixtureWithNullArguments" Expanded="true" />
+    <Node UniqueName="[0-3331]NUnit.Core.Tests.ParameterizedTestFixtureWithTypeAsArgument" Expanded="true" />
+    <Node UniqueName="[0-4604]C:\NUnit\tests/nunit.util.tests.dll" Expanded="true" />
+    <Node UniqueName="[0-4605]NUnit" Expanded="true" />
+    <Node UniqueName="[0-4606]NUnit.Util" Expanded="true" />
+    <Node UniqueName="[0-4489]NUnit.Util.Tests.ServiceManagerSetUpFixture" Expanded="true" />
+    <Node UniqueName="[0-4656]C:\NUnit\tests/nunit.mocks.tests.dll" Expanded="true" />
+    <Node UniqueName="[0-4657]NUnit" Expanded="true" />
+    <Node UniqueName="[0-4658]NUnit.Mocks" Expanded="true" />
+    <Node UniqueName="[0-4659]NUnit.Mocks.Tests" Expanded="true" />
+    <Node UniqueName="[0-4745]C:\NUnit\tests/nunit-console.tests.dll" Expanded="true" />
+    <Node UniqueName="[0-4746]NUnit" Expanded="true" />
+    <Node UniqueName="[0-4747]NUnit.ConsoleRunner" Expanded="true" />
+    <Node UniqueName="[0-4748]NUnit.ConsoleRunner.Tests" Expanded="true" />
+    <Node UniqueName="[0-4988]C:\NUnit\tests/nunit.uiexception.tests.dll" Expanded="true" />
+    <Node UniqueName="[0-4989]NUnit" Expanded="true" />
+    <Node UniqueName="[0-4990]NUnit.UiException" Expanded="true" />
+    <Node UniqueName="[0-4991]NUnit.UiException.Tests" Expanded="true" />
+    <Node UniqueName="[0-4992]NUnit.UiException.Tests.CodeFormatters" Expanded="true" />
+    <Node UniqueName="[0-4993]NUnit.UiException.Tests.Controls" Expanded="true" />
+    <Node UniqueName="[0-4994]NUnit.UiException.Tests.StackTraceAnalyzers" Expanded="true" />
+    <Node UniqueName="[0-5057]C:\NUnit\tests/nunit.uikit.tests.dll" Expanded="true" />
+    <Node UniqueName="[0-5058]NUnit" Expanded="true" />
+    <Node UniqueName="[0-5059]NUnit.UiKit" Expanded="true" />
+    <Node UniqueName="[0-5060]NUnit.UiKit.Tests" Expanded="true" />
+    <Node UniqueName="[0-5079]C:\NUnit\tests/nunit-gui.tests.dll" Expanded="true" />
+    <Node UniqueName="[0-5080]NUnit" Expanded="true" />
+    <Node UniqueName="[0-5081]NUnit.Gui" Expanded="true" />
+    <Node UniqueName="[0-5082]NUnit.Gui.Tests" Expanded="true" />
+    <Node UniqueName="[0-5229]C:\NUnit\tests/nunit-editor.tests.dll" Expanded="true" />
+    <Node UniqueName="[0-5230]NUnit" Expanded="true" />
+    <Node UniqueName="[0-5231]NUnit.ProjectEditor" Expanded="true" />
+    <Node UniqueName="[0-5232]NUnit.ProjectEditor.Tests" Expanded="true" />
+    <Node UniqueName="[0-5233]NUnit.ProjectEditor.Tests.Model" Expanded="true" />
+    <Node UniqueName="[0-5234]NUnit.ProjectEditor.Tests.Presenters" Expanded="true" />
+    <Node UniqueName="[0-5235]NUnit.ProjectEditor.Tests.Views" Expanded="true" />
+  </Nodes>
+</VisualState>
