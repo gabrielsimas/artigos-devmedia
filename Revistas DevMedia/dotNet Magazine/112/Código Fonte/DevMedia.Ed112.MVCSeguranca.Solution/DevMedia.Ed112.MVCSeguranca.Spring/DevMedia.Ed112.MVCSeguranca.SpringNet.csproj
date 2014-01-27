@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C7DF2E30-6A4F-487B-ACBB-BD41AC2315D1}</ProjectGuid>
+    <ProjectGuid>{4DC23B41-F9F6-45D3-A94A-1DB1F87D21C1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DevMedia.Ed112.MVCSeguranca.NHibernate</RootNamespace>
-    <AssemblyName>DevMedia.Ed112.MVCSeguranca.NHibernate</AssemblyName>
+    <RootNamespace>DevMedia.Ed112.MVCSeguranca.SpringNet</RootNamespace>
+    <AssemblyName>DevMedia.Ed112.MVCSeguranca.SpringNet</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\Repositorio\Ferramentas\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\Repositorio\Ferramentas\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core, Version=1.3.2.40943, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <HintPath>..\Repositorio\Ferramentas\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data">
+      <HintPath>..\Repositorio\Ferramentas\Spring.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data.NHibernate32">
+      <HintPath>..\Repositorio\Ferramentas\Spring.Data.NHibernate32.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Testing.NUnit">
+      <HintPath>..\Repositorio\Ferramentas\Spring.Testing.NUnit.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,22 +58,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementacao\AbstractGenericDao.cs" />
+    <Compile Include="Interface\IGenericDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Mapeamento\Contato.hbm.xml" />
-    <EmbeddedResource Include="Mapeamento\Email.hbm.xml" />
-    <EmbeddedResource Include="Mapeamento\Telefone.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapeamento\Papel.hbm.xml" />
-    <EmbeddedResource Include="Mapeamento\RedeSocial.hbm.xml" />
-    <EmbeddedResource Include="Mapeamento\Usuario.hbm.xml" />
+    <EmbeddedResource Include="Configuracao\SpringEspinhaDorsal.xml" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <EmbeddedResource Include="ObjetosSpring\NHibernateConfig.xml" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>del /q "$(OutDir)*.*"

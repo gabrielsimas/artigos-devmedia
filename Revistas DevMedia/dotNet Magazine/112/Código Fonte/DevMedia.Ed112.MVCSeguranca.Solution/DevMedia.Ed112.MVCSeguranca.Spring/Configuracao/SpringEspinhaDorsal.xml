@@ -5,8 +5,8 @@
   </description>
 
   <!-- NHibernate -->
-  <import resource="assembly://DevMedia.Ed112.MVCSeguranca.NHibernate/DevMedia.Ed112.MVCSeguranca.NHibernate.ObjetosSpring/NHibernateConfig.xml"/>
-  
+    <import resource="assembly://DevMedia.Ed112.MVCSeguranca.NHibernate/DevMedia.Ed112.MVCSeguranca.NHibernate.ObjetosSpring/NHibernateConfig.xml"/>
+    
   <!-- Dao -->
   <import resource ="assembly://DevMedia.Ed112.MVCSeguranca.Dal/DevMedia.Ed112.MVCSeguranca.Dal.ObjetosSpring/Dao.xml"/>
   

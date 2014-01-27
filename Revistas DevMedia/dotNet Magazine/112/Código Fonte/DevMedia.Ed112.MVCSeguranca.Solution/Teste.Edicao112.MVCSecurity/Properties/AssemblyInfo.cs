@@ -5,11 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DevMedia.Ed112.MVCSeguranca.Dal")]
+[assembly: System.CLSCompliant(true)]
+[assembly: AssemblyTitle("Teste.Edicao112.MVCSecurity")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CS Services Consultoria em Sistemas")]
-[assembly: AssemblyProduct("DevMedia.Ed112.MVCSeguranca.Dal")]
+[assembly: AssemblyProduct("Teste.Edicao112.MVCSecurity")]
 [assembly: AssemblyCopyright("Copyright © CS Services Consultoria em Sistemas 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +21,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("5b67d8c7-16df-429f-91b4-045ce6f2b21c")]
+[assembly: Guid("fa459a30-7842-4e59-bd8f-447739564877")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +33,7 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
+//[assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyVersion("1.0.*")]
+//[assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

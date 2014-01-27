@@ -3,4 +3,21 @@
   <description>
     Arquivo para mapeamento dos objetos de Acesso a Dados
   </description>
+
+  <object id="ContatoDAO" type ="DevMedia.Ed112.MVCSeguranca.Dal.Implementacao.ContatoDAO, DevMedia.Ed112.MVCSeguranca.Dal">
+    <property name="SessionFactory" ref="NHibernateSessionFactory" />
+  </object>
+
+  <object id="TelefoneDAO" type ="DevMedia.Ed112.MVCSeguranca.Dal.Implementacao.TelefoneDAO, DevMedia.Ed112.MVCSeguranca.Dal">
+    <property name="SessionFactory" ref="NHibernateSessionFactory" />
+  </object>
+
+  <object id="EmailDAO" type ="DevMedia.Ed112.MVCSeguranca.Dal.Implementacao.EmailDAO, DevMedia.Ed112.MVCSeguranca.Dal">
+    <property name="SessionFactory" ref="NHibernateSessionFactory" />
+  </object>
+
+  <object id="RedeSocialDAO" type ="DevMedia.Ed112.MVCSeguranca.Dal.Implementacao.RedeSocialDAO, DevMedia.Ed112.MVCSeguranca.Dal">
+    <property name="SessionFactory" ref="NHibernateSessionFactory" />
+  </object>
+  
 </objects>

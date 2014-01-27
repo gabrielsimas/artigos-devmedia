@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+
+  <!-- NHibernate -->
+  <import resource="assembly://DevMedia.Ed112.MVCSeguranca.NHibernate/DevMedia.Ed112.MVCSeguranca.NHibernate.ObjetosSpring/NHibernateConfig.xml"/>
+
+  <!-- Dao -->
+  <import resource="assembly://DevMedia.Ed112.MVCSeguranca.Dal/DevMedia.Ed112.MVCSeguranca.Dal.ObjetosSpring/Dao.xml"/>
+
+  <!-- Negocio -->
+  <import resource="assembly://DevMedia.Ed112.MVCSeguranca.Negocio/DevMedia.Ed112.MVCSeguranca.Negocio.ObjetosSpring/Negocio.xml"/>
+
+  <!-- Seguranca -->
+  <import resource="assembly://DevMedia.Ed112.MVCSeguranca.Seguranca/DevMedia.Ed112.MVCSeguranca.Seguranca.ObjetosSpring/Seguranca.xml"/>
+
+  <!-- Web -->
+ <!-- <import resource="assembly://DevMedia.Ed112.MVCSeguranca.Web/DevMedia.Ed112.MVCSeguranca.Web/Web.xml"/> -->
+  
+</objects>

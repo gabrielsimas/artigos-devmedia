@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{24C37E9F-AB3E-4F79-9838-ECC18E4102D0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Teste.Edicao112.MVCSecurity</RootNamespace>
+    <AssemblyName>Teste.Edicao112.MVCSecurity</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NHibernate, Version=3.2.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\Repositorio\Ferramentas\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.core">
+      <HintPath>..\Repositorio\Ferramentas\nunit.core.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.core.interfaces">
+      <HintPath>..\Repositorio\Ferramentas\nunit.core.interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\Repositorio\Ferramentas\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>..\Repositorio\Ferramentas\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data">
+      <HintPath>..\Repositorio\Ferramentas\Spring.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data.NHibernate32">
+      <HintPath>..\Repositorio\Ferramentas\Spring.Data.NHibernate32.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Testing.NUnit">
+      <HintPath>..\Repositorio\Ferramentas\Spring.Testing.NUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ambiente\AmbienteTeste.cs" />
+    <Compile Include="Dao\ContatoDAOTeste.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DevMedia.Ed112.MVCSeguranca.Dal\DevMedia.Ed112.MVCSeguranca.Dal.csproj">
+      <Project>{D4C562D0-C63B-4B0D-84E8-6CF7A6B12191}</Project>
+      <Name>DevMedia.Ed112.MVCSeguranca.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevMedia.Ed112.MVCSeguranca.Dto\DevMedia.Ed112.MVCSeguranca.Dto.csproj">
+      <Project>{50873A8D-2CC3-464B-BC4A-66F92A108DD8}</Project>
+      <Name>DevMedia.Ed112.MVCSeguranca.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevMedia.Ed112.MVCSeguranca.Entidade\DevMedia.Ed112.MVCSeguranca.Entidade.csproj">
+      <Project>{AF26AAE5-DC9A-4B9A-9893-C63EB9103AAF}</Project>
+      <Name>DevMedia.Ed112.MVCSeguranca.Entidade</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevMedia.Ed112.MVCSeguranca.Negocio\DevMedia.Ed112.MVCSeguranca.Negocio.csproj">
+      <Project>{04A69419-0C7B-41B2-AF8E-A6BBD42FAF5B}</Project>
+      <Name>DevMedia.Ed112.MVCSeguranca.Negocio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevMedia.Ed112.MVCSeguranca.NHibernate\DevMedia.Ed112.MVCSeguranca.NHibernate.csproj">
+      <Project>{C7DF2E30-6A4F-487B-ACBB-BD41AC2315D1}</Project>
+      <Name>DevMedia.Ed112.MVCSeguranca.NHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevMedia.Ed112.MVCSeguranca.Seguranca\DevMedia.Ed112.MVCSeguranca.Seguranca.csproj">
+      <Project>{F141E2FF-C557-4901-8AB9-96F7F2732E7A}</Project>
+      <Name>DevMedia.Ed112.MVCSeguranca.Seguranca</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevMedia.Ed112.MVCSeguranca.Spring\DevMedia.Ed112.MVCSeguranca.SpringNet.csproj">
+      <Project>{4DC23B41-F9F6-45D3-A94A-1DB1F87D21C1}</Project>
+      <Name>DevMedia.Ed112.MVCSeguranca.SpringNet</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Negocio\" />
+    <Folder Include="Seguranca\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ConfiguracaoSpringNet\Spring.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>%25WINDIR%25\Microsoft.Net\Framework\v4.0.30319\ngen.exe install “$(TargetPath)”
+Copy "$(TargetPath)"   "$(SolutionDir)Repositorio\Projeto" /y</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

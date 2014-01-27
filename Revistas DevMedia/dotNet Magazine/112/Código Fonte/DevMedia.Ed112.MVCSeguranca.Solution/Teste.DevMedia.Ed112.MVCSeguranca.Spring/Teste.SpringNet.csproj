@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4DC23B41-F9F6-45D3-A94A-1DB1F87D21C1}</ProjectGuid>
+    <ProjectGuid>{31F63282-4794-49F5-AB30-EF63E251A8DE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DevMedia.Ed112.MVCSeguranca.Spring</RootNamespace>
-    <AssemblyName>DevMedia.Ed112.MVCSeguranca.Spring</AssemblyName>
+    <RootNamespace>Teste.SpringNet</RootNamespace>
+    <AssemblyName>Teste.SpringNet</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -37,6 +37,16 @@
     <Reference Include="NHibernate">
       <HintPath>..\Repositorio\Ferramentas\NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="nunit.core">
+      <HintPath>..\Repositorio\Ferramentas\nunit.core.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.5.7.10213, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Repositorio\Ferramentas\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>..\Repositorio\Ferramentas\Spring.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Spring.Data">
       <HintPath>..\Repositorio\Ferramentas\Spring.Data.dll</HintPath>
     </Reference>
@@ -55,19 +65,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ambiente\AmbienteTeste.cs" />
+    <Compile Include="DAOs\ContatoDAOTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Configuracao\SpringEspinhaDorsal.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Implementacao\" />
-    <Folder Include="Interface\" />
+    <ProjectReference Include="..\DevMedia.Ed112.MVCSeguranca.Dal\DevMedia.Ed112.MVCSeguranca.Dal.csproj">
+      <Project>{D4C562D0-C63B-4B0D-84E8-6CF7A6B12191}</Project>
+      <Name>DevMedia.Ed112.MVCSeguranca.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevMedia.Ed112.MVCSeguranca.Entidade\DevMedia.Ed112.MVCSeguranca.Entidade.csproj">
+      <Project>{AF26AAE5-DC9A-4B9A-9893-C63EB9103AAF}</Project>
+      <Name>DevMedia.Ed112.MVCSeguranca.Entidade</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevMedia.Ed112.MVCSeguranca.NHibernate\DevMedia.Ed112.MVCSeguranca.NHibernate.csproj">
+      <Project>{C7DF2E30-6A4F-487B-ACBB-BD41AC2315D1}</Project>
+      <Name>DevMedia.Ed112.MVCSeguranca.NHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevMedia.Ed112.MVCSeguranca.Spring\DevMedia.Ed112.MVCSeguranca.SpringNet.csproj">
+      <Project>{4DC23B41-F9F6-45D3-A94A-1DB1F87D21C1}</Project>
+      <Name>DevMedia.Ed112.MVCSeguranca.SpringNet</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>del /q "$(OutDir)*.*"
-%25WINDIR%25\Microsoft.Net\Framework\v4.0.30319\ngen.exe install “$(TargetPath)”
+    <PostBuildEvent>%25WINDIR%25\Microsoft.Net\Framework\v4.0.30319\ngen.exe install “$(TargetPath)”
 Copy "$(TargetPath)"   "$(SolutionDir)Repositorio\Projeto" /y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

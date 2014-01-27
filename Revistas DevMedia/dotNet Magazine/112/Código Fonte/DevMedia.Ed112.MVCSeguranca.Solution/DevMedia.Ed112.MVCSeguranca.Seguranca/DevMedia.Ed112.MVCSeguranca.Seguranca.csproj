@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="ObjetosSpring\Seguranca.xml" />
+    <EmbeddedResource Include="ObjetosSpring\Seguranca.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

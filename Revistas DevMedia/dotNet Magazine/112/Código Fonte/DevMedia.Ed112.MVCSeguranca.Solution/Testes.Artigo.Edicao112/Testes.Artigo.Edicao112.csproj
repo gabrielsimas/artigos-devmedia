@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C7DF2E30-6A4F-487B-ACBB-BD41AC2315D1}</ProjectGuid>
+    <ProjectGuid>{DAE3314B-0E97-4004-969B-5F4360C70458}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DevMedia.Ed112.MVCSeguranca.NHibernate</RootNamespace>
-    <AssemblyName>DevMedia.Ed112.MVCSeguranca.NHibernate</AssemblyName>
+    <RootNamespace>Testes.Artigo.Edicao112</RootNamespace>
+    <AssemblyName>Testes.Artigo.Edicao112</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,28 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapeamento\Contato.hbm.xml" />
-    <EmbeddedResource Include="Mapeamento\Email.hbm.xml" />
-    <EmbeddedResource Include="Mapeamento\Telefone.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapeamento\Papel.hbm.xml" />
-    <EmbeddedResource Include="Mapeamento\RedeSocial.hbm.xml" />
-    <EmbeddedResource Include="Mapeamento\Usuario.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <EmbeddedResource Include="ObjetosSpring\NHibernateConfig.xml" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>del /q "$(OutDir)*.*"
-%25WINDIR%25\Microsoft.Net\Framework\v4.0.30319\ngen.exe install “$(TargetPath)”
-Copy "$(TargetPath)"   "$(SolutionDir)Repositorio\Projeto" /y</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

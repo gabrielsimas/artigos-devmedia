@@ -31,6 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevMedia.Ed112.MVCSeguranca.SpringNet">
+      <HintPath>..\Repositorio\Projeto\DevMedia.Ed112.MVCSeguranca.SpringNet.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\Repositorio\Ferramentas\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data">
+      <HintPath>..\Repositorio\Ferramentas\Spring.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data.NHibernate32">
+      <HintPath>..\Repositorio\Ferramentas\Spring.Data.NHibernate32.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,15 +52,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementacao\ContatoDAO.cs" />
+    <Compile Include="Implementacao\EmailDAO.cs" />
+    <Compile Include="Implementacao\RedeSocialDAO.cs" />
+    <Compile Include="Implementacao\TelefoneDAO.cs" />
+    <Compile Include="Interface\IContatoDAO.cs" />
+    <Compile Include="Interface\IEmailDAO.cs" />
+    <Compile Include="Interface\IRedeSocialDAO.cs" />
+    <Compile Include="Interface\ITelefoneDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Implementacao\" />
-    <Folder Include="Interface\" />
-    <Folder Include="Mapeamento\" />
+    <EmbeddedResource Include="ObjetosSpring\Dao.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ObjetosSpring\Dao.xml" />
+    <ProjectReference Include="..\DevMedia.Ed112.MVCSeguranca.Entidade\DevMedia.Ed112.MVCSeguranca.Entidade.csproj">
+      <Project>{AF26AAE5-DC9A-4B9A-9893-C63EB9103AAF}</Project>
+      <Name>DevMedia.Ed112.MVCSeguranca.Entidade</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

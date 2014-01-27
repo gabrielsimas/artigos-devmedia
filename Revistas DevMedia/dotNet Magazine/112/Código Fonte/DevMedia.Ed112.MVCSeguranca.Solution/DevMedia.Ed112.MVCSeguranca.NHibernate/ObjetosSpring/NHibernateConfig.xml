@@ -7,10 +7,11 @@
     Definição de Objetos para acesso com o NHibernate junto com o Spring.NET
   </description>
 
+  
   <object type="Spring.Objects.Factory.Config.PropertyPlaceholderConfigurer, Spring.Core">
     <property name="ConfigSections" value="databaseSettings"/>
   </object>
-
+  
   <!-- Configuração de Bancos de Dados -->
   <db:provider id="DbProvider"
                    provider="SqlServer-2.0"
@@ -28,6 +29,7 @@
     <property name="HibernateProperties">
       <dictionary>
         <entry key="hibernate.connection.provider" value="NHibernate.Connection.DriverConnectionProvider"/>
+        <entry key="max_fetch_depth" value="2" />
         <entry key="dialect" value="NHibernate.Dialect.MsSql2008Dialect"/>
         <entry key="connection.driver_class" value="NHibernate.Driver.SqlClientDriver"/>
         <entry key="use_proxy_validator" value="false" />
@@ -39,7 +41,15 @@
     <property name="ExposeTransactionAwareSessionFactory" value="true" />
   </object>
 
+  <!-- Caso haja necessidade de se usar a forma nativa do NHibernate -->
+  <object id="HibernateTemplate" type="Spring.Data.NHibernate.Generic.HibernateTemplate">
+    <property name="SessionFactory" ref="NHibernateSessionFactory" />
+    <property name="TemplateFlushMode" value="Commit" />
+    <property name="CacheQueries" value="true" />
+  </object>
+
   <!-- Transaction Management Strategy - local database transactions -->
+  <!-- Estratégia para Gerenciamento de Transações-->
   <!-- Padrão de Projeto Strategy para Transaction Management-->
   <object id="transactionManager"
         type="Spring.Data.NHibernate.HibernateTransactionManager, Spring.Data.NHibernate32">
@@ -51,5 +61,33 @@
   <!-- Exception translation object post processor -->
   <!-- Tradução das exceções do Sistema para serem interceptados pelo Spring.NET-->
   <object type="Spring.Dao.Attributes.PersistenceExceptionTranslationPostProcessor, Spring.Data"/>
+
+  <!-- Uso de AOP e interceptadores
+  <object id="transactionAdvisor" type="Spring.Transaction.Interceptor.TransactionAttributeSourceAdvisor, Spring.Data">
+    <property name="TransactionInterceptor" ref="transactionInterceptor"/>
+  </object>
+  <object id="transactionInterceptor" type="Spring.Transaction.Interceptor.TransactionInterceptor, Spring.Data">
+    <property name="TransactionManager" ref="transactionManager"/>
+    <property name="TransactionAttributeSource" ref="attributeTransactionAttributeSource"/>
+  </object>
+  -->
+  <!--
+  <object id="attributeTransactionAttributeSource" type="Spring.Transaction.Interceptor.AttributesTransactionAttributeSource, Spring.Data"></object>
+
+  
+  <object id="proxyCreator" type="Spring.Aop.Framework.AutoProxy.ObjectNameAutoProxyCreator, Spring.Aop">
+    <property name="ObjectNames">
+      <list>
+        <value>*DAO</value>
+        <value>*Negocio</value>
+      </list>
+    </property>
+    <property name="InterceptorNames">
+      <list>
+        <value>transactionInterceptor</value>
+      </list>
+    </property>
+  </object>
+  -->
   <tx:attribute-driven />
 </objects>
