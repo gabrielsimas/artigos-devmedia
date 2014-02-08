@@ -30,6 +30,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>DevMedia.Ed112.MVCSeguranca.Negocio.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -42,15 +48,14 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="ObjetosSpring\Negocio.xml" />
+    <None Include="DevMedia.Ed112.MVCSeguranca.Negocio.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>del /q "$(OutDir)*.*"
-%25WINDIR%25\Microsoft.Net\Framework\v4.0.30319\ngen.exe install “$(TargetPath)”
-Copy "$(TargetPath)"   "$(SolutionDir)Repositorio\Projeto" /y</PostBuildEvent>
+    <PostBuildEvent>%25WINDIR%25\Microsoft.Net\Framework\v4.0.30319\ngen.exe install “$(TargetPath)”
+Copy "$(TargetPath)"   "$(SolutionDir)Repositorio\Projeto" /y
+"%25ProgramFiles%25\Microsoft SDKs\Windows\v7.0A\bin\NETFX 4.0 Tools\gacutil.exe"  /i "$(SolutionDir)Repositorio\Projeto\$(TargetFileName)"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

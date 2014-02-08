@@ -30,7 +30,20 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>DevMedia.Ed112.MVCSeguranca.Seguranca.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SHA3">
+      <HintPath>..\packages\SHA3.0.9.2\lib\net40\SHA3.dll</HintPath>
+    </Reference>
+    <Reference Include="SHA3Managed, Version=0.9.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SHA3.0.9.2\lib\net40\SHA3Managed.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,17 +53,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Criptografia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="ObjetosSpring\Seguranca.xml" />
+    <None Include="DevMedia.Ed112.MVCSeguranca.Seguranca.snk" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>del /q "$(OutDir)*.*"
-%25WINDIR%25\Microsoft.Net\Framework\v4.0.30319\ngen.exe install “$(TargetPath)”
-Copy "$(TargetPath)"   "$(SolutionDir)Repositorio\Projeto" /y</PostBuildEvent>
+    <PostBuildEvent>%25WINDIR%25\Microsoft.Net\Framework\v4.0.30319\ngen.exe install “$(TargetPath)”
+Copy "$(TargetPath)"   "$(SolutionDir)Repositorio\Projeto" /y
+</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

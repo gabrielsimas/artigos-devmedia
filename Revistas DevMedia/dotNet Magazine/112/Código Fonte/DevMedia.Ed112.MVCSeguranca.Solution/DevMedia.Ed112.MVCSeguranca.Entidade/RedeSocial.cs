@@ -11,6 +11,7 @@ namespace DevMedia.Ed112.MVCSeguranca.Entidade
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.Reflection;
 
     /// <summary>
     /// Classe RedeSocial, Representa a Entidade Rede Social dentro do modelo de dados do Sistema
@@ -96,10 +97,12 @@ namespace DevMedia.Ed112.MVCSeguranca.Entidade
         }
         #endregion
 
-        #region Sobrescrita Classe Rica
+        #region Sobrescritas Classe Rica
         public override string ToString()
         {
-            return this.id + "," + this.urlPerfil + "," + this.nomeRedeSocial;
+            FieldInfo[] atributos;
+            atributos = GetType().GetFields(BindingFlags.NonPublic);
+            return atributos.ToString();
         }
 
         public override int GetHashCode()

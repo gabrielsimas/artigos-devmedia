@@ -90,4 +90,11 @@
   </object>
   -->
   <tx:attribute-driven />
+
+
+  hash("gabriel")      = 647431b5ca55b04fdf3c2fce31ef1915
+  hash("leitor")       = 32724e2deb219fcb7518b10aeb483a15
+  hash("devmedia") 	   = 72bbcbc4dfdf34547403cdfc679743a0
+  hash(".netmagazine") = 075a940873c2e10b762498bdfefe2f5f
+
 </objects>

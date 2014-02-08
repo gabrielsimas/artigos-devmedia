@@ -11,13 +11,22 @@ namespace DevMedia.Ed112.MVCSeguranca.Dal.Implementacao
     using System.Linq;
     using System.Text;
 
-    using DevMedia.Ed112.MVCSeguranca.SpringNet.Implementacao;
+    using DevMedia.Artigo04.NHibernate.Generico.Implementacao;
     using DevMedia.Ed112.MVCSeguranca.Entidade;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Classe de Persistência para a Entidade Contato
     /// </summary>
-    public class ContatoDAO : AbstractGenericDao<Contato>
+    public class ContatoDAO : GenericDao<Contato>
     {
+        public ContatoDAO()
+            : base(@"DevMedia.Ed112.MVCSeguranca.NHibernate", @"Data Source=ALLSPARK\SQLEXPRESS;Initial Catalog=MVCSeguranca112;Integrated Security=True")
+        {
+            
+        }
+
+        #region Métodos do Domínio da Classe
+        
+        #endregion
     }
 }

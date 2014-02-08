@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="DevMediaEd112MVCSegurancaEFEntidadesStoreContainer">
+          <EntitySet Name="Contato" EntityType="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Store.Contato" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Email" EntityType="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Store.Email" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RedeSocial" EntityType="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Store.RedeSocial" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Responsabilidade" EntityType="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Store.Responsabilidade" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Telefone" EntityType="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Store.Telefone" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Usuario" EntityType="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Store.Usuario" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Email_Contato_id" Association="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Store.FK_Email_Contato_id">
+            <End Role="Contato" EntitySet="Contato" />
+            <End Role="Email" EntitySet="Email" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RedeSocial_Contato_id" Association="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Store.FK_RedeSocial_Contato_id">
+            <End Role="Contato" EntitySet="Contato" />
+            <End Role="RedeSocial" EntitySet="RedeSocial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResponsaUsuario" Association="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Store.FK_ResponsaUsuario">
+            <End Role="Responsabilidade" EntitySet="Responsabilidade" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Telefone_Contato" Association="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Store.FK_Telefone_Contato">
+            <End Role="Contato" EntitySet="Contato" />
+            <End Role="Telefone" EntitySet="Telefone" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Contato">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nomeCompleto" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="apelido" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idContato" Type="int" />
+          <Property Name="endereco" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="RedeSocial">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idContato" Type="int" />
+          <Property Name="urlPerfil" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="nomeRedeSocial" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Responsabilidade">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="varchar" MaxLength="100" />
+          <Property Name="estado" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Telefone">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idContato" Type="int" />
+          <Property Name="ddd" Type="int" Nullable="false" />
+          <Property Name="ddi" Type="int" Nullable="false" />
+          <Property Name="numero" Type="int" Nullable="false" />
+          <Property Name="tipoTelefne" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idResponsabilidade" Type="int" />
+          <Property Name="nome" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="email" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="conta" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="senha" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="salt" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="estado" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <Association Name="FK_Email_Contato_id">
+          <End Role="Contato" Type="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Store.Contato" Multiplicity="0..1" />
+          <End Role="Email" Type="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Store.Email" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contato">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Email">
+              <PropertyRef Name="idContato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RedeSocial_Contato_id">
+          <End Role="Contato" Type="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Store.Contato" Multiplicity="0..1" />
+          <End Role="RedeSocial" Type="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Store.RedeSocial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contato">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RedeSocial">
+              <PropertyRef Name="idContato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResponsaUsuario">
+          <End Role="Responsabilidade" Type="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Store.Responsabilidade" Multiplicity="0..1" />
+          <End Role="Usuario" Type="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Store.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Responsabilidade">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idResponsabilidade" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Telefone_Contato">
+          <End Role="Contato" Type="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Store.Contato" Multiplicity="0..1" />
+          <End Role="Telefone" Type="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Store.Telefone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contato">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Telefone">
+              <PropertyRef Name="idContato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DevMedia.Ed112.MVCSeguranca.EF.Entidades" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Conexao" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contato" EntityType="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Contato" />
+          <EntitySet Name="Email" EntityType="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Email" />
+          <EntitySet Name="RedeSocial" EntityType="DevMedia.Ed112.MVCSeguranca.EF.Entidades.RedeSocial" />
+          <EntitySet Name="Responsabilidade" EntityType="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Responsabilidade" />
+          <EntitySet Name="Telefone" EntityType="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Telefone" />
+          <EntitySet Name="Usuario" EntityType="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Usuario" />
+          <AssociationSet Name="FK_Email_Contato_id" Association="DevMedia.Ed112.MVCSeguranca.EF.Entidades.FK_Email_Contato_id">
+            <End Role="Contato" EntitySet="Contato" />
+            <End Role="Email" EntitySet="Email" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RedeSocial_Contato_id" Association="DevMedia.Ed112.MVCSeguranca.EF.Entidades.FK_RedeSocial_Contato_id">
+            <End Role="Contato" EntitySet="Contato" />
+            <End Role="RedeSocial" EntitySet="RedeSocial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Telefone_Contato" Association="DevMedia.Ed112.MVCSeguranca.EF.Entidades.FK_Telefone_Contato">
+            <End Role="Contato" EntitySet="Contato" />
+            <End Role="Telefone" EntitySet="Telefone" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResponsaUsuario" Association="DevMedia.Ed112.MVCSeguranca.EF.Entidades.FK_ResponsaUsuario">
+            <End Role="Responsabilidade" EntitySet="Responsabilidade" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Contato">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomeCompleto" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="apelido" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Email" Relationship="DevMedia.Ed112.MVCSeguranca.EF.Entidades.FK_Email_Contato_id" FromRole="Contato" ToRole="Email" />
+          <NavigationProperty Name="RedeSocial" Relationship="DevMedia.Ed112.MVCSeguranca.EF.Entidades.FK_RedeSocial_Contato_id" FromRole="Contato" ToRole="RedeSocial" />
+          <NavigationProperty Name="Telefone" Relationship="DevMedia.Ed112.MVCSeguranca.EF.Entidades.FK_Telefone_Contato" FromRole="Contato" ToRole="Telefone" />
+        </EntityType>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idContato" Type="Int32" />
+          <Property Name="endereco" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Contato" Relationship="DevMedia.Ed112.MVCSeguranca.EF.Entidades.FK_Email_Contato_id" FromRole="Email" ToRole="Contato" />
+        </EntityType>
+        <EntityType Name="RedeSocial">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idContato" Type="Int32" />
+          <Property Name="urlPerfil" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="nomeRedeSocial" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Contato" Relationship="DevMedia.Ed112.MVCSeguranca.EF.Entidades.FK_RedeSocial_Contato_id" FromRole="RedeSocial" ToRole="Contato" />
+        </EntityType>
+        <EntityType Name="Responsabilidade">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="estado" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Usuario" Relationship="DevMedia.Ed112.MVCSeguranca.EF.Entidades.FK_ResponsaUsuario" FromRole="Responsabilidade" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Telefone">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idContato" Type="Int32" />
+          <Property Name="ddd" Type="Int32" Nullable="false" />
+          <Property Name="ddi" Type="Int32" Nullable="false" />
+          <Property Name="numero" Type="Int32" Nullable="false" />
+          <Property Name="tipoTelefne" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Contato" Relationship="DevMedia.Ed112.MVCSeguranca.EF.Entidades.FK_Telefone_Contato" FromRole="Telefone" ToRole="Contato" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idResponsabilidade" Type="Int32" />
+          <Property Name="nome" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="conta" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="senha" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="salt" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="estado" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Responsabilidade" Relationship="DevMedia.Ed112.MVCSeguranca.EF.Entidades.FK_ResponsaUsuario" FromRole="Usuario" ToRole="Responsabilidade" />
+        </EntityType>
+        <Association Name="FK_Email_Contato_id">
+          <End Role="Contato" Type="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Contato" Multiplicity="0..1" />
+          <End Role="Email" Type="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Email" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contato">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Email">
+              <PropertyRef Name="idContato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RedeSocial_Contato_id">
+          <End Role="Contato" Type="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Contato" Multiplicity="0..1" />
+          <End Role="RedeSocial" Type="DevMedia.Ed112.MVCSeguranca.EF.Entidades.RedeSocial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contato">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RedeSocial">
+              <PropertyRef Name="idContato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Telefone_Contato">
+          <End Role="Contato" Type="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Contato" Multiplicity="0..1" />
+          <End Role="Telefone" Type="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Telefone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contato">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Telefone">
+              <PropertyRef Name="idContato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResponsaUsuario">
+          <End Role="Responsabilidade" Type="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Responsabilidade" Multiplicity="0..1" />
+          <End Role="Usuario" Type="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Responsabilidade">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idResponsabilidade" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DevMediaEd112MVCSegurancaEFEntidadesStoreContainer" CdmEntityContainer="Conexao">
+          <EntitySetMapping Name="Contato"><EntityTypeMapping TypeName="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Contato"><MappingFragment StoreEntitySet="Contato">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="nomeCompleto" ColumnName="nomeCompleto" />
+            <ScalarProperty Name="apelido" ColumnName="apelido" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Email"><EntityTypeMapping TypeName="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Email"><MappingFragment StoreEntitySet="Email">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="idContato" ColumnName="idContato" />
+            <ScalarProperty Name="endereco" ColumnName="endereco" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="RedeSocial"><EntityTypeMapping TypeName="DevMedia.Ed112.MVCSeguranca.EF.Entidades.RedeSocial"><MappingFragment StoreEntitySet="RedeSocial">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="idContato" ColumnName="idContato" />
+            <ScalarProperty Name="urlPerfil" ColumnName="urlPerfil" />
+            <ScalarProperty Name="nomeRedeSocial" ColumnName="nomeRedeSocial" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Responsabilidade"><EntityTypeMapping TypeName="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Responsabilidade"><MappingFragment StoreEntitySet="Responsabilidade">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="nome" ColumnName="nome" />
+            <ScalarProperty Name="estado" ColumnName="estado" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Telefone"><EntityTypeMapping TypeName="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Telefone"><MappingFragment StoreEntitySet="Telefone">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="idContato" ColumnName="idContato" />
+            <ScalarProperty Name="ddd" ColumnName="ddd" />
+            <ScalarProperty Name="ddi" ColumnName="ddi" />
+            <ScalarProperty Name="numero" ColumnName="numero" />
+            <ScalarProperty Name="tipoTelefne" ColumnName="tipoTelefne" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Usuario"><EntityTypeMapping TypeName="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Usuario"><MappingFragment StoreEntitySet="Usuario">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="idResponsabilidade" ColumnName="idResponsabilidade" />
+            <ScalarProperty Name="nome" ColumnName="nome" />
+            <ScalarProperty Name="email" ColumnName="email" />
+            <ScalarProperty Name="conta" ColumnName="conta" />
+            <ScalarProperty Name="senha" ColumnName="senha" />
+            <ScalarProperty Name="salt" ColumnName="salt" />
+            <ScalarProperty Name="estado" ColumnName="estado" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Entidades">
+        <EntityTypeShape EntityType="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Contato" Width="1.5" PointX="0.75" PointY="3.625" Height="1.9210009765624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Email" Width="1.5" PointX="3" PointY="1.125" Height="1.5923063151041674" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevMedia.Ed112.MVCSeguranca.EF.Entidades.RedeSocial" Width="1.5" PointX="3" PointY="3.5" Height="1.7566536458333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Responsabilidade" Width="1.5" PointX="5.75" PointY="1.375" Height="1.5923063151041657" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Telefone" Width="1.5" PointX="3" PointY="6" Height="2.0853483072916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevMedia.Ed112.MVCSeguranca.EF.Entidades.Usuario" Width="1.5" PointX="8" PointY="1" Height="2.4140429687499996" IsExpanded="true" />
+        <AssociationConnector Association="DevMedia.Ed112.MVCSeguranca.EF.Entidades.FK_Email_Contato_id" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="3.625" />
+          <ConnectorPoint PointX="1.5" PointY="1.9211531575520837" />
+          <ConnectorPoint PointX="3" PointY="1.9211531575520837" />
+        </AssociationConnector>
+        <AssociationConnector Association="DevMedia.Ed112.MVCSeguranca.EF.Entidades.FK_RedeSocial_Contato_id" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.4408268229166667" />
+          <ConnectorPoint PointX="3" PointY="4.4408268229166667" />
+        </AssociationConnector>
+        <AssociationConnector Association="DevMedia.Ed112.MVCSeguranca.EF.Entidades.FK_Telefone_Contato" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="5.5460009765625" />
+          <ConnectorPoint PointX="1.5" PointY="7.0426741536458337" />
+          <ConnectorPoint PointX="3" PointY="7.0426741536458337" />
+        </AssociationConnector>
+        <AssociationConnector Association="DevMedia.Ed112.MVCSeguranca.EF.Entidades.FK_ResponsaUsuario" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.25" PointY="2.1711531575520828" />
+          <ConnectorPoint PointX="8" PointY="2.1711531575520828" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

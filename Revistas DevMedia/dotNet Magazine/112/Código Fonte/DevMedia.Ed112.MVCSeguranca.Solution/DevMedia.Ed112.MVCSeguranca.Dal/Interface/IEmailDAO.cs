@@ -11,7 +11,7 @@ namespace DevMedia.Ed112.MVCSeguranca.Dal.Interface
     using System.Linq;
     using System.Text;
 
-    using DevMedia.Ed112.MVCSeguranca.SpringNet.Interface;
+    using DevMedia.Artigo04.NHibernate.Generico.Interfaces;
     using DevMedia.Ed112.MVCSeguranca.Entidade;
 
     /// <summary>

@@ -50,7 +50,7 @@ namespace DevMedia.Ed112.MVCSeguranca.Entidade
         #endregion
 
         #region Propriedades
-        public Nullable<long> Id
+        public virtual Nullable<long> Id
         {
             get
             {
@@ -63,7 +63,7 @@ namespace DevMedia.Ed112.MVCSeguranca.Entidade
             }
         }
 
-        public int DDD
+        public virtual int DDD
         {
             get
             {
@@ -76,7 +76,7 @@ namespace DevMedia.Ed112.MVCSeguranca.Entidade
             }
         }
 
-        public int DDI
+        public virtual int DDI
         {
             get
             {
@@ -89,7 +89,7 @@ namespace DevMedia.Ed112.MVCSeguranca.Entidade
             }
         }
 
-        public int Numero
+        public virtual int Numero
         {
             get
             {
@@ -102,7 +102,7 @@ namespace DevMedia.Ed112.MVCSeguranca.Entidade
             }
         }
 
-        public String TipoTelefone
+        public virtual String TipoTelefone
         {
             get
             {
@@ -115,7 +115,7 @@ namespace DevMedia.Ed112.MVCSeguranca.Entidade
             }
         }
 
-        public Contato Contato
+        public virtual Contato Contato
         {
             get
             {

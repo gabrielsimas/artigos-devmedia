@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{98459C79-A50D-4406-BE48-8C4970A19EE9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Teste.DevMedia.MVCSeguranca.Nunit</RootNamespace>
+    <AssemblyName>Teste.DevMedia.MVCSeguranca.Nunit</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\Repositorio\Ferramentas\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\Repositorio\Ferramentas\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\Repositorio\Ferramentas\NUnit\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ambiente\TestaEF.cs" />
+    <Compile Include="DAO\ContatoDAOTeste.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DevMedia.Artigo04.NHibernate.Generico\DevMedia.Artigo04.NHibernate.Generico.csproj">
+      <Project>{D768D965-C144-4DD3-8550-26963B348267}</Project>
+      <Name>DevMedia.Artigo04.NHibernate.Generico</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevMedia.Ed112.MVCSeguranca.Dal\DevMedia.Ed112.MVCSeguranca.Dal.csproj">
+      <Project>{D4C562D0-C63B-4B0D-84E8-6CF7A6B12191}</Project>
+      <Name>DevMedia.Ed112.MVCSeguranca.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevMedia.Ed112.MVCSeguranca.EF.Entidade\DevMedia.Ed112.MVCSeguranca.EF.Entidade.csproj">
+      <Project>{938377C7-9943-40D6-B157-8E4C16807D7A}</Project>
+      <Name>DevMedia.Ed112.MVCSeguranca.EF.Entidade</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevMedia.Ed112.MVCSeguranca.Entidade\DevMedia.Ed112.MVCSeguranca.Entidade.csproj">
+      <Project>{AF26AAE5-DC9A-4B9A-9893-C63EB9103AAF}</Project>
+      <Name>DevMedia.Ed112.MVCSeguranca.Entidade</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevMedia.Ed112.MVCSeguranca.NHibernate\DevMedia.Ed112.MVCSeguranca.NHibernate.csproj">
+      <Project>{C7DF2E30-6A4F-487B-ACBB-BD41AC2315D1}</Project>
+      <Name>DevMedia.Ed112.MVCSeguranca.NHibernate</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>%25WINDIR%25\Microsoft.Net\Framework\v4.0.30319\ngen.exe install “$(TargetPath)”
+Copy "$(TargetPath)"   "$(SolutionDir)Repositorio\Projeto" /y</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

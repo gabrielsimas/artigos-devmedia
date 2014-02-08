@@ -11,13 +11,19 @@ namespace DevMedia.Ed112.MVCSeguranca.Dal.Implementacao
     using System.Linq;
     using System.Text;
 
-    using DevMedia.Ed112.MVCSeguranca.SpringNet.Implementacao;
+    using DevMedia.Artigo04.NHibernate.Generico.Implementacao;
     using DevMedia.Ed112.MVCSeguranca.Entidade;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class EmailDAO: AbstractGenericDao<Email>
+    public class EmailDAO: GenericDao<Email>
     {
+        public EmailDAO()
+            : base(@"DevMedia.Ed112.MVCSeguranca.NHibernate", @"Data Source=ALLSPARK\SQLEXPRESS;Initial Catalog=MVCSeguranca112;Integrated Security=True")
+        {
+
+        }
+
     }
 }
