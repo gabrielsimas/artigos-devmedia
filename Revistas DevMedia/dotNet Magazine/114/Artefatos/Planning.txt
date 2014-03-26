@@ -1,0 +1,500 @@
+SItes utilizados para compreensão de alguns tópicos:
+
+-http://www.dylanbeattie.net/docs/openssl_iis_ssl_howto.html
+http://pic.dhe.ibm.com/infocenter/rsthelp/v8r2m0/index.jsp?topic=%2Fcom.ibm.rational.test.lt.doc%2Ftopics%2Ftcreatecertopenssl.html
+http://tech.avivo.si/2010/11/how-to-create-a-ssl-certificate-and-bind-it-to-iis-7-0/
+http://logcorner.wordpress.com/2013/08/29/how-to-configure-custom-membership-and-role-provider-using-asp-net-mvc4/
+http://logcorner.wordpress.com/2013/08/23/mastering-custum-asp-net-membership-provider-using-asp-net-mvc/
+http://logcorner.wordpress.com/2013/09/09/asp-net-custom-membership-password-encoding-and-decoding-based-on-salt-key-sha-1-cryptography/
+
+
+
+- Planning do artigo Projetando um Site Seguro padrão OWASP e NIST Parte 1 de 2: Projeto, Controle de Cronograma e Implementação.
+
+-- Criando um domínio fake para simular o mundo real
+  
+  Vamos inicialmente criar um domínio fake para que possa responder à nossa requisição. O nosso site se chamará http://www.projetoowasp01.com.br :
+  
+  Vá em c:\windows\system32\etc\drivers\Hosts. Dentro deste arquivo cole o que está na Listagem 01
+  
+  Listagem 01 - Configuração de Host Fake no IIS.
+  192.168.0.3		www.projetoowasp01.com.br	#Servidor IIS Fake
+  
+  
+  No caso de nossa máquina de testes,que é uma máquina virtual, colocamos o IP da máquina servidora, que é a maquina hospedeira desta máquina virtual,porém, no caso do leitor não ter a mesma estrutura,pode-se substituir o IP 192.168.0.3 para 127.0.0.1 sem quaisquer ônus.
+  Salve e feche o arquivo.
+  Vamos testar se nosso domínio fake responde, vamos abrir o prompt do DOS e digitar o mesmo descrito na Listagem 02.
+  
+  Listagem 02 - Testando o domínio Fake
+  cd \
+  ping www.projetoowasp01.com.br
+  
+  Se tudo der certo com o que foi digitado na Listagem 02, então teremos a saída mostrada na Listagem 03.
+  
+	Listagem 03 - Resposta do ping para o domínio fake
+	Disparando contra www.projetoowasp01.com.br [192.168.0.3] com 32 bytes de dados:
+
+	Resposta de 192.168.0.3: bytes=32 tempo=2ms TTL=128
+	Resposta de 192.168.0.3: bytes=32 tempo=1ms TTL=128
+	Resposta de 192.168.0.3: bytes=32 tempo=2ms TTL=128
+	Resposta de 192.168.0.3: bytes=32 tempo=1ms TTL=128
+
+	Estatísticas do Ping para 192.168.0.3:
+		Pacotes: Enviados = 4, Recebidos = 4, Perdidos = 0 (0% de perda),
+	Aproximar um número redondo de vezes em milissegundos:
+		Mínimo = 1ms, Máximo = 2ms, Média = 1ms
+	
+  O tempo em ms pode variar dependendo do processamento da máquina, mas o mais importante na listagem 3 a ser destacado é justamente que o IP e o nome do domínio batem com o que colocamos no arquivo hosts e também que as estatísticas, temos 0% de perda, ou seja,100% de resposta para o nosso domínio fake.
+  De posse de nosso domínio já funcional, vamos gerar o certificado
+  
+  -- Criando um certificado de para uso em nosso IIS de teste.
+  De acordo com a OWASP, um site realmente seguro, começa com o mesmo sendo hospedado dentro do HTTPS, para que tal site seja reconhecido como tal, faz-se necessária a compra de um certificado reconhecido internacionalmente, no qual aparecerá o icone de um cadeado no navegador ao lado do endereço do sítio,o que faz com que este cadeado apareçaé justamente o certificado ser gerado com o padrão SSL v2. 
+  Gerar um certificado por uma Autoridade Certificadora não é uma tarefa fácil e as taxas para que sua Autoridade Certificadora é tão alta e o esforço administrativo é tão grande que sai muito mais barato se comprar um.
+  Recomendamos fortemente que o leitor compre um certificado de uma Autoridade Certificadora Oficial, podemos informar algumas na seção links no final deste artigo. Deixamos bem claro que o que faremos nesta primeira seção é apenas para questões de testes posto que não é necessária a compra de um certificado para que se use em nosso teste.
+  Um outro lembrete é que, para que funcione corretamente o certificado, faz-se muito importante colocar o FQDN (Full Qualified Domain Name) do servidor onde o ISS está hospedado. Se o leitor quiser, pode alterar o arquivo hosts colocando um domínio "fake" ao invés do localhost habitual. Porém, caso o leitor não queira fazer isto,basta colocar o localhost dentro do campo FQDN "common Name" que o certificado solicita.
+  Mas, como o nosso interesse é apenas mostrar ao leitor como que se processam os métodos de segurança, vamos ensinar ao leitor passo a passo como se gerar uma Autoridade Certificadora, gerar um certificado auto assinado, solicitar o certificado pelo IIS, receber a solicitação e registrar o certificado como confiável. Não vamos nos aprofundar nestes termos posto que fugirá totalmente do escopo de nosso artigo, mas o leitor irá compreender como funciona todo o esquema. Este funcionamento é padrão para a geração de certificados. O leitor se quiser pode ter uma Autoridade Certificadora para um tipo de aplicação diferente e vários algoritmos necessários para o seu sucesso.
+  
+  -- Instalando o OpenSSL
+  Baixe o OpenSSL do site do fabricante do mesmo, vide na seção links ao final do artigo, a versão estável existente durante a criação deste artigo é a seção 1.0.1f.
+  Decompacte o OpenSSL no raiz de seu Sistema Operacional e crie alguns diretórios dentro do diretório do OpenSSL: chaves, CSRs e certificados.
+  Criada a estrutura do nossa Autoridade Certificadora, vamos aos passos.
+  
+  - Criando uma Autoridade Certificadora (CA)
+Vamos criar inicialmente uma chave privada de 2048 bits, normalmente são criadas chaves de 1024, mas podemos criar de vários tamanhos como multiplos de 64 bits para que possamos usar em nosso CA. Antes de mais nada, vamos adicionar o caminho dos executáveis do OpenSSL ao Path do Windows com o comando da Listagem 4.
+
+Listagem 04 - Registrando o caminho do OpenSSL no path do Sistema Operacional Windows
+SET PATH=%PATH%;C:\OpenSSL-Win32\bin
+
+Em nosso caso, a Listagem 04 ficou deste jeito, mas, se o nome do diretório do OpenSSL for outro, deve ser colocado, o intuito deste comando é poder executar o arquivo openssl.exe de qualquer lugar dentro do console, sem a necessidade de navegarmos até o diretório em questão.
+
+vamos navegar até o diretório do openSSL e executar o comando mostrado na Listagem 05.
+
+Listagem 05 - Navegando via console e criando o Certificado
+01 cd \
+02 cd OpenSSL ou cd OpenSSL-Win32 ou outro diretório escolhido
+03 openssl genrsa -des3 -out chaves/CA_IIS.key 2048
+
+Na linha 03 da listagem 05 é que geramos o comando para a nossa chave privada de onde se origina a Autoridade Certificadora, demos o nome a ela de CA_IIS.key. Note que os diretórios que criamos facilitam e muito a organização de nosso CA. Este comando terá uma saída muito parecida com a Listagem 06.
+
+Listagem 06 - Geração do CA com saída do Sistema
+01 Loading 'screen' into random state - done
+02 Generating RSA private key, 2048 bit long modulus
+03 .....+++
+04 ..............+++
+05 e is 65537 (0x10001)
+06 Enter pass phrase for chaves/CA_IIS.key: 
+07 Verifying - Enter pass phrase for chaves/CA_IIS.key:
+
+É muito importante que tenhamos uma senha para acesso ao CA, caso contrário viraráuma grande fonte de brechas de segurança e teremos acessos dados a todos caso não tenhamos uma forma de esconder a chave privada, lembre-se de colocar uma senha fácil de lembrar, mas dificil de crackear porque de nada adianta uma senha se esta é fraca.
+
+Na Listagem 07, temos o conteúdo gerado de nossa chave privada.
+C:\OpenSSL-Win32\chaves>type CA_IIS.key
+-----BEGIN RSA PRIVATE KEY-----
+Proc-Type: 4,ENCRYPTED
+DEK-Info: DES-EDE3-CBC,8B1E6B6E96667256
+
+H+zXJPRvlwK61Y/mQvC8hFkngT7JFO72twGIIJx2MbHZoGhOkkljNqygQaJpSYJN
+4RVJ3ozrsDvTDxwEgsmc7l+FPvleryYkeMKr9z/CST2pQXk3FiLCrxbddZrDb+tF
+2dazzpJhJzTBkr60ZxeFOSMMmSjWl8vbOz5VY0BDoGZzii1jc7Y9a+6WUM+3F5By
+JmGmrgX3+a0s3voaTKFBrTDiRCsa/22YxTZcOUlArNlUI+NEwG1yIGqCeKM4S2iU
+t/PlJ1j6AxL2a45RIrKo4sAUtB4I0f6FpjQpn1+y6AUXMJpmfda/xYTKnYSZpseb
+9hOs1aPfq7OBmor1s5l22szIfi41x1e1OBFjULmgwGN5kmLSgulA2eunPoFI/6vG
+gQ1NygVwnucfHGqZ7FmDBIu+ICbwNX8upYtzYa9HjFej2WwHUNuwy8YMUYy7Dsht
+5RqzacEBQ8BRpu5be7mMMRZfZnuec+GIzs1aTeSlHc5+4lYTNzyCU6OFexCtqwzA
+q2h4z2enYsyW+LjMZfZz8hc2QZG4JBf7F0Dsj5AqVdNOZf1RX9AIA/xJf7dudpRi
+Ra+0b9NuhJgH1MMMsQ+gy3NS821Sw0BNIxEktwrJl3tLK3UrJl7KfNZw5sZvXPS+
+m9hKsDngHIg/QSPDGjOgfEG1WV083+8v4fZ69g7fUKf9qSJVW4AxBmtHLUIkZsPA
+6UfJf1cw+oePBLYUs8ZzD3X0Uf/Ay960+lhi9g4/BVKiv/tZRieitbTGWV7TlLOn
+f4BHwuEjLJn6ZHOm+LdCQc1NmSWf96PMWnRiyAw03SVEjToZMmpUhzjY0aPFic9O
+u3Q2Q2I6LLfzhDcHXJvd38szxnHhCfkOxeZSsTCSKM6UAuV8WG/IN/UW+3RzGkxh
+DAwNi2Lmcmrx8gMVJuhqe1Vlt2mEHnZGOUdYK2+a1z1E1F+LioMqSciSzFckhgTO
+BAZk2PGkbTVAUIk+aEcAdQkhwCRnFrbVv+UduBQlhJ5Cxy8lb6UFaY37Ju8S6kpc
+gHmLMhSMLyageV6suxih58tguiH8rtoO1YOqHKT7uh7QP8XDvKAWYf3pNqiv7vOp
+KSmJdCmn6WO9qerqEUSlZGmX7vIoolUH/h3uSO+dtAMnNA+kwiIfBFVwU3fj5oM8
+ijjRQgKObgYVQr93+tSA/KNe6NpfQLgxChq6LpRLtBhIFRZs48UrWo0zonZJnHxm
+Zhu/lEJBFa50ElK03Ywdyi2WUscXb2tptiUaNqy4ekvjgX2L8spaGJrg3SpXt5+U
+OuAo5HGlkcsKVw5XDNewqfVFBN2gt84Ui4knwmDapbiga+DlGoyEhgHWWZehrSTp
+W+VjxlWSsU238cpI2CJuTJPQ9QGU5t9oMqP9YhJc/a7rYlBMGRcdyYmcdjNHrfyY
+/mmom5aqsMej/2F8hn/a1urfZBRqUWM3vpGIvxZ46BTHRsb8Z+osKR3bn7aSejiy
+M4S9V+yQ3qBXPgU1Y4GubWrvfI8x75jC3494OTX9cUoyaxyPVNZgQdDBvgcsvN1S
+fPLid+ILfnDXwRTUwQvNHfham6U8RT+/OFlTvfpa081LuSVURDzAdA==
+-----END RSA PRIVATE KEY-----
+
+Como podemos ver na Listagem 07, quanto maior o tamanho da chave mais complexo é o hash e mais tempo levará o processador do servidor em processar a validação. Temos de ter a performance também em mente, a criptografia existe para aumentar a segurança e estabilidade e não para ser um ônus à infraestrutura.
+Após criarmos a nossa CA, agora vamos criar o Certificado principal que é o certificado que utulizaremos para assinar outros certificados. Informamos que o algoritmos de criptografia utilizado é o 3DES ou triploDES que é bem seguro ainda de acordo com informações colhidas nos sites de segurança e do fabricante do OpenSSL.
+
+- Gerando o Certificado Mestre
+No mesmo prompt, mas vamos criar este certificado em um diretório diferente. Na Listagem 08, temos a sintaxe e posterior explanação dos parâmetros.
+
+Listagem 08 - Gerando certificado Master sob o CA.
+01 cd ..
+C:\OpenSSL-Win32>openssl req -new -x509 -days 365 -key chaves\CA_IIS.key -out certificados\certMasterCA_IIS.cer
+
+Ao se executar este comando, somos forçados a preencher certos dados bem simples, mas que para a geração do certificado são muito importantes.
+Temos alguns itens a saber. Geramos um certificado do tipo aceito pelo ISS. Na seção links há um apontamento para um artigo aqui da DevMedia, mais precisamente para uns artigos desta Revista que são bastante elucidativos com relação a estes tipos de certificados. Aqui, neste artigo, o importante é a geração do certificado e instalação do mesmo no ISS. Devemos preencher os dados como na Listagem 09, sendo que só a linha 15 deve ser idêntica ao mostrado, já as outras perguntas podem ser respondidas de acordo com a localização do leitor.
+
+Listagem 09 - Informações para a geração do certificado
+01 Enter pass phrase for chaves\CA_IIS.key:
+02 Loading 'screen' into random state - done
+03 You are about to be asked to enter information that will be incorporated
+04 into your certificate request.
+05 What you are about to enter is what is called a Distinguished Name or a DN.
+06 There are quite a few fields but you can leave some blank
+07 For some fields there will be a default value,
+08 If you enter '.', the field will be left blank.
+09 -----
+10 Country Name (2 letter code) [AU]:BR
+11 State or Province Name (full name) [Some-State]:Rio de Janeiro
+12 Locality Name (eg, city) []:Rio de Janeiro
+13 Organization Name (eg, company) [Internet Widgits Pty Ltd]:DevMedia
+14 Organizational Unit Name (eg, section) []:Revista .NET Magazine
+15 Common Name (e.g. server FQDN or YOUR name) []:www.projetoowasp01.com.br
+16 Email Address []:autorgabrielsimas@gmail.com
+
+Nesta Listagem 09, alguns pontos devem ser explicados para evitar confusão para os leitores. Como foi informado anteriormente, a primeira pergunta que foi feita ao executar este comando foi justamente a inserção da senha, já na linha 08, o openssl informa ao leitor que basta colocar o ".", sem as aspas, para que a resposta ficasse em branco, porém, é obrigatória a inserção do FQDN senão receberemos erros tais como "A Autoridade certificadora não é reconhecida" dentro outros.
+
+Na listagem 10, temos o conteúdo gerado deste nosos certificado Master.
+
+Listagem 10 - Conteúdo do arquivo C:\OpenSSL-Win32\certificados\certMasterCA_IIS.cer
+-----BEGIN CERTIFICATE-----
+MIIEWTCCA0GgAwIBAgIJAKOk0J7vLeXjMA0GCSqGSIb3DQEBBQUAMIHCMQswCQYD
+VQQGEwJCUjEXMBUGA1UECAwOUmlvIGRlIEphbmVpcm8xFzAVBgNVBAcMDlJpbyBk
+ZSBKYW5laXJvMREwDwYDVQQKDAhEZXZNZWRpYTEeMBwGA1UECwwVUmV2aXN0YSAu
+TkVUIE1hZ2F6aW5lMSIwIAYDVQQDDBl3d3cucHJvamV0b293YXNwMDEuY29tLmJy
+MSowKAYJKoZIhvcNAQkBFhthdXRvcmdhYnJpZWxzaW1hc0BnbWFpbC5jb20wHhcN
+MTQwMzIyMDIzMDI0WhcNMTUwMzIyMDIzMDI0WjCBwjELMAkGA1UEBhMCQlIxFzAV
+BgNVBAgMDlJpbyBkZSBKYW5laXJvMRcwFQYDVQQHDA5SaW8gZGUgSmFuZWlybzER
+MA8GA1UECgwIRGV2TWVkaWExHjAcBgNVBAsMFVJldmlzdGEgLk5FVCBNYWdhemlu
+ZTEiMCAGA1UEAwwZd3d3LnByb2pldG9vd2FzcDAxLmNvbS5icjEqMCgGCSqGSIb3
+DQEJARYbYXV0b3JnYWJyaWVsc2ltYXNAZ21haWwuY29tMIIBIjANBgkqhkiG9w0B
+AQEFAAOCAQ8AMIIBCgKCAQEAtvs1SsSKjcNv+t89nKe/qcETYsVisWLnpPLTfnZn
+DodIffysXV4RfdFkyvYQXgdkULYFz8gsXpD4YpyLU3hLTDVrW+LLvqwrS/8FhbGB
+vPUJ9FQpTdJwz3jV/TxY5r/j7rcKKmH2f14cka+IqEFC2K1PMmSIipPiKQ7DBsnR
+NUZ8ZF98+7PKo/lPu9eMhjooemICUVZVHFW4CtsmbmXxWutCmoMnj7JDLuVJdx3T
+7MWYePcSYCAvNI3ylSwzFD3M/L87XbhzXTH/iyXHKZ5nlzlY3gzhrId6mM0++twK
+ftSKtcMqsCa1i+B79ReO7IfflIgrLSvRUaz5/Go+ytY37wIDAQABo1AwTjAdBgNV
+HQ4EFgQULxe5pTPBCjTH74qoR9gTj4dKrOowHwYDVR0jBBgwFoAULxe5pTPBCjTH
+74qoR9gTj4dKrOowDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOCAQEAXD57
+hJNB+vtwGNsE2Eyrhuvl1YcmoqRMi5Q3M7NjTtXOTaq45r2OIH74aL8YX/qRZj+Z
+WeQCAa52B1WDiO8BA1dZkM4alllr9YoCjPW7D9H1p+qAZGEzcrFR96vm8PkAxcad
+5ZpFXkx3PF1O+PFUkDhzr31FOSsaZEGYuMpg93Bf4Bi39IZkA9u5FfR/tTgo9LoY
+D+6+voE+2yzfnLqMy22CG/PedYuL6J4RoGZah5LIRlKzq4o2FaIWxz7SgFeaIWI+
++gvtwUtJx6bEPAIvFkBG9Y4jr2GNnh5jlmVB2MmtuljcdsRW9SLTr3RpWNVRIeQj
++s1JGIIPGIJ3wUKwTA==
+-----END CERTIFICATE-----
+
+Agora, faremos um passo opcional, apenas para informação para o leitor, caso o mesmo queira exportar seus certificados para que o Windows reconheça como válido. Ou seja, vamos exportar nosso certificado para o formato PKCS12, este formato permite aos usuários do Windows importarem para seus Certificados Confiáveis, ou seja, não há a necessidade de se receber um erro de certificado inseguro a cada vez que o mesmo for acessado. Este arquivo contém apenas a chave pública e não está atrelada a chave privada. Diante disso, ela pode ser compartilhada e não precisa ser protegida por senha.
+
+Vamos criar de acordo com a ordem correta, criamos um CSR que emula como um pedido do usuário, depois geramos um certificado assinado sobre este csr e ai sim convertemos o mesmo para um DER.
+
+Na Listagem 11 - criaremos um CSR para o Windows
+01 C:\OpenSSL-Win32>openssl req -new -key chaves\CA_IIS.key -out CSRs\WindowsCert.csr
+02 Enter pass phrase for chaves\CA_IIS.key:
+03 Loading 'screen' into random state - done
+04 You are about to be asked to enter information that will be incorporated into your certificate request.
+06 What you are about to enter is what is called a Distinguished Name or a DN.
+07 There are quite a few fields but you can leave some blank
+08 For some fields there will be a default value,
+09 If you enter '.', the field will be left blank.
+10 -----
+11 Country Name (2 letter code) [AU]:BR
+12 State or Province Name (full name) [Some-State]:Rio de Janeiro
+13 Locality Name (eg, city) []:Rio de Janeiro
+14 Organization Name (eg, company) [Internet Widgits Pty Ltd]:DevMedia
+15 Organizational Unit Name (eg, section) []:Revista .NET Magazine
+16 Common Name (e.g. server FQDN or YOUR name) []:www.projetoowasp01.com.br
+17 Email Address []:autorgabrielsimas@gmail.com
+18
+19 Please enter the following 'extra' attributes
+20 to be sent with your certificate request
+21 A challenge password []:
+22 An optional company name []:
+
+Na Listagem 11, vemos que o processo é idêntico ao processo da Listagem 09, porém, precisamos informar que este certificado é para um "usuário", posto que um CSR é um pedido de certificado ou seja, deve ser gerado e depois assinado e entregue ao usuário, diante disto, precisamos passar os dados corretamente. Na linha 16 por exemplo, devemos passar o nome da máquina onde o certificado será instalado. Na linha 17, devemos passar o e-mail do usuário no qual o certificado está sendo gerado. Após gerado, o caminho natural é enviar o CSR para a autoridade assinar o certificado e devolvê-lo corretamente validado.
+Para afiançar que enviamos um certificado válido para o nosso CA, vamos validar o mesmo, a listagem 12, mostra qual comando deve ser executado para verificar a autenticidade do certificado, lembrando que o comando executado só terá efeito caso um certificado seja do tipo x.509.
+
+Listagem 12 - Validação do CSR gerado.
+C:\OpenSSL-Win32>openssl req -noout -text -in CSRs\WindowsCert.csr
+Certificate Request:
+    Data:
+        Version: 0 (0x0)
+        Subject: C=BR, ST=Rio de Janeiro, L=Rio de Janeiro, O=DevMedia, OU=Revis
+ta .NET Magazine, CN=www.projetoowasp01.com.br/emailAddress=autorgabrielsimas@gm
+ail.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:b6:fb:35:4a:c4:8a:8d:c3:6f:fa:df:3d:9c:a7:
+                    bf:a9:c1:13:62:c5:62:b1:62:e7:a4:f2:d3:7e:76:
+                    67:0e:87:48:7d:fc:ac:5d:5e:11:7d:d1:64:ca:f6:
+                    10:5e:07:64:50:b6:05:cf:c8:2c:5e:90:f8:62:9c:
+                    8b:53:78:4b:4c:35:6b:5b:e2:cb:be:ac:2b:4b:ff:
+                    05:85:b1:81:bc:f5:09:f4:54:29:4d:d2:70:cf:78:
+                    d5:fd:3c:58:e6:bf:e3:ee:b7:0a:2a:61:f6:7f:5e:
+                    1c:91:af:88:a8:41:42:d8:ad:4f:32:64:88:8a:93:
+                    e2:29:0e:c3:06:c9:d1:35:46:7c:64:5f:7c:fb:b3:
+                    ca:a3:f9:4f:bb:d7:8c:86:3a:28:7a:62:02:51:56:
+                    55:1c:55:b8:0a:db:26:6e:65:f1:5a:eb:42:9a:83:
+                    27:8f:b2:43:2e:e5:49:77:1d:d3:ec:c5:98:78:f7:
+                    12:60:20:2f:34:8d:f2:95:2c:33:14:3d:cc:fc:bf:
+                    3b:5d:b8:73:5d:31:ff:8b:25:c7:29:9e:67:97:39:
+                    58:de:0c:e1:ac:87:7a:98:cd:3e:fa:dc:0a:7e:d4:
+                    8a:b5:c3:2a:b0:26:b5:8b:e0:7b:f5:17:8e:ec:87:
+                    df:94:88:2b:2d:2b:d1:51:ac:f9:fc:6a:3e:ca:d6:
+                    37:ef
+                Exponent: 65537 (0x10001)
+        Attributes:
+            a0:00
+    Signature Algorithm: sha1WithRSAEncryption
+         a6:1f:af:9c:c1:cd:d4:68:7d:7c:af:94:b5:cf:7a:ab:4c:8a:
+         76:36:2b:e3:6d:97:e8:e1:a4:17:8c:ca:c1:b7:17:7f:a6:c7:
+         96:cf:0b:9c:3d:09:9f:64:30:35:8a:87:90:1f:5d:73:60:60:
+         8c:95:d3:b9:a5:0e:56:07:73:fd:d8:cc:5b:13:91:af:ba:47:
+         b8:58:5a:3c:59:b8:e7:98:bf:3c:4b:c7:94:b2:0b:02:c4:fd:
+         cb:48:36:60:19:6c:c7:ed:1f:32:10:89:6d:b6:28:78:d4:5e:
+         69:69:55:6d:db:8f:1f:17:b3:19:8c:aa:8b:51:58:29:f5:9e:
+         e3:28:17:16:04:ad:47:f4:84:d5:25:02:c2:fc:56:69:48:9f:
+         79:c0:51:2f:3a:be:dd:5d:41:e1:68:c3:e2:23:9c:8d:4e:43:
+         07:b0:5a:14:02:18:bd:97:f6:44:ba:d3:a9:7c:c2:e8:24:59:
+         81:4a:ef:a0:d6:75:9b:d6:37:29:b9:03:ff:64:44:8e:ae:c8:
+         d2:9e:6b:63:f1:a8:fc:a4:7b:95:1b:b2:c4:45:34:de:c3:7b:
+         b4:7a:08:77:55:85:02:3d:4a:6c:94:fe:8e:89:17:3a:b9:d4:
+         e2:c1:30:bf:d5:7a:c0:1e:1c:9e:61:87:62:2a:fd:5e:b2:ad:
+         32:25:c8:a3
+
+Podemos notar que o nosso certificado é válido.
+Vamos criar neste momento o certificado assinado para o Windows e em seguida, vamos criar o DER para distribuição.
+Na listagem 13, temos a linha de comandos para tal execução.
+
+Listagem 13 - Geração de certificado assinado via CSR
+C:\OpenSSL-Win32\certificados>openssl ca -policy policy_anything  -cert certificados\certMasterCA_IIS.cer -in CSRs\WindowsCert.csr -keyfile chaves\CA_IIS.key -days 365 -out certificados\windowsCert.cer -verbose
+
+Diante disto, teremos duas perguntas, se queremos realmente assinar o certificado e se queremos efetuar o commit, devemos responder com "y" estas duas perguntas.
+Agora, vamos gerar o certificado para instalar no Windows e distribuir caso precise. Instrução de como isto é feito, veremos na Listagem 14.
+		 
+Listagem 14 - Geração de certificado DER
+C:\OpenSSL-Win32>openssl x509 -in certificados\windowsCert.cer -outform DER -out certificados\windowsDER.der
+
+Antes de prosseguirmos, faz-se necessária uma explicação sobre uma atitude muito difundida na internet com relação a geração de certificados com a CA sem senha, com mostrado na Listagem 15.
+
+Listagem 15 - Não se deve gerar um certificado desta maneira
+openssl pkcs12 -export -out cacert.p12 -in cacert.pem -inkey cakey.pem
+
+Pedimos que o leitor não faça isso, este comando irá destruir toda a teoria das chaves privadas e isso reduzirá a sua seguraná para 0 pois permitirá a qualquer um gerar cerificados em nome de quem quiserem.
+
+Agora, copie os dois certificados gerados para o servidor e os instale por lá. Ainda não é o certificado para o IIS é apenas para o Windows.
+Após a instalação ser bem sucedida, vamos gerar através do IIS o nosso CSR para que possamos efetuar todo o processo que foi feito acima.
+
+-- Gerando um CSR via IIS 7.0 ou superior.
+
+Primeiramente, vamos abrir o IIS através do Console do Gerenciador de Serviços de Informações da Internet.
+Dentro do Console abra o item Certificados do Servidor como mostra a Figura 1.
+
+[Figura 1. Certificados do Servidor]
+
+Na Tela que se abre, selecione Criar Solicitação de Certificado, como nos mostra a Figura 2.
+
+[Figura 2. Solicitação de Certificado]
+
+Na tela que se abre, os dados já nos são conhecidos, porém, para evitar quaisquer tipo de imbróglio, na figura 03, temos o formulário preenchido.
+
+[Figura 3. Formulário de geração de Solicitação de Certificado]
+
+Salve o certificado em algum local onde seja fácil copiar e colar no diretório de CSRs que criamos anteriormente, salve-o com um nome fácil de identificar, em nosso caso, salvamos com o nome de IIScsr.txt.
+Agora, vamos asssinar nosso csr para gerar um certificado real via CA para o ISS. Na Listagem 16 temos o comando completo que gera o certificado.
+
+Listagem 16 - Assinatura do Certificado via CA
+C:\OpenSSL-Win32>openssl ca -policy policy_match -cert certificados\certMasterCA_IIS.cer -in CSRs\IIScsr.txt -keyfile chaves\CA_IIS.key -days 365 -out certificados\iishttps.cer
+
+novamente, respondemos sempre com "y". Pronto, nosso certificado para o servidor já está criado com sucesso.
+
+-- Criando o certificado para negociação SSL para o ISS
+
+Vamos finalizar importando o certificado publico que faz com que o ícone do cadeado apareça no navegador, quando a negociação com o protocolo https faz-se visível, posto que é o nosso objetivo inicial.
+Vamos criar um arquivo de exportação de chaves, arquivo .pfx para que possamos registrar o SSL para uso do HTTPs pelo IIS, mas antes,vamos instalar o certificado gerado para o servidor e logo após gerar o arquivo .pfx com senha.
+
+Crie um Site com o nome de projetoowasp01 que contenha o domínio www.projetoowasp01.com.br. Não vamos nos estender muito nesta parte, posto que está fora do escopo do artigo e no site da DevMedia existem vários tutoriais, inclusive gratuitos, para configuração correta de um site no IIS. Na Listagem 17, vemos os comandos e saída da geração da chave para exportação.
+
+Listagem 17 - Chave para uso do IIS para negociação SSL.
+01 C:\OpenSSL-Win32>openssl pkcs12 -export -in certificados\certMasterCA_IIS.cer -inkey chaves\CA_IIS.key -out httpsiis.pfx -name "Certificado para o HTTPS do IIS"
+02
+03 Loading 'screen' into random state - done
+04 Enter pass phrase for chaves\CA_IIS.key:
+05 Enter Export Password:
+06 Verifying - Enter Export Password:
+
+Nas linhas 05 e 06, nos é solicitada uma senha, tal senha é muito importante que setemos é uma segurança a mais.
+
+De posse da nossa nova chave exportada, vamos importar para o ISS todos os nossos certificados, mas antes, precisamos informar ao Windows que nossos certificados são confiáveis e faremos isso da seguinte maneira.
+
+- Informando ao Sistema Operacional que nosso certificado é válido
+Abra o Microsoft Managemente console, MMC, via executar do windows, digitando mmc
+Na tela que se abre, clicamos em Arquivo e depois em Adicionar/Remover Snap-in.
+Na lista, selecione a opção Certificados e clique na tela de forma que adicione o mesmo e clique em OK ao finalizar a operação.
+Temos agora acesso ao Gerenciador de Certificados do Windows e selecione a pasta Autoridades de Certificação Raiz Confiáveis e vamos importar como demonstrado na Figura 04.
+
+[Figura 04 - Importando certificados para o Windows.]
+
+Esta tarefa é extremamente fácil, basta importar e responder a todas as perguntas positivamente.
+
+Agora que já temos o nosso site configurado e nossos certificados confiáveis, agora, vamos instalá-los no IIS.
+
+- Configurando o IIS para receber nossos certificados confiáveis
+Vamos abrir o console do IIS e selecionar novamente o item de Certficados mostrado mais de uma vez neste artigo anteriormente. Neste ponto, vamos selecionar os nossos certificados gerados para o servidor incluindo o .pfx. O resultado deve ficar idêntico ao da Figura 05.
+
+[Figura 05 - Resultado da importação do certificado no IIS]
+
+Agora, configuremos o nosso site para que o mesmo possa acessar o https. A Figura 06 mostra o caminho correto.
+
+[Figura 06 - Editar Ligações para habilitar o Https]
+
+Bastando adicionar o protocolo https, o nome do domínio e selecionar o diretório como mostrado na figura 07.
+
+[Figura 07 - Configuração do HTTPS]
+
+Porém, falta a configuração de como os clientes vão interagir com o nosso site. 
+Para tal, basta selecionar a opção Configurações de SSL, na janela que se abre, marcar a caixa exigir SSL e depois selecionar em Aceitar.
+
+como nos mostra a Figura 08 o resultado de nossa configuração.
+
+[Figura 08 - Resultado da Operação]
+
+Para que o certificado seja reconhecido por seu navegador, basta clicar no ícone do site seguro, normalmente um cadeado, e solicitar a instalaçãodo certificado dentro de "Autoridade de certificação raiz confiável".
+
+Mais adiante, mostraremos ao leitor como ativar o uso do https em apenas algumas partes da aplicação, como por exemplo, o acesso ao usuário e acesso a webservices com retorno criptografado.
+
+- Estrutura de nosso Exemplo prático
+
+Na Figura 09, temos a estrutura de nosso Projeto.
+
+[Figura 09 - Estrutura do Projeto]
+
+- Assinando os nossos asssemblies com Strong names gerados pelo OpenSSL
+
+Primeiramente, vamos gerar um certificado pkcs12 utitilizando a nossa chave privada, ou nosso CA como informado anteriormente. Na Listagem XXX, temos a criação do mesmo.
+
+Listagem xxx - Gerando um certificado 
+C:\OpenSSL-Win32>openssl pkcs12 -export -in certificados\certMasterCA_IIS.cer -i
+nkey chaves\CA_IIS.key -out certificados\StrongNameSeguranca.pfx -name "Certificado
+para Strong Name do Assembly Seguranca.dll"
+
+Devemos entrar a nossa senha do CA e depois devemos criar uma senha para esta exportação, a saída deste comando é mostrada na Listagem xxx
+
+Listagem xxx
+01 C:\OpenSSL-Win32>openssl pkcs12 -export -in certificados\certMasterCA_IIS.cer -inkey chaves\CA_IIS.key -out certificados\StrongNameSeguranca.pfx -name "Certificado para Strong Name do Assembly Seguranca.dll"
+02 Loading 'screen' into random state - done
+03 Enter pass phrase for chaves\CA_IIS.key:
+04 Enter Export Password:
+05 Verifying - Enter Export Password:
+
+Agora, caso tentemos selecionar tal certificado no Visual Studio e tentemos compilar a aplicação receberemos um erro parecido com o da Listagem xxx.
+
+Listagem xxx - Erro ao tentar compilar um certificado assinado com o OpenSSL
+error MSB3325: Cannot import the following key file: StrongSeguranca.pfx. The key file may be password protected. To correct this, try to import the certificate again or manually install the certificate to the Strong Name CSP with the following key container name: VS_KEY_3523EF3C7BF9F6ED
+C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319\Microsoft.Common.targets(1970,9): error MSB3321: Importing key file "StrongNameSeguranca.pfx" was canceled.
+
+Para tal, vamos precisar extrair a chave privada sem a senha e com esta chave criar um novo certificado e logo em seguida, devemos apagar a chave privada. Na Listagem xxx, temos tal comando a ser executado e sua posterior saída
+
+Listagem xxx - Criação de um certificado assinado através de extração de chave privada.
+01 C:\114\Código Fonte\Artigo114\packages\SHA3.0.9.2\lib\net40>openssl pkcs12 -in StrongNomeSeguranca.pfx -out bkpStrongSeguranca.key
+02 Enter Import Password:
+03 MAC verified OK
+04 Enter PEM pass phrase:
+05 Verifying - Enter PEM pass phrase:
+
+De acordo com o comando na linha 1, executamos comado e pode-se notar que extraímos de nosso certificado inicial criamos um arquivo de chave privada com extensão .key, lembramos que esta extensão não é obrigatoria, mas foi mantida a quesito de informação. Na Linha 02, devemos entrar a senha que criamos quando geramos este certificado, que naquela ocasião seria o "Export Password". Na linha 04, o OpenSSL nos pede que criemos uma senha também para acesso a esta chave Privada, isso impede que outros tentem extraí-la em caso de roubo, sempre é uma boa prática criar uma senha neste caso.
+
+Agora que estamos de posse de nossa chave privada, vamos criar o certificado assinado propriamente dito de forma que o Visual Studio o reconheça como Strong Name válido. Veremos a linha de comandos e posterior saída do mesmo na Listagem xxx.
+
+Listagem xxx - Criação de certificado assinado aceito pelo Visual Studio.
+01 C:\114\Código Fonte\Artigo114\packages\SHA3.0.9.2\lib\net40>openssl pkcs12 -export -out StringSegurancaAssinado.pfx -keysig -in bkpStrongSeguranca.key
+02
+03 Loading 'screen' into random state - done
+04 Enter pass phrase for bkpStrongSeguranca.key:
+05 Enter Export Password:
+06 Verifying - Enter Export Password:
+
+Diante disto, acabamos de criar o nosso certificado assinado para ser utilizado pelo nosso projeto no Visual Studio. Podemos utilizar esta chave privada para criar outros certificados dentro da nossa Solução ao invés de extrair uma chave privada a cada projeto que formos criar. Já podemos copiar a chave privada diretamente para a raiz da solução. Para inserir um certificado a um projeto, basta que entremos nas propriedades deste Projeto e selecionar a opção "Signing", marcar a opção "sign the assembly" e em "Choose a strong name key file",clicamos em "Browse" e selecionamos o arquivo "StringSegurancaAssinado.pfx".
+
+Após isso, vamos efetuar o compile de nossa aplicação, porém, nos deparamos com um erro informando que algumas referências utilizadas em nosso projeto não estão assinados. Para que possamos assinar os assemblies que usamos e não estejam assinados, podemos fazer o que é informado adiante.
+
+Primeiro, precisamos criar um certificado para o nosso assembly não assinado, normalmente é de um vendor e não faz parte da nossa equipe de projetos e não conseguimos falar com o criador do projeto e outros motivos alheios a nós.
+
+Para criar um Certificado assinado e sem senha, basta utilizar o comando "sn.exe" do próprio .NET Framework. No nosso caso, o SH3 que baixamos do NuGet não está assinado e com isto,precisamos fazer o seguinte, vamos entrar diretamente no diretório de pacotes da nossa solução que é ..\packages\SHA3.0.9.2\lib\net40 devemos navegar até este diretório via console. Já dentro deste diretório, vamos executar o seguinte comando como mostrado no listagem XXX.
+
+Listagem xxx - Criado Strong Name para o Assembly de terceiros
+sn -k SHA3.snk
+
+Receberemos uma resposta positiva para a criação do mesmo. Como o assembly não temos com abrí-lo, precisamos então desmontá-lo com o comando ILDASM, caso o leitor não o tenha instalado,faz-se necessário instalar o .NET Framework 2.0. A Listagem xxx nos mostra o que devemos inserr na linha de comandos.
+
+Listagem XXX - Desmontagem do Assembly
+C:\114\Código Fonte\Artigo114\packages\SHA3.0.9.2\lib\net40>ildasm /all /out=SHA
+3Novo.il SHA3.dll
+
+Criamos um arquivo com a extensão .il apenas para diferenciar o arquivo do assembly, agora vamos gerar um novo assembly assinado de SHA3.dll, na listagem xxx, vemos como criar tal assembly, este novo assembly terá o nome de SHA3Novo.dll. Para criarmos um novo assembly vamos utilizar o comando ILASM.exe não confundir com o ILDASM, devemos compreender que ILDASM faz o desassembly enquanto que o ILASM faz a montagem.
+
+Listagem xxx - Montagem do novo assembly assinado.
+C:\114\Código Fonte\Artigo114\packages\SHA3.0.9.2\lib\net40>ilasm /dll /OPTIMIZE
+ /key=SHA3.snk SHA3ManagedNovo.il
+
+Microsoft (R) .NET Framework IL Assembler.  Version 4.0.30319.1
+Copyright (c) Microsoft Corporation.  All rights reserved.
+Assembling 'SHA3ManagedNovo.il'  to DLL --> 'SHA3ManagedNovo.dll'
+Source file is ANSI
+
+Assembled method SHA3.SHA3::.cctor
+Assembled method SHA3.SHA3::Create
+Assembled method SHA3.SHA3::Create
+Assembled method SHA3.SHA3::get_KeccakR
+Assembled method SHA3.SHA3::set_KeccakR
+Assembled method SHA3.SHA3::get_SizeInBytes
+Assembled method SHA3.SHA3::get_HashByteLength
+Assembled method SHA3.SHA3::get_CanReuseTransform
+Assembled method SHA3.SHA3::.ctor
+Assembled method SHA3.SHA3::ROL
+Assembled method SHA3.SHA3::AddToBuffer
+Assembled method SHA3.SHA3::get_Hash
+Assembled method SHA3.SHA3::get_HashSize
+Assembled method SHA3.SHA3::Initialize
+Assembled method SHA3.SHA3::HashCore
+Assembled method SHA3.SHA3Managed::.ctor
+Assembled method SHA3.SHA3Managed::HashCore
+Assembled method SHA3.SHA3Managed::HashFinal
+Assembled method SHA3.SHA3Managed::KeccakF
+Creating PE file
+
+Emitting classes:
+Class 1:        SHA3.SHA3
+Class 2:        <PrivateImplementationDetails>{039ABB91-33B3-44B3-A515-71F657BAA
+F35}
+Class 3:        <PrivateImplementationDetails>{039ABB91-33B3-44B3-A515-71F657BAA
+F35}°__StaticArrayInitTypeSize=192
+Class 4:        SHA3.SHA3Managed
+
+Emitting fields and methods:
+Global
+Class 1 Fields: 10;     Methods: 15;
+Class 2 Fields: 1;
+Class 3
+Class 4 Methods: 4;
+Resolving local member refs: 171 -> 171 defs, 0 refs, 0 unresolved
+
+Emitting events and properties:
+Global
+Class 1 Props: 6;
+Class 2
+Class 3
+Class 4
+Resolving local member refs: 0 -> 0 defs, 0 refs, 0 unresolved
+Writing PE file
+Signing file with strong name
+Operation completed successfully
+
+Agora, podemos adicionar estes assemblies certificados para a nossa aplicação,compilando a mesma, teremos sucesso.
+
+- Criando o Custom MembershipProvider.
+
+Nossa classe deriva de MembershipProvider que surgiu como uma solução na qual o desenvolvedor pode acoplar a sua própria solução de autenticação e autorização ao invés de utilizar o SimpleMembershipProvider que contêm muitas tabelas e seria um grande imbróglio no Projeto de Software posto que insere muitas tabelas e outros objetos dentro do Projeto onde demoraremos mais algum tempo em retirá-los. Com o MembershipProvider, já temos a Regra de Negócios bem definida. Métodos como UpdateUser, ResetPassword dentre outros métodos aderentes a qualquer negócio de Autenticação e Autorização. 
+Para que possamos utilizar o MembershipProvider, precisamos adicionar a referência do assembly System.Web.ApplicationServices e System.Configuration.
+
