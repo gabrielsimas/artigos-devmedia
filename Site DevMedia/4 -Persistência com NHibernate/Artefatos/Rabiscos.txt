@@ -11,8 +11,6 @@ Sabemos bem que existe uma forma de conseguir uma renda extra e esta forma é faz
  Com isso, o Item Artigo se tornou um Épico com as estórias de usuario descritas anteriormente.
  Já temos então a solicitação do que precisamos, agora, o nosso Project Owner, separou o épico em Backlog de Produto e o mesmo ficou como vemos na tabela 1.
  
-  
- 
  Diante disso, temos a Figura 1 que ilustra mais ou menos a nossa necessidade
 
 - Modelo de dados
@@ -75,10 +73,28 @@ Autor 1-N Artigo
 Artigo 1-1 Tecnologia
 Tecnologia 1 - N Artigos
 
-DevMedia.artigo04.Entidade - Aqui ficam as nossas Classes que representam o nosso Modelo de Domínio
-DevMedia.artigo04.Dal - Aqui ficam os Mapeamentos do NHibernate bem como as Interfaces e Implementações da Persistência. As interfaces respeitam o padrão S.O.L.I.D. da ISP, princípio da Segregação das Interfaces
-DevMedia.artigo04.Reuso - Aqui ficam as Interfaces e Classes Abstratas, para ambas utilizaremos os tipos genéricos para que o leitor possa utilizar tais classes em seus Projetos para seu CRUD básico e estas podem ser extendidas sempre que possível, tal assembly foi criado com o intuito de prover o que o OCP - Princípio do Aberto e Fechado dispõe que é aberto para extensão e fechado para alteração, OCP é um padrão S.O.L.I.D. muito utilizado neste sentido.
-Test.Devmedia.artigo04 - Aqui fica o assembly responsável pelos nossos testes unitários, tais testes são muito importantes. Usaremos o TDD como forma de executar as funções do nosso artigo, esta também é uma forma de emergir o leitor no mundo dos Testes de Software sendo que vamos apenas referenciar os testes necessários ao nosso uso, posto que falar diretamente sobre testes está totalmente fora do escopo deste artigo. Neste pacote de teste, utilizaremos os seguintes tipos de teste:
+[DevMedia.artigo04.Entidade] - Aqui ficam as nossas Classes que representam o nosso Modelo de Domínio
+[DevMedia.artigo04.Dal] - Aqui ficam os Mapeamentos do NHibernate bem como as Interfaces e Implementações da Persistência. As interfaces respeitam o padrão S.O.L.I.D. da ISP, princípio da Segregação das Interfaces
+[DevMedia.artigo04.Reuso] - Aqui ficam as Interfaces e Classes Abstratas, para ambas utilizaremos os tipos genéricos para que o leitor possa utilizar tais classes em seus Projetos para seu CRUD básico e estas podem ser extendidas sempre que possível, tal assembly foi criado com o intuito de prover o que o OCP - Princípio do Aberto e Fechado dispõe que é aberto para extensão e fechado para alteração, OCP é um padrão S.O.L.I.D. muito utilizado neste sentido.
+[Test.Devmedia.artigo04] - Aqui fica o assembly responsável pelos nossos testes unitários, tais testes são muito importantes. Usaremos o TDD como forma de executar as funções do nosso artigo, esta também é uma forma de emergir o leitor no mundo dos Testes de Software sendo que vamos apenas referenciar os testes necessários ao nosso uso, posto que falar diretamente sobre testes está totalmente fora do escopo deste artigo. Neste pacote de teste, utilizaremos os seguintes tipos de teste:
 
 - Teste de integração: Veremos se o NHibernate está funcionando corretamente com a nossa aplicação e fazemos um teste inicial para ver se não O Nhibernate retorna os erros de compilação ou seja, se os arquivos estão corretos ou se falta algo.
+
+- Teste de Regressão: Neste caso de teste, após criarmos quaisquer novas funcionalidades, devemos testar esta nova funcionalidade juntamente com as anteriores já testadas, inclusive o teste de integração, para verificar se não houve nenhuma quebra em nosso Sistema, em caso negativo, ou seja, não havendo quebras, podemos avançar para outras funcionalidades.
+
+- Verificando se um erro é bom ou ruim: devemos sempre pensar que em TDD, criamos testes para que retornem erros para nós, posto que este é o ponto focal de um teste: apresentar defeitos ou comportamentos diferentes do que foram modelados, o motivo disto é que em nossa modelagem só temos "casos felizes", ou seja, tudo vai funcionar e o teste, na maioria dos casos, mostra o contrário, devemos enxergar a figura do tester não como um inimigo, mas como um aliado mais do que importante para a melhora de nosso próprio código, onde ganhamos nós como desenvolvedores e ganha o Projeto com maior qualidade, agilidade e "Lições aprendidas".
+
+- Fases de construção do Projeto de teste
+
+1) Criar as Entidades
+
+2) Criar a Base de Dados
+
+3) Mapear as Classes com o NHibernate
+
+4) Criar a classe de fábrica de conexão com a busca dos assemblies
+
+5) Criar o Teste de Integração
+
+6) Criar 
 
