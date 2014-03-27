@@ -46,7 +46,7 @@ namespace MVCSeguranca.Ed109.NH.DAL.Implementacao
         /// <summary>
         /// Cria um hash salted em PBKDF2 hash da senha.
         /// </summary>
-        /// <param name="password">A senha para o hash.</param>
+        /// <param name="senha">A senha para o hash.</param>
         /// <returns>O hash da senha.</returns>
         public static string CriaHashSenhaSalt(string senha)
         {
@@ -298,7 +298,6 @@ namespace MVCSeguranca.Ed109.NH.DAL.Implementacao
             if (hashComBytesSalt.Length < hashSizeEmBytes)
                 return false;
 
-            // Allocate array to hold original salt bytes retrieved from hash.
             //Aloque o array para armazenar os bytes originais do Salt.
             byte[] saltBytes = new byte[hashComBytesSalt.Length -
                                         hashSizeEmBytes];
