@@ -498,3 +498,19 @@ Agora, podemos adicionar estes assemblies certificados para a nossa aplicação,co
 Nossa classe deriva de MembershipProvider que surgiu como uma solução na qual o desenvolvedor pode acoplar a sua própria solução de autenticação e autorização ao invés de utilizar o SimpleMembershipProvider que contêm muitas tabelas e seria um grande imbróglio no Projeto de Software posto que insere muitas tabelas e outros objetos dentro do Projeto onde demoraremos mais algum tempo em retirá-los. Com o MembershipProvider, já temos a Regra de Negócios bem definida. Métodos como UpdateUser, ResetPassword dentre outros métodos aderentes a qualquer negócio de Autenticação e Autorização. 
 Para que possamos utilizar o MembershipProvider, precisamos adicionar a referência do assembly System.Web.ApplicationServices e System.Configuration.
 
+Links:
+
+ICP Brasil - Autoridade Certificadora
+Link: http://www.iti.gov.br/icp-brasil/o-que-e
+
+Verisign Certificados
+Link: http://www.verisigninc.com/?loc=pt_BR&cmp=SEMG02:01
+
+GeoCert - Certificados Digitais
+Link: http://www.rapidssl.com.br/
+
+Certificados Digitais em .NET – Parte 1 - Revista .NET Magazine 112
+Link: http://www.devmedia.com.br/certificados-digitais-em-net-parte-1/30014
+
+Certificados Digitais em .NET – Parte 2 - Revista .NET Magazine 113
+Link: http://www.devmedia.com.br/certificados-digitais-em-net-parte-2/30156
