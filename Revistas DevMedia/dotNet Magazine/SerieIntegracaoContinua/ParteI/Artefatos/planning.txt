@@ -1,0 +1,342 @@
+Lead do artigo
+Como desenvolvedores, nós estamos interessados em criar as aplicações da melhor forma possível para os nossos clientes como um minimo de esforço. Mas, nos tempos atuais, com aplicações mais complexas e tendo cada vez mais "partes móveis", criar grandes aplicações está se tornando cada vez mas dificil, mesmo com o avanço nas ferramentas tais como o Visual Studio e o .NET Framework. Uma das chaves para a melhoria da produtividade e consequentemente das aplicações entregues é a automatização de uma boa parte do trabalho. A Integração Contínua é uma das melhores formas de se fazer isto. Uma questão é a de que lembremos de quando escrevíamos códigos que executavam pequenas tarefas perfeitamente, mas depois descobrimos pequenos problemas de integração com outras partes da aplicação? Sempre logramos êxito ao integrar nossos códigos com os códigos de outros desenvolvedores? Para ajudar a responder tais perguntas é aí que entra a Integração Contínua. Não podemos crer que o Processo de Integração Contínua seja a bala de prata ou a solução para todos os males, mas onde ela tem sido implementada, tem causado grande sucesso e melhoria no trabalho das equipes de desenvolvimento.
+A Integração Contínua, também conhecida como CI - Continuous Integration - é o ponto central do desenvolvimento de software nos tempos atuais. De fato, quando a CI é introduzida em uma empresa, torna-se o grande divisor de águas, ela altera radicalmente a forma como as equipes pensam sobre todo o processo de desenvolvimento. A CI tem o potencial de permitir e executar uma série de melhorias contínuas e incrementais nos processos, indo de um processo de simples de agendamento de construção - vamos usar o termo build - passando pelo processo de Entrega Contínua até culminar no processo de publicação em ambientes de Produção. Uma boa infrestrutura de Integração Contínua pode simplificar o processo de desenvolvimento até a entrega do software ou de sua iteração, auxiliando a identifica e corrigir falhas rapidamente, disponibiliza uma dashboard muito útil do Projeto tanto para desenvolvedores quanto para outros profissionais da empresa que não são desenvolvedores e, ultimamente, ajuda equipes a agregar mais valores ao negócio e ao produto sendo desenvolvido para o cliente. Todo time de desenvolvimento, não importando se grande ou pequeno, deveria implementar a Integração contínua. 
+
+ - O que é a Integração Contínua?
+Voltando as dias dos Projetos desenvolvidos utilizando a Metodologia Cascata e controlando os cronogramas com gráficos de Gantt, bem antes da introdução das práticas de Integração Contínua, o tempo e a energia da equipe de desenvolvimento era drenada diretamente por um período que compreendia entre o início do trabalho até a entrega por um procedimento chamado de Fase de Integração. Durante esta fase, a alteração do código era feita por únicos desenvolvedores ou pequenos times que eram reunidos de forma fragmentada e esparsa e se juntavama apenas na integração de todo o trabalho já feito. Era um trabalho complicado, na maioria das vezes, durava meses em uma integração com mudanças de código conflitando entre si. Era muito dificil antecipar quais tipos de problemas iriam ocorrer durante este processo e era ainda mais onersos corrigir estes erros que envolviam quase sempre retrabalho e reengenharia do código que tinha sido criado meses ou semanas antes. Este processo complicado, oneroso e doloroso, cheio de riscos e perigos, frequentemente causava um grande atraso na entrega, custos não planejados e, coom resultado de tudo isso, clientes insatisfeitos. A Integração Contínua nasceu para resolver estes problemas e sanar estas dificuldades. Integração Contínua, na sua forma mais simples, envolve ferramentas que monitoram seus Sistema de Controle de Versão (Box 1) buscando sempre alterações. Logo que uma alteração no código é identificada, esta ferramenta automaticamente compila e testa o código de sua aplicação. Se algo dá errado, a ferramenta imediatamente notifica os desenvolvedores para que eles possam corrigir o problema imediatamente. Mas, a Integração Contínua pode fazer muito mais do que isso. 
+
+Box 1: Sistemas de Controle de Versão (SCM): é um software que tem como principal funcionalidade, controlar versões de um documento qualquer,ou seja, cada alteração que é feita neste documento, se torna uma versão deste e o SCM controla de forma sequencial tais versões. Tal software é muito utilizado em ambientes de desenvolvimento seja ele corporativo ou não.
+
+A Integração Contínua pode também ajudar a equipe a manter a saúde do seu código, automaticamente monitorar a qualidade de código e as métricas em seu código e desta forma auxiliar a manter o débito técnico (Box 2) e os custos de manutenção bem baixos.
+
+Box 2: Dívida Técnica descreve a dívida que a equipe de desenvolvimento assume quando escolhe um design ou abordagem fácil de implementar no curto prazo mas com grande impacto negativo no longo prazo.
+
+A visibilidade pública das métricas de qualidade de código encoraja os desenvolvedores a terem um maior cuidado quanto a qualidade de seu código e melhorá-lo, devemos lembrar que o principal fundamento da Integração Contínua não é punir ninguém, mas sim facilitar a manutenibilidade do código afinal de contas: o código é de todos da equipe. Combinado com testes de aceitação fim a fim, a CI pode também funcionar como uma ferramenta de comunicação, mostrando um verdadeiro Raio-X do estado atual de desenvolvimento dentro da equipe. E pode simplificar e acelerar a entrega auxiliando a automatizar o processo, deixando a publicação da última versão da aplicação totalmente automática ou permitindo a operação com apenas um aperto de botão. Em sua essência, a Integração Contínua age sempre na redução de riscos à aplicação e seus desenvolvimento nos dando uma resposta rápida.
+
+Esta idéia de automatizar a entrega e publicação em produção é muito imporante, tiramos então uma conclusão lógica: precisamos sempre enviar qualquer alteração em nosso código para posterior teste antes de entrar em produção. De certa forma, o uso da Entrega Contínua, está intrínsecamente ligado a Integração Contínua, posto que esta termina e começa aquela que nada mais é do quê automatizar um deploy de um website, devolver um módulo pronto ou outra atividade de fim pois a Integração Contínua é atividade de meio. Então, uma abordagem pura da Integração Continua pode não ser apropriada para todas as equipes. Um exemplo disto,é que muitos usuários não vêem com bons olhos de novas versões de software sendo entregues todas muitas vezes em uma semana e com isto as solicitações para que os mesmos façam logo seus testes de aceitação e preferem um ciclo mais espaçado e com um prazo no qual o mesmo possa se enquadrar para seus testes. 
+Então, as técnicas de Integração Continua e em particular Publicação Continua - Continuous Depploy - e Entrega Contínua - Continuous Delivery, são muito mais do que entregar produtos para os usuários de forma rápida. Quanto tempo seu time faz pequenas alterações de códigos antes de ir para produção? quanto custa o processo de resolver problemas que ocorreram há muito tempo gerando grandes demandas de falha? para que o CI possa resolver todos os nossos problemas, devemos não só implementar a Integração Contínua como também devemos pensar como Integração Contínua.
+Corrigir builds quebrados se tornam absoluta prioridade e não devem deixar estagnar ou parar o processo. O processo de implementação precisa ser automatizado, com nenhum passo manual envolvido.
+Uma das definições mais conhecidas de Integração Contínua foi dita por Martn Fowler que diz: "
+Integração Continua é uma prática dentro de desenvolvimento de software onde membros de um time integram seu trabalho frequentemente, normalmente cada um executa no mínimo uma a várias integrações por dia. Cada integração é verificada por um build automatizado (incluindo os testes) para identificar erros de integração o mais rápido possível. Muitas equipes vêem nesta forma de trabalho uma redução significativa nos problemas de integração e permitem uma equpe desenvolver software de uma forma coesa mais rapidamente."
+Resumindo, um processo automatizado que contrói, testa,analiza e implementa uma aplicação para ajudar e garantir que o processo funcione corretamente seguindo as melhores práticas e as tornem entregáveis. Este processo é executado com cada mudança de código fonte e permite resposta imediata para a equipe de desenvolvimento. Diante disto, temos um termo que precisamos compreender melhor para compreender todo o processo de Integração Contínua que é o Build. O Build, nada mais é do que compilar, analisar e entregar o assembly do alvo a ser compilado para que fique pronto para implementação. Para exemplificar isto, pode ser que, desenvolvemos uma camada da aplicação e commitamos seu código dentro do Controle de Versão, o Sistema de Integração Continua, quado for rodar a sua tarefa rotineira, irá compilar, testar e posteriormente gerar o assembly no local já pronto para o uso ou implementação.
+
+Processo de Desenvolvimento para Integração Contínua
+
+	--CI.NET
+Is your development process agile? Do you use extreme programming (XP), scrum, 
+or something else? Is your company deeply rooted in waterfall methodologies? Does 
+your process fall somewhere between agile and waterfall? 
+It really doesn’t matter which methodology you use, because you probably follow 
+pretty much the same process when it comes to writing code: 
+
+Seu processo de desenvolvimento é ágil? em sua equipe é utilizada Extremme Programming - XP -, Scrum ou algum outro tipo? Sua companhia é pofundamente enraizada em usar o método Cascata? Seu processo está em algum lugar entre Ágil e Cascata? A resposta a estas perguntas não importam, porque todas as equipes sem exceção devem seguir um processo parecido com o que é mostrado a seguir.
+
+1 - Baixa o código fonte, necessário para a programação, de seu SCM
+2 - Make changes to the code. 
+3 - No Visual Studio, clicando em Build e esperar que o código compile com sucesso.
+4 - Volta ao passo 2, caso o Visual Studio identificou erros.
+5 - Executa os testes unitários, e espera que tudo fique verde, ou seja, que passe em todos.
+6 - Volta ao passo 2, caso o teste unitário falhe, neste caso, o desenvolvedor vê um alerta vermelho e pode ver mais que um.
+7 - Refatora o código para fazê-lo mais compreensível e então volta ao passo 5.
+8 - Efetua o envio do seu código alterado para o SCM, este trabalho é chamado de commit.
+
+Vendo o processo demonstrado no parágrafo anterior e quando começamos a utilizar o CI, notamos que seguimos o mesmo processo. Porém, para o CI, o processo ainda vai mais além, posto que ele faz todos estes passos e ainda continua após o commit do código por parte do desenvolvedor, como veremos a continuação dos passos mais adiante. Na figura 1, temos uma ampla visão deste processo.
+
+9 - Um sistema Automatizado observa as alterações no SCM.Quando este sistema encontra as modificações, ele efetua um download da última versão do código, ou seja, a versão que contém o seu commit.
+10 - O sistema de Automação efetua o build do código.
+11 - O Sistema de Automação executa o teste unitário.
+12 - O Sistema de Automação envia os resultados do builds e do resultado dos testes para um sistema de comunicação, normalmente e-mail, mas que pode ser SMS, Mensageiro instantâneo ou outro, para informar aos membros do time o estado do build.
+
+[Figura 1 - Desenhar o processo descrito acima feito no Visio]
+
+Tipos de Construção para a Integração Contínua
+
+Os passos da Integração Contínua que descrevemos nos faz entender que cada vez que um desenvolvedor commita o código, um build é acionado. Este na verdade é o último objetivo e a razão pela qual é chamado de Integração Contínua.
+
+Uma forma de começar a configurar o seu Sistema de CI é obter as últimas alterações de seu código e efetuar o build de toda a aplicação. No próximo passo,adicione os testes unitários. E então, execute esta operação diariamente, que chamaremos de Build diário; Mas, veremos que, em um determinado momento, um build diário inclui outras coisas que não rodam quando fazemos um build incremental. Quando temos um build rodando todos os dias, adicionamos dois ou três builds por dia que apenas constróem e testam e não fazem mais nada. Não vai demorar muito tempo, e estaremos construindo continuamente e adicionando compilações diferentes para fazer coisas diferentes. Existem tipos de builds que dependem do ambiente e das aplicações, alguns dos builds mais comuns são mostrados na tabela 1. 
+ 
+Table 1.1 
+ 
+Some of the different types of builds you can do with CI 
+ 
+Build type - 
+ 
+Continuous/Incremental - Runs when code is checked in. Does a quick compile and 
+unit test. 
+ 
+Daily/Nightly - Does a compile and full suite of unit tests and possibly 
+additional testing such as FitNesse. 
+  
+Weekly - Does a compile, full unit testing, and additional testing 
+such as FitNesse. 
+ 
+Release - Creates an install set and then runs and tests the inst 
+all process. 
+ 
+QA -  Creates a build just for the QA team. 
+ 
+Staging -  Builds and copies assemblies to a staging server. 
+  
+The most important build, and the one you want to get to, is the continuous or incre- 
+mental build. This build is automatically triggered whenever source code is checked in 
+to the repository. Because this build can potentially run several times per day, and one 
+build may run immediately upon completion of another, you want the continuous 
+build to run quickly—preferably in under 5 minutes. This build should get the 
+updated code, rebuild the assembly it’s in, and then run some preliminary unit tests. 
+Reports are sent to the feedback mechanism. 
+Next is the daily build, often called the nightly build. Rather than running whenever 
+the code changes, the daily build is scheduled to run once per day, usually in the 
+middle of the night. Because you don’t need to worry about the next build starting 
+immediately, the daily build typically runs a complete suite of unit tests against all the 
+code. Depending on your environment, you may want to add additional automated 
+tests or code analysis. 
+Another build type is the weekly build, which runs automatically and usually on the 
+weekend. Once a week, you should run a code analysis and additional tests with tools 
+like Selenium, FitNesse, and NUnitForms. You may also want to create documentation 
+with Sandcastle or do continuous database integration. As you get closer to your 
+release date, you may want to run the weekly test build more often. You’ll also want to 
+run a release build. 
+The purpose of the release build is to create and test an install set. The release 
+build is typically manually triggered. But after the build is started, all the other steps 
+are handled automatically. In a release build, you’ll build all the source code, incre- 
+ment the version number, and run a full suite of tests. You’ll then create the install set 
+and simulate the install. Good CI server software will have a way to check if the install 
+was successful and then roll back the changes, so that the test system is ready for the 
+next round of install testing. 
+Your environment may require other types of builds. For example, you may have a 
+build that copies assemblies to a QA environment after the build. Or you can copy files 
+to a staging or production server. The bottom line is that many different types of 
+builds are needed for different purposes. But because steps are automated, you can be 
+sure that things are done the same way every time. 
+As you introduce CI and different types of builds, some team members may resist the 
+changes. It’s important to overcome these objections so your CI process is successful. 
+ 
+Fases de processos para Integração Contínua para seus Projetos
+	--Jenkins
+Continuous Integration is not an all-or-nothing affair. In fact, introducing CI into an
+organization takes you on a path that progresses through several distinct phases. Each
+of these phases involves incremental improvements to the technical infrastructure as
+well as, perhaps more importantly, improvements in the practices and culture of the
+development team itself. In the following paragraphs, I have tried to paint an approx-imate picture of each phase.
+Phase 1—No Build Server
+Initially, the team has no central build server of any kind. Software is built manually
+on a developer’s machine, though it may use an Ant script or similar to do so. Source
+code may be stored in a central source code repository, but developers do not neces-sarily commit their changes on a regular basis. Some time before a release is scheduled,
+a developer manually integrates the changes, a process which is generally associated
+with pain and suffering.
+Phase 2—Nightly Builds
+In this phase, the team has a build server, and automated builds are scheduled on a
+regular (typically nightly) basis. This build simply compiles the code, as there are no
+reliable or repeatable unit tests. Indeed, automated tests, if they are written, are not a
+mandatory part of the build process, and may well not run correctly at all. However
+developers now commit their changes regularly, at least at the end of every day. If a
+developer commits code changes that conflict with another developer’s work, the build
+server alerts the team via email the following morning. Nevertheless, the team still tends
+to use the build server for information purposes only—they feel little obligation to fix
+a broken build immediately, and builds may stay broken on the build server for some
+time.
+Phase 3—Nightly Builds and Basic Automated Tests
+The team is now starting to take Continuous Integration and automated testing more
+seriously. The build server is configured to kick off a build whenever new code is com-mitted to the version control system, and team members are able to easily see what
+changes in the source code triggered a particular build, and what issues these changes
+address. In addition, the build script compiles the application and runs a set of auto-mated unit and/or integration tests. In addition to email, the build server also alerts
+team members of integration issues using more proactive channels such as Instant
+Messaging. Broken builds are now generally fixed quickly.
+Phase 4—Enter the Metrics
+Automated code quality and code coverage metrics are now run to help evaluate the
+quality of the code base and (to some extent, at least) the relevance and effectiveness
+of the tests. The code quality build also automatically generates API documentation
+for the application. All this helps teams keep the quality of the code base high, alerting
+team members if good testing practices are slipping. The team has also set up a “build
+radiator,” a dashboard view of the project status that is displayed on a prominent screen
+visible to all team members.
+Phase 5—Getting More Serious About Testing
+The benefits of Continuous Integration are closely related to solid testing practices.
+Now, practices like Test-Driven Development are more widely practiced, resulting in
+a growing confidence in the results of the automated builds. The application is no longer
+simply compiled and tested, but if the tests pass, it is automatically deployed to an
+application server for more comprehensive end-to-end tests and performance tests.
+Phase 6—Automated Acceptance Tests and More Automated
+Deployment
+Acceptance-Test Driven Development is practiced, guiding development efforts and
+providing high-level reporting on the state of the project. These automated tests use
+Behavior-Driven Development and Acceptance-Test Driven Development tools to act
+as communication and documentation tools and documentation as much as testing
+tools, publishing reports on test results in business terms that non-developers can un-derstand. Since these high-level tests are automated at an early stage in the development
+process, they also provide a clear idea of what features have been implemented, and
+which remain to be done. The application is automatically deployed into test environ-ments for testing by the QA team either as changes are committed, or on a nightly basis;
+a version can be deployed (or “promoted”) to UAT and possibly production environ-ments using a manually-triggered build when testers consider it ready. The team is also
+capable of using the build server to back out a release, rolling back to a previous release,
+if something goes horribly wrong.
+Phase 7—Continuous Deployment
+Confidence in the automated unit, integration and acceptance tests is now such that
+teams can apply the automated deployment techniques developed in the previous phase
+to push out new changes directly into production.
+The progression between levels here is of course somewhat approximate, and may not
+always match real-world situations. For example, you may well introduce automated
+web tests before integrating code quality and code coverage reporting. However, it
+should give a general idea of how implementing a Continuous Integration strategy in
+a real world organization generally works.
+
+Vencendo a resistência das equipes contra a Integração Contínua
+	-- CI.NET
+With all these builds going on and developers having to change their routine and 
+check in code more often, you may get objections from team members. Some com- 
+mon objections are as follows: 
+¦ 
+ 
+ 
+ 
+ 
+ 
+¦ 
+CI means increased maintenance. 
+Someone will have to maintain the CI system. This will take them away from 
+programming duties. At first, there will be extra overhead to set up the system; 
+but when a project is fully integrated, your team will save time because it will be 
+faster and easier to test the application and detect and fix bugs. Many teams 
+report that after the CI process is running, maintenance takes less than an hour 
+per week. 
+This is too much change, too fast. 
+It’s difficult to adapt to the new way of doing things. Don’t implement every- 
+thing at once. Start out with a simple build once per day, and then add unit test- 
+ing. After the team is comfortable with this, you can add one or two additional builds per day or start doing code analysis. By taking the process in baby steps, 
+you’ll get more buy-in into the process. 
+¦ 
+ 
+ 
+ 
+ 
+¦ 
+ 
+ 
+ 
+ 
+¦ 
+CI means additional hardware and software costs. 
+Start out small with an old PC as your CI server if you need to. Eventually, you’ll 
+want better hardware so that you can run builds quickly (remember, the inte- 
+gration build should run in under 5 minutes); but for a build two or three times 
+a day, older hardware will work. If you use the tools we discuss here, your soft- 
+ware costs will be minimal. 
+Developers should be compiling and testing. 
+We’re not taking those responsibilities away from developers. We’re moving 
+much of the grunt work to an automated system. This allows programmers 
+to use their brains to solve the business problems of the application. This 
+makes the developers more productive where it counts: writing and debug- 
+ging code. 
+The project is too far along to add CI. 
+Although it’s better and easier to place a new project under a CI process, the 
+truth is, most of the work we do is maintenance on existing projects. An 
+existing project may not have unit tests, but you’ll still use source control and 
+need to do builds. You can benefit from CI no matter how far along your 
+project is. 
+One of the authors once worked in an environment where each developer was respon- 
+sible for a different executable in a 15-year-old C++ application. Each executable was 
+built locally and then copied to a shared folder on the network where QA picked it up 
+and tested it. Problems arose because each developer used a different version of third- 
+party components, and each developer used different compiler switches. This meant 
+that if one developer was on vacation, and a bug in their code needed to be fixed, it 
+was difficult to reproduce their development environment on another developer’s 
+workstation. It was so troublesome that management finally decided that unless the 
+customer was down due to the bug, the fix would wait for the responsible programmer 
+to get back to the office. If CI had been in place, many of the issues with the software 
+wouldn’t have happened. 
+Here are several reasons to use CI in your development process: 
+
+- Reduced risks —By implementing good CI processes, you’ll create better software, 
+because you’ll have done testing and integration earlier in the process, thus 
+increasing the chances of catching bugs earlier. We’ll talk more about reducing 
+risks in the next section. 
+- Deployable software —If you automate the installation process, you’ll know that 
+the software installs as it should. 
+- Increased project visibility —The feedback mechanism allows project members to 
+know the results of the build and where the problems are. Bugs can be fixed 
+sooner rather than later, reducing costs and the time spent fixing bugs. 
+- Fast incremental builds —In October 2009, ZeroTurnaround released results of a 
+survey of more than 500 Java developers. In the survey, 44% said their incre- 
+mental builds took less than 30 seconds, and another 40% said build times were 
+between 1 and 3 minutes. The overall average build time was 1.9 minutes.1 
+Although the survey was for Java apps, there’s no reason not to believe your 
+.NET projects will have fast incremental build times. Fast incremental build 
+times means you get build and test results sooner, helping you to fix bugs ear- 
+lier in the development process. 
+Don’t let team objections get you down. The initial resistance will eventually give 
+way to acceptance as the team works with the CI system. Virginia Satir, a family ther- 
+apist, developed the Satir Change Model, which shows how families deal with 
+change. Steven Smith wrote that the same model can be used to show how new tech- 
+nology is adopted (http://stevenmsmith.com/ar-satir-change-model/). The change 
+process involves five steps: 
+
+1 - Late status quo —Everyone is working in the current process and knows how 
+it works. 
+2 - Resistance —A new element is introduced. People are hesitant to change how 
+they’re working. The late status quo works fine. Why change it? 
+3 - Chaos —The new element is adopted. There is no longer a normal way of doing 
+things. Daily routines are disrupted. 
+4 - Integration —People slowly become adjusted to the new way of doing things. It 
+gets easier to do their jobs with the new methodology. 
+5 - New status quo —The new element becomes fully integrated into the system. Peo- 
+ple now look at it as normal. 
+
+Almost every team has adopted new methodologies at one time or another. This pro- 
+cess should sound familiar to you. 
+As you meet resistance from the team, be persistent in implementing the changes. 
+Team members will eventually accept them. Some team members will adopt CI more 
+quickly than others, who may need more convincing. Perhaps you should show them 
+how CI reduces risk in the development process. 
+
+Custo Benefício da Integração Contínua
+
+-- CI.NET
+Your customer doesn’t like risk. Your manager doesn’t like risk. Your project manager 
+should have plans in place to mitigate risk. In the end, you shouldn’t like risk either. 
+CI is all about reducing risk. 
+Perhaps the biggest risk in software development is schedule slippage—in other 
+words, the project being delivered late. Because of the feedback mechanism in the CI process, team members always know the status of the current build, which helps you 
+know whether the project is getting behind schedule. Feedback mechanisms will be 
+presented in chapter 5. 
+The next biggest risk is bugs. It’s been shown that the later in the process you find 
+a bug, the more costly it is to fix. Some estimates suggest that it costs as much as 
+$4,000 to fix a single bug in internal, home-grown corporate web applications. In 
+2005, a well-known antivirus company had a bug in an update. That single bug caused 
+customers to lose confidence in the antivirus software and forced the company to 
+lower its quarterly income and revenue forecasts by $8 million. Do you want your 
+company to experience similar costs? One of the caveats of CI is that bugs are fixed as 
+soon as they’re reported. By integrating and testing the software with each build, you 
+can identify and fix bugs earlier in the process. We’ll discuss unit testing in chapter 6 
+and application testing in chapter 7. 
+Have you considered how many different code paths exist in your application? 
+Have you tested each if/else combination? How about every case of a switch 
+statement? In his book Testing Computer Software (John Wiley & Sons, 1999), Cem 
+Kaner mentions a 20-line program written by G. J. Meyers that has 100 trillion 
+paths. Code coverage is a methodology that checks which paths are tested and which 
+aren’t. A great thing about code coverage is that you can automate it in your CI pro- 
+cess. It’s impossible to test every combination; but the more you test, the fewer 
+issues will be uncovered by your customers. Code coverage will also be presented in 
+chapter 6. 
+Another risk is database updates. It’s never easy to add columns to a table or new 
+tables to a database. With continuous database integration, you’ll know that database 
+changes work properly and without data loss. We’ll discuss continuous database inte- 
+gration in more detail in chapter 11. 
+Developers often hate coding and architectural standards, but they have a useful 
+purpose: they ensure that the application follows best practices, which in turn makes 
+the application perform better and makes it easier to maintain. Code reviews catch 
+some of these issues; but because code reviews are a manual process, things are 
+missed. Why not automate standards compliance as part of your CI process? We’ll 
+cover code analysis in chapter 8. 
+Comments are rarely put in code, and documentation is generated even less often. 
+Many people say that if you’re agile, you don’t have documentation, but this isn’t true. 
+Agile says that you value working software over documentation. But some documenta- 
+tion is still needed, especially if you’re creating assemblies for use by other developers. 
+Here’s another opportunity for automation in your CI process, and one that’ll be cov- 
+ered in chapter 9. 
+How do you know that your installation process works correctly? There are few 
+things that frustrate users more than when they can’t install an application. Create 
+and test the entire installation process in your CI system. We’ll cover deployment and 
+delivery in chapter 10. 
+Finally, CI also increases visibility. It’s easier to see problems hiding in the project 
+that without CI wouldn’t be found until much later in the development process, when 
+they would be harder and much more costly to fix. 
+Now that you know what continuous integration is and how it can improve your 
+development process, let’s see CI in action. 
