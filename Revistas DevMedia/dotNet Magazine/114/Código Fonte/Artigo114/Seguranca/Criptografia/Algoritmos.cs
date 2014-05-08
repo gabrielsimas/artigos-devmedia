@@ -144,7 +144,7 @@ namespace Seguranca.Criptografia
         /// </param>
         /// <param name="algoritmoHash">
         /// Nome do algoritmo do hash. Até o momento, temos: "MD5", "SHA1",
-        /// "SHA256", "SHA384", e "SHA512" (Se outro valor diferente destes
+        /// "SHA256", "SHA384", "SHA512" e "SHA3" (Se outro valor diferente destes
         /// o hashing do MD5 será utilizado). Estes valores são case insensitive.
         /// </param>
         /// <param name="salt">
@@ -164,7 +164,7 @@ namespace Seguranca.Criptografia
                 //define o valor máximo e o mínino de salts
                 // Define min and max salt sizes.
                 int tamanhoMinSalt = 1;
-                int tamanhoMaxSalt = 64;
+                int tamanhoMaxSalt = TAMANHO_BYTE_SALT;
 
                 //Gera um número aleatório para o tamaho do salt
                 Random random = new Random();

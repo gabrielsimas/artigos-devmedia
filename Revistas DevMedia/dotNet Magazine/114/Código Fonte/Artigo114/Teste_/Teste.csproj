@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2966411B-862F-4C7B-9870-F4033E768E71}</ProjectGuid>
+    <ProjectGuid>{8842FAA0-92FA-4DD2-ACB7-4F41F910FF65}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Negocio</RootNamespace>
-    <AssemblyName>ArtigoSecurity.Negocio</AssemblyName>
+    <RootNamespace>Teste</RootNamespace>
+    <AssemblyName>ArtigoSecurity.Teste</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Criptografia\CriptografiaTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,9 +57,17 @@
       <Project>{23CABB6B-B796-4965-9FDA-C905CA524943}</Project>
       <Name>Entidade</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Negocio\Negocio.csproj">
+      <Project>{2966411B-862F-4C7B-9870-F4033E768E71}</Project>
+      <Name>Negocio</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Seguranca\Seguranca.csproj">
       <Project>{12864A23-425E-492F-B03B-9A8B34E95134}</Project>
       <Name>Seguranca</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SiteSeguro\SiteSeguro.csproj">
+      <Project>{9AB4FBD2-C4F4-4476-83E9-DBD9CB1DBFEE}</Project>
+      <Name>SiteSeguro</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
