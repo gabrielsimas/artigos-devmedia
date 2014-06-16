@@ -11,10 +11,10 @@ namespace Teste.Criptografia
     [TestClass]
     public class CriptografiaTeste
     {
-        private const String SENHA = "J4n3c4554n1,123";
-        private const String MD5SENHA = "0x109A3C9F5615818B1BECE4FAE4650B13";
-        private const String SENHASALTPBKDF2 = "10000:5aGAa8bkCMyHhaOq9ad8/nxUWvVeqNkj4auaCB/z2BVVw9HBtTM3H3mr6ZAB6FQkHN5M44k9fX7IIYbUHZrx9A==:j6ZcXGpbeH2mvGb6HGvPgfI7EnoONTEa5bQ9a15n049r2u8ZPa6G61FOfEVwe7MidrYPHOVURRS8PEl1HODACA==";
-        private const String SENHASALTSHA3 = "XYO9XiDd6a25nNSGlR881SGzL9RyfbT8pq0KSd1+qHIDnmn3P1mAruNtNH54R7q0sOmcuBqOHiiRSloVQ+U+BrO4k8bJqsNjDQq3i7g2Qp+5NkKkDoFO";
+        private const String SENHA = "@Bc,123";
+        private const String MD5SENHA = "";
+        private const String SENHASALTPBKDF2 = "";
+        private const String SENHASALTSHA3 = "";
 
         [Description("converte uma String em HASH MD5")]
         [TestCategory("Segurança")]

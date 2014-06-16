@@ -12,9 +12,18 @@ namespace DTO.ACL
     using System.Text;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// DTO para a Entidade Papel
     /// </summary>
     public class PapelDto
     {
+
+        public enum SimNao : int { Nao = 0, Sim = 1 }
+
+        public Nullable<long> Id { get; set; }
+        public String Nome { get; set; }
+        public SimNao IsAdministrador { get; set; }
+
+        public IList<UsuarioDto> UsuariosDto { get; set; }
+
     }
 }

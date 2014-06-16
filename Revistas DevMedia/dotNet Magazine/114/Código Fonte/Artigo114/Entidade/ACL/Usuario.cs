@@ -7,26 +7,22 @@
     using System.Reflection;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Entidade representando o Usuário
     /// </summary>
     public class Usuario
     {
-        #region Atributos
-        private Nullable<long> id;
-        private String nomeCompleto;
-        private DateTime dataNascimento;
-        private String apelido;
-        private String email;
-        private String perguntaSecreta;
-        private String respostaSecreta;
-        private long cpf;
-        private long cnpj;
-        private String login;
-        private String senha;
-        private String salt;
-        private Boolean estaAtivo;
 
-        private Papel papel;
+        #region Propriedades
+        public virtual Nullable<long> Id { get; set; }
+        public virtual String NomeCompleto { get; set; }
+        public virtual String Apelido { get; set; }
+        public virtual String Login { get; set; }
+        public virtual String Senha { get; set; }
+        public virtual String PerguntaSecreta { get; set; }
+        public virtual String RespostaSecreta { get; set; }
+        public virtual String Email { get; set; }
+
+        public virtual Papel Papel { get; set; }
         #endregion
 
         #region Construtores
@@ -35,41 +31,21 @@
 
         }
 
-        public Usuario(Nullable<long> id,String nomeCompleto, DateTime dataNascimento, String apelido, String email, String perguntaSecreta, String respostaSecreta, long cpf, long cnpj, String login, String senha, Boolean estaAtivo)
+        public Usuario(Nullable<long> id, String nomeCompleto, String apelido, String login, String senha, String perguntaSecreta, String respostaSecreta, String email, Papel papel)
         {
-            this.id = id;
-            this.nomeCompleto = nomeCompleto;
-            this.dataNascimento = dataNascimento;
-            this.apelido = apelido;
-            this.email = email;
-            this.perguntaSecreta = perguntaSecreta;
-            this.respostaSecreta = respostaSecreta;
-            this.cpf = cpf;
-            this.cnpj = cnpj;
-            this.login = login;
-            this.senha = senha;
-            this.estaAtivo = estaAtivo;
+            this.Id = id;
+            this.NomeCompleto = nomeCompleto.Trim().ToUpper();
+            this.Apelido = apelido.Trim().ToUpper();
+            this.Login = login.Trim().ToUpper();
+            this.Senha = senha;
+            this.PerguntaSecreta = perguntaSecreta.Trim().ToUpper();
+            this.RespostaSecreta = respostaSecreta.Trim().ToUpper();
+            this.Email = email.Trim().ToLower();
         }
         #endregion
 
-        #region Propriedades
-        public int Id { get; set; }
-        public String NomeCompleto { get; set; }
-        public DateTime DataNascimento { get; set; }
-        public String Apelido { get; set; }
-        public String Email { get; set; }
-        public String PerguntaSecreta { get; set; }
-        public String RespostaSecreta { get; set; }
-        public long Cpf { get; set; }
-        public long Cnpj { get; set; }
-        public String Login { get; set; }
-        public String Senha { get; set; }
-        public String Salt { get; set; }
-        public Boolean EstaAtivo { get; set; }
-        public Papel Papel { get; set; }
-        #endregion
-
         #region Classe Rica
+
         public override string ToString()
         {
             FieldInfo[] atributos;
@@ -79,8 +55,9 @@
 
         public override int GetHashCode()
         {
-            return this.id.HasValue ? this.id.GetHashCode() : 0;
+            return this.Id.HasValue ? this.Id.GetHashCode() : 0;
         }
+
         #endregion
     }
 }

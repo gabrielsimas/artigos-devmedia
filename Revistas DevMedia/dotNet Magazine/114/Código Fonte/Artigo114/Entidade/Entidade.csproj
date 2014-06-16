@@ -42,8 +42,12 @@
   <ItemGroup>
     <Compile Include="ACL\LogAcesso.cs" />
     <Compile Include="ACL\LogAuditoria.cs" />
+    <Compile Include="ACL\LogErro.cs" />
     <Compile Include="ACL\Papel.cs" />
     <Compile Include="ACL\Usuario.cs" />
+    <Compile Include="Necessidade.cs" />
+    <Compile Include="Ong.cs" />
+    <Compile Include="Projeto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                    assembly="ArtigoSecurity.Entidade"
+                   namespace="Entidade">
+
+  <class name="Ong" table="ong" lazy="true">
+    
+    <!-- Chave Primária-->
+    <id name="Id" column ="id">
+      <generator class="identity" />
+    </id>
+    
+    <!-- Propriedades -->
+    <property name="Cnpj" column="cnpj" />
+    <property name="Cpf" column="cpf" />
+    <property name="NomeFantasia" column="nomeFantasia" />
+    <property name="RazaoSocial" column="razaoSocial" />
+    <property name="Estado" column="estado" />
+    
+    
+    <!-- Relacionamentos -->
+    <bag name="Projetos" inverse="true" lazy="true" fetch="join" cascade="all">
+      <key column="idOng" />
+      <one-to-many class="Entidade.Projeto, ArtigoSecurity.Entidade" />
+    </bag>
+
+    <bag name="Necessidades" inverse="true" lazy="true" fetch="join" cascade="all">
+      <key column ="idOng" />
+      <one-to-many class="Entidade.Necessidade, ArtigoSecurity.Entidade"/>
+    </bag>
+    
+  </class>
+  
+</hibernate-mapping> 

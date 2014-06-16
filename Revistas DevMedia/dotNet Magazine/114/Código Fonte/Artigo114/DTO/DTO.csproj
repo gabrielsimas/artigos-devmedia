@@ -42,6 +42,9 @@
   <ItemGroup>
     <Compile Include="ACL\PapelDto.cs" />
     <Compile Include="ACL\UsuarioDto.cs" />
+    <Compile Include="NecessidadeDto.cs" />
+    <Compile Include="OngDto.cs" />
+    <Compile Include="ProjetoDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

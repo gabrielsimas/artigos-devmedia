@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                    assembly="ArtigoSecurity.Entidade"
+                   namespace="Entidade">
+
+  <class name="Projeto" table="Projeto" lazy ="true">
+    
+    <!-- Id da Entidade -->
+    <id name="Id" column="id">
+      <generator class="identity" />
+    </id>    
+    
+    <!-- Propriedade -->
+    <property name="Nome" column="nome" />
+    <property name="Descricao" column="descricao" />
+    <property name="Custo" column="custo" />
+    
+    <!-- Relacionamentos -->
+    <many-to-one name="Ong" column="idOng" lazy="proxy"/>
+    
+  </class>
+  
+</hibernate-mapping>

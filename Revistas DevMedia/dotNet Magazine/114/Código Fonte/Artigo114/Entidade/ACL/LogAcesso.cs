@@ -12,9 +12,16 @@ namespace Entidade.ACL
     using System.Text;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// 
     /// </summary>
     public class LogAcesso
     {
+
+        #region Propriedades
+        #endregion
+
+        #region Construtores
+        #endregion
+
     }
 }

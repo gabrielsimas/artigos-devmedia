@@ -54,6 +54,10 @@
       <Name>Seguranca</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NHibernate\" />
+    <Folder Include="SpringNet\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>del /q "$(OutDir)*.*"

@@ -8,13 +8,14 @@
 
     public class Papel
     {
+        public enum SimNao : int {Nao = 0, Sim = 1}
 
-        #region Atributos
-        private Nullable<long> id;
-        private string nomePapel;
-        private Boolean administrativo;
-        private Boolean ativo;
-        private IList<Usuario> usuarios;
+        #region Propriedades
+        public virtual Nullable<long> Id { get; set; }
+        public virtual String Nome { get; set; }
+        public virtual SimNao IsAdministrador { get; set; }
+
+        public virtual IList<Usuario> Usuarios { get; set; }
         #endregion
 
         #region Construtores
@@ -23,22 +24,12 @@
 
         }
 
-        public Papel(int id, String nomePapel, Boolean administrativo, Boolean ativo, IList<Usuario> usuarios)
+        public Papel(Nullable<long> id, String nome, SimNao isAdministrador, IList<Usuario> Usuarios)
         {
-            this.id = id;
-            this.nomePapel = nomePapel;
-            this.administrativo = administrativo;
-            this.ativo = ativo;
-            this.usuarios = usuarios;
+            this.Id = id;
+            this.Nome = nome.Trim().ToUpper();
+            this.IsAdministrador = isAdministrador; 
         }
-        #endregion
-
-        #region Propriedades
-        public int Id { get; set; }
-        public String NomePapel { get; set; }
-        public Boolean Administrativo { get; set; }
-        public Boolean Ativo { get; set; }
-        public IList<Usuario> Usuarios { get; set; }
         #endregion
 
         #region Classe Rica
@@ -51,7 +42,7 @@
 
         public override int GetHashCode()
         {
-            return this.id.HasValue ? this.id.GetHashCode() : 0;
+            return this.Id.HasValue ? this.Id.GetHashCode() : 0;
         }
         #endregion
     }

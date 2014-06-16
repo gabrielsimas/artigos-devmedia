@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{591FAD02-9233-499A-931A-0E1F6EA67619}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dal.Projeto</RootNamespace>
+    <AssemblyName>ArtigoSecurity.Dal.Projeto</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ArtigoSecurity.Orm.Dal.Nhibernate, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\InfraEstrutura\ProjetoDLL\Desenvolvimento\ArtigoSecurity.Orm.Dal.Nhibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="NHibernate\NecessidadeDao.cs" />
+    <Compile Include="NHibernate\OngDao.cs" />
+    <Compile Include="NHibernate\PapelDao.cs" />
+    <Compile Include="NHibernate\ProjetoDao.cs" />
+    <Compile Include="NHibernate\UsuarioDao.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NHibernate\Mapeamentos\Necessidade.hbm.xml" />
+    <EmbeddedResource Include="NHibernate\Mapeamentos\Ong.hbm.xml" />
+    <EmbeddedResource Include="NHibernate\Mapeamentos\Papel.hbm.xml" />
+    <EmbeddedResource Include="NHibernate\Mapeamentos\Projeto.hbm.xml" />
+    <EmbeddedResource Include="NHibernate\Mapeamentos\Usuario.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SpringNet\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dal.SpringNet\IoC.SpringNet.Dal.csproj">
+      <Project>{9FF684E6-0930-4E1B-848A-8AF412DA31DC}</Project>
+      <Name>IoC.SpringNet.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entidade\Entidade.csproj">
+      <Project>{23CABB6B-B796-4965-9FDA-C905CA524943}</Project>
+      <Name>Entidade</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>del /q "$(OutDir)*.*"
+%25WINDIR%25\Microsoft.Net\Framework\v4.0.30319\ngen.exe install “$(TargetPath)”
+Copy "$(TargetPath)"   "$(SolutionDir)InfraEstrutura\ProjetoDLL\Desenvolvimento"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
