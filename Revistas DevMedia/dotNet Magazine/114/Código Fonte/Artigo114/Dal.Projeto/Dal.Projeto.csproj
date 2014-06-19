@@ -49,6 +49,11 @@
     <Compile Include="NHibernate\ProjetoDao.cs" />
     <Compile Include="NHibernate\UsuarioDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpringNet\NecessidadeDao.cs" />
+    <Compile Include="SpringNet\OngDao.cs" />
+    <Compile Include="SpringNet\PapelDao.cs" />
+    <Compile Include="SpringNet\ProjetoDao.cs" />
+    <Compile Include="SpringNet\UsuarioDao.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="NHibernate\Mapeamentos\Necessidade.hbm.xml" />
@@ -57,9 +62,7 @@
     <EmbeddedResource Include="NHibernate\Mapeamentos\Projeto.hbm.xml" />
     <EmbeddedResource Include="NHibernate\Mapeamentos\Usuario.hbm.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SpringNet\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Dal.SpringNet\IoC.SpringNet.Dal.csproj">
       <Project>{9FF684E6-0930-4E1B-848A-8AF412DA31DC}</Project>

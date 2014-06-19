@@ -12,6 +12,8 @@
     public class Usuario
     {
 
+        public enum EstadoUsuario: int {Bloqueado = 0, Liberado = 1}
+
         #region Propriedades
         public virtual Nullable<long> Id { get; set; }
         public virtual String NomeCompleto { get; set; }
@@ -21,6 +23,7 @@
         public virtual String PerguntaSecreta { get; set; }
         public virtual String RespostaSecreta { get; set; }
         public virtual String Email { get; set; }
+        public virtual EstadoUsuario Estado { get; set; }
 
         public virtual Papel Papel { get; set; }
         #endregion
@@ -31,7 +34,7 @@
 
         }
 
-        public Usuario(Nullable<long> id, String nomeCompleto, String apelido, String login, String senha, String perguntaSecreta, String respostaSecreta, String email, Papel papel)
+        public Usuario(Nullable<long> id, String nomeCompleto, String apelido, String login, String senha, String perguntaSecreta, String respostaSecreta, String email, EstadoUsuario estado,Papel papel)
         {
             this.Id = id;
             this.NomeCompleto = nomeCompleto.Trim().ToUpper();
@@ -41,6 +44,8 @@
             this.PerguntaSecreta = perguntaSecreta.Trim().ToUpper();
             this.RespostaSecreta = respostaSecreta.Trim().ToUpper();
             this.Email = email.Trim().ToLower();
+            this.Estado = estado;
+            this.Papel = papel;
         }
         #endregion
 

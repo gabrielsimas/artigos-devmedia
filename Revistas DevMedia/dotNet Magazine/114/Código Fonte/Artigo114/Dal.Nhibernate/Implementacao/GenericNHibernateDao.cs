@@ -25,24 +25,31 @@ namespace Orm.Nhibernate.Dal.Implementacao
         private ISessionFactory fabrica;
         private ISession sessao;
         private ITransaction transacao;
-        private Boolean isTeste;
+        private Boolean isTeste = true;
         
         #endregion
 
         #region Construtor
         public GenericNHibernateDao()
         {
-
+            this.fabrica = NHibernateUtils.FabricaDeSessao;
         }
 
         public GenericNHibernateDao(Boolean IsTeste)
         {
             this.fabrica = NHibernateUtils.FabricaDeSessao;
-
         }
         #endregion
 
         #region Métodos CRUD
+
+        public virtual void setTeste(Boolean isTeste){
+            if (isTeste == null) {
+                isTeste = false;
+            }
+
+            this.isTeste = isTeste;
+        }
 
         public virtual IList<E> listarTudo()
         {

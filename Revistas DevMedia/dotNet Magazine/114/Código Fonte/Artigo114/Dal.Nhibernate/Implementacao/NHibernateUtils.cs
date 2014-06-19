@@ -21,7 +21,7 @@ namespace Orm.Nhibernate.Dal.Implementacao
         private static Boolean isJaAberta;
         private static ISessionFactory fabricaDeSessao;
         private static ISession sessao;
-        private const String ASSEMBLYMAPEAMENTOS = "ArtigoSecurity.Dal.Nhibernate";
+        private const String ASSEMBLYMAPEAMENTOS = "ArtigoSecurity.Dal.Projeto";
         private const String STRINGCONEXAO = @"Data Source=ALLSPARK\SQLEXPRESS;Initial Catalog=OWASPNIST;Integrated Security=True;Persist Security Info=True;Asynchronous Processing=True;MultipleActiveResultSets=True";
 
         #endregion

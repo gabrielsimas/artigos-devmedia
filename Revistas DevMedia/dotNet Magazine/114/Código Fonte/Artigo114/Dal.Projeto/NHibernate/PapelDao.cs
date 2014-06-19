@@ -12,12 +12,11 @@ namespace Dal.Projeto.NHibernate
     using System.Text;
 
     using Orm.Nhibernate.Dal.Implementacao;
-    using ng eADiintNRI.if..delegate;delegate;
-    AttributeUDUIE  S
-<summary>
-    /// TODO: Update summary.
+    using Entidade.ACL;
+    ///<summary>
+    /// Classe de Persistência para Papel
     /// </summary>
-    public class PapelDao
+    public class PapelDao : GenericNHibernateDao<Papel>
     {
     }
 }

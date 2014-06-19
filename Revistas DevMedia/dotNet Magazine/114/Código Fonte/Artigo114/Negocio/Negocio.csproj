@@ -40,6 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementacao\NecessidadeNegocio.cs" />
+    <Compile Include="Implementacao\OngNegocio.cs" />
+    <Compile Include="Implementacao\PapelNegocio.cs" />
+    <Compile Include="Implementacao\ProjetoNegocio.cs" />
+    <Compile Include="Implementacao\UsuarioNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +60,9 @@
       <Project>{12864A23-425E-492F-B03B-9A8B34E95134}</Project>
       <Name>Seguranca</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interface\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

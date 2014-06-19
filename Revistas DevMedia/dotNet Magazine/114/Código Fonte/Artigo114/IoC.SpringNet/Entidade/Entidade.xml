@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+  
+  <!-- Injeção de Dependências para Entidades-->
+  
+  <object id ="Ong"         type="Entidade.Ong, ArtigoSecurity.Entidade" />
+  <object id ="Projeto"     type="Entidade.Projeto, ArtigoSecurity.Entidade" />
+  <object id ="Necessidade" type="Entidade.Necessidade, ArtigoSecurity.Entidade" />
+  <object id ="Papel"       type="Entidade.ACL.Ong, ArtigoSecurity.Entidade" />
+  <object id ="Usuario"     type=" Entidade.ACL.Ong, ArtigoSecurity.Entidade" />
+  
+</objects>

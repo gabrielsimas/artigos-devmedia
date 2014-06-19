@@ -1,1 +1,27 @@
-﻿<?xml version="1.0" encoding="utf-8" ?> 
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                    assembly="ArtigoSecurity.Entidade"
+                   namespace="Entidade.ACL">
+
+  <class name="Usuario" table="Usuario">
+
+    <!-- Chave Primária-->
+    <id name="Id" column ="id">
+      <generator class="identity" />
+    </id>
+
+    <!-- Propriedades -->
+    <property name="NomeCompleto" column="nomeCompleto" />
+    <property name="Apelido" column="apelido" />
+    <property name="Login" column="conta" />
+    <property name="Senha" column="senha" />
+    <property name="PerguntaSecreta" column="perguntaSecreta" />
+    <property name="RespostaSecreta" column="respostaSecreta" />
+    <property name="Email" column="email" />    
+
+    <!-- Relacionamentos -->
+    <one-to-one name="Papel" class="Papel" />
+    
+  </class>
+  
+</hibernate-mapping>

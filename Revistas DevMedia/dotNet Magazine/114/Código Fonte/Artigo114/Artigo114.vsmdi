@@ -1,7 +1,25 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <TestLists xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestList name="Negócio" id="188f6632-531b-4cc5-887a-bf82c8b651a3" parentListId="8c43106b-9dc1-4907-a29f-aa66a61bf5b6">
+    <Description>TDD para a criação da Regra de Negócios</Description>
+    <TestLinks>
+      <TestLink id="e783b393-095b-6a54-62db-0c98f191e341" name="CadastraUsuario" storage="teste\bin\debug\artigosecurity.teste.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    </TestLinks>
+  </TestList>
+  <TestList name="DAO" id="5a1d7595-263c-4a76-be21-16536faf692a" parentListId="990830fa-9081-4cf5-8dca-feec2ac0fbd0">
+    <Description>Teste dos objetos de acesso a dados.</Description>
+    <TestLinks>
+      <TestLink id="83dbd039-5fca-7679-67ac-87a7c11ebae2" name="Insere" storage="teste\bin\debug\artigosecurity.teste.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    </TestLinks>
+  </TestList>
   <TestList name="Lists of Tests" id="8c43106b-9dc1-4907-a29f-aa66a61bf5b6">
     <RunConfiguration id="06279072-942e-4f2d-88c8-d2cf85a238af" name="Local" storage="local.testsettings" type="Microsoft.VisualStudio.TestTools.Common.TestRunConfiguration, Microsoft.VisualStudio.QualityTools.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  </TestList>
+  <TestList name="NHibernate" id="990830fa-9081-4cf5-8dca-feec2ac0fbd0" parentListId="8c43106b-9dc1-4907-a29f-aa66a61bf5b6">
+    <Description>Testes unitários para verificar a persistência com este framework</Description>
+    <TestLinks>
+      <TestLink id="2c95d8c9-8ca6-4c1e-333c-a52c396833e8" name="Integracao" storage="teste\bin\debug\artigosecurity.teste.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    </TestLinks>
   </TestList>
   <TestList name="Criptografia" id="b319b76b-d288-4be4-8909-964842bade5c" parentListId="8c43106b-9dc1-4907-a29f-aa66a61bf5b6">
     <TestLinks>
@@ -11,5 +29,17 @@
       <TestLink id="75ab7c21-32eb-efda-4b1b-987537887974" name="CriaHashParaSenhaComSalt" storage="teste\bin\debug\artigosecurity.teste.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
       <TestLink id="0597c4cc-0cd8-4346-bcd8-2e298cc3d2a1" name="ValidaSenhaHashSHA3" storage="teste\bin\debug\artigosecurity.teste.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     </TestLinks>
+  </TestList>
+  <TestList name="Ambiente" id="c2af8b3a-d12e-4d89-b3a7-4656e9856aa1" parentListId="dde8074a-7f38-4bc0-a2d9-4a30405cb728">
+    <Description>Testando o Ambiente do Spring.NET.
+
+- Mapeamento
+- Injeções</Description>
+    <TestLinks>
+      <TestLink id="321b52fa-5cbe-fa53-dfc2-b78f18fb3392" name="Integracao" storage="teste\bin\debug\artigosecurity.teste.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    </TestLinks>
+  </TestList>
+  <TestList name="SpringNet" id="dde8074a-7f38-4bc0-a2d9-4a30405cb728" parentListId="8c43106b-9dc1-4907-a29f-aa66a61bf5b6">
+    <Description>Testes Unitários utilizando Injeção de Dependências e Integração do Spring.NET</Description>
   </TestList>
 </TestLists>

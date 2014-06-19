@@ -51,7 +51,12 @@
     <Compile Include="Interface\IGenericDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Dal.Projeto\Dal.Projeto.csproj">
+      <Project>{591FAD02-9233-499A-931A-0E1F6EA67619}</Project>
+      <Name>Dal.Projeto</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>del /q "$(OutDir)*.*"

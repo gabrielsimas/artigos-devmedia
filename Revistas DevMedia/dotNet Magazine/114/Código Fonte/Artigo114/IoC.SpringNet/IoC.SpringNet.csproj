@@ -42,6 +42,19 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Web\Controle.xml" />
+    <EmbeddedResource Include="Dal\Dao.xml" />
+    <EmbeddedResource Include="Entidade\Entidade.xml" />
+    <EmbeddedResource Include="Negocio\Negocio.xml" />
+    <EmbeddedResource Include="Web\Visao.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Orm\Orm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>del /q "$(OutDir)*.*"

@@ -1,1 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                    assembly="ArtigoSecurity.Entidade"
+                   namespace="Entidade.ACL">
+
+  <class name="Papel" table="Papel">
+
+    <!-- Chave Primária-->
+    <id name="Id" column ="id">
+      <generator class="identity" />
+    </id>
+    
+    <!-- Propriedades -->
+    <property name="Nome" column="nome" />
+    <property name="IsAdministrador" column="administrador" />
+    
+    <!-- Relacionamentos -->
+    <bag name="Usuarios" inverse="true" lazy="true" fetch="join" cascade="all">
+      <key column="idPapel" />
+      <one-to-many class="Entidade.ACL.Usuario, ArtigoSecurity.Entidade" />
+    </bag>
+    
+  </class>
+  
+</hibernate-mapping>

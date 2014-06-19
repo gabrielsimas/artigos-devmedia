@@ -13,8 +13,8 @@ namespace Teste.Criptografia
     {
         private const String SENHA = "@Bc,123";
         private const String MD5SENHA = "";
-        private const String SENHASALTPBKDF2 = "";
-        private const String SENHASALTSHA3 = "";
+        private const String SENHASALTPBKDF2 = "10000:tU784lgktBRQA7clzUZBjpHSe7ulwdYBMY5itq0OmYBdpNh0Vg6PAXgYxKE7SBqUOUq4SmGpB6MZZqmUlXtlxg==:+JJO6C0J2/UQ1LtRLmh087KDro5WVPDWSlnAem8+taKMnpgq4mW293QQ9/JAwn/Yykdkjb1wTNxMB1XqbiNtoQ==";
+        private const String SENHASALTSHA3 = "nwz/MswNhkyXF/VkIdvp2Tx/V+k0b9A9Z+ZVimdzAiweu4ldLDb6y6LFKxBbswHFV7koksR6CTJcIYWszErfZQ9hXaeM3kXbqRstfs9CL/XU6IUUZAywyC1Sm8E1g4x5dtot5I9yoUxUVoZaFaxXd3AsJGrhO/1QcQf/pA==";
 
         [Description("converte uma String em HASH MD5")]
         [TestCategory("Segurança")]
@@ -32,8 +32,8 @@ namespace Teste.Criptografia
         public void CriaHashParaSenhaComSalt()
         {
             String senhaComSalt = Algoritmos.CriaHashParaSenhaComSaltUtilizandoPbkdf2(SENHA);
+            Console.WriteLine(senhaComSalt);
             Assert.IsTrue(true, "Senha Inserida: " + SENHA + " Senha MD5: " + senhaComSalt);
-
         }
 
         [Description("Verifica se a senha gerada com o salt é válida ao ser confrontada com a senha inserida pelo usuário")]

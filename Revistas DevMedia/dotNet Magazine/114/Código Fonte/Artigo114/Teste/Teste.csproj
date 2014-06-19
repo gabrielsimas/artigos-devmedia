@@ -33,7 +33,61 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging">
+      <HintPath>..\InfraEstrutura\Insumos\Ferramentas\SpringNet1-3-2\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\InfraEstrutura\Insumos\Ferramentas\NHibernate32\Iesi.Collections.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="NHibernate, Version=3.2.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\InfraEstrutura\Insumos\Ferramentas\NHibernate32\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Aop">
+      <HintPath>..\InfraEstrutura\Insumos\Ferramentas\SpringNet1-3-2\Spring.Aop.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>..\InfraEstrutura\Insumos\Ferramentas\SpringNet1-3-2\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data">
+      <HintPath>..\InfraEstrutura\Insumos\Ferramentas\SpringNet1-3-2\Spring.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data.NHibernate32">
+      <HintPath>..\InfraEstrutura\Insumos\Ferramentas\SpringNet1-3-2\Spring.Data.NHibernate32.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging">
+      <HintPath>..\InfraEstrutura\Insumos\Ferramentas\SpringNet1-3-2\Spring.Messaging.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging.Ems">
+      <HintPath>..\InfraEstrutura\Insumos\Ferramentas\SpringNet1-3-2\Spring.Messaging.Ems.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging.Nms">
+      <HintPath>..\InfraEstrutura\Insumos\Ferramentas\SpringNet1-3-2\Spring.Messaging.Nms.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Scheduling.Quartz">
+      <HintPath>..\InfraEstrutura\Insumos\Ferramentas\SpringNet1-3-2\Spring.Scheduling.Quartz.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Services">
+      <HintPath>..\InfraEstrutura\Insumos\Ferramentas\SpringNet1-3-2\Spring.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Template.Velocity">
+      <HintPath>..\InfraEstrutura\Insumos\Ferramentas\SpringNet1-3-2\Spring.Template.Velocity.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Testing.Microsoft">
+      <HintPath>..\InfraEstrutura\Insumos\Ferramentas\SpringNet1-3-2\Spring.Testing.Microsoft.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Web">
+      <HintPath>..\InfraEstrutura\Insumos\Ferramentas\SpringNet1-3-2\Spring.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Web.Extensions">
+      <HintPath>..\InfraEstrutura\Insumos\Ferramentas\SpringNet1-3-2\Spring.Web.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Web.Mvc">
+      <HintPath>..\InfraEstrutura\Insumos\Ferramentas\SpringNet1-3-2\Spring.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Web.Mvc3">
+      <HintPath>..\InfraEstrutura\Insumos\Ferramentas\SpringNet1-3-2\Spring.Web.Mvc3.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -46,17 +100,53 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Criptografia\CriptografiaTeste.cs" />
+    <Compile Include="Negocio\NegocioTeste.cs" />
+    <Compile Include="NHibernate\AmbienteTeste.cs" />
+    <Compile Include="NHibernate\Dao\OngDaoTeste.cs" />
+    <Compile Include="NHibernate\Persistencia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpringNet\AmbienteTeste.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dal.Nhibernate\Orm.Nhibernate.Dal.csproj">
+      <Project>{CBE1AB6A-E2CB-4472-8D48-2177579932EF}</Project>
+      <Name>Orm.Nhibernate.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dal.Projeto\Dal.Projeto.csproj">
+      <Project>{591FAD02-9233-499A-931A-0E1F6EA67619}</Project>
+      <Name>Dal.Projeto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dal.SpringNet\IoC.SpringNet.Dal.csproj">
+      <Project>{9FF684E6-0930-4E1B-848A-8AF412DA31DC}</Project>
+      <Name>IoC.SpringNet.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{9A95F23D-7EEA-4119-AEAC-8F32F803233B}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entidade\Entidade.csproj">
+      <Project>{23CABB6B-B796-4965-9FDA-C905CA524943}</Project>
+      <Name>Entidade</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IoC.SpringNet\IoC.SpringNet.csproj">
+      <Project>{E5C965C1-18F9-4892-859F-C9146D69B5C1}</Project>
+      <Name>IoC.SpringNet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Negocio\Negocio.csproj">
+      <Project>{2966411B-862F-4C7B-9870-F4033E768E71}</Project>
+      <Name>Negocio</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Seguranca\Seguranca.csproj">
       <Project>{12864A23-425E-492F-B03B-9A8B34E95134}</Project>
       <Name>Seguranca</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="NHibernate\" />
-    <Folder Include="SpringNet\" />
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SpringNet\Ioc.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
