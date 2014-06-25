@@ -1,10 +1,10 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="ProjetoDao.cs" company="CS Services Consultoria em Sistemas">
+// <copyright file="UsuarioDao.cs" company="CS Services Consultoria em Sistemas">
 // TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Dal.Projeto.SpringNet
+namespace Dal.Projeto.SpringNet.Implementacao
 {
     using System;
     using System.Collections.Generic;
@@ -12,12 +12,12 @@ namespace Dal.Projeto.SpringNet
     using System.Text;
 
     using IoC.SpringNet.Dal.Implementacao;
-    using Entidade;
+    using Entidade.ACL;
 
     /// <summary>
-    /// Objeto de Acesso a Dados para Persistência da Entidade Projeto
+    /// Objeto de Acesso a Dados para Persistência da Entidade Usuario
     /// </summary>
-    public class ProjetoDao : GenericSpringNetDao<Projeto>
+    public class UsuarioDao : GenericSpringNetDao<Usuario>
     {
     }
 }

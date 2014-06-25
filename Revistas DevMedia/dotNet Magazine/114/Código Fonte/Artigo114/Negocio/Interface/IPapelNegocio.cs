@@ -1,25 +1,33 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="PapelNegocio.cs" company="CS Services Consultoria em Sistemas">
+// <copyright file="IPapelNegocio.cs" company="CS Services Consultoria em Sistemas">
 // TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Negocio.Implementacao
+namespace Negocio.Interface
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
 
-    using Negocio.Interface;
     using DTO.ACL;
-    using Entidade.ACL;
     using Dal.Projeto.SpringNet;
+    using Entidade.ACL;
 
     /// <summary>
-    /// Regra de Negócio para Papel
+    /// Interface para a Regra de Negócios para Papel
     /// </summary>
-    public class PapelNegocio: NegocioGenericoAbstrato<PapelDto,PapelDao,Papel> 
+    public interface IPapelNegocio: INegocioGenerico<PapelDto,PapelDao,Papel>
     {
+
+        #region Regras Genéricas
+
+        #endregion
+
+        #region Regras Específicas
+
+        #endregion
+
     }
 }

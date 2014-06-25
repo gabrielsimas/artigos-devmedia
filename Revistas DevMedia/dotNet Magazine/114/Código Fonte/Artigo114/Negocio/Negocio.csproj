@@ -41,13 +41,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementacao\NecessidadeNegocio.cs" />
+    <Compile Include="Implementacao\NegocioGenericoAbstrato.cs" />
     <Compile Include="Implementacao\OngNegocio.cs" />
     <Compile Include="Implementacao\PapelNegocio.cs" />
     <Compile Include="Implementacao\ProjetoNegocio.cs" />
     <Compile Include="Implementacao\UsuarioNegocio.cs" />
+    <Compile Include="Interface\INecessidadeNegocio.cs" />
+    <Compile Include="Interface\INegocioGenerico.cs" />
+    <Compile Include="Interface\IOngNegocio.cs" />
+    <Compile Include="Interface\IPapelNegocio.cs" />
+    <Compile Include="Interface\IProjetoNegocio.cs" />
+    <Compile Include="Interface\IUsuarioNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dal.Projeto\Dal.Projeto.csproj">
+      <Project>{591FAD02-9233-499A-931A-0E1F6EA67619}</Project>
+      <Name>Dal.Projeto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dal.SpringNet\IoC.SpringNet.Dal.csproj">
+      <Project>{9FF684E6-0930-4E1B-848A-8AF412DA31DC}</Project>
+      <Name>IoC.SpringNet.Dal</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DTO\DTO.csproj">
       <Project>{9A95F23D-7EEA-4119-AEAC-8F32F803233B}</Project>
       <Name>DTO</Name>
@@ -61,9 +76,7 @@
       <Name>Seguranca</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interface\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>del /q "$(OutDir)*.*"

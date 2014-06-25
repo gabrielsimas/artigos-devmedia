@@ -1,20 +1,20 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="NecessidadeNegocio.cs" company="CS Services Consultoria em Sistemas">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Negocio.Implementacao
+﻿namespace Negocio.Implementacao
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
 
+    using Negocio.Interface;
+    using DTO;
+    using Entidade;
+    using Dal.Projeto.SpringNet;
+
     /// <summary>
-    /// TODO: Update summary.
+    /// Regra de Negócios para Necessidades de uma Ong
     /// </summary>
-    public class NecessidadeNegocio
+    public class NecessidadeNegocio : NegocioGenericoAbstrato<NecessidadeDto,NecessidadeDao,Necessidade>, INecessidadeNegocio
     {
+
     }
 }

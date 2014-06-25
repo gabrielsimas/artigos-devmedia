@@ -8,9 +8,11 @@
     Definição de Objetos para acesso com o NHibernate junto com o Spring.NET
   </description>
 
+  <!--
   <object type="Spring.Objects.Factory.Config.PropertyPlaceholderConfigurer, Spring.Core">
     <property name="ConfigSections" value="databaseSettings"/>
   </object>
+  -->
 
   <db:provider id="DbProvider"
                    provider="SqlServer-2.0"
@@ -48,10 +50,35 @@
     <property name="SessionFactory" ref="NHibernateSessionFactory"/>
 
   </object>
+
+  <object id="TestesTransactionAdvisor" type="Spring.Transaction.Interceptor.TransactionAttributeSourceAdvisor, Spring.Data">
+    <property name="TransactionInterceptor" ref="TestesTransactionInterceptor"/>
+  </object>
+
+  <object id="TestesTransactionInterceptor" type="Spring.Transaction.Interceptor.TransactionInterceptor, Spring.Data">
+    <property name="TransactionManager" ref="transactionManager"/>
+    <property name="TransactionAttributeSource" ref="TestesAttributeTransactionAttributeSource"/>
+  </object>
+
+  <object id="TestesAttributeTransactionAttributeSource" type="Spring.Transaction.Interceptor.AttributesTransactionAttributeSource, Spring.Data"></object>
+
+  <object id="TestesProxyCreator" type="Spring.Aop.Framework.AutoProxy.ObjectNameAutoProxyCreator, Spring.Aop">
+    <property name="ObjectNames">
+      <list>
+        <value>*Dao*</value>
+        <value>*Negocio*</value>
+      </list>
+    </property>
+    <property name="InterceptorNames">
+      <list>
+        <value>TestesTransactionInterceptor</value>
+      </list>
+    </property>
+  </object>
   
   <!-- Tradução das exceções do Sistema para serem interceptados pelo Spring.NET-->
   <object type="Spring.Dao.Attributes.PersistenceExceptionTranslationPostProcessor, Spring.Data"/>
 
-  <tx:attribute-driven />
+  <tx:attribute-driven transaction-manager="transactionManager" />
 
 </objects>

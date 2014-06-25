@@ -3,13 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.net http://www.springframework.net/xsd/spring-objects.xsd">
 
-	<import resource="assembly://ArtigoSecurity.IoC.SpringNet/IoC.SpringNet.Orm/Orm.xml" />
-	<!--
-	<import resource="assembly://ArtigoSecurity.IoC.SpringNet/IoC.SpringNet/Entidade/Entidade.xml" />
-	<import resource="assembly://ArtigoSecurity.IoC.SpringNet/IoC.SpringNet/Dal/Dao.xml" />
-	<import resource="assembly://ArtigoSecurity.IoC.SpringNet/IoC.SpringNet/Negocio/Negocio.xml" />
-	<import resource="assembly://ArtigoSecurity.IoC.SpringNet/IoC.SpringNet/Web/Controle.xml" />
-	<import resource="assembly://ArtigoSecurity.IoC.SpringNet/IoC.SpringNet/Web/Visao.xml" />
-	-->
-
+	<import resource="assembly://ArtigoSecurity.IoC.SpringNet/IoC.SpringNet/IoC.xml" />
+	<import resource="assembly://ArtigoSecurity.Teste/Teste.SpringNet/TesteIoC.xml" />
+	
 </objects>

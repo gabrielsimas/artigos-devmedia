@@ -1,3 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <objects xmlns="http://www.springframework.net">
+
+  <object id="NecessidadeNegocio" type="Negocio.Implementacao.NecessidadeNegocio, ArtigoSecurity.Negocio" abstract="true">
+    <property name="Entidade" ref="Necessidade" />
+    <property name="Dao" ref="NecessidadeDao" />
+    <property name="Dto" ref="NecessidadeDto" />
+  </object>
+
+  <object id="OngNegocio" type="Negocio.Implementacao.OngNegocio, ArtigoSecurity.Negocio" abstract="true">
+    <property name="Entidade" ref="Ong" />
+    <property name="Dao" ref="OngDao" />
+    <property name="Dto" ref="OngDto" />
+  </object>
+
+  <object id="PapelNegocio" type="Negocio.Implementacao.PapelNegocio, ArtigoSecurity.Negocio" abstract="true">
+    <property name="Entidade" ref="Papel" />
+    <property name="Dao" ref="PapelDao" />
+    <property name="Dto" ref="PapelDto" />
+  </object>
+
+  <object id="ProjetoNegocio" type="Negocio.Implementacao.ProjetoNegocio, ArtigoSecurity.Negocio" abstract="true">
+    <property name="Entidade" ref="Projeto" />
+    <property name="Dao" ref="ProjetoDao" />
+    <property name="Dto" ref="ProjetoDto" />
+  </object>
+
+  <object id="UsuarioNegocio" type="Negocio.Implementacao.UsuarioNegocio, ArtigoSecurity.Negocio" abstract="true">
+    <property name="Entidade" ref="Usuario" />
+    <property name="Dao" ref="UsuarioDao" />
+    <property name="Dto" ref="UsuarioDto" />
+  </object>
+  
 </objects>

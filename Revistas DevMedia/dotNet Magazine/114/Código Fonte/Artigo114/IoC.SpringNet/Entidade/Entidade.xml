@@ -6,7 +6,7 @@
   <object id ="Ong"         type="Entidade.Ong, ArtigoSecurity.Entidade" />
   <object id ="Projeto"     type="Entidade.Projeto, ArtigoSecurity.Entidade" />
   <object id ="Necessidade" type="Entidade.Necessidade, ArtigoSecurity.Entidade" />
-  <object id ="Papel"       type="Entidade.ACL.Ong, ArtigoSecurity.Entidade" />
-  <object id ="Usuario"     type=" Entidade.ACL.Ong, ArtigoSecurity.Entidade" />
+  <object id ="Papel"       type="Entidade.ACL.Papel, ArtigoSecurity.Entidade" />
+  <object id ="Usuario"     type=" Entidade.ACL.Usuario, ArtigoSecurity.Entidade" />
   
 </objects>

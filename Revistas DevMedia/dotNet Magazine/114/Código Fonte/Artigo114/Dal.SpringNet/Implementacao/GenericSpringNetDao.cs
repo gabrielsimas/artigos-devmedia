@@ -31,7 +31,7 @@ namespace IoC.SpringNet.Dal.Implementacao
 
         #region Métodos CRUD
 
-        [Transaction(ReadOnly= true)]
+        [Transaction(ReadOnly = true)]
         public IList<E> listarTudo()
         {
             var dados = FabricaDeSessao.GetCurrentSession().CreateCriteria(typeof(E)).List();
@@ -44,19 +44,19 @@ namespace IoC.SpringNet.Dal.Implementacao
             return FabricaDeSessao.GetCurrentSession().Get(typeof(E), id) as E;
         }
 
-        [Transaction(ReadOnly = false)]
+        [Transaction(Spring.Transaction.TransactionPropagation.Required,ReadOnly = false)]
         public void salvar(E entidade)
         {
             FabricaDeSessao.GetCurrentSession().Save(entidade);
         }
 
-        [Transaction(ReadOnly = false)]
+        [Transaction(Spring.Transaction.TransactionPropagation.Required, ReadOnly = false)]
         public void atualizar(E entidade)
         {
             FabricaDeSessao.GetCurrentSession().SaveOrUpdate(entidade);
         }
 
-        [Transaction(ReadOnly = false)]
+        [Transaction(Spring.Transaction.TransactionPropagation.Required, ReadOnly = false)]
         public void excluir(E entidade)
         {
             FabricaDeSessao.GetCurrentSession().Delete(entidade);

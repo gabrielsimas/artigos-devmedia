@@ -49,11 +49,13 @@
     <Compile Include="NHibernate\ProjetoDao.cs" />
     <Compile Include="NHibernate\UsuarioDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpringNet\NecessidadeDao.cs" />
-    <Compile Include="SpringNet\OngDao.cs" />
-    <Compile Include="SpringNet\PapelDao.cs" />
-    <Compile Include="SpringNet\ProjetoDao.cs" />
-    <Compile Include="SpringNet\UsuarioDao.cs" />
+    <Compile Include="SpringNet\Implementacao\NecessidadeDao.cs" />
+    <Compile Include="SpringNet\Implementacao\OngDao.cs" />
+    <Compile Include="SpringNet\Implementacao\PapelDao.cs" />
+    <Compile Include="SpringNet\Implementacao\ProjetoDao.cs" />
+    <Compile Include="SpringNet\Implementacao\UsuarioDao.cs" />
+    <Compile Include="SpringNet\Interface\INecessidadeDao.cs" />
+    <Compile Include="SpringNet\Interface\IOngDao.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="NHibernate\Mapeamentos\Necessidade.hbm.xml" />

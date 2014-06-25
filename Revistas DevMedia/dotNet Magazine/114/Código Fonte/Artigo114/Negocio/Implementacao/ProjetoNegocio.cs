@@ -11,10 +11,15 @@ namespace Negocio.Implementacao
     using System.Linq;
     using System.Text;
 
+    using Negocio.Interface;
+    using DTO;
+    using Entidade;
+    using Dal.Projeto.SpringNet;
+
     /// <summary>
-    /// TODO: Update summary.
+    /// Regrs de Negócios para os Projetos das ONGs
     /// </summary>
-    public class ProjetoNegocio
+    public class ProjetoNegocio : NegocioGenericoAbstrato<ProjetoDto,ProjetoDao,Projeto>
     {
     }
 }

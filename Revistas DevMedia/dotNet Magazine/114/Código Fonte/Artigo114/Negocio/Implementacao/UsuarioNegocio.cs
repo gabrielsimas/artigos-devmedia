@@ -11,10 +11,15 @@ namespace Negocio.Implementacao
     using System.Linq;
     using System.Text;
 
+    using Negocio.Interface;
+    using DTO.ACL;
+    using Entidade.ACL;
+    using Dal.Projeto.SpringNet;
+
     /// <summary>
-    /// TODO: Update summary.
+    /// Regra de Negócios para os Usuários do Sistema
     /// </summary>
-    public class UsuarioNegocio
+    public class UsuarioNegocio: NegocioGenericoAbstrato<UsuarioDto,UsuarioDao,Usuario>
     {
     }
 }
