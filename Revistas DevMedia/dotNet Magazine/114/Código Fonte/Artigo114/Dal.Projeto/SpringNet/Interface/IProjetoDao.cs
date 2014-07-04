@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="INecessidadeDao.cs" company="CS Services Consultoria em Sistemas">
+// <copyright file="IProjetoDao.cs" company="CS Services Consultoria em Sistemas">
 // TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
@@ -15,11 +15,11 @@ namespace Dal.Projeto.SpringNet.Interface
     using Entidade;
 
     /// <summary>
-    /// Interface para OCP
+    /// Interface para OCP de ProjetoDao
     /// OCP = Princípio do Aberto e Fechado, aberto para extensão e fechado para modificação
-    /// Qualquer nova regra de Dao para NecessidadeDao, deve ser colocado nesta Classe
+    /// Qualquer nova regra de Dao para Projeto, deve ser colocado nesta Classe
     /// </summary>
-    public interface INecessidadeDao : IGenericDao<Necessidade>
+    public interface IProjetoDao: IGenericDao<Projeto>
     {
     }
 }

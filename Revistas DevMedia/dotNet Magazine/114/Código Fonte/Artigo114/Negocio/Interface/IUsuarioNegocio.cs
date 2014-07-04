@@ -14,7 +14,7 @@ namespace Negocio.Interface
     using DTO.ACL;
     using Negocio.Interface;
     using Entidade.ACL;
-    using Dal.Projeto.SpringNet;
+    using Dal.Projeto.SpringNet.Implementacao;
     
 
     /// <summary>

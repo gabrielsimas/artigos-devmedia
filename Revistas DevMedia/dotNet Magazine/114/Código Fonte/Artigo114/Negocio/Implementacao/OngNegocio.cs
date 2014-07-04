@@ -14,7 +14,7 @@ namespace Negocio.Implementacao
     using Negocio.Interface;
     using DTO;
     using Entidade;
-    using Dal.Projeto.SpringNet;
+    using Dal.Projeto.SpringNet.Implementacao;
 
     /// <summary>
     /// Regra de Negócio para Ong

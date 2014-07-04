@@ -9,6 +9,7 @@
   <TestList name="Dao" id="4121c4c8-d36a-4e59-8371-343e7b558f25" parentListId="dde8074a-7f38-4bc0-a2d9-4a30405cb728">
     <Description>Testando as Injeções e cadastros com a Classe Dao</Description>
     <TestLinks>
+      <TestLink id="04148d59-fe77-2f7c-1f3e-304b2f419aeb" name="listarUsuarios" storage="teste\bin\debug\artigosecurity.teste.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
       <TestLink id="98afe591-8e93-fe8f-ce4c-212eeb9da370" name="InsereUsuario" storage="teste\bin\debug\artigosecurity.teste.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     </TestLinks>
   </TestList>
@@ -42,6 +43,8 @@
 - Mapeamento
 - Injeções</Description>
     <TestLinks>
+      <TestLink id="3edc31b4-895e-960e-2777-231ffd4ab99c" name="testaContextoSpringNet" storage="teste\bin\debug\artigosecurity.teste.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="28455aec-313f-4e3d-8c80-f187065a5d53" name="TestaApplicationContext" storage="teste\bin\debug\artigosecurity.teste.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
       <TestLink id="321b52fa-5cbe-fa53-dfc2-b78f18fb3392" name="Integracao" storage="teste\bin\debug\artigosecurity.teste.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     </TestLinks>
   </TestList>

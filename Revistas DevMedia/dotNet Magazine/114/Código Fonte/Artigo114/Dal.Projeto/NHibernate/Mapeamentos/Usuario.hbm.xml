@@ -20,7 +20,7 @@
     <property name="Email" column="email" />    
 
     <!-- Relacionamentos -->
-    <one-to-one name="Papel" class="Papel" />
+    <one-to-one name="Papel" class="Papel"/>
     
   </class>
   

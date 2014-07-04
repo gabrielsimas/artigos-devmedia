@@ -12,7 +12,7 @@ namespace Negocio.Interface
     using System.Text;
 
     using DTO.ACL;
-    using Dal.Projeto.SpringNet;
+    using Dal.Projeto.SpringNet.Implementacao;
     using Entidade.ACL;
 
     /// <summary>

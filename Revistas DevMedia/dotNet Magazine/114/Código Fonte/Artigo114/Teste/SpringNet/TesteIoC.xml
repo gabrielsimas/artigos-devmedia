@@ -5,9 +5,4 @@
 	xmlns:tx="http://www.springframework.net/tx"
 	xsi:schemaLocation="http://www.springframework.net http://www.springframework.net/xsd/spring-objects.xsd">
 	
-	<object id="SpringNetDaoTeste" type="Teste.SpringNet.Dao.SpringNetDaoTeste, ArtigoSecurity.Teste">
-		<property name="Dao" ref="UsuarioDao" />
-		<property name="EntidadeUsuario" ref="Usuario" />
-	</object>
-	
 </objects>

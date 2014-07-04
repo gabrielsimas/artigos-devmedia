@@ -15,7 +15,9 @@ namespace Dal.Projeto.SpringNet.Interface
     using Entidade;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Interface para OCP
+    /// OCP = Princípio do Aberto e Fechado, aberto para extensão e fechado para modificação
+    /// Qualquer nova regra de Dao para OngDao, deve ser colocado nesta Classe
     /// </summary>
     public interface IOngDao : IGenericDao<Ong>
     {

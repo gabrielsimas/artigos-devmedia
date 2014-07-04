@@ -6,7 +6,7 @@
     using System.Text;
 
     using DTO;
-    using Dal.Projeto.SpringNet;
+    using Dal.Projeto.SpringNet.Implementacao;
     using Entidade;
 
     /// <summary>

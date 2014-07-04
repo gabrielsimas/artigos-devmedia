@@ -14,7 +14,7 @@ namespace Negocio.Interface
     using DTO;
     using Negocio.Interface;
     using Entidade;
-    using Dal.Projeto.SpringNet;
+    using Dal.Projeto.SpringNet.Implementacao;
     
 
     /// <summary>

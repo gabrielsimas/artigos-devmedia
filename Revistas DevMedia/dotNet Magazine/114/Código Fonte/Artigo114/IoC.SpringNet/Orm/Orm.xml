@@ -51,10 +51,13 @@
 
   </object>
 
+  <!--
   <object id="TestesTransactionAdvisor" type="Spring.Transaction.Interceptor.TransactionAttributeSourceAdvisor, Spring.Data">
     <property name="TransactionInterceptor" ref="TestesTransactionInterceptor"/>
   </object>
+  -->
 
+  <!--
   <object id="TestesTransactionInterceptor" type="Spring.Transaction.Interceptor.TransactionInterceptor, Spring.Data">
     <property name="TransactionManager" ref="transactionManager"/>
     <property name="TransactionAttributeSource" ref="TestesAttributeTransactionAttributeSource"/>
@@ -75,6 +78,7 @@
       </list>
     </property>
   </object>
+  -->
   
   <!-- Tradução das exceções do Sistema para serem interceptados pelo Spring.NET-->
   <object type="Spring.Dao.Attributes.PersistenceExceptionTranslationPostProcessor, Spring.Data"/>

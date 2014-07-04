@@ -56,6 +56,9 @@
     <Compile Include="SpringNet\Implementacao\UsuarioDao.cs" />
     <Compile Include="SpringNet\Interface\INecessidadeDao.cs" />
     <Compile Include="SpringNet\Interface\IOngDao.cs" />
+    <Compile Include="SpringNet\Interface\IPapelDao.cs" />
+    <Compile Include="SpringNet\Interface\IProjetoDao.cs" />
+    <Compile Include="SpringNet\Interface\IUsuarioDao.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="NHibernate\Mapeamentos\Necessidade.hbm.xml" />
