@@ -62,6 +62,13 @@ namespace IoC.SpringNet.Dal.Implementacao
             FabricaDeSessao.GetCurrentSession().Delete(entidade);
         }
 
+        [Transaction(Spring.Transaction.TransactionPropagation.Required, ReadOnly = true)]
+        public ISessionFactory pegaFabricaDeSessao()
+        {
+            return this.FabricaDeSessao;
+        }
+        
+
         #endregion
     }
 }

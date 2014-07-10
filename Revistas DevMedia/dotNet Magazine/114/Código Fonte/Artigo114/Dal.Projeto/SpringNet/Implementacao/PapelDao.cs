@@ -13,11 +13,12 @@ namespace Dal.Projeto.SpringNet.Implementacao
 
     using IoC.SpringNet.Dal.Implementacao;
     using Entidade.ACL;
+    using Dal.Projeto.SpringNet.Interface;
 
     /// <summary>
     /// Objeto de Acesso a Dados para Persistência da Entidade Papel
     /// </summary>
-    public class PapelDao: GenericSpringNetDao<Papel>
+    public class PapelDao: GenericSpringNetDao<Papel>, IPapelDao
     {
     }
 }

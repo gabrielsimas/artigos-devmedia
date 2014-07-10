@@ -8,6 +8,7 @@ namespace IoC.SpringNet.Dal.Interface
 {
     using System;
     using System.Collections.Generic;
+    using NHibernate;
 
     /// <summary>
     /// Interface para o CRUD
@@ -19,5 +20,6 @@ namespace IoC.SpringNet.Dal.Interface
         void salvar(E entidade);
         void atualizar(E entidade);
         void excluir(E entidade);
+        ISessionFactory pegaFabricaDeSessao();
     }
 }

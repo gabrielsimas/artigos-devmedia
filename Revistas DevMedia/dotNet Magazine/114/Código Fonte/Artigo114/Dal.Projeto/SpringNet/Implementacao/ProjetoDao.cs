@@ -13,11 +13,12 @@ namespace Dal.Projeto.SpringNet.Implementacao
 
     using IoC.SpringNet.Dal.Implementacao;
     using Entidade;
+    using Dal.Projeto.SpringNet.Interface;
 
     /// <summary>
     /// Objeto de Acesso a Dados para Persistência da Entidade Projeto
     /// </summary>
-    public class ProjetoDao : GenericSpringNetDao<Projeto>
+    public class ProjetoDao : GenericSpringNetDao<Projeto>, IProjetoDao
     {
     }
 }

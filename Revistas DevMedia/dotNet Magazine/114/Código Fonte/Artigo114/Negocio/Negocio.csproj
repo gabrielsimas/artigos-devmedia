@@ -31,6 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Spring.Aop, Version=1.3.2.40943, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <HintPath>..\InfraEstrutura\Insumos\Ferramentas\SpringNet1-3-2\Spring.Aop.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core, Version=1.3.2.40943, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <HintPath>..\InfraEstrutura\Insumos\Ferramentas\SpringNet1-3-2\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data, Version=1.3.2.40943, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <HintPath>..\InfraEstrutura\Insumos\Ferramentas\SpringNet1-3-2\Spring.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data.NHibernate32">
+      <HintPath>..\InfraEstrutura\Insumos\Ferramentas\SpringNet1-3-2\Spring.Data.NHibernate32.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,9 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementacao\CadastrarNegocioAbstrato.cs" />
     <Compile Include="Implementacao\NecessidadeNegocio.cs" />
-    <Compile Include="Implementacao\NegocioGenericoAbstrato.cs" />
     <Compile Include="Implementacao\OngNegocio.cs" />
     <Compile Include="Implementacao\PapelNegocio.cs" />
     <Compile Include="Implementacao\ProjetoNegocio.cs" />
@@ -52,7 +62,6 @@
     <Compile Include="Interface\INegocioApagar.cs" />
     <Compile Include="Interface\INegocioBuscar.cs" />
     <Compile Include="Interface\INegocioCadastrar.cs" />
-    <Compile Include="Interface\INegocioGenerico.cs" />
     <Compile Include="Interface\IOngNegocio.cs" />
     <Compile Include="Interface\IPapelNegocio.cs" />
     <Compile Include="Interface\IProjetoNegocio.cs" />

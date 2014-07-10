@@ -4,6 +4,7 @@
     <Description>TDD para a criação da Regra de Negócios</Description>
     <TestLinks>
       <TestLink id="e783b393-095b-6a54-62db-0c98f191e341" name="CadastraUsuario" storage="teste\bin\debug\artigosecurity.teste.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="d26aca4f-77e6-34e1-c833-f7e041eaf9a7" name="testaForcaDeSenha" storage="teste\bin\debug\artigosecurity.teste.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     </TestLinks>
   </TestList>
   <TestList name="Dao" id="4121c4c8-d36a-4e59-8371-343e7b558f25" parentListId="dde8074a-7f38-4bc0-a2d9-4a30405cb728">

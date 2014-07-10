@@ -1,30 +1,13 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="INecessidadeNegocio.cs" company="CS Services Consultoria em Sistemas">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-namespace Negocio.Interface
+﻿namespace Negocio.Interface
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     using DTO;
-    using Negocio.Interface;
-    using Entidade;
-    using Dal.Projeto.SpringNet.Implementacao;
-    
 
     /// <summary>
     /// Interface para a Regra de Negócios de Necessidade da Ong
     /// </summary>
-    public interface INecessidadeNegocio : INegocioGenerico<NecessidadeDto,NecessidadeDao,Necessidade>
+    public interface INecessidadeNegocio : INegocioCadastrar<NecessidadeDto>, INegocioAlterar<NecessidadeDto>, INegocioBuscar<NecessidadeDto>, INegocioApagar<NecessidadeDto>
     {
         #region Regras Específicas
-
-
 
         #endregion
     }
