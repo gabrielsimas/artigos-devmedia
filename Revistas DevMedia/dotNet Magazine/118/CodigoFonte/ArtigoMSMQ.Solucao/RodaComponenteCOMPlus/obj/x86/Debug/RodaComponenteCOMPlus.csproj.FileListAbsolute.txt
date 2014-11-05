@@ -1,0 +1,14 @@
+C:\Projetos\SigaDois\Web\SRC\IWI\RodaComponenteCOMPlus\bin\Debug\RodaComponenteCOMPlus.exe
+C:\Projetos\SigaDois\Web\SRC\IWI\RodaComponenteCOMPlus\bin\Debug\RodaComponenteCOMPlus.pdb
+C:\Projetos\SigaDois\Web\SRC\IWI\RodaComponenteCOMPlus\bin\Debug\MyService.dll
+C:\Projetos\SigaDois\Web\SRC\IWI\RodaComponenteCOMPlus\bin\Debug\MyService.pdb
+C:\Projetos\SigaDois\Web\SRC\IWI\RodaComponenteCOMPlus\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Projetos\SigaDois\Web\SRC\IWI\RodaComponenteCOMPlus\obj\x86\Debug\RodaComponenteCOMPlus.exe
+C:\Projetos\SigaDois\Web\SRC\IWI\RodaComponenteCOMPlus\obj\x86\Debug\RodaComponenteCOMPlus.pdb
+C:\118\CodigoFonte\ArtigoMSMQ.Solucao\RodaComponenteCOMPlus\obj\x86\Debug\RodaComponenteCOMPlus.exe
+C:\118\CodigoFonte\ArtigoMSMQ.Solucao\RodaComponenteCOMPlus\obj\x86\Debug\RodaComponenteCOMPlus.pdb
+C:\118\CodigoFonte\ArtigoMSMQ.Solucao\RodaComponenteCOMPlus\bin\Debug\RodaComponenteCOMPlus.exe
+C:\118\CodigoFonte\ArtigoMSMQ.Solucao\RodaComponenteCOMPlus\bin\Debug\RodaComponenteCOMPlus.pdb
+C:\118\CodigoFonte\ArtigoMSMQ.Solucao\RodaComponenteCOMPlus\bin\Debug\MyService.dll
+C:\118\CodigoFonte\ArtigoMSMQ.Solucao\RodaComponenteCOMPlus\obj\x86\Debug\RodaComponenteCOMPlus.csprojResolveAssemblyReference.cache
+C:\118\CodigoFonte\ArtigoMSMQ.Solucao\RodaComponenteCOMPlus\bin\Debug\MyService.pdb

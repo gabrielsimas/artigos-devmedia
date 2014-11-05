@@ -1,0 +1,7 @@
+C:\Projetos\SigaDois\Web\SRC\IWI\RodaComponenteCOMPlus\bin\Release\RodaComponenteCOMPlus.exe
+C:\Projetos\SigaDois\Web\SRC\IWI\RodaComponenteCOMPlus\bin\Release\RodaComponenteCOMPlus.pdb
+C:\Projetos\SigaDois\Web\SRC\IWI\RodaComponenteCOMPlus\bin\Release\MyService.dll
+C:\Projetos\SigaDois\Web\SRC\IWI\RodaComponenteCOMPlus\bin\Release\MyService.pdb
+C:\Projetos\SigaDois\Web\SRC\IWI\RodaComponenteCOMPlus\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Projetos\SigaDois\Web\SRC\IWI\RodaComponenteCOMPlus\obj\x86\Release\RodaComponenteCOMPlus.exe
+C:\Projetos\SigaDois\Web\SRC\IWI\RodaComponenteCOMPlus\obj\x86\Release\RodaComponenteCOMPlus.pdb

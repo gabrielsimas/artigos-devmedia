@@ -1,0 +1,8 @@
+http://www.codeproject.com/Articles/5830/Using-MSMQ-from-C
+http://www.dotnetfunda.com/articles/show/1119/sending-and-receiving-message-in-msmq-using-csharp
+http://msdn.microsoft.com/en-us/library/ms978430.aspx - Utilizar este
+http://msdn.microsoft.com/en-us/library/ms978425.aspx - Depois este
+http://www.jwsecure.com/2008/08/15/not-everything-you-read-about-msmq-on-the-internet-is-true/
+http://www.codeproject.com/Articles/167917/Microsoft-Message-Queuing-A-Simple-Multithreaded-C
+
+Data Source=(localdb)\Projects;Initial Catalog=ArtigoMSMQ;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False

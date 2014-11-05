@@ -1,0 +1,5 @@
+C:\Projetos\SigaDois\Web\SRC\IWI\MyService\bin\Release\MyService.dll
+C:\Projetos\SigaDois\Web\SRC\IWI\MyService\bin\Release\MyService.pdb
+C:\Projetos\SigaDois\Web\SRC\IWI\MyService\obj\Release\ResolveAssemblyReference.cache
+C:\Projetos\SigaDois\Web\SRC\IWI\MyService\obj\Release\MyService.dll
+C:\Projetos\SigaDois\Web\SRC\IWI\MyService\obj\Release\MyService.pdb

@@ -1,0 +1,9 @@
+C:\Projetos\SigaDois\Web\SRC\IWI\MyService\bin\Debug\MyService.dll
+C:\Projetos\SigaDois\Web\SRC\IWI\MyService\bin\Debug\MyService.pdb
+C:\Projetos\SigaDois\Web\SRC\IWI\MyService\obj\Debug\ResolveAssemblyReference.cache
+C:\Projetos\SigaDois\Web\SRC\IWI\MyService\obj\Debug\MyService.dll
+C:\Projetos\SigaDois\Web\SRC\IWI\MyService\obj\Debug\MyService.pdb
+C:\118\CodigoFonte\ArtigoMSMQ.Solucao\MyService\bin\Debug\MyService.dll
+C:\118\CodigoFonte\ArtigoMSMQ.Solucao\MyService\bin\Debug\MyService.pdb
+C:\118\CodigoFonte\ArtigoMSMQ.Solucao\MyService\obj\Debug\MyService.dll
+C:\118\CodigoFonte\ArtigoMSMQ.Solucao\MyService\obj\Debug\MyService.pdb

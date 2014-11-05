@@ -1,0 +1,5 @@
+C:\Projetos\SigaDois\Web\SRC\IWI\TesteMSMQ\bin\Release\TesteMSMQ.dll
+C:\Projetos\SigaDois\Web\SRC\IWI\TesteMSMQ\bin\Release\TesteMSMQ.pdb
+C:\Projetos\SigaDois\Web\SRC\IWI\TesteMSMQ\obj\Release\ResolveAssemblyReference.cache
+C:\Projetos\SigaDois\Web\SRC\IWI\TesteMSMQ\obj\Release\TesteMSMQ.dll
+C:\Projetos\SigaDois\Web\SRC\IWI\TesteMSMQ\obj\Release\TesteMSMQ.pdb

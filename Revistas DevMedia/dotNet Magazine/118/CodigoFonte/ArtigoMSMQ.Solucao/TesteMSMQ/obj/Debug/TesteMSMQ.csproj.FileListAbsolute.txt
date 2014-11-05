@@ -1,0 +1,5 @@
+C:\118\CodigoFonte\ArtigoMSMQ.Solucao\TesteMSMQ\bin\Debug\TesteMSMQ.dll
+C:\118\CodigoFonte\ArtigoMSMQ.Solucao\TesteMSMQ\bin\Debug\TesteMSMQ.pdb
+C:\118\CodigoFonte\ArtigoMSMQ.Solucao\TesteMSMQ\obj\Debug\TesteMSMQ.csprojResolveAssemblyReference.cache
+C:\118\CodigoFonte\ArtigoMSMQ.Solucao\TesteMSMQ\obj\Debug\TesteMSMQ.dll
+C:\118\CodigoFonte\ArtigoMSMQ.Solucao\TesteMSMQ\obj\Debug\TesteMSMQ.pdb
