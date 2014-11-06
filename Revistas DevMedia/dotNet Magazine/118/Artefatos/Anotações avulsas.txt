@@ -1,0 +1,44 @@
+By default, MSMQ stores some messages in memory for increased performance, and a message may be sent and received from a queue without ever having been written to disk. This is not normally a problem, and it is completely transparent to you as the developer, but if the MSMQ service were to unexpectedly terminate due to a hardware or software failure, or due to some external circumstance such as a power failure, messages stored only in memory will be lost forever. You can control this behavior, forcing MSMQ to store a message to disk, by specifying that a message should be recoverable. A message can be marked as recoverable by setting the Recoverable property of a Message object before sending, or if you are not using Message objects and are just sending objects directly (described in Accessing Message Queues as the simple method of sending messages) you can control this behavior by setting the DefaultPropertiesToSend property on the MessageQueue object. In the code snippet to follow, a Message object is created, marked as recoverable, and then sent to the local private queue named "Orders."
+
+Por padrão, o MSMQ armazena algumas mensagens na memória por motivos de performance, e as mensagens podem ser enviadas e recebidas de uma fila sem sequer necessitarem ser gravadas em Disco. Até aí não vemos problema algum, e isso é completamente transparente seja para o desenvolvedor, seja para o usuario. Mas, e se o serviço do MSMQ terminar de forma inesperada motivada por uma queda de tensão, queima do servidor ou desligamento inesperado? as mensagens, que ficam armazenadas somente na memória, se perderão e aí teremos o caos instalado e começarão os problemas.
+Mas, existe uma saída para isso. Nas figuras 13 temos a mensagem presente na fila, mas ela está presente apenas na memória.
+
+[Figura 13]
+
+Porém, houve, como informado anteriormente,um problema técnico externo ao servidor que causou o seu desligamento e ao retornar o serviço ao ar, notamos que a mensagem sumiu, como nos mostra a Figura 14.
+
+[Figura 14]
+
+É um grande prejuízo. Mas, controlamos este comportamento forçando o MSMQ a armazenar a mensagem no disco e fazemos isso informando que a mesma é "recuperável". 
+Uma mensagem pode ser marcada como recuperável setando a propriedade Recoverable no objeto Message antes de enviá-la mas, se não estamos utilizando o objeto Message para o envio e estamos utilizando o envio direto, veremos mais adiante, podemos controlar este comportamento setando a propriedade DefaultPropertiesToSend no objeto MessageQueue, que é o que acessa a Fila que veremos mais adiante como fazer.
+Na Listagem 1, o objeto Message é criado, marcado como recuperável, e então enviado a nossa Fila de exemplo que contém o mesmo nome.
+
+The next code snippet shows how to configure the default properties information of the MessageQueue so that all messages sent without using an actual Message object will be marked as Recoverable.
+
+A Listagem 2 mostra como configurar as propriedades padrão do objeto de controle da Fila MessageQueue para que todas as mensagens enviadas de forma direta, sem uso do objeto Message, sejam marcadas como recuperáveis.
+
+Although the MSMQ interface is available for creating, deleting, and exploring message queues, you can also work with queues through the System.Messaging namespace. Several static methods (meaning you can call them without creating an actual instance of the class) have been provided on the MessageQueue class that give you the ability to check if a queue exists (Exists), create a queue (Create), and delete a queue (Delete). Using these methods, your application can check for the existence of a queue, and create it automatically if it does not exist. The function, GetQ, listed next provides the exact functionality just described:
+
+Embora a interface gráfica do MSMQ permita a criação, deleção e navegação entre as filas de mensagens, podemos trabalhar com estas filas através do namespace System.Messaging. Muitos métdos estáticos estão disponíveis na Classe MessageQueue o que nos dá a liberade para verificar se a fila existe (utilizando o método Booleando Exists), criar a fila (utilizando Create), e apagar a query (utilizando Delete). Usando estes métodos, sua aplicação pode verificar a existência da fila, criá-la dinamicamente caso não exista. A função CriaOuRetornaFila descrita na Listagem 1 nos mostra de forma completa como fazer.
+
+This type of code can simplify deployment because it removes the need to create any queues ahead of time, but the relative expense of calling Exists means that you will achieve better performance if the queue is created by the install, and your program can just assume it exists. It is also worth noting that your receiving code would also have to check for the existence of the desired queue, since it may not exist until after at least one message has been placed into it.
+Note   Creating and deleting queues requires certain security permissions, and by default can only be done by the creator/owner of the queue or by an administrator. If you do not have sufficient permissions an exception will be raised with an "Access Denied" message.
+
+O código da Listagem 1 pode simplificar a implementação porque elimina a necessidade de se repetir o trabalho de criar filas mais adiante na aplicação, mas existe um custo relativo de ficar chamando Exists e que temos uma melhor performance quando criamos apenas uma fila manualmente. 
+
+Apagando Filas
+The remaining static method that you will find useful is Delete, which takes a path to a queue, just like its two companions, Create and Exists, and in this case uses that path to find a queue and remove it from the server. This is, of course, a rather drastic action because it will destroy any messages currently stored inside that queue that could result in the loss of important data. To ensure a queue is successfully deleted, place the call to Delete within an error-handling structure similar to the one shown here:
+
+Um método estático no qual é bastante útil é Delete, que busca o caminho da fila e a remove do servidor. Ou seja, é uma ação drástica ao extermo pois destrói qualquer mensagem armazenada na fila e isso pode resultar em perda de dados importantes, por isso, antes de utilizar este método, verifique se realmente exste tal necessidade ou se já efetuou a recepção das mensagens necessárias.
+A Listagem 2 mostra como eliminar uma Fila de mensagens.
+
+Enviando mensagens simples
+To send a message to a queue using the simple method requires only a few steps: First, obtain a reference to the appropriate message queue (using the queue's path, format name, or label), and then use the MessageQueue object's Send method, supplying the object you wish to send and (if desired) a label for your message. That's it. All the options that control how a message is sent will use their default values, so you don't have to do anything else. The code shown next leverages the GetQ procedure (described earlier in this article) and sends a simple string message to a local private queue:
+
+Para enviar uma mensagem à uma fila de uma forma simples, precisamos apenas de alguns passos: primeiro, tenha o caminho da fila e então utilize o método Send do objeto MessageQueue passando o que precisamos enviar e, se necessário, criar uma label para sua mensagem. Todas as opções que controlam o envio da mensagem estarão com seus valores default, então não vamos nos preocupar em configurá-los agora. A Listagem 3, mostra um trecho que envia um texto para a fila.
+
+To specify a label for your message, a second parameter can also be included in your call to the Send method:
+Para inserir uma label em nossa mensagem,um segundo parâmetro deve ser incluído na chamada do método Sendna linha 10 da Listagem 3. Na Listagem 4, vamos o método modificado.
+
+To view the contents of an individual message, right-click the message, click Properties, and then click the Body tab. In the case of a simple send, with all the options set to their default, whatever object you sent will have been serialized into XML, similar to the sample shown next (and in Figure 2):
+Para visualizar o conteúdo de uma mensagem, dê um clique com o botão direito do mouse sobre a mensagem, clique em Propriedades e então clique na aba Corpo, no nosso caso, foi um envio bem simples, com todas as opções padrão, seja qualquer objeto que tenhamos enviado, ele sempre será serializado dentro de uma sintaxe XML, na Figura 14, vemos o conteúdo de uma mensagem, a mesma fica na parte chamado Corpo ou Body.

@@ -3,3 +3,8 @@ C:\118\CodigoFonte\ArtigoMSMQ.Solucao\Teste.ArtigoMSMQ\bin\Debug\Teste.ArtigoMSM
 C:\118\CodigoFonte\ArtigoMSMQ.Solucao\Teste.ArtigoMSMQ\obj\Debug\Teste.ArtigoMSMQ.dll
 C:\118\CodigoFonte\ArtigoMSMQ.Solucao\Teste.ArtigoMSMQ\obj\Debug\Teste.ArtigoMSMQ.pdb
 C:\118\CodigoFonte\ArtigoMSMQ.Solucao\Teste.ArtigoMSMQ\obj\Debug\Teste.ArtigoMSMQ.csprojResolveAssemblyReference.cache
+C:\118_1\CodigoFonte\ArtigoMSMQ.Solucao\Teste.ArtigoMSMQ\bin\Debug\Teste.ArtigoMSMQ.dll
+C:\118_1\CodigoFonte\ArtigoMSMQ.Solucao\Teste.ArtigoMSMQ\bin\Debug\Teste.ArtigoMSMQ.pdb
+C:\118_1\CodigoFonte\ArtigoMSMQ.Solucao\Teste.ArtigoMSMQ\obj\Debug\Teste.ArtigoMSMQ.dll
+C:\118_1\CodigoFonte\ArtigoMSMQ.Solucao\Teste.ArtigoMSMQ\obj\Debug\Teste.ArtigoMSMQ.pdb
+C:\118_1\CodigoFonte\ArtigoMSMQ.Solucao\Teste.ArtigoMSMQ\obj\Debug\Teste.ArtigoMSMQ.csprojResolveAssemblyReference.cache

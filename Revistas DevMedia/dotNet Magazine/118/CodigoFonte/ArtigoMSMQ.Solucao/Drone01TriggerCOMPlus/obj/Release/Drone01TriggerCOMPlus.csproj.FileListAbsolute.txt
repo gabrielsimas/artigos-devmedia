@@ -1,0 +1,7 @@
+C:\Projetos\SigaDois\Web\SRC\Provas de Conceito\MSMQ\MSMQ\Drone01TriggerCOMPlus\bin\Release\Drone01TriggerCOMPlus.dll
+C:\Projetos\SigaDois\Web\SRC\Provas de Conceito\MSMQ\MSMQ\Drone01TriggerCOMPlus\bin\Release\Drone01TriggerCOMPlus.pdb
+C:\Projetos\SigaDois\Web\SRC\Provas de Conceito\MSMQ\MSMQ\Drone01TriggerCOMPlus\obj\Release\ResolveAssemblyReference.cache
+C:\Projetos\SigaDois\Web\SRC\Provas de Conceito\MSMQ\MSMQ\Drone01TriggerCOMPlus\obj\Release\Drone01TriggerCOMPlus.dll
+C:\Projetos\SigaDois\Web\SRC\Provas de Conceito\MSMQ\MSMQ\Drone01TriggerCOMPlus\obj\Release\Drone01TriggerCOMPlus.pdb
+C:\Projetos\SigaDois\Web\SRC\Provas de Conceito\MSMQ\MSMQ\Drone01TriggerCOMPlus\bin\Release\TesteMSMQ.dll
+C:\Projetos\SigaDois\Web\SRC\Provas de Conceito\MSMQ\MSMQ\Drone01TriggerCOMPlus\bin\Release\TesteMSMQ.pdb

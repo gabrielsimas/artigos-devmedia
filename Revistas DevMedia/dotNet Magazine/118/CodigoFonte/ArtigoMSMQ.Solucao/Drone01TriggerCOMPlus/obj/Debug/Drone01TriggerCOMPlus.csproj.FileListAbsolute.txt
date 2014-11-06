@@ -1,0 +1,7 @@
+C:\118_1\CodigoFonte\ArtigoMSMQ.Solucao\Drone01TriggerCOMPlus\bin\Debug\Drone01TriggerCOMPlus.dll
+C:\118_1\CodigoFonte\ArtigoMSMQ.Solucao\Drone01TriggerCOMPlus\bin\Debug\Drone01TriggerCOMPlus.pdb
+C:\118_1\CodigoFonte\ArtigoMSMQ.Solucao\Drone01TriggerCOMPlus\obj\Debug\Drone01TriggerCOMPlus.dll
+C:\118_1\CodigoFonte\ArtigoMSMQ.Solucao\Drone01TriggerCOMPlus\obj\Debug\Drone01TriggerCOMPlus.pdb
+C:\118_1\CodigoFonte\ArtigoMSMQ.Solucao\Drone01TriggerCOMPlus\obj\Debug\Drone01TriggerCOMPlus.csprojResolveAssemblyReference.cache
+C:\118_1\CodigoFonte\ArtigoMSMQ.Solucao\Drone01TriggerCOMPlus\bin\Debug\Teste.ArtigoMSMQ.dll
+C:\118_1\CodigoFonte\ArtigoMSMQ.Solucao\Drone01TriggerCOMPlus\bin\Debug\Teste.ArtigoMSMQ.pdb

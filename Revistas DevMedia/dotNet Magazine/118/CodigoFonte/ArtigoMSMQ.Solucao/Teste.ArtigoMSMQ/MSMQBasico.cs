@@ -201,12 +201,13 @@ namespace Teste.ArtigoMSMQ
         public void ReceberTodasAsMensagensDaQueue()
         {
             //Acessa a fila para gerar a Lista e Pega as Mensagens para Id
-            MessageQueue filaListaMensagens = new MessageQueue(INSERIR);            
+            String queue = @".\private$\teste";
+            MessageQueue filaListaMensagens = new MessageQueue(queue);            
             Message[] mensagens = filaListaMensagens.GetAllMessages();
             filaListaMensagens.Close();
 
             //Acessa a fila para Receber as Mensages
-            MessageQueue fila = new MessageQueue(INSERIR);
+            MessageQueue fila = new MessageQueue(queue);
             fila.Formatter = new XmlMessageFormatter(new Type[] { typeof(Pessoa) });
 
             List<Pessoa> pessoas = new List<Pessoa>();
@@ -294,20 +295,78 @@ namespace Teste.ArtigoMSMQ
             Assert.IsTrue(true);
         }
 
+        [TestMethod]
+        public void EnviaMensagemParaSerPegaPelaTrigger()
+        {
+                     
+            const string path = @".\private$\teste";
 
+            MessageQueue fila = new MessageQueue(path);
+
+            Pessoa pessoa = new Pessoa()
+            {
+                Id = 1,
+                FirstName = "Gabriel",
+                LastName = "Simas",
+                Email = "autorgabrielsimas@gmail.com"
+            };
+
+            Message msg = new Message();
+            //msg.AdministrationQueue = new MessageQueue(@".\private$\rastreador");
+            //msg.AcknowledgeType = AcknowledgeTypes.PositiveArrival;
+            msg.Label = "INSERIR";
+            msg.Body = pessoa;
+            fila.Send(msg);
+
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod]
         public void Teste()
         {
-            try
-            {
-                //Apaga a Fila selecionada
-                MessageQueue.Delete(@".\private$\exemplo");
+            const String FILA_CAMINHO = @".\private$\exemplo";
 
-            }
-            catch (MessageQueueException ex)
-            {
+            //Instancia a fila
+            MessageQueue fila = new MessageQueue(FILA_CAMINHO);
 
-                Console.WriteLine("Erro ao apagar a fila",ex.ToString());
-            }
+            //Cria a mensagem
+            String textoMsg = "Mensagem de Teste";
+
+            //Envia a mensagem
+            //fila.Send(textoMsg);
+            fila.Send(textoMsg,"Label Mensagem Simples");
+
+            //Fecha a conexão com a Fila por questão de segurança e performance
+            fila.Close();
+
+            Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        public void EnviaObjetoComplexoComoMensagem()
+        {
+            const String FILA_CAMINHO = @".\private$\exemplo";
+
+            //Instancia a fila
+            MessageQueue fila = new MessageQueue(FILA_CAMINHO);
+
+            //Instanciamos o Objeto Pessoa
+            //e passa valor
+            Pessoa pessoa = new Pessoa()
+            {
+                Id = 1,
+                FirstName = "Gabriel",
+                LastName = "Simas",
+                Email = "autorgabrielsimas@gmail.com"
+            };
+
+            //Envia a mensagem
+            fila.Send(pessoa, "Mensagem de " + pessoa.ToString());
+
+            //Fecha a conexão com a Fila por questão de segurança e performance
+            fila.Close();
+
+            Assert.IsTrue(true);
         }
 
     }
