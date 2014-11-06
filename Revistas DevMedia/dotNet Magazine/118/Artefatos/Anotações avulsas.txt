@@ -42,3 +42,67 @@ Para inserir uma label em nossa mensagem,um segundo parâmetro deve ser incluído 
 
 To view the contents of an individual message, right-click the message, click Properties, and then click the Body tab. In the case of a simple send, with all the options set to their default, whatever object you sent will have been serialized into XML, similar to the sample shown next (and in Figure 2):
 Para visualizar o conteúdo de uma mensagem, dê um clique com o botão direito do mouse sobre a mensagem, clique em Propriedades e então clique na aba Corpo, no nosso caso, foi um envio bem simples, com todas as opções padrão, seja qualquer objeto que tenhamos enviado, ele sempre será serializado dentro de uma sintaxe XML, na Figura 14, vemos o conteúdo de uma mensagem, a mesma fica na parte chamado Corpo ou Body.
+
+To specify a label for your message, a second parameter can also be included in your call to the Send method.
+
+Once you have placed messages onto your queue, someone will likely wish to retrieve those messages, taking the data off the queue in the order in which it was added. To obtain a message from the queue, and then retrieve the data it contains, requires a few important steps:
+
+Como enviamos mensagens para uma fila, a aplicação agora precisa receber/processar esta mensagem, uma boa prática, como pede o conceito de Fila, é processar as mensagens na ordem em que a mesma chega à Fila.	Para que possamos obter uma mensagem da fila e então processar os dados retornados por ela, precisamos de alguns passos simples. Na Listagem 10, temos estes passos.
+
+Using a Specific Formatter
+The process is the same regardless of the data type that you sent, as long as the XML formatter was used. If another formatter, such as the BinaryMessageFormatter, was used, you must set the message to use the correct formatter before you can retrieve the message body. The following code shows retrieval of an instance of the Order class using the binary formatter:
+
+Usando Formatters específicos
+O processo é o mesmo independente do tipo enviado, assim como o formatter do XML foi utilizado. Se outro formatter, como por exemplo BinaryMessageFormatter, for usado, precisamos configurar as mensagens para usar o formatter correto antes de extrair os dados da mensagem. Na Listagem 11, temos um exemplo.
+
+Uma vantagem do MSMQ é o armazenamento de mensagens de forma assíncrona e isso já foi explicado em várias partes deste artigo, porém, em alguns momentos, não temos como processar as mensagens que são enviadas e as que são extraídas uma a uma, pode acontecer de o servidor receber muitas mensagens e não ter condições de enviá-las ao mesmo tempo, diante disso, a extração destas pode ser feita em massa.
+Quando recebemos uma mensagem oriunda da Fila, ela envia sempre a primeira mensagem recebida e esta mensagem quando recebida e processada por nossa aplicação, ela é eliminada da fila, e a pergunta que é feita é: Como fazer uma extração em massa destas mensagens fazendo contagens e as recebendo? a resposta é: utilizando o método GetAllMessages() que é uma Lista de objetos Message. Também podemos introduzir uma busca de mensagens através do método ReceiveById, o motivo do uso deste método é que GetAllMessages não extrai as mensagens do servidor, apenas as coloca em uma Lista, só o método Receive()e suas sobrecargas - ReceiveById, ReceiveByCorrelationId -  é capaz de efetuar este procedimento. A idéia principal é iterar dentro da lista de mensagens e deste ponto fazer o processamento necessário com as mensagens já formatadas em nossos objetos. A Listagem 12, nos dá um exemplo muito útil.
+
+Transactions
+Transações
+
+The concept of transactions is part of a variety of different computing technologies, but the general meaning is always the same: to execute a multiple-step process such that either all or none of the steps will complete. In reality, transactions are handled by rolling back any steps that have already occurred if the entire transaction is not completed successfully. Regardless of the technology used to implement transactions, they are described using several basic concepts:
+The beginning and end of the transaction must be indicated, so that it is known which actions are contained within that transaction.
+If the transaction completes successfully, it is committed, which causes all the actions to become permanent and the transaction to end.
+If the transaction fails, for whatever reason, it is aborted and a rollback occurs, undoing any actions that have already been executed before the abort.
+For more information on the concept of transactions, as they apply in a more general way to the world of computing, check out the Microsoft® SQL Server™ technical article, Microsoft SQL Server: An Overview of Transaction Processing Concepts and the MS DTC.
+MSMQ supports transactions in two different ways: internally by allowing multiple messages to be sent or received as part of a transaction and externally by participating in Distributed Transaction Coordinator (DTC) transactions. The difference between the two types of transactions will be discussed later in this article, but to participate in either type of transaction, you must be using transactional message queues.
+
+O conceito de transação é um assunto um tanto comum em TI, mas de uma forma geral é sempre a mesma: executar multiplos passos de um processo mesmo que todos ou nenhum destes passos esteja completo. Normalmente, transações são manipuladas desfazendo qualquer passo que já tenha ocorrido se toda a transação não estiver tiver sucesso. À despeito da tecnologia utilizada para implementá-las, transaççoes são descritas em termos muito simples e básicos.
+O início é o fim da transação precisa ser informado, então após isso saber quais as ações que será executadas dentro da transação.
+Se a transação é completada com sucesso, ela é comitada, o que faz com que todas as ações se tornem permanentes e finaliza a transação.
+Se a transação falha, por qualquer razão, ela é abortada e a operação de Rollback ou desfazer ocorre, desfazendo qualquer ação que já tenha sido executada antes do erro.
+O MSMQ permite transação em dois modos diferentes: modo interno, permitindo que multiplas mensagens sejam enviadas ou recebeidas como parte de uma transação ou modo externo participando das transações do Microsoft DTC (Coordenador de Transações Distribuídas). A diferença entre estes dois tipos de transações serão discutidos posteriormente no artigo, mas para que possamos usufruir dos benefícios destes tipos de transação, precisamos utilizar filas para mensagens transacionais.
+Para criar filas transacionais, basta fazer como mostrado na Figura 18.
+Lembrando que filas transacionais só permitem receber mensagens oriundas de transações, caso contrário, ou recebemos um erro de MessageQueueException ou a mensagem não chega no servidor, é descartada ao chegar. 
+
+If you are creating a queue programmatically and you intend on using that queue in transactions, you must specify this when you call the MessageQueue.Create method. The code snippet to follow creates a new transactional queue by supplying an additional parameter to the Create method.
+Também podemos criar filas via código, precisamos informar isso quando chamamos o método MessageQueue.Create. A Listagem 13 mostra a forma correta da criação da fila transacional
+
+You can determine if a queue supports transactions after it has been created by viewing the queue properties through the MSMQ management interfaces, or by checking the Transactional property of the MessageQueue object programmatically. The next code snippet illustrates how to create a new instance of a MessageQueue object and check if it supports transactions.
+he next code snippet illustrates how to create a new instance of a MessageQueue object and check if it supports transactions.
+
+Podemos determinar se uma fila suporte transações após terem sido criadas olhando suas propriedades no MSMQ Explorer em nosso Console, ou verificando a propriedade Transaction do objeto MessageQueue. A Listagem 14 demonstra como criar uma nova instância de um objeto MessageQueue e verificar se o mesmo é transacional ou não, para cada bloco de verificação uma forma de tratamento distinta.
+
+Attempting to use transactions with a non-transactional queue will fail and result in an exception of type MessageQueueException. The reverse, sending or receiving messages from a transactional queue without using transactions, will also fail. If you are using a transactional queue, and you are just sending a single message, you must use a special overload of the MessageQueue.Send method to indicate that each individual send or receive should be wrapped in its own single transaction. This is accomplished by passing the value MessageQueueTransactionType.Single as the second parameter to the Send method.
+
+A tentativa de usar transações com uma fila não transacional resultará em erro retornando uma exceção do tipo MessageQueueException como já foi informado anteriormente. Do contrário, enviando ou recebendo mensagens de uma fila transacional sem usar transacções, também irá falhar. Se usar uma fila transacional e apenas enviarmos uma mensagem apenas, precisamos usar uma sobrecarga especial do método do objeto MessageQueue.Send para indicar que cada envio individual ou recepção precisa estar encapsulada nesta sua única transação, isso é feito passando o enum MessageQueueTransactionType.Single como o segundo parâmetro para o método Send.
+
+MSMQ provides built-in support for transactions, allowing you to execute multiple actions against one or more queues (sending or receiving messages) all wrapped in a transaction so that you can guarantee that either all or none of the actions will take effect. The transaction support provided within MSMQ is limited to MSMQ actions, however, and you will often be accessing other resources, such as a database, that you also wish to include in the same transaction. To allow for this, MSMQ also supports external transactions, where the Microsoft Distributed Transaction Coordinator (MS DTC), used by COM+ and SQL Server, is used to allow a variety of resources including databases and MSMQ to be included in a single transaction.
+
+Sending and receiving within a transaction
+To perform any MSMQ action(s) within an internal transaction, you need to create a MessageQueueTransaction object, begin the transaction, and then supply that object along with each of the actions you wish to include in the transaction.
+
+MSMQ disponibiliza suporte nativo para transações, nos permitindo executar multiplas ações sobre uma ou mais filas (enviando ou recebendo mensagens) todos encapsulados em uma transação para que garanta que todas ou nenhuma das ações surtam efeito. O suporte para transação disponível dentro do MSMQ é limitado à ações do MSMQ, mas, podemos precisar acessar outros recursos, tais como Bancos de Dados, que desejamos incluir na mesma transação. Para permitir este acesso, MSMQ também permite o acesso à transações externas, onde o Coordenador de Transações Distribuídas da Microsoft (MS DTC), usado por COM+ e SQL Server, também pode ser utilizado para acessar grande parte de recursos incluindo Banco de Dados e MSMQ pode incluir em uma transação única.
+Neste ponto, vamos começar a mostar a sintaxe para o uso de transações.
+
+To perform any MSMQ action(s) within an internal transaction, you need to create a MessageQueueTransaction object, begin the transaction, and then supply that object along with each of the actions you wish to include in the transaction.
+Para executar qualquer ação ou ações dentro de uma transação interna, precisamos instanciar o objeto MessageQueueTransaction, iniciar a transação e então utlizar este objeto durante a execução de cada ação que precisar utilizar uma transação. Na Listagem 15, temos um trecho que demonstra este modelo.
+
+Once you have this MessageQueueTransaction object, the Send and Receive methods of the MessageQueue object both have an overloaded version that can accept a transaction object along with the other required information. As noted earlier, before you can send any messages as part of this new transaction, you must explicitly mark the beginning of the transaction by using the MessageQueueTransaction.Begin method. More details on controlling the transaction are provided in the next section, but note that your actions (send and receive) won't permanently affect the queue unless you commit the transaction, so a call to the MessageQueueTransaction.Commit method is required after the send or else the receive may not find any messages to retrieve. The two pieces of code to follow show how to both send and receive messages within a transaction.
+
+Uma vez que tenhamos o objeto MessageQueueTransaction instanciado, os métodos Send e Receive do objeto MessageQueue ambos tem uma versão com sobrecarga
+
+
+
+

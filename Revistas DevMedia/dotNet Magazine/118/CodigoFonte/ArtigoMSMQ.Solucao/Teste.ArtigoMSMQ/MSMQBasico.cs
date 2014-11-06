@@ -369,5 +369,56 @@ namespace Teste.ArtigoMSMQ
             Assert.IsTrue(true);
         }
 
+        [TestMethod]
+        [Description("Podemos fazer uma lista de todas as mensagens e posteriormente recebê-las e listá-las")]
+        public void ReceberETratarMensagensEmMassa()
+        {
+            //Acessa a fila para gerar a Lista e Pega as Mensagens para Id
+            String queue = @".\private$\exemplo";
+
+            //Fila apenas para fazer as operações de contagem das mensagens
+            //e colocá-las em uma Lista.
+            MessageQueue filaListaMensagens = new MessageQueue(queue);
+            Message[] mensagens = filaListaMensagens.GetAllMessages();
+
+            //Fecha a fila e libera a memória
+            filaListaMensagens.Close();
+
+            //Acessa a fila para Receber as Mensages
+            MessageQueue fila = new MessageQueue(queue);
+
+            //Formata as mensagens da fila como XML
+            fila.Formatter = new XmlMessageFormatter(new Type[] { typeof(Pessoa) });
+
+            //Cria a Lista para mensagens já tratadas
+            List<Pessoa> pessoas = new List<Pessoa>();
+
+            //Iteração para processamento das mensagens
+            //Transformando as mensagens recebidas do Servidor
+            //em objetos do tipo Pessoa
+            foreach (Message mensagem in mensagens)
+            {
+                Pessoa pessoa = new Pessoa();
+
+                //Localiza na Lista de mensagens do Servidor
+                //As mensagens a serem processados através de sua
+                //Identificação
+                pessoa = (Pessoa)fila.ReceiveById(mensagem.Id).Body;
+
+                //Adiciona o objeto para a Lista de Saída
+                pessoas.Add(pessoa);
+            }
+
+           
+
+            Assert.IsTrue(pessoas.Count > 0 );
+        }
+
+        [TestMethod]
+        public void CriaFilaTransacional()
+        {
+
+        }
+
     }
 }
