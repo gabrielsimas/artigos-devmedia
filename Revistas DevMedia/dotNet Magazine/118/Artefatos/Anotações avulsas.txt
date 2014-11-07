@@ -101,7 +101,7 @@ Para executar qualquer ação ou ações dentro de uma transação interna, precisamos
 
 Once you have this MessageQueueTransaction object, the Send and Receive methods of the MessageQueue object both have an overloaded version that can accept a transaction object along with the other required information. As noted earlier, before you can send any messages as part of this new transaction, you must explicitly mark the beginning of the transaction by using the MessageQueueTransaction.Begin method. More details on controlling the transaction are provided in the next section, but note that your actions (send and receive) won't permanently affect the queue unless you commit the transaction, so a call to the MessageQueueTransaction.Commit method is required after the send or else the receive may not find any messages to retrieve. The two pieces of code to follow show how to both send and receive messages within a transaction.
 
-Uma vez que tenhamos o objeto MessageQueueTransaction instanciado, os métodos Send e Receive do objeto MessageQueue ambos tem uma versão com sobrecarga
+Uma vez que tenhamos o objeto MessageQueueTransaction instanciado, os métodos Send e Receive do objeto MessageQueue ambos tem uma versão com sobrecarga que pode ser utilizado aceitar com objetos de transação. Como dito antes, antes que possamos enviar qualquer mensagem como parte desta nova transação, precisamos explicitamente marcar o início 
 
 
 

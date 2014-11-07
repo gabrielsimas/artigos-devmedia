@@ -414,11 +414,25 @@ namespace Teste.ArtigoMSMQ
             Assert.IsTrue(pessoas.Count > 0 );
         }
 
+
         [TestMethod]
-        public void CriaFilaTransacional()
+        public void TransacaoBasica()
         {
+            MessageQueueTransaction tx = new MessageQueueTransaction();
+            MessageQueue fila = new MessageQueue(@".\private$\transa");
 
+            tx.Begin();
+            fila.Send("Esta é uma mensagem transacional!", tx);
+            tx.Commit();
+
+            tx.Begin();
+            Message mensagem;
+            mensagem = fila.Receive(tx);
+            tx.Commit();
+
+
+
+            Assert.IsTrue(true);
         }
-
     }
 }
