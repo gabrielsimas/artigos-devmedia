@@ -429,9 +429,7 @@ namespace Teste.ArtigoMSMQ
             Message mensagem;
             mensagem = fila.Receive(tx);
             tx.Commit();
-
-
-
+            
             Assert.IsTrue(true);
         }
     }

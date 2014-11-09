@@ -20,7 +20,7 @@ namespace Drone01TriggerCOMPlus
    public class BaixarMensagem : ServicedComponent
     {
         private const String FILA_ACKNOWLEDGE_PATH = @".\private$\rastreador";
-        private const String FILA_TESTE_PATH = @".\private$\teste";
+        private const String FILA_TESTE_PATH = @".\private$\exemplo";
 
         public BaixarMensagem()
         {
@@ -35,6 +35,7 @@ namespace Drone01TriggerCOMPlus
         /// </summary>
         public void RegraRecebeAssimQueEntra()
         {
+           const String FILA_TESTE_PATH = @".\private$\exemplo";         
            MessageQueue fila = new MessageQueue(FILA_TESTE_PATH);
 
             IList<Message> mensagens = new List<Message>();
@@ -53,6 +54,10 @@ namespace Drone01TriggerCOMPlus
                     if (msg.Body != null)
                     {
                         pessoa = (Pessoa)msg.Body;
+                        Message msgRetorno = new Message();
+                        msgRetorno.Label = "Resposta";
+                        msgRetorno.Body = pessoa;
+                        fila.Send(msgRetorno);
                     }
                 }
             }
